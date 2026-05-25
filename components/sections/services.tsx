@@ -16,7 +16,7 @@ const services = [
   { icon: Home, title: "Sprzedaż nieruchomości", body: "Profesjonalne przygotowanie oferty, dotarcie do kupujących, pełna obsługa do aktu notarialnego." },
   { icon: Users, title: "Reprezentacja kupującego", body: "Prowadzimy Cię przez proces zakupu, dbając o Twój interes na każdym etapie." },
   { icon: Building, title: "Zarządzanie najmem", body: "Zarządzamy najemcami, konserwacją i finansami, maksymalizujemy zwrot z najmu." },
-  { icon: TrendingUp, title: "Doradztwo inwestycyjne", body: "Strategiczne porady, jak najlepiej wykorzystać okazje na rynku nieruchomości." },
+  { icon: TrendingUp, title: "Strategie inwestycyjne", body: "Pomagamy wykorzystać okazje rynkowe. Wskazujemy dzielnice z potencjałem wzrostu i przewidywanym zwrotem." },
   { icon: Calculator, title: "Wycena nieruchomości", body: "Precyzyjna wycena na potrzeby sprzedaży, kupna lub inwestycji. Bezpłatnie." },
   { icon: Handshake, title: "Rozwiązania szyte na miarę", body: "Dopasowane usługi nieruchomościowe spójne z Twoimi celami i stylem życia." },
 ];
@@ -32,13 +32,14 @@ export function Services() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-14 lg:mb-20"
         >
-          <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-foreground-muted mb-5">
-            Dlaczego my
+          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-foreground text-background text-[11px] font-semibold uppercase tracking-[0.28em] mb-6">
+            <span className="size-1.5 rounded-full bg-brand-soft animate-pulse" />
+            Co nas wyróżnia
           </div>
           <h2 className="font-sans font-bold uppercase text-[clamp(2rem,5vw,4rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
-            Pełen zakres usług
+            Sześć powodów,
             <br />
-            real estate dla&nbsp;Ciebie
+            by zaufać nam Twojej sprawy
           </h2>
         </motion.div>
 

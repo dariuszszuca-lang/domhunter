@@ -119,10 +119,7 @@ body {
   font-feature-settings: "ss01", "cv11";
 }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-display);
-  font-feature-settings: "ss01";
-}
+/* h1-h4 nie mają wymuszonego fontu — komponenty same wybierają (font-sans / font-display) */
 
 ::selection {
   background: var(--brand);

@@ -24,16 +24,29 @@ export async function FeaturedOffers() {
   return (
     <section className="py-24 lg:py-32 bg-surface-muted">
       <Container size="wide">
-        <div className="flex flex-wrap items-end justify-between gap-6 mb-12 lg:mb-16">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-foreground-muted mb-5">
-              Wybrane oferty
+        <div className="grid lg:grid-cols-12 gap-8 mb-12 lg:mb-16">
+          <div className="lg:col-span-2 flex lg:flex-col lg:justify-end">
+            <div className="flex items-baseline gap-3">
+              <span className="font-sans font-bold text-7xl lg:text-8xl text-foreground tabular-nums leading-none tracking-tight">
+                03
+              </span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-foreground-muted">/ 08</span>
             </div>
+          </div>
+          <div className="lg:col-span-7 max-w-2xl">
+            <span className="block text-[11px] font-semibold uppercase tracking-[0.28em] text-brand mb-4">
+              Aktualne propozycje
+            </span>
             <h2 className="font-sans font-bold uppercase text-[clamp(2rem,5vw,4rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
-              Nieruchomości dopasowane
+              Wybierz swoje
               <br />
-              do Twojego stylu życia
+              wymarzone miejsce
             </h2>
+          </div>
+          <div className="lg:col-span-3 flex lg:items-end">
+            <p className="text-foreground-muted leading-relaxed text-sm lg:text-right">
+              Aktualizujemy bazę codziennie. Pełna lista z&nbsp;filtrami w&nbsp;zakładce <Link href="/oferty" className="underline underline-offset-2 text-foreground hover:text-brand">Oferty</Link>.
+            </p>
           </div>
         </div>
 

@@ -52,13 +52,13 @@ export default function KomercjaPage() {
               <span className="italic text-brand">komercyjne.</span>
             </h1>
             <p className="mt-8 text-lg lg:text-xl text-foreground-muted leading-[1.55] max-w-2xl">
-              Dedykowany doradca dla każdego segmentu. Znamy lokalne realia, mamy bazę najemców i właścicieli z całego Trójmiasta. Wycena, prezentacja, negocjacje, dokumenty.
+              Dedykowany agent dla każdego segmentu. Znamy lokalne realia, mamy bazę najemców i właścicieli z całego Trójmiasta. Wycena, prezentacja, negocjacje, dokumenty.
             </p>
             <Link
               href="/kontakt"
               className="mt-10 inline-flex items-center gap-2.5 pl-7 pr-3 py-2 rounded-full bg-foreground text-background text-sm font-semibold hover:bg-brand transition-all"
             >
-              Porozmawiaj z doradcą
+              Porozmawiaj z agentem
               <span className="inline-flex items-center justify-center size-9 rounded-full bg-background/15">
                 <ArrowRight className="size-4" />
               </span>

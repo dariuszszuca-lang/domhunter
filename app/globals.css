@@ -11,7 +11,7 @@
   --surface: #FFFFFF;
   --surface-muted: #EFEEE8;
   --surface-cream: #F3F0E8;
-  --surface-blush: #EEF4EF;
+  --surface-blush: #F8EEF5;
   --surface-dark: #111111;
 
   /* Tekst */
@@ -21,13 +21,13 @@
   --foreground-on-dark: #F7F6F1;
   --foreground-on-dark-muted: #C7C4BA;
 
-  /* Brand — VistaHaven-like monochrome with small green signal accent */
-  --brand: #111111;
-  --brand-hover: #000000;
-  --brand-deep: #060606;
-  --brand-soft: #32D583;
-  --brand-light: #ECF3EC;
-  --brand-blush: #DFF6E8;
+  /* Brand — subtelna paleta z domhunter.pl */
+  --brand: #991A75;
+  --brand-hover: #6D1354;
+  --brand-deep: #420B32;
+  --brand-soft: #D7429D;
+  --brand-light: #F8EEF5;
+  --brand-blush: #FBE7F4;
 
   /* Akcenty pomocnicze */
   --border: #E2DFD6;

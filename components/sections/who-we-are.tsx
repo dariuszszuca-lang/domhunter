@@ -34,8 +34,8 @@ const values = [
 export function WhoWeAre() {
   return (
     <section id="o-nas" className="py-20 lg:py-28">
-      <Container size="wide" className="max-w-[1240px]">
-        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.1fr_1fr] lg:items-start lg:gap-10 xl:gap-12">
+      <Container size="wide" className="max-w-[1360px]">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.18fr)_minmax(0,0.95fr)] lg:items-start lg:gap-12 xl:gap-16">
           {/* Lewa kolumna — chip + H2 + opis + stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -47,14 +47,14 @@ export function WhoWeAre() {
             <div className="mb-6 inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
               O nas
             </div>
-            <h2 className="max-w-[430px] font-sans font-bold uppercase text-[clamp(1.95rem,3vw,3.15rem)] leading-[1.04] tracking-normal text-foreground">
+            <h2 className="max-w-[420px] font-sans font-bold uppercase text-[clamp(2rem,2.55vw,3rem)] leading-[1.08] tracking-normal text-foreground">
               Pasja i
+              <br />
+              lokalne
               <br />
               doświadczenie
               <br />
-              na lokalnym
-              <br />
-              rynku
+              na rynku
             </h2>
 
             <div className="mt-10 max-w-sm space-y-4 text-base leading-[1.65] text-foreground-muted">
@@ -67,10 +67,10 @@ export function WhoWeAre() {
             </div>
 
             {/* Stats 2x2 — vista large numbers */}
-            <div className="mt-12 grid max-w-sm grid-cols-2 gap-x-7 gap-y-9">
+            <div className="mt-12 grid max-w-sm grid-cols-2 gap-x-8 gap-y-9">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <div className="font-sans text-4xl font-bold leading-none tracking-normal text-foreground tabular-nums lg:text-5xl">
+                  <div className="font-sans text-5xl font-normal leading-none tracking-normal text-foreground tabular-nums lg:text-[3.7rem]">
                     {s.value}
                   </div>
                   <p className="mt-3 text-sm leading-snug text-foreground-muted">{s.label}</p>

@@ -13,7 +13,7 @@ export function Hero() {
         <div className="relative rounded-[28px] lg:rounded-[40px] overflow-hidden bg-foreground min-h-[640px] lg:min-h-[760px]">
           {/* Background image */}
           <Image
-            src="/images/properties/sample-8.jpg"
+            src="/images/hero-luxury-2.jpg"
             alt="Luksusowa nieruchomość w Trójmieście"
             fill
             sizes="100vw"

@@ -42,7 +42,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-display font-bold text-xl lg:text-2xl tracking-tight text-foreground hover:text-brand transition-colors"
+            className="font-display text-xl lg:text-2xl tracking-tight text-foreground hover:text-brand transition-colors"
           >
             DomHunter
           </Link>

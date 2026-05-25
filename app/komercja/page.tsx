@@ -46,7 +46,7 @@ export default function KomercjaPage() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
               Komercja
             </p>
-            <h1 className="font-display font-bold text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.025em] text-foreground">
+            <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.025em] text-foreground">
               Nieruchomości
               <br />
               <span className="italic text-brand">komercyjne.</span>
@@ -81,7 +81,7 @@ export default function KomercjaPage() {
                   <span className="inline-flex items-center justify-center size-12 rounded-xl bg-brand-light text-brand mb-6">
                     <Icon className="size-5" />
                   </span>
-                  <h3 className="font-display font-bold text-2xl lg:text-3xl tracking-[-0.015em] text-foreground mb-3">
+                  <h3 className="font-display text-2xl lg:text-3xl tracking-[-0.015em] text-foreground mb-3">
                     {s.title}
                   </h3>
                   <p className="text-base text-foreground-muted leading-relaxed">{s.body}</p>

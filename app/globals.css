@@ -86,7 +86,7 @@
   --color-gray-900: var(--gray-900);
 
   /* Fonty */
-  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-display: var(--font-dm-serif), Georgia, serif;
   --font-sans: var(--font-inter), system-ui, sans-serif;
 
   /* Promienie zaokrągleń */

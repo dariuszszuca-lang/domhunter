@@ -54,7 +54,7 @@ export function Services() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
             Cztery obszary, jedno biuro
           </p>
-          <h2 className="font-display font-bold text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
+          <h2 className="font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
             Co dla Ciebie <span className="italic">zrobimy.</span>
           </h2>
         </motion.div>
@@ -79,7 +79,7 @@ export function Services() {
                     </span>
                   </div>
                   <div className="lg:col-span-4">
-                    <h3 className="font-display font-bold text-3xl lg:text-4xl tracking-[-0.02em] text-foreground mb-2 group-hover:text-brand transition-colors">
+                    <h3 className="font-display text-3xl lg:text-4xl tracking-[-0.02em] text-foreground mb-2 group-hover:text-brand transition-colors">
                       {s.title}
                     </h3>
                     <p className="text-base lg:text-lg text-foreground-muted italic">{s.lead}</p>

@@ -15,7 +15,7 @@ export default function ZespolPage() {
         <Container size="wide">
           <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">Zespół</p>
-            <h1 className="font-display font-bold text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.025em] text-foreground">
+            <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.025em] text-foreground">
               Ludzie, którzy
               <br />
               <span className="italic text-brand">znają Trójmiasto.</span>

@@ -24,7 +24,7 @@ export async function FeaturedOffers() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
               Wybrane oferty
             </p>
-            <h2 className="font-display font-bold text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
+            <h2 className="font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
               Aktualne propozycje
               <br />
               <span className="italic">z&nbsp;Trójmiasta.</span>
@@ -102,7 +102,7 @@ function FeaturedCard({ offer }: { offer: Offer }) {
         </div>
       </div>
       <div className="p-7 lg:p-8 flex-1 flex flex-col">
-        <p className="font-display font-bold text-3xl lg:text-4xl tracking-tight text-foreground">
+        <p className="font-display text-3xl lg:text-4xl tracking-tight text-foreground">
           {formatPrice(offer.price)}
         </p>
         <div className="mt-4 flex items-center gap-5 text-sm text-foreground-muted">
@@ -147,7 +147,7 @@ function OfferCard({ offer, compact }: { offer: Offer; compact?: boolean }) {
         </div>
       </div>
       <div className={compact ? "p-5" : "p-6"}>
-        <p className="font-display font-bold text-xl lg:text-2xl tracking-tight text-foreground">
+        <p className="font-display text-xl lg:text-2xl tracking-tight text-foreground">
           {formatPrice(offer.price)}
         </p>
         <div className="mt-2.5 flex items-center gap-4 text-xs text-foreground-muted">
@@ -179,7 +179,7 @@ function EmptyState() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
             Wybrane oferty
           </p>
-          <h2 className="font-display font-bold text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
+          <h2 className="font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
             Najnowsze oferty pojawią się tutaj.
           </h2>
           <p className="mt-5 text-lg text-foreground-muted leading-relaxed">

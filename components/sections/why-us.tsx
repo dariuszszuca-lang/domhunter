@@ -43,7 +43,7 @@ export function WhyUs() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
             Dlaczego my
           </p>
-          <h2 className="font-display font-bold text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
+          <h2 className="font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
             Trzy rzeczy, których
             <br />
             <span className="italic">nie da się podrobić.</span>
@@ -63,7 +63,7 @@ export function WhyUs() {
               <span className="font-display text-7xl lg:text-8xl text-brand/25 tabular-nums leading-none tracking-tight mb-5">
                 {r.num}
               </span>
-              <h3 className="font-display font-bold text-2xl lg:text-3xl tracking-[-0.015em] text-foreground mb-4">
+              <h3 className="font-display text-2xl lg:text-3xl tracking-[-0.015em] text-foreground mb-4">
                 {r.title}
               </h3>
               <p className="text-base text-foreground leading-relaxed mb-6">{r.body}</p>

@@ -33,7 +33,7 @@ export function Hero() {
               DomHunter Nieruchomości · Gdańsk
             </div>
 
-            <h1 className="font-display font-bold text-[clamp(2.5rem,6.5vw,5.5rem)] leading-[0.95] tracking-[-0.025em] text-foreground">
+            <h1 className="font-display text-[clamp(2.5rem,6.5vw,5.5rem)] leading-[0.95] tracking-[-0.025em] text-foreground">
               Twoje miejsce
               <br />
               <span className="italic text-brand">w Trójmieście.</span>
@@ -88,7 +88,7 @@ export function Hero() {
                 ].map((stat, idx) => (
                   <div key={stat.label} className={`flex items-baseline justify-between ${idx === 0 ? "" : "pt-5"}`}>
                     <dt className="text-sm text-foreground-muted">{stat.label}</dt>
-                    <dd className="font-display font-bold text-3xl lg:text-4xl tabular-nums text-foreground tracking-tight">
+                    <dd className="font-display text-3xl lg:text-4xl tabular-nums text-foreground tracking-tight">
                       {stat.value}
                       <span className="text-base text-foreground-muted font-normal">{stat.suffix}</span>
                     </dd>

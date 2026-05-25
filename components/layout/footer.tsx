@@ -31,7 +31,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-12 gap-y-10 gap-x-8 py-16 lg:py-20">
           {/* Brand + opis */}
           <div className="col-span-2 md:col-span-4">
-            <Link href="/" className="font-display font-bold text-2xl tracking-tight text-foreground">
+            <Link href="/" className="font-display text-2xl tracking-tight text-foreground">
               {siteConfig.name}
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-foreground-muted max-w-xs">

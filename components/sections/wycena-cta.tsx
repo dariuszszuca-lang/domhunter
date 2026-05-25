@@ -43,7 +43,7 @@ export function WycenaCta() {
                 <Sparkles className="size-3.5" />
                 Darmowa wycena
               </div>
-              <h2 className="font-display font-bold text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] tracking-[-0.02em]">
+              <h2 className="font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] tracking-[-0.02em]">
                 Sprawdź, ile warta jest
                 <br />
                 <span className="italic opacity-80">Twoja nieruchomość.</span>
@@ -76,7 +76,7 @@ export function WycenaCta() {
                     <span className="inline-flex items-center justify-center size-14 rounded-full bg-brand text-white mb-5">
                       <Check className="size-6" strokeWidth={2.5} />
                     </span>
-                    <h3 className="font-display font-bold text-2xl text-foreground mb-2">Dziękujemy</h3>
+                    <h3 className="font-display text-2xl text-foreground mb-2">Dziękujemy</h3>
                     <p className="text-foreground-muted">Oddzwonimy w&nbsp;ciągu 24 godzin z&nbsp;wstępną wyceną.</p>
                   </div>
                 ) : (

@@ -44,16 +44,18 @@ export function WhoWeAre() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-4"
           >
-            <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+            <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-6">
               O nas
             </div>
-            <h2 className="font-sans font-bold uppercase text-[clamp(1.75rem,3.8vw,3rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
-              Lokalne biuro
+            <h2 className="font-sans font-bold uppercase text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.0] tracking-[-0.035em] text-foreground">
+              Pasja
               <br />
-              z duszą
+              i&nbsp;doświadczenie
+              <br />
+              na lokalnym rynku
             </h2>
 
-            <div className="mt-10 space-y-4 text-base text-foreground-muted leading-[1.65]">
+            <div className="mt-12 space-y-4 text-base text-foreground-muted leading-[1.65] max-w-md">
               <p>
                 Doświadczeni pośrednicy z&nbsp;setkami zrealizowanych transakcji. Byli częścią sukcesu czołowych agencji w&nbsp;Polsce, dziś budują DomHunter.
               </p>
@@ -62,16 +64,14 @@ export function WhoWeAre() {
               </p>
             </div>
 
-            {/* Stats 2x2 */}
-            <div className="mt-12 grid grid-cols-2 gap-y-8 gap-x-6">
+            {/* Stats 2x2 — vista large numbers */}
+            <div className="mt-14 grid grid-cols-2 gap-y-10 gap-x-8 max-w-md">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <div className="flex items-baseline gap-0.5">
-                    <span className="font-sans font-bold text-3xl lg:text-4xl text-foreground tracking-tight tabular-nums leading-none">
-                      {s.value}
-                    </span>
+                  <div className="font-sans font-bold text-5xl lg:text-6xl text-foreground tracking-tight tabular-nums leading-none">
+                    {s.value}
                   </div>
-                  <p className="mt-3 text-xs text-foreground-muted">{s.label}</p>
+                  <p className="mt-4 text-sm text-foreground-muted">{s.label}</p>
                 </div>
               ))}
             </div>

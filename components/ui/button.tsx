@@ -9,11 +9,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-brand-forest text-white hover:bg-brand-forest-hover active:scale-[0.98]",
-        forest:
-          "bg-brand-forest text-white hover:bg-brand-forest-deep active:scale-[0.98]",
-        sage:
-          "bg-brand-sage text-foreground hover:opacity-90 active:scale-[0.98]",
+          "bg-brand text-white hover:bg-brand-hover active:scale-[0.98]",
+        soft:
+          "bg-brand-soft text-white hover:bg-brand active:scale-[0.98]",
         outline:
           "border border-border-strong bg-transparent text-foreground hover:bg-surface-muted hover:border-foreground active:scale-[0.98]",
         ghost:

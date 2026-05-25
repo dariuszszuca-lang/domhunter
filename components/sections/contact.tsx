@@ -9,7 +9,7 @@ export function Contact() {
       <Container size="wide">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-forest mb-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand mb-4">
               Kontakt
             </p>
             <h2 className="font-display font-bold text-[clamp(2rem,4vw,3rem)] leading-[1.1] tracking-tight text-foreground">
@@ -22,7 +22,7 @@ export function Contact() {
             <div className="mt-10 flex flex-wrap gap-3">
               <a
                 href={siteConfig.contact.phones[0].href}
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-brand-forest text-white text-sm font-semibold hover:bg-brand-forest-hover transition"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-brand text-white text-sm font-semibold hover:bg-brand-hover transition"
               >
                 <Phone className="size-4" />
                 Zadzwoń teraz
@@ -61,7 +61,7 @@ function ContactRow({
 }) {
   const content = (
     <>
-      <span className="inline-flex items-center justify-center size-11 rounded-xl bg-brand-forest text-white shrink-0">
+      <span className="inline-flex items-center justify-center size-11 rounded-xl bg-brand text-white shrink-0">
         <Icon className="size-5" />
       </span>
       <div>

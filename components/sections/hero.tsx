@@ -5,10 +5,14 @@ import { siteConfig } from "@/lib/site";
 
 export function Hero() {
   return (
-    <section className="relative pt-32 lg:pt-44 pb-16 lg:pb-24">
+    <section className="relative pt-32 lg:pt-44 pb-16 lg:pb-24 overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(196,48,119,0.06),transparent_60%)]"
+      />
       <Container size="wide">
         <div className="max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-forest mb-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand mb-5">
             DomHunter Nieruchomości
           </p>
           <h1 className="font-display font-bold text-[clamp(2.25rem,5vw,4.25rem)] leading-[1.05] tracking-tight text-foreground">
@@ -23,7 +27,7 @@ export function Hero() {
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               href="/oferty"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-brand-forest text-white text-sm font-semibold hover:bg-brand-forest-hover transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-brand text-white text-sm font-semibold hover:bg-brand-hover transition-all"
             >
               Zobacz oferty
               <ArrowRight className="size-4" />

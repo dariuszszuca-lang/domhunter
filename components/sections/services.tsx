@@ -34,7 +34,7 @@ export function Services() {
     <section className="py-20 lg:py-28 bg-surface">
       <Container size="wide">
         <div className="max-w-2xl mb-12 lg:mb-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-forest mb-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand mb-4">
             Co robimy
           </p>
           <h2 className="font-display font-bold text-[clamp(2rem,4vw,3rem)] leading-[1.1] tracking-tight text-foreground">
@@ -52,9 +52,9 @@ export function Services() {
               <Link
                 key={s.title}
                 href={s.href}
-                className="group relative flex flex-col gap-4 p-7 lg:p-8 rounded-2xl bg-background border border-border hover:border-brand-forest hover:shadow-card transition-all"
+                className="group relative flex flex-col gap-4 p-7 lg:p-8 rounded-2xl bg-background border border-border hover:border-brand hover:shadow-card transition-all"
               >
-                <span className="inline-flex items-center justify-center size-12 rounded-xl bg-brand-forest/8 text-brand-forest">
+                <span className="inline-flex items-center justify-center size-12 rounded-xl bg-brand-light text-brand">
                   <Icon className="size-5" />
                 </span>
                 <div>
@@ -63,7 +63,7 @@ export function Services() {
                   </h3>
                   <p className="text-sm text-foreground-muted leading-relaxed">{s.body}</p>
                 </div>
-                <ArrowUpRight className="size-5 text-foreground-subtle group-hover:text-brand-forest absolute top-7 right-7 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+                <ArrowUpRight className="size-5 text-foreground-subtle group-hover:text-brand absolute top-7 right-7 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
               </Link>
             );
           })}

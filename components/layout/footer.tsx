@@ -43,7 +43,7 @@ export function Footer() {
                 href={siteConfig.partners.nsl.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-block text-xs uppercase tracking-[0.18em] text-brand-forest font-semibold hover:text-brand-forest-deep transition-colors"
+                className="mt-6 inline-block text-xs uppercase tracking-[0.18em] text-brand font-semibold hover:text-brand-deep transition-colors"
               >
                 Partner: {siteConfig.partners.nsl.name} →
               </Link>
@@ -56,7 +56,7 @@ export function Footer() {
             <ul className="space-y-2.5">
               {footerNav.oferta.map((i) => (
                 <li key={i.href}>
-                  <Link href={i.href} className="text-sm text-foreground-muted hover:text-brand-forest transition-colors">
+                  <Link href={i.href} className="text-sm text-foreground-muted hover:text-brand transition-colors">
                     {i.label}
                   </Link>
                 </li>
@@ -70,7 +70,7 @@ export function Footer() {
             <ul className="space-y-2.5">
               {footerNav.firma.map((i) => (
                 <li key={i.href}>
-                  <Link href={i.href} className="text-sm text-foreground-muted hover:text-brand-forest transition-colors">
+                  <Link href={i.href} className="text-sm text-foreground-muted hover:text-brand transition-colors">
                     {i.label}
                   </Link>
                 </li>
@@ -85,23 +85,23 @@ export function Footer() {
               <li>
                 <a
                   href={siteConfig.contact.phones[0].href}
-                  className="inline-flex items-center gap-3 text-sm text-foreground hover:text-brand-forest transition-colors"
+                  className="inline-flex items-center gap-3 text-sm text-foreground hover:text-brand transition-colors"
                 >
-                  <Phone className="size-4 text-brand-forest" />
+                  <Phone className="size-4 text-brand" />
                   {siteConfig.contact.phones[0].displayValue}
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
-                  className="inline-flex items-center gap-3 text-sm text-foreground hover:text-brand-forest transition-colors break-all"
+                  className="inline-flex items-center gap-3 text-sm text-foreground hover:text-brand transition-colors break-all"
                 >
-                  <Mail className="size-4 text-brand-forest" />
+                  <Mail className="size-4 text-brand" />
                   {siteConfig.contact.email}
                 </a>
               </li>
               <li className="flex items-center gap-3 text-sm text-foreground-muted">
-                <MapPin className="size-4 text-brand-forest" />
+                <MapPin className="size-4 text-brand" />
                 {siteConfig.address.city}
               </li>
             </ul>

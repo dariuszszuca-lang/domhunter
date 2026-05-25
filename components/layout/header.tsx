@@ -42,7 +42,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-display font-bold text-xl lg:text-2xl tracking-tight text-foreground hover:text-brand-forest transition-colors"
+            className="font-display font-bold text-xl lg:text-2xl tracking-tight text-foreground hover:text-brand transition-colors"
           >
             DomHunter
           </Link>
@@ -57,7 +57,7 @@ export function Header() {
                   href={item.href}
                   className={cn(
                     "text-sm font-medium transition-colors",
-                    active ? "text-brand-forest" : "text-foreground-muted hover:text-foreground"
+                    active ? "text-brand" : "text-foreground-muted hover:text-foreground"
                   )}
                 >
                   {item.label}
@@ -70,7 +70,7 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href={siteConfig.contact.phones[0].href}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-brand-forest text-white hover:bg-brand-forest-hover transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-brand text-white hover:bg-brand-hover transition-colors"
             >
               <Phone className="size-4" />
               {siteConfig.contact.phones[0].displayValue}
@@ -104,7 +104,7 @@ export function Header() {
               ))}
               <a
                 href={siteConfig.contact.phones[0].href}
-                className="mt-3 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full text-sm font-semibold bg-brand-forest text-white"
+                className="mt-3 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full text-sm font-semibold bg-brand text-white"
               >
                 <Phone className="size-4" />
                 {siteConfig.contact.phones[0].displayValue}

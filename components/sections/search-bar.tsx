@@ -63,7 +63,7 @@ export function SearchBar() {
                 value={cenaMax}
                 onChange={(e) => setCenaMax(e.target.value)}
                 placeholder="np. 800 000"
-                className="h-11 px-4 rounded-xl bg-background border border-border text-sm focus:outline-none focus:border-brand-forest focus:ring-2 focus:ring-brand-forest/15 transition"
+                className="h-11 px-4 rounded-xl bg-background border border-border text-sm focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/15 transition"
               />
             </div>
             <div className="flex flex-col gap-1.5">
@@ -72,7 +72,7 @@ export function SearchBar() {
               </label>
               <button
                 type="submit"
-                className="h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-brand-forest text-white text-sm font-semibold hover:bg-brand-forest-hover transition"
+                className="h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-brand text-white text-sm font-semibold hover:bg-brand-hover transition"
               >
                 <Search className="size-4" />
                 Szukaj
@@ -102,7 +102,7 @@ function Select({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="h-11 px-4 rounded-xl bg-background border border-border text-sm focus:outline-none focus:border-brand-forest focus:ring-2 focus:ring-brand-forest/15 transition appearance-none cursor-pointer"
+        className="h-11 px-4 rounded-xl bg-background border border-border text-sm focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/15 transition appearance-none cursor-pointer"
       >
         {options.map((o) => (
           <option key={o.value} value={o.value}>

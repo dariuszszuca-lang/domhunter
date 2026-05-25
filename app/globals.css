@@ -2,36 +2,38 @@
 
 /* ============================================
    DomHunter Nieruchomości
-   Design tokens — kierunek "Czysty, czytelny butik"
-   Paleta: warm off-white + forest green + sage akcent
+   Design tokens — subtelna paleta magenta
+   Inspirowana obecną domhunter.pl + sylwiawroblewska.pl
    ============================================ */
 
 :root {
   /* Tła */
   --background: #FAFAF7;
   --surface: #FFFFFF;
-  --surface-muted: #F2F1EC;
-  --surface-cream: #EFEAE0;
-  --surface-dark: #1F2A24;
+  --surface-muted: #F4F1ED;
+  --surface-cream: #F5EFE9;
+  --surface-blush: #FAF2F5;        /* subtelny róż do sekcji premium */
+  --surface-dark: #2B2A29;
 
   /* Tekst */
-  --foreground: #1A1A1A;
-  --foreground-muted: #5C5C5C;
-  --foreground-subtle: #8A8A8A;
+  --foreground: #2B2A29;
+  --foreground-muted: #5C5C58;
+  --foreground-subtle: #8A8A85;
   --foreground-on-dark: #FAFAF7;
-  --foreground-on-dark-muted: #B8B8B0;
+  --foreground-on-dark-muted: #BBB8B0;
 
-  /* Brand — forest greens */
-  --brand-forest: #2D5F3F;
-  --brand-forest-hover: #234C32;
-  --brand-forest-deep: #1F4530;
-  --brand-forest-soft: #4A7F5C;
-  --brand-sage: #8FA48F;
+  /* Brand — deep magenta z domhunter.pl */
+  --brand: #991A75;                 /* main */
+  --brand-hover: #82184C;
+  --brand-deep: #6D1354;
+  --brand-soft: #C43077;            /* drugi akcent */
+  --brand-light: #FBEEF4;           /* tło subtle */
+  --brand-blush: #F5D9E7;
 
   /* Akcenty pomocnicze */
   --border: #E8E5E0;
   --border-strong: #C8C5BE;
-  --ring: var(--brand-forest);
+  --ring: var(--brand);
 
   /* Skala szarości (ciepła) */
   --gray-50: #F7F6F2;
@@ -52,6 +54,7 @@
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
   --color-surface-cream: var(--surface-cream);
+  --color-surface-blush: var(--surface-blush);
   --color-surface-dark: var(--surface-dark);
 
   --color-foreground: var(--foreground);
@@ -60,11 +63,12 @@
   --color-foreground-on-dark: var(--foreground-on-dark);
   --color-foreground-on-dark-muted: var(--foreground-on-dark-muted);
 
-  --color-brand-forest: var(--brand-forest);
-  --color-brand-forest-hover: var(--brand-forest-hover);
-  --color-brand-forest-deep: var(--brand-forest-deep);
-  --color-brand-forest-soft: var(--brand-forest-soft);
-  --color-brand-sage: var(--brand-sage);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-light: var(--brand-light);
+  --color-brand-blush: var(--brand-blush);
 
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
@@ -94,9 +98,9 @@
   --radius-2xl: 32px;
 
   /* Cienie */
-  --shadow-soft: 0 1px 2px rgba(26, 26, 26, 0.04), 0 4px 12px rgba(26, 26, 26, 0.04);
-  --shadow-card: 0 2px 4px rgba(26, 26, 26, 0.04), 0 8px 24px rgba(26, 26, 26, 0.06);
-  --shadow-hover: 0 4px 8px rgba(26, 26, 26, 0.08), 0 20px 48px rgba(26, 26, 26, 0.12);
+  --shadow-soft: 0 1px 2px rgba(43, 42, 41, 0.04), 0 4px 12px rgba(43, 42, 41, 0.04);
+  --shadow-card: 0 2px 4px rgba(43, 42, 41, 0.04), 0 8px 24px rgba(43, 42, 41, 0.06);
+  --shadow-hover: 0 4px 8px rgba(43, 42, 41, 0.08), 0 20px 48px rgba(43, 42, 41, 0.12);
 }
 
 * {
@@ -121,7 +125,7 @@ h1, h2, h3, h4 {
 }
 
 ::selection {
-  background: var(--brand-forest);
+  background: var(--brand);
   color: var(--foreground-on-dark);
 }
 

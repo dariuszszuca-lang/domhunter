@@ -18,11 +18,11 @@ export function WycenaCta() {
   }
 
   return (
-    <section className="py-20 lg:py-28 bg-surface-cream">
+    <section className="py-20 lg:py-28 bg-surface-blush">
       <Container size="wide">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-forest mb-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand mb-4">
               Darmowa wycena
             </p>
             <h2 className="font-display font-bold text-[clamp(2rem,4vw,3rem)] leading-[1.1] tracking-tight text-foreground">
@@ -39,7 +39,7 @@ export function WycenaCta() {
                 "Telefoniczna rozmowa, bez automatu",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-base text-foreground">
-                  <Check className="size-5 shrink-0 text-brand-forest mt-0.5" strokeWidth={2.5} />
+                  <Check className="size-5 shrink-0 text-brand mt-0.5" strokeWidth={2.5} />
                   {item}
                 </li>
               ))}
@@ -50,7 +50,7 @@ export function WycenaCta() {
           <div className="bg-surface rounded-2xl border border-border shadow-soft p-7 lg:p-9">
             {submitted ? (
               <div className="flex flex-col items-center text-center py-8">
-                <span className="inline-flex items-center justify-center size-14 rounded-full bg-brand-forest text-white mb-5">
+                <span className="inline-flex items-center justify-center size-14 rounded-full bg-brand text-white mb-5">
                   <Check className="size-6" strokeWidth={2.5} />
                 </span>
                 <h3 className="font-display font-bold text-2xl text-foreground mb-2">Dziękujemy</h3>
@@ -69,7 +69,7 @@ export function WycenaCta() {
                 <button
                   type="submit"
                   disabled={sending}
-                  className="mt-2 inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-brand-forest text-white text-sm font-semibold hover:bg-brand-forest-hover transition disabled:opacity-60"
+                  className="mt-2 inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-brand text-white text-sm font-semibold hover:bg-brand-hover transition disabled:opacity-60"
                 >
                   {sending ? "Wysyłanie…" : (
                     <>
@@ -107,7 +107,7 @@ function Field({
   return (
     <div className="flex flex-col gap-1.5">
       <label htmlFor={name} className="text-[11px] font-semibold uppercase tracking-wider text-foreground-subtle">
-        {label}{required && <span className="text-brand-forest"> *</span>}
+        {label}{required && <span className="text-brand"> *</span>}
       </label>
       <input
         id={name}
@@ -115,7 +115,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="h-11 px-4 rounded-xl bg-background border border-border text-sm focus:outline-none focus:border-brand-forest focus:ring-2 focus:ring-brand-forest/15 transition"
+        className="h-11 px-4 rounded-xl bg-background border border-border text-sm focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/15 transition"
       />
     </div>
   );

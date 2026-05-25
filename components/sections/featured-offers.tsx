@@ -14,7 +14,7 @@ export async function FeaturedOffers() {
       <section className="py-20 lg:py-28">
         <Container size="wide">
           <div className="max-w-2xl mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-forest mb-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand mb-4">
               Wybrane oferty
             </p>
             <h2 className="font-display font-bold text-[clamp(2rem,4vw,3rem)] leading-[1.1] tracking-tight text-foreground">
@@ -34,7 +34,7 @@ export async function FeaturedOffers() {
       <Container size="wide">
         <div className="flex flex-wrap items-end justify-between gap-6 mb-12 lg:mb-16">
           <div className="max-w-xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-forest mb-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand mb-4">
               Wybrane oferty
             </p>
             <h2 className="font-display font-bold text-[clamp(2rem,4vw,3rem)] leading-[1.1] tracking-tight text-foreground">
@@ -43,7 +43,7 @@ export async function FeaturedOffers() {
           </div>
           <Link
             href="/oferty"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-border-strong text-sm font-semibold text-foreground hover:border-brand-forest hover:text-brand-forest transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-border-strong text-sm font-semibold text-foreground hover:border-brand hover:text-brand transition-colors"
           >
             Wszystkie oferty
             <ArrowUpRight className="size-4" />
@@ -55,7 +55,7 @@ export async function FeaturedOffers() {
             <Link
               key={o.id}
               href={`/oferty/${o.id}`}
-              className="group flex flex-col rounded-2xl overflow-hidden bg-surface border border-border hover:border-brand-forest hover:shadow-card transition-all"
+              className="group flex flex-col rounded-2xl overflow-hidden bg-surface border border-border hover:border-brand hover:shadow-card transition-all"
             >
               <div className="relative aspect-[4/3] bg-surface-muted overflow-hidden">
                 {o.images && o.images.length > 0 ? (
@@ -71,7 +71,7 @@ export async function FeaturedOffers() {
                     Brak zdjęcia
                   </div>
                 )}
-                <div className="absolute top-3 left-3 inline-flex items-center px-3 py-1 rounded-full bg-white/95 backdrop-blur text-[11px] font-semibold text-brand-forest uppercase tracking-wider">
+                <div className="absolute top-3 left-3 inline-flex items-center px-3 py-1 rounded-full bg-white/95 backdrop-blur text-[11px] font-semibold text-brand uppercase tracking-wider">
                   {o.transaction === "najem" ? "Wynajem" : "Sprzedaż"}
                 </div>
               </div>

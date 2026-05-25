@@ -1,0 +1,389 @@
+import { XMLParser } from "fast-xml-parser";
+import AdmZip from "adm-zip";
+import type { Offer, OfferType, OfferTransaction, OfferMarket, OfferImage } from "./types";
+
+/**
+ * Parser EstiCRMXml. Format natywny ESTI (wersja angielska, z dictionaries).
+ *
+ * Struktura: <offers><offer>...</offer></offers>
+ * Każda oferta ma ~270 pól. Mapujemy najważniejsze.
+ *
+ * Niektóre pola to obiekty {#text: '132', @_dictionary: 'transaction'}
+ *. Dictionary lookup. Hardkodujemy znane wartości.
+ */
+
+const xml = new XMLParser({
+  ignoreAttributes: false,
+  attributeNamePrefix: "@_",
+  parseTagValue: false,
+  trimValues: true,
+  isArray: (name) => ["offer", "picture"].includes(name),
+});
+
+type RawValue =
+  | string
+  | number
+  | boolean
+  | null
+  | { "#text"?: string | number; "@_dictionary"?: string; [k: string]: unknown };
+type RawOffer = Record<string, RawValue | RawValue[]>;
+
+/**
+ * Rozpakowuje paczkę ZIP z FTP, znajduje XML + wszystkie obrazy.
+ */
+export function unpackEstiZip(buffer: Buffer): {
+  xmlText: string | null;
+  images: Map<string, Buffer>;
+} {
+  const zip = new AdmZip(buffer);
+  const entries = zip.getEntries();
+  let xmlText: string | null = null;
+  const images = new Map<string, Buffer>();
+
+  for (const entry of entries) {
+    if (entry.isDirectory) continue;
+    const name = entry.entryName.toLowerCase();
+    if (name.endsWith(".xml") && !xmlText) {
+      xmlText = entry.getData().toString("utf8");
+    } else if (
+      name.endsWith(".jpg") ||
+      name.endsWith(".jpeg") ||
+      name.endsWith(".png") ||
+      name.endsWith(".webp")
+    ) {
+      // Klucz: nazwa pliku (bez folderów)
+      const baseName = entry.entryName.split("/").pop() ?? entry.entryName;
+      images.set(baseName, entry.getData());
+    }
+  }
+
+  return { xmlText, images };
+}
+
+/**
+ * Parsuje XML EstiCRM i zwraca tablicę ofert.
+ * availableImages: zbiór nazw plików zdjęć dostępnych do podlinkowania
+ *   (jeśli przekazane. Tylko te zdjęcia trafią do Offer.images).
+ */
+export function parseEstiXml(xmlText: string, availableImages?: Set<string>): Offer[] {
+  const parsed = xml.parse(xmlText) as { offers?: { offer?: RawOffer[] } };
+  const offers = parsed.offers?.offer ?? [];
+  if (!Array.isArray(offers)) return [];
+  return offers.map((raw) => mapRawToOffer(raw, availableImages)).filter((o): o is Offer => o !== null);
+}
+
+function mapRawToOffer(raw: RawOffer, availableImages?: Set<string>): Offer | null {
+  const id = str(raw.id);
+  if (!id) return null;
+
+  const price = num(raw.price) ?? 0;
+  const area = num(raw.areaTotal) ?? num(raw.areaUsable) ?? 0;
+  const transaction = mapTransaction(raw.transaction);
+  const typeNameRaw = str(raw.typeName);
+  const type = mapType(typeNameRaw, raw.mainTypeId);
+  const typeDetail = extractTypeDetail(typeNameRaw);
+  const market = mapMarket(raw.market);
+
+  // Zdjęcia
+  const picturesRaw = raw.pictures as { picture?: RawValue[] } | undefined;
+  const pictureItems = Array.isArray(picturesRaw?.picture)
+    ? picturesRaw.picture
+    : picturesRaw?.picture
+      ? [picturesRaw.picture]
+      : [];
+
+  const images: OfferImage[] = pictureItems
+    .map((p, i): OfferImage | null => {
+      const fileName = typeof p === "object" && p ? str((p as Record<string, unknown>)["#text"]) : str(p);
+      if (!fileName) return null;
+      // Jeśli mamy listę dostępnych zdjęć. Bierzemy tylko te które są w repo.
+      if (availableImages && !availableImages.has(fileName)) return null;
+      // Plik serwowany statycznie z public/oferty/
+      return { url: `/oferty/${fileName}`, primary: i === 0 };
+    })
+    .filter((x): x is OfferImage => x !== null);
+
+  // Adres
+  const streetType = str(raw.locationStreetType);
+  const streetName = str(raw.locationStreetName);
+  const street = [streetType, streetName].filter(Boolean).join(" ") || undefined;
+
+  const city = str(raw.locationCityName) || "Trójmiasto";
+  const district = str(raw.locationPrecinctName) || str(raw.locationDistrictName) || undefined;
+
+  // Agent
+  const agentName = [str(raw.contactFirstname), str(raw.contactLastname)].filter(Boolean).join(" ");
+
+  // Tytuł: portalTitle (krótki dla portali) jest najczęściej najlepszy
+  const title =
+    str(raw.portalTitle) ||
+    str(raw.portalWwwTitle) ||
+    generateTitle(type, area, city);
+
+  // Opis: HTML → tekst (usuwamy <br>, <strong>)
+  const descriptionHtml = str(raw.descriptionWebsite) || str(raw.description) || "";
+  const description = htmlToPlainText(descriptionHtml);
+
+  const pricePerSqm = num(raw.pricePermeter) ?? (area > 0 ? Math.round(price / area) : undefined);
+
+  return {
+    id,
+    offerNumber: str(raw.numberPrime) || str(raw.number),
+    transaction,
+    type,
+    typeDetail,
+    market,
+
+    title,
+    description: description || undefined,
+    shortDescription: undefined,
+
+    price,
+    pricePerSqm,
+    rent: num(raw.apartmentRent) || undefined,
+
+    area,
+    landArea: num(raw.areaPlot) || undefined,
+
+    rooms: int(raw.apartmentRoomNumber),
+    floor: int(raw.apartmentFloor),
+    totalFloors: int(raw.buildingFloornumber),
+    yearBuilt: int(raw.buildingYear),
+
+    state: mapBuildingCondition(raw.buildingCondition),
+
+    city,
+    district,
+    street,
+    lat: num(raw.locationLatitude),
+    lng: num(raw.locationLongitude),
+
+    images,
+    features: extractFeatures(raw),
+
+    agent: agentName
+      ? {
+          fullName: agentName,
+          phone: str(raw.contactPhone) || undefined,
+          email: str(raw.contactEmail) || undefined,
+          slug: matchAgentSlug(agentName),
+        }
+      : undefined,
+
+    url: `https://starnawska.pl/oferty/${id}`,
+    createdAt: str(raw.addDate) || new Date().toISOString(),
+    updatedAt: str(raw.updateDate) || str(raw.activateDate) || new Date().toISOString(),
+  };
+}
+
+// ----- helpers -----
+
+function str(v: unknown): string {
+  if (v === null || v === undefined) return "";
+  if (typeof v === "string") return v.trim();
+  if (typeof v === "number" || typeof v === "boolean") return String(v);
+  if (typeof v === "object") {
+    const o = v as Record<string, unknown>;
+    if ("#text" in o) return str(o["#text"]);
+  }
+  return "";
+}
+
+function num(v: unknown): number | undefined {
+  const s = str(v);
+  if (!s) return undefined;
+  const n = Number.parseFloat(s.replace(",", "."));
+  return Number.isFinite(n) ? n : undefined;
+}
+
+function int(v: unknown): number | undefined {
+  const n = num(v);
+  return n !== undefined ? Math.round(n) : undefined;
+}
+
+/**
+ * Dictionary mapping dla transaction.
+ * Z obserwacji XML: 132 = wynajem (cena ~3000zł/mc), inne = sprzedaż.
+ */
+function mapTransaction(v: unknown): OfferTransaction {
+  const txt = typeof v === "object" && v ? str((v as Record<string, unknown>)["#text"]) : str(v);
+  // ESTI dictionary: 132 = wynajem; 130, 131 = sprzedaż
+  if (txt === "132") return "najem";
+  return "sprzedaz";
+}
+
+/**
+ * Mapping typu oferty.
+ *
+ * Priorytet: mainTypeId.text (1=dom, 2=mieszkanie, 3=działka, 4=komercyjny/garaż).
+ * To pole jest jednoznaczne w słowniku ESTI.
+ *
+ * Dla mainTypeId=4 dodatkowo rozróżniamy garaż / lokal użytkowy / magazyn
+ * po typeName (bo ESTI traktuje wszystkie te kategorie pod jednym kodem).
+ *
+ * typeName używamy tylko jako fallback gdy brak mainTypeId.
+ */
+function mapType(typeName: string, mainTypeIdObj: unknown): OfferType {
+  const id =
+    typeof mainTypeIdObj === "object" && mainTypeIdObj
+      ? str((mainTypeIdObj as Record<string, unknown>)["#text"])
+      : str(mainTypeIdObj);
+
+  const v = typeName.toLowerCase();
+
+  switch (id) {
+    case "1":
+      return "dom";
+    case "2":
+      return "mieszkanie";
+    case "3":
+      return "dzialka";
+    case "4":
+      // Komercyjne i garaże w jednej grupie u ESTI. Rozróżniamy po nazwie.
+      if (
+        v.includes("garaż") ||
+        v.includes("garaz") ||
+        v.includes("miejsce postoj") ||
+        v.includes("hala garaż")
+      ) {
+        return "garaz";
+      }
+      return "lokal";
+    case "5":
+      return "garaz";
+  }
+
+  // Fallback przez typeName, gdy mainTypeId nie został podany.
+  // Kolejność warunków: bardziej specyficzne (działka) PRZED ogólnymi (mieszkanie),
+  // bo ESTI używa nazw typu "Działka (Mieszkaniowa)". Szukanie "mieszkani" by zniweczyło dopasowanie.
+  if (v.startsWith("działk") || v.startsWith("dzialk") || v.includes("grunt")) return "dzialka";
+  if (v.startsWith("dom") || v.includes("willa")) return "dom";
+  if (v.includes("garaż") || v.includes("garaz") || v.includes("miejsce postoj")) return "garaz";
+  if (v.includes("magazyn") || v.includes("lokal") || v.includes("komerc") || v.includes("biuro"))
+    return "lokal";
+  if (v.includes("mieszkani") || v.includes("apartament") || v.includes("kawalerk"))
+    return "mieszkanie";
+
+  return "inne";
+}
+
+/**
+ * Wyciąga sub-type z nawiasu w typeName.
+ * "Działka (Pod zabudowę)" -> "Pod zabudowę"
+ * "Mieszkanie" -> ""
+ * "Magazyn z biurami" -> "Magazyn z biurami" (gdy brak nawiasu i dłuższy niż base type)
+ */
+function extractTypeDetail(typeName: string): string | undefined {
+  if (!typeName) return undefined;
+  const match = typeName.match(/\(([^)]+)\)/);
+  if (match) return match[1].trim();
+  // Bez nawiasu. Zachowaj całą nazwę jeśli odbiega od podstawowego enuma,
+  // np. "Magazyn z biurami", "Miejsce postojowe", "Lokal handlowy/usługowy".
+  const v = typeName.toLowerCase();
+  if (v === "mieszkanie" || v === "dom" || v === "działka" || v === "lokal" || v === "garaż") {
+    return undefined;
+  }
+  return typeName.trim();
+}
+
+function mapMarket(v: unknown): OfferMarket | undefined {
+  const txt = typeof v === "object" && v ? str((v as Record<string, unknown>)["#text"]) : str(v);
+  // ESTI dictionary: 11 = wtórny, 12 = pierwotny (zgaduję)
+  if (txt === "12") return "pierwotny";
+  if (txt === "11") return "wtorny";
+  return undefined;
+}
+
+function mapBuildingCondition(v: unknown): string | undefined {
+  const txt = typeof v === "object" && v ? str((v as Record<string, unknown>)["#text"]) : str(v);
+  // ESTI dictionary buildingCondition - mapping nieznany, zwracamy raw
+  const map: Record<string, string> = {
+    "61": "do wprowadzenia",
+    "62": "do odświeżenia",
+    "63": "do remontu",
+    "64": "deweloperski",
+    "65": "surowy",
+  };
+  return map[txt];
+}
+
+function generateTitle(type: OfferType, area: number, city: string): string {
+  const typeLabel = {
+    mieszkanie: "Mieszkanie",
+    dom: "Dom",
+    dzialka: "Działka",
+    lokal: "Lokal",
+    garaz: "Garaż",
+    inne: "Nieruchomość",
+  }[type];
+  return `${typeLabel}, ${area > 0 ? `${area} m², ` : ""}${city}`;
+}
+
+function htmlToPlainText(html: string): string {
+  return html
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/p>/gi, "\n\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+function extractFeatures(raw: RawOffer): string[] | undefined {
+  // ESTI: setki binary pól typu neighborhoodPark = '1', communicationTram = '1' itp.
+  // Mapujemy najbardziej istotne.
+  const featureMap: Array<[string, string]> = [
+    ["recreationForest", "Las w pobliżu"],
+    ["recreationPark", "Park w pobliżu"],
+    ["recreationLake", "Jezioro w pobliżu"],
+    ["recreationSea", "Morze w pobliżu"],
+    ["communicationTram", "Tramwaj"],
+    ["communicationBus", "Autobus"],
+    ["communicationSuburbanrailway", "Kolejka SKM"],
+    ["communicationRailway", "Kolej"],
+    ["neighborhoodShoppingcenter", "Centrum handlowe"],
+    ["neighborhoodKindergarten", "Przedszkole"],
+    ["neighborhoodPrimaryschool", "Szkoła podstawowa"],
+    ["neighborhoodGrocery", "Sklep spożywczy"],
+    ["neighborhoodPharmacy", "Apteka"],
+    ["neighborhoodPlayground", "Plac zabaw"],
+    ["buildingElevatornumber", "Winda"],
+    ["buildingAirConditioning", "Klimatyzacja"],
+    ["buildingGym", "Siłownia"],
+  ];
+
+  const result: string[] = [];
+  for (const [key, label] of featureMap) {
+    const v = raw[key];
+    const txt = typeof v === "object" && v ? str((v as Record<string, unknown>)["#text"]) : str(v);
+    // ESTI binary: '1' = TAK, '149'/'150' = TAK/NIE (zazwyczaj 1 = yes)
+    if (txt === "1" || txt === "149") result.push(label);
+  }
+  return result.length > 0 ? result : undefined;
+}
+
+function matchAgentSlug(fullName: string): string | undefined {
+  if (!fullName) return undefined;
+  const lower = fullName.toLowerCase();
+  const map: Record<string, string> = {
+    "sudwoj-boleńska": "patrycja-sudwoj-bolenska",
+    "sudwoj-bolenska": "patrycja-sudwoj-bolenska",
+    boleńska: "patrycja-sudwoj-bolenska",
+    bolenska: "patrycja-sudwoj-bolenska",
+    starnawska: "jolanta-starnawska",
+    kaszuba: "katarzyna-kaszuba",
+    klimkiewicz: "agata-klimkiewicz",
+    wegner: "dagmara-wegner",
+    stępińska: "iwona-stepinska",
+    stepinska: "iwona-stepinska",
+    janik: "izabela-janik",
+    jankowska: "anna-jankowska",
+    pawelczyk: "ewelina-pawelczyk",
+  };
+  for (const key in map) if (lower.includes(key)) return map[key];
+  return undefined;
+}

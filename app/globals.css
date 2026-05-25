@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* ============================================
+   DomHunter Nieruchomości
+   Design tokens — kierunek "Czysty, czytelny butik"
+   Paleta: warm off-white + forest green + sage akcent
+   ============================================ */
+
+:root {
+  /* Tła */
+  --background: #FAFAF7;
+  --surface: #FFFFFF;
+  --surface-muted: #F2F1EC;
+  --surface-cream: #EFEAE0;
+  --surface-dark: #1F2A24;
+
+  /* Tekst */
+  --foreground: #1A1A1A;
+  --foreground-muted: #5C5C5C;
+  --foreground-subtle: #8A8A8A;
+  --foreground-on-dark: #FAFAF7;
+  --foreground-on-dark-muted: #B8B8B0;
+
+  /* Brand — forest greens */
+  --brand-forest: #2D5F3F;
+  --brand-forest-hover: #234C32;
+  --brand-forest-deep: #1F4530;
+  --brand-forest-soft: #4A7F5C;
+  --brand-sage: #8FA48F;
+
+  /* Akcenty pomocnicze */
+  --border: #E8E5E0;
+  --border-strong: #C8C5BE;
+  --ring: var(--brand-forest);
+
+  /* Skala szarości (ciepła) */
+  --gray-50: #F7F6F2;
+  --gray-100: #EFEDE7;
+  --gray-200: #E0DDD4;
+  --gray-300: #C8C5BE;
+  --gray-400: #9C9A93;
+  --gray-500: #6C6A65;
+  --gray-600: #4D4B47;
+  --gray-700: #353330;
+  --gray-800: #25241F;
+  --gray-900: #18171E;
+}
+
+@theme inline {
+  /* Color tokens */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-cream: var(--surface-cream);
+  --color-surface-dark: var(--surface-dark);
+
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+  --color-foreground-on-dark: var(--foreground-on-dark);
+  --color-foreground-on-dark-muted: var(--foreground-on-dark-muted);
+
+  --color-brand-forest: var(--brand-forest);
+  --color-brand-forest-hover: var(--brand-forest-hover);
+  --color-brand-forest-deep: var(--brand-forest-deep);
+  --color-brand-forest-soft: var(--brand-forest-soft);
+  --color-brand-sage: var(--brand-sage);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-ring: var(--ring);
+
+  --color-gray-50: var(--gray-50);
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-300: var(--gray-300);
+  --color-gray-400: var(--gray-400);
+  --color-gray-500: var(--gray-500);
+  --color-gray-600: var(--gray-600);
+  --color-gray-700: var(--gray-700);
+  --color-gray-800: var(--gray-800);
+  --color-gray-900: var(--gray-900);
+
+  /* Fonty */
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  /* Promienie zaokrągleń */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+
+  /* Cienie */
+  --shadow-soft: 0 1px 2px rgba(26, 26, 26, 0.04), 0 4px 12px rgba(26, 26, 26, 0.04);
+  --shadow-card: 0 2px 4px rgba(26, 26, 26, 0.04), 0 8px 24px rgba(26, 26, 26, 0.06);
+  --shadow-hover: 0 4px 8px rgba(26, 26, 26, 0.08), 0 20px 48px rgba(26, 26, 26, 0.12);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-feature-settings: "ss01";
+}
+
+::selection {
+  background: var(--brand-forest);
+  color: var(--foreground-on-dark);
+}
+
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--gray-300);
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-400);
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

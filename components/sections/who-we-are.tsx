@@ -67,13 +67,13 @@ export function WhoWeAre() {
             </div>
 
             {/* Stats 2x2 — vista large numbers */}
-            <div className="mt-12 grid max-w-[360px] grid-cols-2 gap-x-8 gap-y-9">
+            <div className="mt-12 grid max-w-[310px] grid-cols-2 gap-x-7 gap-y-8">
               {stats.map((s) => (
                 <div key={s.label} className="min-w-0">
-                  <div className="font-sans text-[2.75rem] font-normal leading-none tracking-normal text-foreground tabular-nums lg:text-[3.15rem]">
+                  <div className="font-sans text-[2.25rem] font-normal leading-none tracking-normal text-foreground tabular-nums lg:text-[2.55rem]">
                     {s.value}
                   </div>
-                  <p className="mt-3 max-w-[130px] text-sm leading-snug text-foreground-muted">{s.label}</p>
+                  <p className="mt-3 max-w-[115px] text-xs leading-snug text-foreground-muted">{s.label}</p>
                 </div>
               ))}
             </div>

@@ -40,16 +40,11 @@ export function FAQ() {
       <Container size="wide">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
           <div className="lg:col-span-5">
-            <div className="inline-flex items-center justify-center size-12 rounded-full bg-foreground text-background mb-6 font-sans font-bold text-2xl">
-              ?
+            <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+              Pomoc
             </div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brand mb-4">
-              Pytania, które słyszymy
-            </p>
             <h2 className="font-sans font-bold uppercase text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
-              Zanim do nas
-              <br />
-              zadzwonisz
+              Najczęstsze pytania
             </h2>
             <p className="mt-7 text-foreground-muted leading-relaxed max-w-md">
               Nie znalazłeś odpowiedzi? Zadzwoń, odpowiemy w&nbsp;30 minut w&nbsp;godzinach pracy biura.

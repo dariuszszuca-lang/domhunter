@@ -38,19 +38,14 @@ export function WhyUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 lg:mb-20"
+          className="max-w-3xl mb-16 lg:mb-20 lg:ml-auto lg:text-right"
         >
-          <h2 className="font-sans font-bold uppercase text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] tracking-[-0.03em] text-foreground max-w-3xl">
-            Trzy rzeczy, których
-            <br />
-            <span className="text-foreground-muted">nie da się podrobić</span>
-          </h2>
-          <div className="lg:text-right">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand text-[11px] font-semibold uppercase tracking-[0.28em] text-brand">
-              Nasza przewaga
-              <span className="size-1.5 rounded-full bg-brand" />
-            </div>
+          <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+            O nas
           </div>
+          <h2 className="font-sans font-bold uppercase text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
+            Dlaczego klienci nam ufają
+          </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">

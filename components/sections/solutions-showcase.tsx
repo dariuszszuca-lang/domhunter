@@ -46,22 +46,15 @@ export function SolutionsShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 lg:mb-20"
+          className="max-w-3xl mb-14 lg:mb-20"
         >
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 mb-6">
-              <span className="block w-12 h-px bg-brand" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brand">
-                Trzy obszary
-              </span>
-            </div>
-            <h2 className="font-sans font-bold uppercase text-[clamp(2rem,5vw,4.25rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
-              Spektrum naszych
-              <br />
-              specjalizacji
-            </h2>
+          <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+            Oferta
           </div>
-          <p className="max-w-md text-base lg:text-lg text-foreground-muted leading-[1.55] lg:text-right">
+          <h2 className="font-sans font-bold uppercase text-[clamp(2rem,5vw,4.25rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
+            Co dla Ciebie zrobimy
+          </h2>
+          <p className="mt-6 max-w-xl text-base lg:text-lg text-foreground-muted leading-[1.55]">
             Luksusowe rezydencje, domy z&nbsp;naturą i&nbsp;apartamenty pod wynajem. Każdy obszar ma dedykowany zespół.
           </p>
         </motion.div>

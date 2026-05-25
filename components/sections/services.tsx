@@ -32,14 +32,11 @@ export function Services() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-14 lg:mb-20"
         >
-          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-foreground text-background text-[11px] font-semibold uppercase tracking-[0.28em] mb-6">
-            <span className="size-1.5 rounded-full bg-brand-soft animate-pulse" />
-            Co nas wyróżnia
+          <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+            Co robimy
           </div>
           <h2 className="font-sans font-bold uppercase text-[clamp(2rem,5vw,4rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
-            Sześć powodów,
-            <br />
-            by zaufać nam Twojej sprawy
+            Pełen zakres usług
           </h2>
         </motion.div>
 

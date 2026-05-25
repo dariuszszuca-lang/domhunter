@@ -19,13 +19,11 @@ export function Contact() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7"
           >
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+            <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
               Kontakt
-            </p>
-            <h2 className="font-sans font-semibold text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
-              Porozmawiajmy o&nbsp;Twojej
-              <br />
-              <span className="italic">nieruchomości.</span>
+            </div>
+            <h2 className="font-sans font-bold uppercase text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
+              Skontaktuj się z nami
             </h2>
             <p className="mt-7 text-lg text-foreground-muted leading-[1.55] max-w-xl">
               Bezpłatna rozmowa, bez zobowiązań. Słuchamy najpierw, potem ustalamy plan działania. Oddzwaniamy w&nbsp;30 minut w&nbsp;godzinach pracy biura.

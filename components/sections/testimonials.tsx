@@ -38,23 +38,27 @@ export function Testimonials() {
           transition={{ duration: 0.7 }}
           className="text-center max-w-3xl mx-auto mb-16 lg:mb-20"
         >
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 backdrop-blur border border-white/15 mb-6">
+          <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/15 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/90 mb-5">
+            Opinie
+          </div>
+          <h2 className="font-sans font-bold uppercase text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] tracking-[-0.03em] text-white">
+            Co mówią o nas klienci
+          </h2>
+          <a
+            href="https://www.google.com/search?q=domhunter+nieruchomo%C5%9Bci+gda%C5%84sk+opinie"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-7 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white text-foreground text-sm font-semibold hover:bg-brand hover:text-white transition-all"
+          >
             <GoogleIcon />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/90">
-              Opinie z Google
-            </span>
+            Zobacz wszystkie opinie
             <span className="inline-flex items-center gap-1">
               {[1, 2, 3, 4, 5].map((i) => (
                 <Star key={i} className="size-3 fill-yellow-400 text-yellow-400" />
               ))}
-              <span className="ml-1 text-[11px] font-medium text-white">5.0</span>
+              <span className="text-xs">5.0</span>
             </span>
-          </div>
-          <h2 className="font-sans font-bold uppercase text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] tracking-[-0.03em] text-white">
-            Zaufanie zbudowane
-            <br />
-            opinia po opinii
-          </h2>
+          </a>
         </motion.div>
 
         {/* Vertical scrolling 3 columns */}

@@ -3,32 +3,32 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, TreePine, Home } from "lucide-react";
+import { Home, Building, Building2 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
 const solutions = [
   {
     num: "01",
-    label: "Luksusowe rezydencje",
-    icon: Building2,
-    title: "Luksusowe rezydencje",
-    body: "Apartamenty premium w sercu Trójmiasta — Oliwa, Stare Miasto, Sopot. Architektura z duszą, najwyższy standard wykończenia, prestiżowe adresy.",
+    label: "Mieszkania",
+    icon: Home,
+    title: "Mieszkania",
+    body: "Sprzedaż i&nbsp;kupno mieszkań w&nbsp;Trójmieście. Apartamenty, lokale w&nbsp;kamienicach, mieszkania w&nbsp;nowych inwestycjach. Pomagamy też w&nbsp;wynajmie.",
     image: "/images/hero-luxury-3.jpg",
   },
   {
     num: "02",
-    label: "Domy z naturą",
-    icon: TreePine,
-    title: "Domy z naturą",
-    body: "Domy jednorodzinne i rezydencje pod miastem — Kowale, Banino, Kąpino. Z ogrodem, ciszą i&nbsp;dostępem do natury.",
+    label: "Domy i działki",
+    icon: Building2,
+    title: "Domy i działki",
+    body: "Domy jednorodzinne i&nbsp;działki budowlane w&nbsp;Gdańsku i&nbsp;okolicach. Zarówno na sprzedaż, jak i&nbsp;na wynajem długoterminowy.",
     image: "/images/hero-luxury-2.jpg",
   },
   {
     num: "03",
-    label: "Apartamenty wakacyjne",
-    icon: Home,
-    title: "Apartamenty wakacyjne",
-    body: "Inwestycje pod wynajem krótkoterminowy — Sopot, Jelitkowo, Brzeźno. Z analizą opłacalności i&nbsp;przewidywanym zwrotem.",
+    label: "Komercja",
+    icon: Building,
+    title: "Komercja",
+    body: "Biura, lokale handlowe, magazyny i&nbsp;pensjonaty. Dedykowany agent dla każdego segmentu, znajomość lokalnego rynku.",
     image: "/images/hero-luxury-1.jpg",
   },
 ];

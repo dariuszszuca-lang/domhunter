@@ -1,5 +1,4 @@
 import { Hero } from "@/components/sections/hero";
-import { SearchBar } from "@/components/sections/search-bar";
 import { FeaturedOffers } from "@/components/sections/featured-offers";
 import { Services } from "@/components/sections/services";
 import { WycenaCta } from "@/components/sections/wycena-cta";
@@ -12,11 +11,10 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <SearchBar />
       <FeaturedOffers />
       <Services />
-      <WycenaCta />
       <WhyUs />
+      <WycenaCta />
       <Contact />
     </>
   );

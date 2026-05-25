@@ -1,72 +1,112 @@
+"use client";
+
 import Link from "next/link";
-import { Home, Search, KeyRound, Building, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
 const services = [
   {
-    icon: Search,
+    num: "01",
     title: "Kupno",
-    body: "Znajdziemy nieruchomość dopasowaną do Twoich potrzeb. Reprezentujemy Twój interes na każdym etapie.",
+    lead: "Reprezentujemy Twój interes, nie sprzedającego.",
+    body: "Znajdujemy nieruchomości dopasowane do Twoich potrzeb. Sprawdzamy stan prawny i techniczny, negocjujemy cenę. Mamy też dostęp do ofert off-market przez sieć NSL.",
+    bullets: ["Off-market przez NSL", "Sprawdzenie stanu prawnego", "Negocjacje ceny"],
     href: "/strefa-kupujacego",
   },
   {
-    icon: Home,
+    num: "02",
     title: "Sprzedaż",
-    body: "Wycena, sesja, publikacja, pokazy, dokumenty. Zajmujemy się wszystkim od pierwszej rozmowy do aktu.",
+    lead: "Od pierwszej rozmowy do aktu notarialnego.",
+    body: "Wycena rynkowa, sesja zdjęciowa, publikacja w 30+ portalach, pokazy, negocjacje i dokumenty. Ty podpisujesz tylko umowę i odbierasz pieniądze.",
+    bullets: ["Wycena po wizji lokalnej", "Sesja i plan 2D", "Akt notarialny"],
     href: "/strefa-sprzedajacego",
   },
   {
-    icon: KeyRound,
+    num: "03",
     title: "Wynajem",
-    body: "Pokazujemy oferty dopasowane do budżetu i lokalizacji. Sprawdzamy umowy. Pomagamy się wprowadzić.",
+    lead: "Mieszkanie do wynajęcia w Trójmieście.",
+    body: "Pokazujemy oferty z naszej bazy i z rynku. Sprawdzamy stan techniczny i umowę najmu. Pomagamy negocjować warunki.",
+    bullets: ["Oferty z bazy i rynku", "Sprawdzenie umowy", "Pomoc we wprowadzce"],
     href: "/oferty?transakcja=najem",
   },
   {
-    icon: Building,
+    num: "04",
     title: "Komercja",
-    body: "Biura, lokale, magazyny i pensjonaty. Dedykowany doradca dla każdego segmentu.",
+    lead: "Biura, lokale, magazyny i pensjonaty.",
+    body: "Dedykowany doradca dla każdego segmentu komercji. Znamy lokalne realia, mamy kontakty do najemców i właścicieli z całego Trójmiasta.",
+    bullets: ["Biura i lokale handlowe", "Magazyny i hale", "Pensjonaty i obiekty"],
     href: "/komercja",
   },
 ];
 
 export function Services() {
   return (
-    <section className="py-20 lg:py-28 bg-surface">
+    <section className="py-24 lg:py-32">
       <Container size="wide">
-        <div className="max-w-2xl mb-12 lg:mb-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand mb-4">
-            Co robimy
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl mb-16 lg:mb-20"
+        >
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+            Cztery obszary, jedno biuro
           </p>
-          <h2 className="font-display font-bold text-[clamp(2rem,4vw,3rem)] leading-[1.1] tracking-tight text-foreground">
-            Cztery obszary. Jedno biuro.
+          <h2 className="font-display font-bold text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
+            Co dla Ciebie <span className="italic">zrobimy.</span>
           </h2>
-          <p className="mt-5 text-lg text-foreground-muted leading-relaxed">
-            Każdą sprawą zajmuje się dedykowany agent. Niezależnie od tego, czy szukasz mieszkania w Gdańsku, sprzedajesz dom czy wynajmujesz lokal pod biuro.
-          </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-          {services.map((s) => {
-            const Icon = s.icon;
-            return (
+        <div className="divide-y divide-border border-y border-border">
+          {services.map((s, i) => (
+            <motion.div
+              key={s.num}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+            >
               <Link
-                key={s.title}
                 href={s.href}
-                className="group relative flex flex-col gap-4 p-7 lg:p-8 rounded-2xl bg-background border border-border hover:border-brand hover:shadow-card transition-all"
+                className="group block py-10 lg:py-14 transition-colors hover:bg-brand-light/40 -mx-6 px-6 lg:-mx-8 lg:px-8 rounded-2xl"
               >
-                <span className="inline-flex items-center justify-center size-12 rounded-xl bg-brand-light text-brand">
-                  <Icon className="size-5" />
-                </span>
-                <div>
-                  <h3 className="font-display font-bold text-xl lg:text-2xl tracking-tight text-foreground mb-2">
-                    {s.title}
-                  </h3>
-                  <p className="text-sm text-foreground-muted leading-relaxed">{s.body}</p>
+                <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
+                  <div className="lg:col-span-2 flex items-center gap-3">
+                    <span className="font-display text-4xl lg:text-5xl text-brand/40 tabular-nums tracking-tight">
+                      {s.num}
+                    </span>
+                  </div>
+                  <div className="lg:col-span-4">
+                    <h3 className="font-display font-bold text-3xl lg:text-4xl tracking-[-0.02em] text-foreground mb-2 group-hover:text-brand transition-colors">
+                      {s.title}
+                    </h3>
+                    <p className="text-base lg:text-lg text-foreground-muted italic">{s.lead}</p>
+                  </div>
+                  <div className="lg:col-span-5">
+                    <p className="text-base text-foreground leading-relaxed">{s.body}</p>
+                    <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5">
+                      {s.bullets.map((b) => (
+                        <li
+                          key={b}
+                          className="inline-flex items-center gap-2 text-sm text-foreground-muted"
+                        >
+                          <span className="size-1 rounded-full bg-brand/60" />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="lg:col-span-1 flex lg:justify-end">
+                    <span className="inline-flex items-center justify-center size-12 rounded-full bg-surface border border-border group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all">
+                      <ArrowUpRight className="size-5" />
+                    </span>
+                  </div>
                 </div>
-                <ArrowUpRight className="size-5 text-foreground-subtle group-hover:text-brand absolute top-7 right-7 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
               </Link>
-            );
-          })}
+            </motion.div>
+          ))}
         </div>
       </Container>
     </section>

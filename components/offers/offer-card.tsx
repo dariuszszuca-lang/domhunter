@@ -6,7 +6,6 @@ import { formatPrice, formatPricePerSqm, formatArea, offerTitle, typeLabel } fro
 
 export function OfferCard({ offer, priority = false }: { offer: Offer; priority?: boolean }) {
   const primary = offer.images.find((i) => i.primary) ?? offer.images[0];
-  const transactionLabel = offer.transaction === "najem" ? "Wynajem" : "Sprzedaż";
 
   return (
     <Link

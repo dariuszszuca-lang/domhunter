@@ -1,5 +1,5 @@
 import { Client } from "basic-ftp";
-import { Readable } from "node:stream";
+import { Writable } from "node:stream";
 
 const trim = (s?: string) => (s ?? "").trim();
 const config = {
@@ -68,15 +68,7 @@ export async function downloadFtpFile(name: string): Promise<Buffer> {
     }
 
     const chunks: Buffer[] = [];
-    const stream = new (class extends Readable {
-      _read() {
-        /* push-only mode */
-      }
-    })();
-    stream.on("data", (chunk: Buffer) => chunks.push(chunk));
-
-    // basic-ftp expects writable; tworzymy mostek
-    const writable = new (require("node:stream").Writable)({
+    const writable = new Writable({
       write(chunk: Buffer, _enc: string, cb: () => void) {
         chunks.push(chunk);
         cb();

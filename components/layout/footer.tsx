@@ -31,7 +31,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-12 gap-y-10 gap-x-8 py-16 lg:py-20">
           {/* Brand + opis */}
           <div className="col-span-2 md:col-span-4">
-            <Link href="/" className="font-display text-2xl tracking-tight text-foreground">
+            <Link href="/" className="font-sans text-2xl font-bold uppercase tracking-normal text-foreground">
               {siteConfig.name}
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-foreground-muted max-w-xs">
@@ -43,7 +43,7 @@ export function Footer() {
                 href={siteConfig.partners.nsl.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-block text-xs uppercase tracking-[0.18em] text-brand font-semibold hover:text-brand-deep transition-colors"
+                className="mt-6 inline-block text-xs font-semibold uppercase tracking-normal text-foreground hover:text-brand-deep transition-colors"
               >
                 Partner: {siteConfig.partners.nsl.name} →
               </Link>
@@ -52,7 +52,7 @@ export function Footer() {
 
           {/* Oferta */}
           <div className="col-span-1 md:col-span-2">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground mb-4">Oferta</h4>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-normal text-foreground">Oferta</h4>
             <ul className="space-y-2.5">
               {footerNav.oferta.map((i) => (
                 <li key={i.href}>
@@ -66,7 +66,7 @@ export function Footer() {
 
           {/* Firma */}
           <div className="col-span-1 md:col-span-2">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground mb-4">Firma</h4>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-normal text-foreground">Firma</h4>
             <ul className="space-y-2.5">
               {footerNav.firma.map((i) => (
                 <li key={i.href}>
@@ -80,7 +80,7 @@ export function Footer() {
 
           {/* Kontakt */}
           <div className="col-span-2 md:col-span-4">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground mb-4">Kontakt</h4>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-normal text-foreground">Kontakt</h4>
             <ul className="space-y-3">
               <li>
                 <a

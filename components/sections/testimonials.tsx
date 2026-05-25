@@ -26,9 +26,7 @@ const col3 = testimonials.slice(8, 12);
 
 export function Testimonials() {
   return (
-    <section className="py-24 lg:py-32 bg-foreground text-background relative overflow-hidden">
-      <div aria-hidden className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-brand/20 blur-[120px]" />
-
+    <section className="relative overflow-hidden bg-foreground py-24 text-background lg:py-32">
       <Container size="wide" className="relative">
         {/* Header */}
         <motion.div
@@ -38,10 +36,10 @@ export function Testimonials() {
           transition={{ duration: 0.7 }}
           className="text-center max-w-3xl mx-auto mb-16 lg:mb-20"
         >
-          <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/15 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/90 mb-5">
+          <div className="mb-5 inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-white/90 backdrop-blur">
             Opinie
           </div>
-          <h2 className="font-sans font-bold uppercase text-[clamp(1.75rem,3.8vw,3rem)] leading-[1.02] tracking-[-0.03em] text-white">
+          <h2 className="font-sans font-bold uppercase text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.02] tracking-normal text-white">
             Co mówią o nas klienci
           </h2>
           <a

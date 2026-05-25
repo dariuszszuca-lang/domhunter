@@ -8,9 +8,9 @@ import { siteConfig } from "@/lib/site";
 
 export function Contact() {
   return (
-    <section className="py-24 lg:py-32 bg-surface-cream relative overflow-hidden">
+    <section className="relative overflow-hidden bg-surface-cream py-24 lg:py-32">
       <Container size="wide">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-16">
           {/* Lewa — main copy */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -19,10 +19,10 @@ export function Contact() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7"
           >
-            <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+            <div className="mb-5 inline-flex items-center rounded-full border border-border bg-surface-muted px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
               Kontakt
             </div>
-            <h2 className="font-sans font-bold uppercase text-[clamp(1.75rem,3.8vw,3rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
+            <h2 className="font-sans font-bold uppercase text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.02] tracking-normal text-foreground">
               Skontaktuj się z nami
             </h2>
             <p className="mt-7 text-lg text-foreground-muted leading-[1.55] max-w-xl">
@@ -32,7 +32,7 @@ export function Contact() {
             <div className="mt-10 flex flex-wrap gap-3">
               <a
                 href={siteConfig.contact.phones[0].href}
-                className="group inline-flex items-center gap-2.5 pl-7 pr-3 py-2 rounded-full bg-foreground text-background text-sm font-semibold hover:bg-brand transition-all"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-foreground py-2 pl-7 pr-3 text-sm font-semibold text-background transition-all hover:bg-brand-hover"
               >
                 <Phone className="size-4" />
                 Zadzwoń teraz
@@ -42,7 +42,7 @@ export function Contact() {
               </a>
               <Link
                 href="/kontakt"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full border border-border-strong text-foreground text-sm font-semibold hover:bg-surface hover:border-foreground transition-all"
+                className="inline-flex items-center gap-2.5 rounded-full border border-border-strong px-6 py-3.5 text-sm font-semibold text-foreground transition-all hover:border-foreground hover:bg-surface-muted"
               >
                 Formularz kontaktowy
               </Link>
@@ -116,7 +116,7 @@ function InfoCard({
         <Icon className="size-5" />
       </span>
       <div className="flex-1 min-w-0">
-        <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] mb-1 ${featured ? "text-background/60" : "text-foreground-subtle"}`}>
+        <p className={`mb-1 text-[11px] font-semibold uppercase tracking-normal ${featured ? "text-background/60" : "text-foreground-subtle"}`}>
           {label}
         </p>
         <p className={`text-lg font-medium ${featured ? "text-background" : "text-foreground"} truncate`}>

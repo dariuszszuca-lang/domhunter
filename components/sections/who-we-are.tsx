@@ -44,10 +44,10 @@ export function WhoWeAre() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-4"
           >
-            <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-6">
+            <div className="mb-6 inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
               O nas
             </div>
-            <h2 className="font-sans font-bold uppercase text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.0] tracking-[-0.035em] text-foreground">
+            <h2 className="font-sans font-bold uppercase text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.0] tracking-normal text-foreground">
               Pasja
               <br />
               i&nbsp;doświadczenie
@@ -68,7 +68,7 @@ export function WhoWeAre() {
             <div className="mt-14 grid grid-cols-2 gap-y-10 gap-x-8 max-w-md">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <div className="font-sans font-bold text-5xl lg:text-6xl text-foreground tracking-tight tabular-nums leading-none">
+                  <div className="font-sans text-5xl font-bold leading-none tracking-normal text-foreground tabular-nums lg:text-6xl">
                     {s.value}
                   </div>
                   <p className="mt-4 text-sm text-foreground-muted">{s.label}</p>
@@ -85,7 +85,7 @@ export function WhoWeAre() {
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-4"
           >
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-surface-muted">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] bg-surface-muted">
               <Image
                 src="/images/team-1.jpg"
                 alt="Zespół DomHunter Nieruchomości"
@@ -110,7 +110,7 @@ export function WhoWeAre() {
                 <div key={v.title}>
                   <div className="flex items-center gap-3 mb-4">
                     <Icon className="size-5 text-foreground" strokeWidth={1.8} />
-                    <h3 className="font-sans font-bold text-xl lg:text-2xl tracking-tight text-foreground">
+                    <h3 className="font-sans text-xl font-bold tracking-normal text-foreground lg:text-2xl">
                       {v.title}
                     </h3>
                   </div>

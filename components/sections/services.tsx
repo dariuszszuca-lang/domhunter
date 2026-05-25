@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Home,
@@ -32,10 +31,10 @@ export function Services() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-14 lg:mb-20"
         >
-          <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+          <div className="mb-5 inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
             Co robimy
           </div>
-          <h2 className="font-sans font-bold uppercase text-[clamp(1.75rem,3.8vw,3rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
+          <h2 className="font-sans font-bold uppercase text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.02] tracking-normal text-foreground">
             Pełen zakres usług
           </h2>
         </motion.div>
@@ -50,12 +49,12 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                className="p-7 lg:p-9 rounded-3xl bg-surface-muted hover:bg-brand-light transition-colors duration-500"
+                className="group rounded-[28px] border border-border bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:border-foreground/20 hover:shadow-card lg:p-9"
               >
-                <span className="inline-flex items-center justify-center size-14 rounded-full bg-white text-foreground mb-7">
+                <span className="mb-7 inline-flex size-14 items-center justify-center rounded-full bg-surface-muted text-foreground transition-colors group-hover:bg-foreground group-hover:text-background">
                   <Icon className="size-5" strokeWidth={1.8} />
                 </span>
-                <h3 className="font-sans font-bold text-xl lg:text-2xl tracking-[-0.015em] text-foreground mb-3">
+                <h3 className="mb-3 font-sans text-xl font-bold tracking-normal text-foreground lg:text-2xl">
                   {s.title}
                 </h3>
                 <p className="text-foreground-muted leading-relaxed">{s.body}</p>

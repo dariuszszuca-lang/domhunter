@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Phone, Menu, X } from "lucide-react";
+import { ArrowUpRight, Home, Menu, Phone, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -33,18 +33,23 @@ export function Header() {
       className={cn(
         "fixed top-0 inset-x-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-background/85 backdrop-blur-md border-b border-border"
-          : "bg-transparent"
+          ? "bg-background/90 backdrop-blur-md border-b border-border"
+          : "bg-background"
       )}
     >
       <Container size="wide">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-18 lg:h-24">
           {/* Logo */}
           <Link
             href="/"
-            className="font-display text-xl lg:text-2xl tracking-tight text-foreground hover:text-brand transition-colors"
+            className="group inline-flex items-center gap-3 text-foreground hover:text-brand transition-colors"
           >
-            DomHunter
+            <span className="inline-flex size-10 items-center justify-center rounded-2xl border border-foreground/15 bg-surface">
+              <Home className="size-5" strokeWidth={1.8} />
+            </span>
+            <span className="font-sans text-xl lg:text-2xl font-bold uppercase tracking-normal">
+              DomHunter
+            </span>
           </Link>
 
           {/* Nav desktop */}
@@ -57,7 +62,7 @@ export function Header() {
                   href={item.href}
                   className={cn(
                     "text-sm font-medium transition-colors",
-                    active ? "text-brand" : "text-foreground-muted hover:text-foreground"
+                    active ? "text-foreground" : "text-foreground-muted hover:text-foreground"
                   )}
                 >
                   {item.label}
@@ -70,17 +75,21 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href={siteConfig.contact.phones[0].href}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-brand text-white hover:bg-brand-hover transition-colors"
+              className="group inline-flex items-center gap-3 rounded-full bg-foreground py-2 pl-5 pr-2 text-sm font-semibold text-background transition-colors hover:bg-brand-hover"
             >
+              <span className="size-2 rounded-full bg-brand-soft" aria-hidden />
               <Phone className="size-4" />
               {siteConfig.contact.phones[0].displayValue}
+              <span className="inline-flex size-9 items-center justify-center rounded-full bg-background text-foreground transition-transform group-hover:rotate-12">
+                <ArrowUpRight className="size-4" />
+              </span>
             </a>
           </div>
 
           {/* Mobile burger */}
           <button
             type="button"
-            className="lg:hidden inline-flex items-center justify-center size-10 rounded-full border border-border"
+            className="lg:hidden inline-flex items-center justify-center size-11 rounded-full border border-border bg-surface"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menu"
           >
@@ -104,7 +113,7 @@ export function Header() {
               ))}
               <a
                 href={siteConfig.contact.phones[0].href}
-                className="mt-3 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full text-sm font-semibold bg-brand text-white"
+                className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-sm font-semibold text-background"
               >
                 <Phone className="size-4" />
                 {siteConfig.contact.phones[0].displayValue}

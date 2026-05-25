@@ -25,10 +25,10 @@ export async function FeaturedOffers() {
     <section className="py-24 lg:py-32 bg-surface-muted">
       <Container size="wide">
         <div className="max-w-3xl mb-12 lg:mb-16">
-          <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+          <div className="mb-5 inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
             Nieruchomości
           </div>
-          <h2 className="font-sans font-bold uppercase text-[clamp(1.75rem,3.8vw,3rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
+          <h2 className="font-sans font-bold uppercase text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.02] tracking-normal text-foreground">
             Aktualne oferty z Trójmiasta
           </h2>
           <p className="mt-6 max-w-xl text-base lg:text-lg text-foreground-muted leading-[1.55]">
@@ -41,7 +41,7 @@ export async function FeaturedOffers() {
             <Link
               key={o.id}
               href={`/oferty/${o.id}`}
-              className="group flex flex-col rounded-3xl overflow-hidden bg-surface hover:shadow-card transition-all"
+              className="group flex flex-col overflow-hidden rounded-[28px] bg-surface transition-all hover:-translate-y-1 hover:shadow-card"
             >
               <div className="relative aspect-[4/3] bg-foreground/5 overflow-hidden">
                 <Image
@@ -51,7 +51,7 @@ export async function FeaturedOffers() {
                   sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
                   className="object-cover group-hover:scale-[1.04] transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4 inline-flex items-center px-3 py-1.5 rounded-full bg-white/95 backdrop-blur text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground">
+                <div className="absolute left-4 top-4 inline-flex items-center rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground backdrop-blur">
                   {o.badge}
                 </div>
                 <div className="absolute bottom-4 right-4 inline-flex items-center justify-center size-11 rounded-full bg-white/95 text-foreground group-hover:bg-brand group-hover:text-white transition-all">
@@ -66,10 +66,10 @@ export async function FeaturedOffers() {
                 </p>
 
                 <div className="flex items-start justify-between gap-3 mb-4">
-                  <h3 className="font-sans font-bold text-xl tracking-tight text-foreground">
+                  <h3 className="font-sans text-xl font-bold tracking-normal text-foreground">
                     {o.title}
                   </h3>
-                  <p className="font-sans font-bold text-xl tracking-tight text-foreground tabular-nums whitespace-nowrap">
+                  <p className="whitespace-nowrap font-sans text-xl font-bold tracking-normal text-foreground tabular-nums">
                     {o.price}
                   </p>
                 </div>

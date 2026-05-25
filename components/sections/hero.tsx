@@ -6,28 +6,35 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Star } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
+const avatars = [
+  "/images/team-1.jpg",
+  "/images/team-2.jpg",
+  "/images/properties/stock-1.jpg",
+  "/images/properties/stock-2.jpg",
+];
+
 export function Hero() {
   return (
-    <section className="relative pt-24 lg:pt-28 pb-16">
+    <section className="relative pt-24 lg:pt-28 pb-16 lg:pb-20">
       <Container size="wide">
-        <div className="relative rounded-[28px] lg:rounded-[40px] bg-foreground min-h-[640px] lg:min-h-[760px]">
+        <div className="relative min-h-[650px] overflow-hidden rounded-[28px] bg-foreground sm:overflow-visible lg:min-h-[720px] lg:rounded-[42px]">
           {/* Background image */}
-          <div className="absolute inset-0 rounded-[28px] lg:rounded-[40px] overflow-hidden">
+          <div className="absolute inset-0 overflow-hidden rounded-[28px] lg:rounded-[42px]">
             <Image
               src="/images/hero-luxury-2.jpg"
               alt="Luksusowa nieruchomość w Trójmieście"
               fill
               sizes="100vw"
               priority
-              className="object-cover"
+              className="object-cover object-center"
             />
             <div
               aria-hidden
-              className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/45 to-foreground/15"
+              className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/42 to-foreground/5"
             />
             <div
               aria-hidden
-              className="absolute inset-0 bg-gradient-to-r from-foreground/75 via-foreground/15 to-transparent"
+              className="absolute inset-0 bg-gradient-to-r from-foreground/78 via-foreground/20 to-transparent"
             />
           </div>
 
@@ -47,13 +54,18 @@ export function Hero() {
             </div>
 
             {/* Chip content */}
-            <div className="flex items-center gap-3 px-5 py-3 bg-background rounded-tl-3xl">
+            <div className="flex items-center gap-3 rounded-tl-[28px] bg-background px-5 py-3 shadow-soft">
               <div className="flex -space-x-2">
-                {["from-pink-300 to-orange-300", "from-blue-300 to-purple-300", "from-amber-300 to-rose-300", "from-emerald-300 to-cyan-300"].map((g, i) => (
-                  <span
-                    key={i}
-                    className={`size-9 rounded-full bg-gradient-to-br ${g} ring-2 ring-background`}
-                  />
+                {avatars.map((src, i) => (
+                  <span key={src} className="relative size-10 overflow-hidden rounded-full bg-surface-muted ring-2 ring-background">
+                    <Image
+                      src={src}
+                      alt={`Agent DomHunter ${i + 1}`}
+                      fill
+                      sizes="40px"
+                      className="object-cover"
+                    />
+                  </span>
                 ))}
               </div>
               <div className="pr-2">
@@ -67,17 +79,17 @@ export function Hero() {
           </div>
 
           {/* Content */}
-          <div className="relative h-full flex flex-col justify-end p-8 lg:p-14 min-h-[640px] lg:min-h-[760px]">
+          <div className="relative flex min-h-[650px] h-full flex-col justify-end p-7 sm:p-10 lg:min-h-[720px] lg:p-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-3xl"
+              className="max-w-[1040px]"
             >
-              <h1 className="font-sans font-bold uppercase text-[clamp(2.25rem,5.5vw,4.75rem)] leading-[0.98] tracking-[-0.03em] text-white">
-                Znajdź swoje
-                <br />
-                wymarzone miejsce
+              <h1 className="max-w-full text-balance font-sans text-[clamp(1.95rem,8.1vw,5.35rem)] font-bold uppercase leading-[0.98] tracking-normal text-white">
+                <span className="block sm:inline">Znajdź</span>
+                <span className="block sm:inline"> swoje wymarzone</span>
+                <span className="block sm:inline"> miejsce</span>
               </h1>
               <p className="mt-6 max-w-xl text-base lg:text-lg text-white/85 leading-[1.55]">
                 Lokalne biuro nieruchomości w&nbsp;Trójmieście. Dedykowany agent dla każdej transakcji. Dostęp do ofert off-market przez sieć NSL.
@@ -85,7 +97,7 @@ export function Hero() {
 
               <Link
                 href="/oferty"
-                className="group mt-8 inline-flex items-center gap-3 pl-7 pr-3 py-2.5 rounded-full bg-white text-foreground text-sm font-semibold hover:bg-brand hover:text-white transition-all"
+                className="group mt-8 inline-flex items-center gap-3 rounded-full bg-white py-2.5 pl-7 pr-3 text-sm font-semibold text-foreground transition-all hover:bg-brand hover:text-white"
               >
                 Zobacz oferty
                 <span className="inline-flex items-center justify-center size-9 rounded-full bg-foreground/10 group-hover:bg-white/15 transition-colors">
@@ -102,7 +114,7 @@ export function Hero() {
                 ].map((stat) => (
                   <div key={stat.label}>
                     <div className="flex items-start gap-0.5">
-                      <span className="font-sans font-semibold text-4xl lg:text-5xl text-white tracking-tight tabular-nums leading-none">
+                      <span className="font-sans font-semibold text-4xl lg:text-5xl text-white tracking-normal tabular-nums leading-none">
                         {stat.value}
                       </span>
                       <span className="font-sans font-semibold text-xl lg:text-2xl text-white/85 leading-none">

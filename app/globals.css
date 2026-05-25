@@ -2,50 +2,49 @@
 
 /* ============================================
    DomHunter Nieruchomości
-   Design tokens — subtelna paleta magenta
-   Inspirowana obecną domhunter.pl + sylwiawroblewska.pl
+   Design tokens — editorial real estate system
    ============================================ */
 
 :root {
   /* Tła */
-  --background: #FAFAF7;
+  --background: #F7F6F1;
   --surface: #FFFFFF;
-  --surface-muted: #F4F1ED;
-  --surface-cream: #F5EFE9;
-  --surface-blush: #FAF2F5;        /* subtelny róż do sekcji premium */
-  --surface-dark: #2B2A29;
+  --surface-muted: #EFEEE8;
+  --surface-cream: #F3F0E8;
+  --surface-blush: #EEF4EF;
+  --surface-dark: #111111;
 
   /* Tekst */
-  --foreground: #2B2A29;
-  --foreground-muted: #5C5C58;
-  --foreground-subtle: #8A8A85;
-  --foreground-on-dark: #FAFAF7;
-  --foreground-on-dark-muted: #BBB8B0;
+  --foreground: #191919;
+  --foreground-muted: #62615C;
+  --foreground-subtle: #8D8B84;
+  --foreground-on-dark: #F7F6F1;
+  --foreground-on-dark-muted: #C7C4BA;
 
-  /* Brand — deep magenta z domhunter.pl */
-  --brand: #991A75;                 /* main */
-  --brand-hover: #82184C;
-  --brand-deep: #6D1354;
-  --brand-soft: #C43077;            /* drugi akcent */
-  --brand-light: #FBEEF4;           /* tło subtle */
-  --brand-blush: #F5D9E7;
+  /* Brand — VistaHaven-like monochrome with small green signal accent */
+  --brand: #111111;
+  --brand-hover: #000000;
+  --brand-deep: #060606;
+  --brand-soft: #32D583;
+  --brand-light: #ECF3EC;
+  --brand-blush: #DFF6E8;
 
   /* Akcenty pomocnicze */
-  --border: #E8E5E0;
-  --border-strong: #C8C5BE;
+  --border: #E2DFD6;
+  --border-strong: #C7C2B6;
   --ring: var(--brand);
 
   /* Skala szarości (ciepła) */
-  --gray-50: #F7F6F2;
-  --gray-100: #EFEDE7;
-  --gray-200: #E0DDD4;
-  --gray-300: #C8C5BE;
-  --gray-400: #9C9A93;
-  --gray-500: #6C6A65;
-  --gray-600: #4D4B47;
-  --gray-700: #353330;
-  --gray-800: #25241F;
-  --gray-900: #18171E;
+  --gray-50: #F7F6F1;
+  --gray-100: #EFEEE8;
+  --gray-200: #E2DFD6;
+  --gray-300: #C7C2B6;
+  --gray-400: #9B978E;
+  --gray-500: #6F6B63;
+  --gray-600: #4E4B45;
+  --gray-700: #36332F;
+  --gray-800: #242321;
+  --gray-900: #111111;
 }
 
 @theme inline {
@@ -117,6 +116,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   font-feature-settings: "ss01", "cv11";
+  overflow-x: hidden;
 }
 
 /* h1-h4 nie mają wymuszonego fontu — komponenty same wybierają (font-sans / font-display) */

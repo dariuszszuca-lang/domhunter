@@ -38,7 +38,7 @@ export function SolutionsShowcase() {
   const current = solutions[active];
 
   return (
-    <section className="py-24 lg:py-32">
+    <section className="pb-24 pt-16 lg:pb-32 lg:pt-20">
       <Container size="wide">
         {/* Header */}
         <motion.div
@@ -48,10 +48,10 @@ export function SolutionsShowcase() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl mb-12 lg:mb-16"
         >
-          <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+          <div className="mb-5 inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
             Oferta
           </div>
-          <h2 className="font-sans font-bold uppercase text-[clamp(1.75rem,3.8vw,3rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
+          <h2 className="font-sans font-bold uppercase text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.02] tracking-normal text-foreground">
             Co dla Ciebie zrobimy
           </h2>
           <p className="mt-5 max-w-xl text-base lg:text-lg text-foreground-muted leading-[1.55]">
@@ -70,7 +70,7 @@ export function SolutionsShowcase() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="relative aspect-[16/10] lg:aspect-[16/9] rounded-3xl overflow-hidden bg-surface-muted"
+                className="relative aspect-[16/10] overflow-hidden rounded-[28px] bg-surface-muted lg:aspect-[16/9] lg:rounded-[36px]"
               >
                 <Image
                   src={current.image}
@@ -103,7 +103,7 @@ export function SolutionsShowcase() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-background rounded-tl-3xl px-6 py-5 flex items-baseline gap-3"
+                  className="flex items-baseline gap-3 rounded-tl-[28px] bg-background px-6 py-5"
                 >
                   <span className="font-sans font-bold text-3xl lg:text-4xl tabular-nums leading-none text-foreground">
                     {current.num}
@@ -138,7 +138,7 @@ export function SolutionsShowcase() {
                       <span className="font-sans font-bold text-3xl lg:text-4xl tabular-nums leading-none">
                         {s.num}
                       </span>
-                      <span className="text-[10px] lg:text-xs font-semibold uppercase tracking-[0.2em] text-right">
+                      <span className="text-right text-[10px] font-semibold uppercase tracking-normal lg:text-xs">
                         {s.label}
                       </span>
                     </div>
@@ -150,7 +150,7 @@ export function SolutionsShowcase() {
                         <span className="font-sans font-bold text-2xl tabular-nums leading-none text-foreground-subtle">
                           {s.num}
                         </span>
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground-subtle">
+                        <span className="text-[10px] font-semibold uppercase tracking-normal text-foreground-subtle">
                           {s.label}
                         </span>
                       </div>
@@ -160,7 +160,7 @@ export function SolutionsShowcase() {
                           {s.num}
                         </span>
                         <span
-                          className="text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground-subtle group-hover:text-foreground transition-colors"
+                          className="text-[11px] font-semibold uppercase tracking-normal text-foreground-subtle transition-colors group-hover:text-foreground"
                           style={{
                             writingMode: "vertical-rl",
                             transform: "rotate(180deg)",
@@ -191,7 +191,7 @@ export function SolutionsShowcase() {
                 exit={{ opacity: 0, y: -5 }}
                 transition={{ duration: 0.4 }}
               >
-                <h3 className="font-sans font-bold text-2xl lg:text-3xl tracking-tight text-foreground mb-4">
+                <h3 className="mb-4 font-sans text-2xl font-bold tracking-normal text-foreground lg:text-3xl">
                   {current.title}
                 </h3>
                 <p

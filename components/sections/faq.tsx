@@ -40,10 +40,10 @@ export function FAQ() {
       <Container size="wide">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
           <div className="lg:col-span-5">
-            <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+            <div className="mb-5 inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
               Pomoc
             </div>
-            <h2 className="font-sans font-bold uppercase text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
+            <h2 className="font-sans font-bold uppercase text-[clamp(1.9rem,3.5vw,2.85rem)] leading-[1.02] tracking-normal text-foreground">
               Najczęstsze pytania
             </h2>
             <p className="mt-7 text-foreground-muted leading-relaxed max-w-md">
@@ -67,7 +67,7 @@ export function FAQ() {
                       </span>
                       <span
                         className={`shrink-0 inline-flex items-center justify-center size-9 rounded-full border border-border transition-all ${
-                          isOpen ? "bg-brand border-brand text-white" : "bg-surface text-foreground"
+                          isOpen ? "bg-foreground border-foreground text-background" : "bg-surface text-foreground"
                         }`}
                       >
                         {isOpen ? <Minus className="size-4" /> : <Plus className="size-4" />}

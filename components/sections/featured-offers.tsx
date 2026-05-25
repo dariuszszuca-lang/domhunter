@@ -24,7 +24,7 @@ export async function FeaturedOffers() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
               Wybrane oferty
             </p>
-            <h2 className="font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
+            <h2 className="font-sans font-semibold text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
               Aktualne propozycje
               <br />
               <span className="italic">z&nbsp;Trójmiasta.</span>
@@ -179,7 +179,7 @@ function EmptyState() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
             Wybrane oferty
           </p>
-          <h2 className="font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
+          <h2 className="font-sans font-semibold text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
             Najnowsze oferty pojawią się tutaj.
           </h2>
           <p className="mt-5 text-lg text-foreground-muted leading-relaxed">

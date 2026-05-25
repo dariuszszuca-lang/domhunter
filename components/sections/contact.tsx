@@ -22,7 +22,7 @@ export function Contact() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
               Kontakt
             </p>
-            <h2 className="font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
+            <h2 className="font-sans font-semibold text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
               Porozmawiajmy o&nbsp;Twojej
               <br />
               <span className="italic">nieruchomości.</span>

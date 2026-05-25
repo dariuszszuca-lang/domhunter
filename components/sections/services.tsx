@@ -2,111 +2,94 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import {
+  ArrowUpRight,
+  Home,
+  Search,
+  KeyRound,
+  Building,
+  Calculator,
+  Sparkles,
+} from "lucide-react";
 import { Container } from "@/components/ui/container";
 
 const services = [
-  {
-    num: "01",
-    title: "Kupno",
-    lead: "Reprezentujemy Twój interes, nie sprzedającego.",
-    body: "Znajdujemy nieruchomości dopasowane do Twoich potrzeb. Sprawdzamy stan prawny i techniczny, negocjujemy cenę. Mamy też dostęp do ofert off-market przez sieć NSL.",
-    bullets: ["Off-market przez NSL", "Sprawdzenie stanu prawnego", "Negocjacje ceny"],
-    href: "/strefa-kupujacego",
-  },
-  {
-    num: "02",
-    title: "Sprzedaż",
-    lead: "Od pierwszej rozmowy do aktu notarialnego.",
-    body: "Wycena rynkowa, sesja zdjęciowa, publikacja w 30+ portalach, pokazy, negocjacje i dokumenty. Ty podpisujesz tylko umowę i odbierasz pieniądze.",
-    bullets: ["Wycena po wizji lokalnej", "Sesja i plan 2D", "Akt notarialny"],
-    href: "/strefa-sprzedajacego",
-  },
-  {
-    num: "03",
-    title: "Wynajem",
-    lead: "Mieszkanie do wynajęcia w Trójmieście.",
-    body: "Pokazujemy oferty z naszej bazy i z rynku. Sprawdzamy stan techniczny i umowę najmu. Pomagamy negocjować warunki.",
-    bullets: ["Oferty z bazy i rynku", "Sprawdzenie umowy", "Pomoc we wprowadzce"],
-    href: "/oferty?transakcja=najem",
-  },
-  {
-    num: "04",
-    title: "Komercja",
-    lead: "Biura, lokale, magazyny i pensjonaty.",
-    body: "Dedykowany doradca dla każdego segmentu komercji. Znamy lokalne realia, mamy kontakty do najemców i właścicieli z całego Trójmiasta.",
-    bullets: ["Biura i lokale handlowe", "Magazyny i hale", "Pensjonaty i obiekty"],
-    href: "/komercja",
-  },
+  { icon: Home, num: "01", title: "Sprzedaż", body: "Wycena, sesja, publikacja, pokazy. Pełna obsługa do aktu.", href: "/strefa-sprzedajacego" },
+  { icon: Search, num: "02", title: "Kupno", body: "Reprezentujemy Twój interes. Oferty off-market przez NSL.", href: "/strefa-kupujacego" },
+  { icon: KeyRound, num: "03", title: "Wynajem", body: "Mieszkania do wynajęcia. Sprawdzamy umowy i właścicieli.", href: "/oferty?transakcja=najem" },
+  { icon: Building, num: "04", title: "Najem", body: "Wynajmij swoje mieszkanie. Weryfikacja najemcy, umowa, protokół.", href: "/oferty?transakcja=najem" },
+  { icon: Building, num: "05", title: "Komercja", body: "Biura, lokale, magazyny, pensjonaty. Dedykowany doradca.", href: "/komercja" },
+  { icon: Calculator, num: "06", title: "Darmowa wycena", body: "Wycena oparta na faktach. Odpowiedź w 24 godziny.", href: "/wycena" },
 ];
 
 export function Services() {
   return (
-    <section className="py-24 lg:py-32">
+    <section className="py-24 lg:py-32 bg-surface-muted">
       <Container size="wide">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-3xl mb-16 lg:mb-20"
+          className="flex flex-wrap items-end justify-between gap-6 mb-12 lg:mb-16"
         >
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
-            Cztery obszary, jedno biuro
-          </p>
-          <h2 className="font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
-            Co dla Ciebie <span className="italic">zrobimy.</span>
-          </h2>
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-light text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
+              <Sparkles className="size-3" />
+              Co oferujemy
+            </div>
+            <h2 className="font-sans font-semibold text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-[-0.03em] text-foreground">
+              Sześć obszarów,
+              <br />
+              <span className="font-display italic font-normal text-foreground-muted">jedno biuro.</span>
+            </h2>
+          </div>
+          <Link
+            href="/kontakt"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-brand transition-colors"
+          >
+            Skontaktuj się
+            <ArrowUpRight className="size-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
         </motion.div>
 
-        <div className="divide-y divide-border border-y border-border">
-          {services.map((s, i) => (
-            <motion.div
-              key={s.num}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <Link
-                href={s.href}
-                className="group block py-10 lg:py-14 transition-colors hover:bg-brand-light/40 -mx-6 px-6 lg:-mx-8 lg:px-8 rounded-2xl"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+          {services.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <motion.div
+                key={s.num}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
-                  <div className="lg:col-span-2 flex items-center gap-3">
-                    <span className="font-display text-4xl lg:text-5xl text-brand/40 tabular-nums tracking-tight">
+                <Link
+                  href={s.href}
+                  className="group relative flex flex-col gap-6 p-7 lg:p-8 rounded-3xl bg-surface border border-border hover:border-brand hover:shadow-card transition-all h-full"
+                >
+                  <div className="flex items-start justify-between">
+                    <span className="inline-flex items-center justify-center size-12 rounded-xl bg-brand-light text-brand">
+                      <Icon className="size-5" />
+                    </span>
+                    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground-subtle tabular-nums">
                       {s.num}
                     </span>
                   </div>
-                  <div className="lg:col-span-4">
-                    <h3 className="font-display text-3xl lg:text-4xl tracking-[-0.02em] text-foreground mb-2 group-hover:text-brand transition-colors">
+                  <div>
+                    <h3 className="font-sans font-semibold text-2xl tracking-[-0.015em] text-foreground mb-2">
                       {s.title}
                     </h3>
-                    <p className="text-base lg:text-lg text-foreground-muted italic">{s.lead}</p>
+                    <p className="text-sm text-foreground-muted leading-relaxed">{s.body}</p>
                   </div>
-                  <div className="lg:col-span-5">
-                    <p className="text-base text-foreground leading-relaxed">{s.body}</p>
-                    <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5">
-                      {s.bullets.map((b) => (
-                        <li
-                          key={b}
-                          className="inline-flex items-center gap-2 text-sm text-foreground-muted"
-                        >
-                          <span className="size-1 rounded-full bg-brand/60" />
-                          {b}
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="mt-auto inline-flex items-center gap-2 text-xs font-semibold text-brand group-hover:gap-3 transition-all">
+                    Dowiedz się więcej
+                    <ArrowUpRight className="size-3.5" />
                   </div>
-                  <div className="lg:col-span-1 flex lg:justify-end">
-                    <span className="inline-flex items-center justify-center size-12 rounded-full bg-surface border border-border group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all">
-                      <ArrowUpRight className="size-5" />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </Container>
     </section>

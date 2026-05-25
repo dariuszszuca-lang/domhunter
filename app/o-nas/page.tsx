@@ -20,7 +20,7 @@ export default function ONasPage() {
           <div className="grid lg:grid-cols-12 gap-10 items-end">
             <div className="lg:col-span-8">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">O nas</p>
-              <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.025em] text-foreground">
+              <h1 className="font-sans font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.025em] text-foreground">
                 Lokalne biuro
                 <br />
                 <span className="italic text-brand">z duszą.</span>
@@ -59,7 +59,7 @@ export default function ONasPage() {
         <Container size="wide">
           <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">Partnerstwa</p>
-            <h2 className="font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
+            <h2 className="font-sans font-semibold text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] tracking-[-0.02em] text-foreground">
               Nieruchomości <span className="italic">Spod Lady.</span>
             </h2>
             <p className="mt-7 text-lg text-foreground-muted leading-[1.55]">

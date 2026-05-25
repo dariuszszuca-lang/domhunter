@@ -46,7 +46,7 @@ export default function KomercjaPage() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
               Komercja
             </p>
-            <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.025em] text-foreground">
+            <h1 className="font-sans font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.025em] text-foreground">
               Nieruchomości
               <br />
               <span className="italic text-brand">komercyjne.</span>

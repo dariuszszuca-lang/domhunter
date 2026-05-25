@@ -46,7 +46,7 @@ export function SolutionsShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-3xl mb-14 lg:mb-20"
+          className="max-w-3xl mb-12 lg:mb-16"
         >
           <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
             Oferta
@@ -54,37 +54,15 @@ export function SolutionsShowcase() {
           <h2 className="font-sans font-bold uppercase text-[clamp(1.75rem,3.8vw,3rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
             Co dla Ciebie zrobimy
           </h2>
-          <p className="mt-6 max-w-xl text-base lg:text-lg text-foreground-muted leading-[1.55]">
-            Luksusowe rezydencje, domy z&nbsp;naturą i&nbsp;apartamenty pod wynajem. Każdy obszar ma dedykowany zespół.
+          <p className="mt-5 max-w-xl text-base lg:text-lg text-foreground-muted leading-[1.55]">
+            Trzy obszary, w&nbsp;których pomagamy klientom w&nbsp;Trójmieście.
           </p>
         </motion.div>
 
-        {/* Showcase grid */}
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10">
-          {/* Lewa — opis aktualnego */}
-          <div className="lg:col-span-3 flex flex-col justify-end order-2 lg:order-1">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current.num}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.4 }}
-              >
-                <current.icon className="size-9 text-foreground mb-5" strokeWidth={1.5} />
-                <h3 className="font-sans font-bold text-2xl lg:text-3xl tracking-tight text-foreground mb-4">
-                  {current.title}
-                </h3>
-                <p
-                  className="text-foreground-muted leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: current.body }}
-                />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Środek — duże zdjęcie aktualnego */}
-          <div className="lg:col-span-7 relative order-1 lg:order-2">
+        {/* Showcase: duży obraz + vertical tabs po prawej */}
+        <div className="relative grid grid-cols-12 gap-4 lg:gap-6">
+          {/* Obraz (col 10) */}
+          <div className="col-span-12 lg:col-span-10 relative">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.image}
@@ -92,33 +70,54 @@ export function SolutionsShowcase() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="relative aspect-[5/4] rounded-3xl overflow-hidden bg-surface-muted"
+                className="relative aspect-[16/10] lg:aspect-[16/9] rounded-3xl overflow-hidden bg-surface-muted"
               >
                 <Image
                   src={current.image}
                   alt={current.title}
                   fill
-                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  sizes="(min-width: 1024px) 75vw, 100vw"
                   className="object-cover"
                 />
               </motion.div>
             </AnimatePresence>
 
-            {/* Active number badge - bottom right of image */}
-            <div className="absolute -bottom-px -right-px bg-background rounded-tl-3xl px-6 pt-6">
-              <div className="rounded-2xl bg-background px-1">
-                <div className="flex items-baseline gap-1">
-                  <span className="font-sans font-bold text-4xl lg:text-5xl tabular-nums leading-none text-foreground">
+            {/* Active number badge - bottom-right na obrazie (vista style) */}
+            <div className="absolute bottom-0 right-0 hidden sm:block">
+              {/* Cutout top */}
+              <div className="absolute -top-5 right-0 w-5 h-5 pointer-events-none">
+                <svg viewBox="0 0 20 20" className="w-full h-full">
+                  <path d="M20 20L0 20C11.0457 20 20 11.0457 20 0L20 20Z" fill="var(--color-background)" />
+                </svg>
+              </div>
+              {/* Cutout left */}
+              <div className="absolute bottom-0 -left-5 w-5 h-5 pointer-events-none">
+                <svg viewBox="0 0 20 20" className="w-full h-full">
+                  <path d="M0 0L20 0C8.95431 0 0 8.95431 0 20L0 0Z" fill="var(--color-background)" />
+                </svg>
+              </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current.num}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-background rounded-tl-3xl px-6 py-5 flex items-baseline gap-3"
+                >
+                  <span className="font-sans font-bold text-3xl lg:text-4xl tabular-nums leading-none text-foreground">
                     {current.num}
                   </span>
-                </div>
-                <p className="mt-2 text-sm font-semibold text-foreground">{current.label}</p>
-              </div>
+                  <span className="font-sans font-semibold text-sm lg:text-base text-foreground">
+                    {current.title}
+                  </span>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
 
-          {/* Prawa — tabs nawigacyjne */}
-          <div className="lg:col-span-2 flex lg:flex-col gap-2 lg:gap-4 order-3 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
+          {/* Tabs (col 2) — aktywny prostokąt + nieaktywne rotated vertical labels */}
+          <div className="col-span-12 lg:col-span-2 flex lg:flex-col gap-2 lg:gap-3">
             {solutions.map((s, i) => {
               const isActive = i === active;
               return (
@@ -126,23 +125,81 @@ export function SolutionsShowcase() {
                   key={s.num}
                   type="button"
                   onClick={() => setActive(i)}
-                  className={`group flex-shrink-0 lg:flex-1 flex items-start gap-3 lg:gap-4 p-4 lg:p-5 rounded-2xl text-left border transition-all min-w-[200px] ${
+                  aria-label={s.label}
+                  className={`group relative flex-1 lg:flex-none transition-all ${
                     isActive
-                      ? "bg-foreground text-background border-foreground"
-                      : "bg-surface border-border hover:border-foreground"
+                      ? "bg-foreground text-white rounded-2xl lg:rounded-2xl lg:aspect-square"
+                      : "border-l border-border lg:rounded-none lg:bg-transparent lg:flex-1"
                   }`}
                 >
-                  <span className={`font-sans font-bold text-2xl lg:text-3xl tabular-nums leading-none shrink-0 ${isActive ? "text-white" : "text-foreground-subtle"}`}>
-                    {s.num}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <p className={`text-xs font-semibold uppercase tracking-[0.18em] ${isActive ? "text-white/80" : "text-foreground-muted"}`}>
-                      {s.label}
-                    </p>
-                  </div>
+                  {isActive ? (
+                    // Active: poziomy układ z numerem + labelem
+                    <div className="flex items-center justify-between gap-3 p-5 lg:p-6 h-full">
+                      <span className="font-sans font-bold text-3xl lg:text-4xl tabular-nums leading-none">
+                        {s.num}
+                      </span>
+                      <span className="text-[10px] lg:text-xs font-semibold uppercase tracking-[0.2em] text-right">
+                        {s.label}
+                      </span>
+                    </div>
+                  ) : (
+                    // Inactive: numer góra + label vertical (rotated)
+                    <div className="flex items-center justify-center lg:items-start lg:justify-center gap-2 p-3 lg:p-4 h-full hover:bg-surface-muted/50 transition-colors">
+                      {/* Mobile: poziom */}
+                      <div className="flex items-center gap-2 lg:hidden">
+                        <span className="font-sans font-bold text-2xl tabular-nums leading-none text-foreground-subtle">
+                          {s.num}
+                        </span>
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground-subtle">
+                          {s.label}
+                        </span>
+                      </div>
+                      {/* Desktop: vertical rotated */}
+                      <div className="hidden lg:flex lg:flex-col lg:items-center lg:gap-4 lg:h-full lg:py-4">
+                        <span className="font-sans font-bold text-3xl tabular-nums leading-none text-foreground-subtle group-hover:text-foreground transition-colors">
+                          {s.num}
+                        </span>
+                        <span
+                          className="text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground-subtle group-hover:text-foreground transition-colors"
+                          style={{
+                            writingMode: "vertical-rl",
+                            transform: "rotate(180deg)",
+                          }}
+                        >
+                          {s.label}
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </button>
               );
             })}
+          </div>
+        </div>
+
+        {/* Opis aktywnego — pod obrazem, full width 2-col grid */}
+        <div className="mt-10 lg:mt-12 grid lg:grid-cols-12 gap-6 lg:gap-10">
+          <div className="lg:col-span-2 lg:pl-2">
+            <current.icon className="size-9 text-foreground" strokeWidth={1.5} />
+          </div>
+          <div className="lg:col-span-7">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current.num + "-desc"}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.4 }}
+              >
+                <h3 className="font-sans font-bold text-2xl lg:text-3xl tracking-tight text-foreground mb-4">
+                  {current.title}
+                </h3>
+                <p
+                  className="text-foreground-muted leading-relaxed text-base lg:text-lg"
+                  dangerouslySetInnerHTML={{ __html: current.body }}
+                />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </Container>

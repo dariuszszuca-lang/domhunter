@@ -43,7 +43,7 @@ export function WhyUs() {
           <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
             O nas
           </div>
-          <h2 className="font-sans font-bold uppercase text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
+          <h2 className="font-sans font-bold uppercase text-[clamp(1.75rem,3.8vw,3rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
             Dlaczego klienci nam ufają
           </h2>
         </motion.div>

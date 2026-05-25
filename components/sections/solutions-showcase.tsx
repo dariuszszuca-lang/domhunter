@@ -51,7 +51,7 @@ export function SolutionsShowcase() {
           <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-surface-muted border border-border text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
             Oferta
           </div>
-          <h2 className="font-sans font-bold uppercase text-[clamp(2rem,5vw,4.25rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
+          <h2 className="font-sans font-bold uppercase text-[clamp(1.75rem,3.8vw,3rem)] leading-[1.02] tracking-[-0.03em] text-foreground">
             Co dla Ciebie zrobimy
           </h2>
           <p className="mt-6 max-w-xl text-base lg:text-lg text-foreground-muted leading-[1.55]">

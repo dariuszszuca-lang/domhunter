@@ -41,7 +41,7 @@ export function Testimonials() {
           <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/15 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/90 mb-5">
             Opinie
           </div>
-          <h2 className="font-sans font-bold uppercase text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] tracking-[-0.03em] text-white">
+          <h2 className="font-sans font-bold uppercase text-[clamp(1.75rem,3.8vw,3rem)] leading-[1.02] tracking-[-0.03em] text-white">
             Co mówią o nas klienci
           </h2>
           <a

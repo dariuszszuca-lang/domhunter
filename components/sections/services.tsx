@@ -22,24 +22,24 @@ const services = [
 
 export function Services() {
   return (
-    <section className="py-24 lg:py-32">
-      <Container size="wide">
+    <section id="why-us" className="py-20 lg:py-28">
+      <Container size="full" className="max-w-[1680px] lg:px-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-3xl mx-auto mb-14 lg:mb-20"
+          className="mx-auto mb-14 max-w-4xl text-center lg:mb-20"
         >
-          <div className="mb-5 inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
-            Co robimy
+          <div className="mb-5 inline-flex items-center rounded-full border border-border bg-surface px-5 py-1.5 text-base font-medium tracking-normal text-foreground">
+            Dlaczego my
           </div>
-          <h2 className="font-sans font-bold uppercase text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.02] tracking-normal text-foreground">
-            Pełen zakres usług
+          <h2 className="font-sans font-bold uppercase text-[clamp(2rem,4.1vw,3.45rem)] leading-[1.05] tracking-normal text-foreground">
+            Eksperckie usługi nieruchomościowe w&nbsp;Trójmieście
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {services.map((s, i) => {
             const Icon = s.icon;
             return (
@@ -49,15 +49,15 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                className="group rounded-[28px] border border-border bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:border-foreground/20 hover:shadow-card lg:p-9"
+                className="group min-h-[310px] rounded-[34px] bg-[#F0F0F0] p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-surface-muted lg:min-h-[330px] lg:p-12"
               >
-                <span className="mb-7 inline-flex size-14 items-center justify-center rounded-full bg-surface-muted text-foreground transition-colors group-hover:bg-foreground group-hover:text-background">
-                  <Icon className="size-5" strokeWidth={1.8} />
+                <span className="mb-20 inline-flex size-16 items-center justify-center rounded-full bg-white text-foreground transition-colors group-hover:bg-foreground group-hover:text-background lg:mb-24">
+                  <Icon className="size-8" strokeWidth={1.8} />
                 </span>
-                <h3 className="mb-3 font-sans text-xl font-bold tracking-normal text-foreground lg:text-2xl">
+                <h3 className="mb-4 font-sans text-2xl font-bold tracking-normal text-foreground lg:text-3xl">
                   {s.title}
                 </h3>
-                <p className="text-foreground-muted leading-relaxed">{s.body}</p>
+                <p className="max-w-md text-lg leading-snug text-foreground-muted lg:text-xl">{s.body}</p>
               </motion.div>
             );
           })}

@@ -33,29 +33,31 @@ const values = [
 
 export function WhoWeAre() {
   return (
-    <section className="py-24 lg:py-32">
-      <Container size="wide">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12">
+    <section id="o-nas" className="py-20 lg:py-28">
+      <Container size="wide" className="max-w-[1240px]">
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.1fr_1fr] lg:items-start lg:gap-10 xl:gap-12">
           {/* Lewa kolumna — chip + H2 + opis + stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-4"
+            className="min-w-0"
           >
             <div className="mb-6 inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
               O nas
             </div>
-            <h2 className="font-sans font-bold uppercase text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.0] tracking-normal text-foreground">
-              Pasja
+            <h2 className="max-w-[430px] font-sans font-bold uppercase text-[clamp(1.95rem,3vw,3.15rem)] leading-[1.04] tracking-normal text-foreground">
+              Pasja i
               <br />
-              i&nbsp;doświadczenie
+              doświadczenie
               <br />
-              na lokalnym rynku
+              na lokalnym
+              <br />
+              rynku
             </h2>
 
-            <div className="mt-12 space-y-4 text-base text-foreground-muted leading-[1.65] max-w-md">
+            <div className="mt-10 max-w-sm space-y-4 text-base leading-[1.65] text-foreground-muted">
               <p>
                 Doświadczeni pośrednicy z&nbsp;setkami zrealizowanych transakcji. Byli częścią sukcesu czołowych agencji w&nbsp;Polsce, dziś budują DomHunter.
               </p>
@@ -65,13 +67,13 @@ export function WhoWeAre() {
             </div>
 
             {/* Stats 2x2 — vista large numbers */}
-            <div className="mt-14 grid grid-cols-2 gap-y-10 gap-x-8 max-w-md">
+            <div className="mt-12 grid max-w-sm grid-cols-2 gap-x-7 gap-y-9">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <div className="font-sans text-5xl font-bold leading-none tracking-normal text-foreground tabular-nums lg:text-6xl">
+                  <div className="font-sans text-4xl font-bold leading-none tracking-normal text-foreground tabular-nums lg:text-5xl">
                     {s.value}
                   </div>
-                  <p className="mt-4 text-sm text-foreground-muted">{s.label}</p>
+                  <p className="mt-3 text-sm leading-snug text-foreground-muted">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -83,14 +85,14 @@ export function WhoWeAre() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-4"
+            className="min-w-0"
           >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] bg-surface-muted">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-surface-muted">
               <Image
                 src="/images/team-1.jpg"
                 alt="Zespół DomHunter Nieruchomości"
                 fill
-                sizes="(min-width: 1024px) 33vw, 100vw"
+                sizes="(min-width: 1024px) 36vw, 100vw"
                 className="object-cover"
               />
             </div>
@@ -102,7 +104,7 @@ export function WhoWeAre() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-4 space-y-10 lg:space-y-12"
+            className="min-w-0 space-y-9 lg:space-y-11"
           >
             {values.map((v) => {
               const Icon = v.icon;
@@ -110,7 +112,7 @@ export function WhoWeAre() {
                 <div key={v.title}>
                   <div className="flex items-center gap-3 mb-4">
                     <Icon className="size-5 text-foreground" strokeWidth={1.8} />
-                    <h3 className="font-sans text-xl font-bold tracking-normal text-foreground lg:text-2xl">
+                    <h3 className="font-sans text-xl font-bold tracking-normal text-foreground lg:text-[1.4rem]">
                       {v.title}
                     </h3>
                   </div>

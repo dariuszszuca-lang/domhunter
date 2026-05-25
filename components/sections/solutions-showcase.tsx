@@ -39,8 +39,8 @@ export function SolutionsShowcase() {
   const inactive = solutions.filter((_, i) => i !== active);
 
   return (
-    <section id="service" className="pb-24 pt-20 lg:pb-32 lg:pt-24">
-      <Container size="full" className="max-w-[1680px] lg:px-0">
+    <section id="service" className="pb-20 pt-16 lg:pb-28 lg:pt-20">
+      <Container size="wide" className="max-w-[1360px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export function SolutionsShowcase() {
           <div className="mb-5 inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
             Co oferujemy
           </div>
-          <h2 className="font-sans font-bold uppercase text-[clamp(2rem,4.1vw,3.45rem)] leading-[1.02] tracking-normal text-foreground">
+          <h2 className="font-sans font-bold uppercase text-[clamp(1.75rem,3.5vw,3.05rem)] leading-[1.04] tracking-normal text-foreground">
             Kompleksowe rozwiązania dla nieruchomości
           </h2>
           <p className="mt-5 max-w-xl text-base lg:text-lg text-foreground-muted leading-[1.55]">
@@ -59,7 +59,7 @@ export function SolutionsShowcase() {
           </p>
         </motion.div>
 
-        <div className="mt-14 grid gap-8 lg:mt-20 lg:grid-cols-[0.75fr_1.6fr_0.75fr] lg:items-end lg:gap-10">
+        <div className="mt-12 grid gap-8 lg:mt-16 lg:grid-cols-[0.8fr_1.5fr_0.7fr] lg:items-end lg:gap-9">
           <AnimatePresence mode="wait">
             <motion.div
               key={`${current.num}-copy`}
@@ -152,7 +152,7 @@ export function SolutionsShowcase() {
             })}
           </div>
 
-          <div className="order-3 hidden h-full min-h-[520px] grid-cols-2 lg:grid">
+          <div className="order-3 hidden h-full min-h-[500px] grid-cols-2 lg:grid">
             {inactive.map((s) => (
               <button
                 key={s.num}

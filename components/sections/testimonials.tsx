@@ -26,7 +26,7 @@ const col3 = testimonials.slice(8, 12);
 
 export function Testimonials() {
   return (
-    <section className="relative overflow-hidden bg-foreground py-24 text-background lg:py-32">
+    <section id="opinie" className="relative overflow-hidden bg-brand-light py-20 text-foreground lg:py-28">
       <Container size="wide" className="relative">
         {/* Header */}
         <motion.div
@@ -34,19 +34,19 @@ export function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
-          className="text-center max-w-3xl mx-auto mb-16 lg:mb-20"
+          className="mx-auto mb-14 max-w-3xl text-center lg:mb-16"
         >
-          <div className="mb-5 inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-white/90 backdrop-blur">
+          <div className="mb-5 inline-flex items-center rounded-full border border-brand-soft/25 bg-white/70 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground shadow-soft backdrop-blur">
             Opinie
           </div>
-          <h2 className="font-sans font-bold uppercase text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.02] tracking-normal text-white">
+          <h2 className="font-sans font-bold uppercase text-[clamp(1.6rem,3.2vw,2.75rem)] leading-[1.04] tracking-normal text-foreground">
             Co mówią o nas klienci
           </h2>
           <a
             href="https://www.google.com/search?q=domhunter+nieruchomo%C5%9Bci+gda%C5%84sk+opinie"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-7 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white text-foreground text-sm font-semibold hover:bg-brand hover:text-white transition-all"
+            className="mt-7 inline-flex items-center gap-2.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-all hover:bg-brand-soft hover:text-foreground"
           >
             <GoogleIcon />
             Zobacz wszystkie opinie
@@ -60,11 +60,11 @@ export function Testimonials() {
         </motion.div>
 
         {/* Vertical scrolling 3 columns */}
-        <div className="relative h-[700px] lg:h-[640px] overflow-hidden">
+        <div className="relative h-[680px] overflow-hidden lg:h-[620px]">
           {/* Top fade */}
-          <div aria-hidden className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-foreground to-transparent z-10 pointer-events-none" />
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-gradient-to-b from-brand-light to-transparent" />
           {/* Bottom fade */}
-          <div aria-hidden className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-foreground to-transparent z-10 pointer-events-none" />
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-brand-light to-transparent" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 h-full">
             <ScrollColumn items={col1} direction="up" duration={40} />
@@ -134,14 +134,14 @@ function ScrollColumn({
 
 function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
   return (
-    <article className="shrink-0 p-6 lg:p-7 rounded-2xl bg-white/[0.06] backdrop-blur border border-white/10">
+    <article className="shrink-0 rounded-2xl border border-border/70 bg-white/75 p-6 shadow-soft backdrop-blur lg:p-7">
       <div className="flex items-center gap-3 mb-4">
-        <span className="inline-flex items-center justify-center size-10 rounded-full bg-gradient-to-br from-brand-soft to-brand text-white font-semibold text-sm">
+        <span className="inline-flex size-10 items-center justify-center rounded-full border border-brand-soft/30 bg-brand-blush text-sm font-semibold text-foreground">
           {t.initials}
         </span>
         <div className="flex-1 min-w-0">
-          <p className="font-sans font-semibold text-white text-sm leading-tight">{t.author}</p>
-          <p className="text-xs text-white/60 mt-0.5">{t.role}</p>
+          <p className="font-sans text-sm font-semibold leading-tight text-foreground">{t.author}</p>
+          <p className="mt-0.5 text-xs text-foreground-muted">{t.role}</p>
         </div>
         <GoogleIcon className="shrink-0" />
       </div>
@@ -150,7 +150,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[number] }) {
           <Star key={i} className="size-3.5 fill-yellow-400 text-yellow-400" />
         ))}
       </div>
-      <p className="text-sm lg:text-[15px] text-white/90 leading-[1.55]">{t.quote}</p>
+      <p className="text-sm leading-[1.6] text-foreground-muted lg:text-[15px]">{t.quote}</p>
     </article>
   );
 }

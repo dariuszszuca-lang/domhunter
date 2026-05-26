@@ -10,6 +10,24 @@ type MemberPhotoProps = {
   imageClassName?: string;
 };
 
+// Subtle warm gradients per agent (deterministyczne wg slug) — premium feel placeholderu
+const gradients = [
+  "from-[#E8DCD3] via-[#D7C9BC] to-[#C2B0A0]",
+  "from-[#F0E5DE] via-[#E0CFC2] to-[#BFA593]",
+  "from-[#E2D3CB] via-[#CDB7AC] to-[#9F8779]",
+  "from-[#F2E8E2] via-[#DCC8BC] to-[#A8907F]",
+  "from-[#DED2C9] via-[#B5A296] to-[#8C7567]",
+  "from-[#E9DCD0] via-[#C8B19F] to-[#967962]",
+  "from-[#EDE0D5] via-[#D2BBAA] to-[#A38975]",
+  "from-[#E5D7CB] via-[#BDA593] to-[#8F715E]",
+];
+
+function pickGradient(slug: string): string {
+  let h = 0;
+  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
+  return gradients[h % gradients.length];
+}
+
 export function MemberPhoto({
   member,
   sizes,
@@ -17,10 +35,13 @@ export function MemberPhoto({
   className,
   imageClassName,
 }: MemberPhotoProps) {
+  const grad = pickGradient(member.slug);
+
   return (
     <div
       className={cn(
-        "relative overflow-hidden bg-gradient-to-br from-brand/25 via-brand-hover/25 to-brand-forest/30 flex items-center justify-center",
+        "relative overflow-hidden bg-gradient-to-br flex items-center justify-center",
+        grad,
         className
       )}
     >
@@ -35,11 +56,18 @@ export function MemberPhoto({
         />
       ) : (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(163,199,51,0.42),transparent_48%),radial-gradient(circle_at_80%_80%,rgba(45,74,31,0.35),transparent_55%)]" />
-          <span className="relative text-4xl lg:text-5xl font-bold tracking-tight text-brand-forest-deep">
-            {member.firstName[0]}
-            {member.lastName[0]}
-          </span>
+          {/* Subtle radial accents */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(255,255,255,0.45),transparent_50%),radial-gradient(circle_at_75%_85%,rgba(153,26,117,0.18),transparent_55%)]" />
+          {/* Monogram */}
+          <div className="relative flex flex-col items-center gap-1">
+            <span className="text-[clamp(2.5rem,8vw,4.5rem)] font-bold tracking-[-0.05em] text-foreground/85 leading-none">
+              {member.firstName[0]}
+              {member.lastName[0]}
+            </span>
+            <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-foreground/55">
+              DomHunter
+            </span>
+          </div>
         </div>
       )}
     </div>

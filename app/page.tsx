@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/hero";
+import { QuickSearch } from "@/components/sections/quick-search";
 import { SolutionsShowcase } from "@/components/sections/solutions-showcase";
 import { Services } from "@/components/sections/services";
 import { FeaturedOffers } from "@/components/sections/featured-offers";
@@ -15,6 +16,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <QuickSearch />
       <SolutionsShowcase />
       <Services />
       <FeaturedOffers />

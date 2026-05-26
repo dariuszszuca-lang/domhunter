@@ -111,7 +111,7 @@ export function QuickSearch({ variant = "overlay" }: { variant?: "overlay" | "em
   const sectionCls =
     variant === "overlay"
       ? "relative -mt-12 lg:-mt-16 z-10"
-      : "relative pb-4 lg:pb-6";
+      : "relative pt-10 lg:pt-16 pb-4 lg:pb-6";
 
   return (
     <section className={sectionCls}>

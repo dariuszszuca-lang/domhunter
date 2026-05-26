@@ -17,9 +17,9 @@ export default function HomePage() {
     <>
       <Hero />
       <QuickSearch />
+      <FeaturedOffers />
       <SolutionsShowcase />
       <Services />
-      <FeaturedOffers />
       <TeamBento />
       <WhoWeAre />
       <OfficeBento />

@@ -1,22 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Instrument_Serif } from "next/font/google";
+import { Montserrat, Marcellus } from "next/font/google";
 import "./globals.css";
 
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { siteConfig } from "@/lib/site";
 
-const geist = Geist({
-  variable: "--font-geist",
+// Fonty marki Dom Hunter (brand board): Marcellus = nagłówki, Montserrat = tekst
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const instrument = Instrument_Serif({
-  variable: "--font-instrument",
+const marcellus = Marcellus({
+  variable: "--font-marcellus",
   subsets: ["latin", "latin-ext"],
   weight: "400",
-  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -56,7 +57,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pl" className={`${geist.variable} ${instrument.variable}`}>
+    <html lang="pl" className={`${montserrat.variable} ${marcellus.variable}`}>
       <body className="min-h-screen bg-background text-foreground antialiased">
         <Header />
         <main>{children}</main>

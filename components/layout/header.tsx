@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, Phone, X } from "lucide-react";
@@ -39,24 +40,16 @@ export function Header() {
               : "bg-background/70 backdrop-blur-md border-border/60 px-4 lg:px-5 py-2.5 lg:py-3"
           )}
         >
-          {/* Logo: custom mark */}
-          <Link
-            href="/"
-            className="group inline-flex items-center gap-2.5 text-foreground"
-          >
-            <span className="relative inline-flex size-9 lg:size-10 items-center justify-center rounded-full bg-foreground text-background transition-colors group-hover:bg-brand">
-              <span className="font-sans text-[15px] lg:text-base font-bold tracking-tighter">
-                D
-              </span>
-              <span
-                aria-hidden
-                className="absolute -top-0.5 -right-0.5 size-2 rounded-full bg-brand group-hover:bg-white transition-colors"
-              />
-            </span>
-            <span className="font-sans text-base lg:text-lg font-bold tracking-tight">
-              <span className="text-foreground">Dom</span>
-              <span className="text-brand">Hunter</span>
-            </span>
+          {/* Logo Dom Hunter */}
+          <Link href="/" className="inline-flex items-center" aria-label="Dom Hunter Nieruchomości — strona główna">
+            <Image
+              src="/images/logo/dom-hunter-logo-poziom.png"
+              alt="Dom Hunter Nieruchomości"
+              width={190}
+              height={40}
+              priority
+              className="h-8 lg:h-10 w-auto"
+            />
           </Link>
 
           {/* Nav desktop - pill links */}

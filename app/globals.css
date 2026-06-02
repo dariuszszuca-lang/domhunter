@@ -12,20 +12,20 @@
   --surface-muted: #EFEEE8;
   --surface-cream: #F3F0E8;
   --surface-blush: #F8EEF5;
-  --surface-dark: #111111;
+  --surface-dark: #141515;
 
   /* Tekst */
-  --foreground: #191919;
+  --foreground: #141515;
   --foreground-muted: #62615C;
   --foreground-subtle: #8D8B84;
   --foreground-on-dark: #F7F6F1;
   --foreground-on-dark-muted: #C7C4BA;
 
-  /* Brand — subtelna paleta z domhunter.pl */
-  --brand: #991A75;
-  --brand-hover: #6D1354;
-  --brand-deep: #420B32;
-  --brand-soft: #D7429D;
+  /* Brand — paleta z brand boardu Dom Hunter (magenta #d31ec0) */
+  --brand: #d31ec0;
+  --brand-hover: #A8158F;
+  --brand-deep: #6D1354;
+  --brand-soft: #E455D3;
   --brand-light: #F8EEF5;
   --brand-blush: #FBE7F4;
 
@@ -44,7 +44,7 @@
   --gray-600: #4E4B45;
   --gray-700: #36332F;
   --gray-800: #242321;
-  --gray-900: #111111;
+  --gray-900: #141515;
 }
 
 @theme inline {
@@ -84,9 +84,9 @@
   --color-gray-800: var(--gray-800);
   --color-gray-900: var(--gray-900);
 
-  /* Fonty */
-  --font-display: var(--font-instrument), Georgia, serif;
-  --font-sans: var(--font-geist), system-ui, sans-serif;
+  /* Fonty — brand board Dom Hunter */
+  --font-display: var(--font-marcellus), Georgia, serif;
+  --font-sans: var(--font-montserrat), system-ui, sans-serif;
 
   /* Promienie zaokrągleń */
   --radius-xs: 4px;

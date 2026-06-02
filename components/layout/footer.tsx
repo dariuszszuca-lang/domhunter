@@ -1,3 +1,5 @@
+/* Hallmark redesign · statement footer (był: 4-col SaaS footer)
+ * statement Marcellus + prominentny kontakt + linki organicznie */
 import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -28,87 +30,76 @@ export function Footer() {
   return (
     <footer className="mt-24 bg-surface-cream border-t border-border">
       <Container size="wide">
-        <div className="grid grid-cols-2 md:grid-cols-12 gap-y-10 gap-x-8 py-16 lg:py-20">
-          {/* Brand + opis */}
-          <div className="col-span-2 md:col-span-4">
-            <Link href="/" className="font-sans text-2xl font-bold uppercase tracking-normal text-foreground">
-              {siteConfig.name}
-            </Link>
-            <p className="mt-4 text-sm leading-relaxed text-foreground-muted max-w-xs">
+        {/* Statement + kontakt */}
+        <div className="grid gap-12 py-16 lg:grid-cols-12 lg:gap-10 lg:py-24">
+          {/* Lewa: statement */}
+          <div className="lg:col-span-7">
+            <p className="text-sm font-semibold tracking-wide text-brand">
+              {siteConfig.name} · Nieruchomości
+            </p>
+            <p className="mt-4 max-w-xl font-display text-[clamp(2rem,4vw,3.4rem)] leading-[1.06] text-foreground">
+              Ludzie z Trójmiasta, a nie z portali.
+            </p>
+            <p className="mt-5 max-w-md text-base leading-relaxed text-foreground-muted">
               {siteConfig.tagline}. Sprzedaż, kupno, wynajem i komercja w Trójmieście i okolicach.
             </p>
-
             {siteConfig.partners.nsl.url && (
               <Link
                 href={siteConfig.partners.nsl.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-block text-xs font-semibold uppercase tracking-normal text-foreground hover:text-brand-deep transition-colors"
+                className="mt-7 inline-block text-xs font-semibold uppercase tracking-wide text-foreground hover:text-brand transition-colors"
               >
                 Partner: {siteConfig.partners.nsl.name} →
               </Link>
             )}
           </div>
 
-          {/* Oferta */}
-          <div className="col-span-1 md:col-span-2">
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-normal text-foreground">Oferta</h4>
-            <ul className="space-y-2.5">
-              {footerNav.oferta.map((i) => (
-                <li key={i.href}>
-                  <Link href={i.href} className="text-sm text-foreground-muted hover:text-brand transition-colors">
-                    {i.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Firma */}
-          <div className="col-span-1 md:col-span-2">
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-normal text-foreground">Firma</h4>
-            <ul className="space-y-2.5">
-              {footerNav.firma.map((i) => (
-                <li key={i.href}>
-                  <Link href={i.href} className="text-sm text-foreground-muted hover:text-brand transition-colors">
-                    {i.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Kontakt */}
-          <div className="col-span-2 md:col-span-4">
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-normal text-foreground">Kontakt</h4>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href={siteConfig.contact.phones[0].href}
-                  className="inline-flex items-center gap-3 text-sm text-foreground hover:text-brand transition-colors"
-                >
-                  <Phone className="size-4 text-brand" />
-                  {siteConfig.contact.phones[0].displayValue}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${siteConfig.contact.email}`}
-                  className="inline-flex items-center gap-3 text-sm text-foreground hover:text-brand transition-colors break-all"
-                >
-                  <Mail className="size-4 text-brand" />
-                  {siteConfig.contact.email}
-                </a>
-              </li>
-              <li className="flex items-center gap-3 text-sm text-foreground-muted">
+          {/* Prawa: kontakt prominentny + nawigacja */}
+          <div className="lg:col-span-5 lg:pl-10 lg:border-l lg:border-border">
+            <a
+              href={siteConfig.contact.phones[0].href}
+              className="group inline-flex items-center gap-3 font-display text-[clamp(1.8rem,3vw,2.6rem)] leading-none text-foreground hover:text-brand transition-colors"
+            >
+              <Phone className="size-6 text-brand" strokeWidth={1.8} />
+              {siteConfig.contact.phones[0].displayValue}
+            </a>
+            <div className="mt-5 space-y-3">
+              <a
+                href={`mailto:${siteConfig.contact.email}`}
+                className="flex items-center gap-3 text-sm text-foreground hover:text-brand transition-colors break-all"
+              >
+                <Mail className="size-4 text-brand" />
+                {siteConfig.contact.email}
+              </a>
+              <p className="flex items-center gap-3 text-sm text-foreground-muted">
                 <MapPin className="size-4 text-brand" />
                 {siteConfig.address.city}
-              </li>
-            </ul>
+              </p>
+            </div>
+
+            {/* Nawigacja — dwie zwarte grupy, nie sztywne kolumny SaaS */}
+            <div className="mt-9 flex flex-wrap gap-x-12 gap-y-6">
+              <nav className="flex flex-col gap-2.5">
+                {footerNav.oferta.map((i) => (
+                  <Link key={i.href} href={i.href} className="text-sm text-foreground-muted hover:text-brand transition-colors">
+                    {i.label}
+                  </Link>
+                ))}
+              </nav>
+              <nav className="flex flex-col gap-2.5">
+                {footerNav.firma.map((i) => (
+                  <Link key={i.href} href={i.href} className="text-sm text-foreground-muted hover:text-brand transition-colors">
+                    {i.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-border py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+        {/* Dolny pas */}
+        <div className="flex flex-col items-start justify-between gap-3 border-t border-border py-6 md:flex-row md:items-center">
           <p className="text-xs text-foreground-subtle">
             © {new Date().getFullYear()} {siteConfig.name}. Wszystkie prawa zastrzeżone.
           </p>

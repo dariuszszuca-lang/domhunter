@@ -39,30 +39,34 @@ export function Header() {
   };
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 inset-x-0 z-50 border-b transition-all duration-300",
-        scrolled
-          ? "bg-background/85 backdrop-blur-xl border-border shadow-[0_6px_24px_-16px_rgba(20,21,21,0.5)]"
-          : "bg-background/70 backdrop-blur-md border-border/50"
-      )}
-    >
-      <Container size="wide">
-        <div className="flex h-[68px] lg:h-[76px] items-center justify-between gap-4">
+    <header className="fixed top-0 inset-x-0 z-50 pointer-events-none">
+      <Container size="wide" className="pt-3 lg:pt-4">
+        <div
+          className={cn(
+            "pointer-events-auto flex items-center justify-between gap-2 rounded-full border transition-all duration-300",
+            scrolled
+              ? "bg-surface/85 backdrop-blur-xl border-border shadow-[0_10px_34px_-16px_rgba(20,21,21,0.45)] px-3 lg:px-4 py-2"
+              : "bg-surface/70 backdrop-blur-md border-border/60 px-3 lg:px-4 py-2.5"
+          )}
+        >
           {/* Logo → strona główna */}
-          <Link href="/" className="inline-flex items-center shrink-0" aria-label="Dom Hunter Nieruchomości — strona główna">
+          <Link
+            href="/"
+            className="inline-flex items-center shrink-0 pl-1.5"
+            aria-label="Dom Hunter Nieruchomości — strona główna"
+          >
             <Image
               src="/images/logo/dom-hunter-bez-sygnetu.png"
               alt="Dom Hunter Nieruchomości"
-              width={210}
-              height={44}
+              width={200}
+              height={42}
               priority
-              className="h-7 lg:h-9 w-auto"
+              className="h-7 lg:h-8 w-auto"
             />
           </Link>
 
-          {/* Nav desktop — editorial, podkreślenie na hover */}
-          <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
+          {/* Nav desktop — pigułki */}
+          <nav className="hidden lg:flex items-center gap-0.5">
             {navItems.map((item) => {
               const active = isActive(item.href);
               return (
@@ -70,10 +74,10 @@ export function Header() {
                   key={item.label}
                   href={item.href}
                   className={cn(
-                    "relative text-[0.92rem] tracking-[0.005em] py-1 transition-colors after:absolute after:left-0 after:-bottom-0.5 after:h-px after:bg-brand after:transition-all after:duration-300",
+                    "rounded-full px-3.5 py-2 text-[0.875rem] font-medium transition-colors",
                     active
-                      ? "text-foreground after:w-full"
-                      : "text-foreground-muted hover:text-foreground after:w-0 hover:after:w-full"
+                      ? "bg-brand/10 text-brand"
+                      : "text-foreground-muted hover:text-foreground hover:bg-foreground/[0.05]"
                   )}
                 >
                   {item.label}
@@ -104,8 +108,8 @@ export function Header() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="lg:hidden pb-4">
-            <nav className="flex flex-col gap-1 rounded-2xl border border-border bg-surface/95 backdrop-blur-xl p-3 shadow-[0_12px_32px_-12px_rgba(20,21,21,0.25)]">
+          <div className="pointer-events-auto lg:hidden mt-2 rounded-3xl border border-border bg-surface/95 backdrop-blur-xl p-3 shadow-[0_12px_32px_-12px_rgba(20,21,21,0.25)]">
+            <nav className="flex flex-col gap-1">
               {navItems.map((item) => {
                 const active = isActive(item.href);
                 return (
@@ -114,8 +118,8 @@ export function Header() {
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
                     className={cn(
-                      "px-4 py-3 rounded-xl text-base transition-colors",
-                      active ? "bg-foreground text-background" : "text-foreground hover:bg-surface-muted"
+                      "px-4 py-3 rounded-2xl text-base transition-colors",
+                      active ? "bg-brand/10 text-brand font-medium" : "text-foreground hover:bg-surface-muted"
                     )}
                   >
                     {item.label}
@@ -124,7 +128,7 @@ export function Header() {
               })}
               <a
                 href={siteConfig.contact.phones[0].href}
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-brand text-white px-4 py-3.5 text-sm font-semibold hover:bg-brand-hover transition-colors"
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-brand text-white px-4 py-3.5 text-sm font-semibold hover:bg-brand-hover transition-colors"
               >
                 <Phone className="size-4" />
                 {siteConfig.contact.phones[0].displayValue}

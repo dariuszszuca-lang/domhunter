@@ -58,6 +58,25 @@ export async function GET(req: Request) {
     const rawOffers = await fetchEstiOffersJson({ status: statusParam });
     const offers: Offer[] = mapApiOffersToOffers(rawOffers);
 
+    // 2a. Tryb WRITE-LOCAL: zapis data/offers.json na lokalny dysk (manualny sync w dev).
+    //     UWAGA: na Vercel filesystem jest efemeryczny — do produkcji użyj ?commit=1 (GitHub).
+    if (url.searchParams.get("write") === "1") {
+      const { writeFile } = await import("node:fs/promises");
+      const { join } = await import("node:path");
+      const payload = { lastSync: new Date().toISOString(), offers };
+      await writeFile(
+        join(process.cwd(), "data", "offers.json"),
+        JSON.stringify(payload, null, 2),
+        "utf8"
+      );
+      return NextResponse.json({
+        ok: true,
+        mode: "write-local",
+        offersCount: offers.length,
+        withImages: offers.filter((o) => o.images.length > 0).length,
+      });
+    }
+
     // 2. Tryb TEST (domyślny): tylko raport, bez zapisu.
     if (!wantCommit) {
       return NextResponse.json({
@@ -66,6 +85,7 @@ export async function GET(req: Request) {
         source: "esti-api",
         rawCount: rawOffers.length,
         offersCount: offers.length,
+        withImages: offers.filter((o) => o.images.length > 0).length,
         sample: offers.slice(0, 3).map((o) => ({
           id: o.id,
           type: o.type,

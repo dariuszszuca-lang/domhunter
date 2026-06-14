@@ -50,7 +50,7 @@ export const siteConfig = {
     yearsActive: new Date().getFullYear() - 2020,
     transactions: "300+",
     rating: "5.0",
-    teamSize: 4,
+    teamSize: 11,
   },
 
   /** Powiązania z ekosystemem Sylwii */

@@ -21,8 +21,8 @@ export function TeamBento() {
               <span className="italic text-brand">a nie z portali.</span>
             </h2>
             <p className="mt-5 text-base lg:text-lg text-foreground-muted leading-relaxed">
-              8 doświadczonych agentów. Każdy ma swoją specjalizację. Każdy zna swój rejon
-              lepiej niż Google Maps.
+              Agenci z Trójmiasta. Każdy zna swój rejon lepiej niż Google Maps i prowadzi Cię
+              osobiście od pierwszego telefonu po klucze.
             </p>
           </div>
           <Link

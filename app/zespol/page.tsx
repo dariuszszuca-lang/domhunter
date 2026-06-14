@@ -9,7 +9,7 @@ import { Phone, Mail, ArrowUpRight, Languages, Briefcase } from "lucide-react";
 export const metadata: Metadata = {
   title: "Zespół DomHunter — agenci nieruchomości w Trójmieście",
   description:
-    "Poznaj zespół DomHunter. 8 doświadczonych pośredników nieruchomości w Gdańsku, Gdyni, Sopocie i Pomorskim. Premium, komercja, najem, działki, rynek pierwotny.",
+    "Poznaj zespół Dom Hunter. Agenci nieruchomości z Trójmiasta — kupno, sprzedaż i wynajem w Gdańsku, Gdyni, Sopocie i okolicy.",
 };
 
 export default function ZespolPage() {
@@ -28,14 +28,14 @@ export default function ZespolPage() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
               Zespół
             </p>
-            <h1 className="font-sans font-bold text-[clamp(2.25rem,5vw,4.25rem)] leading-[0.98] tracking-[-0.025em] text-foreground">
+            <h1 className="font-display font-normal text-[clamp(2.4rem,5vw,4.4rem)] leading-[1.02] tracking-[-0.01em] text-foreground">
               Ludzie, którzy
               <br />
               <span className="italic text-brand">znają Trójmiasto.</span>
             </h1>
             <p className="mt-7 text-lg lg:text-xl text-foreground-muted leading-[1.55] max-w-2xl">
-              8 doświadczonych agentów. Specjalizacje od mieszkań premium w Sopocie, przez komercję
-              i rynek pierwotny, po działki rekreacyjne na Mierzei. Lokalna wiedza, świeże podejście.
+              Agenci, którzy znają trójmiejski rynek od podszewki. Kupno, sprzedaż i wynajem
+              mieszkań, domów, działek i lokali. Lokalna wiedza, świeże podejście.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link

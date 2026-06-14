@@ -72,6 +72,11 @@ export type FetchEstiOffersOptions = {
   skip?: number;
   /** Opcjonalny filtr "tylko zmienione po" w formacie YYYY-MM-DD HH:MM:SS. */
   updateDate?: string;
+  /**
+   * Gdy ustawione: Next cache'uje odpowiedź API na N sekund (Data Cache / ISR),
+   * dzięki czemu oferty odświeżają się automatycznie bez crona. Gdy puste: "no-store".
+   */
+  revalidateSeconds?: number;
 };
 
 function buildUrl(path: string, params: Record<string, string | number | undefined>): string {
@@ -97,10 +102,15 @@ async function fetchOfferListPage(opts: FetchEstiOffersOptions): Promise<OfferLi
     updateDate: opts.updateDate,
   });
 
+  const cacheOpts =
+    opts.revalidateSeconds != null
+      ? { next: { revalidate: opts.revalidateSeconds } }
+      : { cache: "no-store" as const };
+
   const res = await fetch(url, {
     method: "GET",
     headers: { Accept: "application/json" },
-    cache: "no-store",
+    ...cacheOpts,
   });
 
   if (!res.ok) {

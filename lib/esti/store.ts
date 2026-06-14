@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { Offer, OfferFilters, OffersResult } from "./types";
+import { fetchEstiOffersJson } from "./api-client";
+import { mapApiOffersToOffers } from "./api-mapper";
 
 /**
  * Storage ofert: lokalny plik data/offers.json w repo.
@@ -19,6 +21,26 @@ export type CacheShape = {
 let memCache: { data: CacheShape; loadedAt: number } | null = null;
 const MEM_TTL_MS = 60_000;
 
+// ISR: jak długo Next cache'uje odpowiedź API Esti (auto-odświeżanie ofert bez crona).
+const OFFERS_REVALIDATE_S = 3600; // 1h
+
+/**
+ * Pobiera oferty NA ŻYWO z API Esti (gdy ustawione ESTI_API_COMPANY + ESTI_API_TOKEN).
+ * Cache fetch (revalidate) odświeża dane automatycznie. Błąd/brak konfiguracji → null,
+ * wtedy readOffers użyje snapshotu z pliku data/offers.json jako fallbacku.
+ */
+async function loadFromApi(): Promise<CacheShape | null> {
+  if (!process.env.ESTI_API_COMPANY || !process.env.ESTI_API_TOKEN) return null;
+  try {
+    const raw = await fetchEstiOffersJson({ revalidateSeconds: OFFERS_REVALIDATE_S });
+    const offers = mapApiOffersToOffers(raw);
+    if (offers.length === 0) return null;
+    return { lastSync: new Date().toISOString(), offers };
+  } catch {
+    return null;
+  }
+}
+
 function isPublishable(offer: Offer): boolean {
   // Esti czasem zwraca szkielety bez danych (price=0, area=0, type=inne,
   // brak agentki). Nie pokazujemy ich na stronie.
@@ -28,23 +50,29 @@ function isPublishable(offer: Offer): boolean {
 }
 
 export async function readOffers(): Promise<CacheShape | null> {
-  // In-memory cache w obrębie jednej instancji (60s). Żeby nie czytać pliku
-  // przy każdym żądaniu strony.
+  // In-memory cache w obrębie jednej instancji (60s).
   if (memCache && Date.now() - memCache.loadedAt < MEM_TTL_MS) {
     return memCache.data;
   }
-  try {
-    const text = await readFile(OFFERS_FILE, "utf8");
-    const parsed = JSON.parse(text) as CacheShape;
-    const filtered: CacheShape = {
-      lastSync: parsed.lastSync,
-      offers: parsed.offers.filter(isPublishable),
-    };
-    memCache = { data: filtered, loadedAt: Date.now() };
-    return filtered;
-  } catch {
-    return null;
+
+  // 1. Na żywo z API Esti (auto-odświeżanie). 2. Fallback: snapshot z data/offers.json.
+  let source: CacheShape | null = await loadFromApi();
+  if (!source) {
+    try {
+      const text = await readFile(OFFERS_FILE, "utf8");
+      source = JSON.parse(text) as CacheShape;
+    } catch {
+      source = null;
+    }
   }
+  if (!source) return null;
+
+  const filtered: CacheShape = {
+    lastSync: source.lastSync,
+    offers: source.offers.filter(isPublishable),
+  };
+  memCache = { data: filtered, loadedAt: Date.now() };
+  return filtered;
 }
 
 export async function getFilteredOffers(filters: OfferFilters): Promise<OffersResult> {

@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
     root: process.cwd(),
   },
   images: {
+    // Wyłączona optymalizacja Vercela (limit darmowy = HTTP 402 na /_next/image).
+    // Obrazy serwowane wprost: logo/hero/zespół z /public, oferty z static.esticrm.pl.
+    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "**.domhunter.pl" },
       { protocol: "https", hostname: "static.esticrm.pl" },

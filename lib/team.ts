@@ -47,7 +47,7 @@ export const team: TeamMember[] = [
     photo: "/images/team/janusz-stojaczyk.jpg",
     bio: BIO,
     bioParagraphs: BIO_PARAS,
-    order: 1,
+    order: 2,
   },
   {
     slug: "sylwia-wroblewska",
@@ -61,7 +61,8 @@ export const team: TeamMember[] = [
     photo: "/images/team/sylwia-wroblewska.jpg",
     bio: BIO,
     bioParagraphs: BIO_PARAS,
-    order: 2,
+    isOwner: true,
+    order: 1,
   },
   {
     slug: "agnieszka-bodanka",

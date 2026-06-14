@@ -4,16 +4,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Menu, Phone, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
+// Jednolite menu — identyczne na każdej podstronie. Bez "Home" (logo wraca na główną).
 const navItems = [
-  { label: "Oferty", href: "/oferty" },
+  { label: "Kup", href: "/oferty?typ=sprzedaz" },
+  { label: "Wynajmij", href: "/oferty?typ=wynajem" },
   { label: "Komercja", href: "/komercja" },
-  { label: "O nas", href: "/o-nas" },
-  { label: "Zespół", href: "/zespol" },
+  { label: "Wycena", href: "/wycena" },
+  { label: "O firmie", href: "/o-nas" },
+  { label: "Kredyty", href: "/kredyty" },
+  { label: "Praca", href: "/praca" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
@@ -23,49 +27,53 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 16);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const isActive = (href: string) => {
+    const base = href.split("?")[0];
+    return base !== "/" && pathname.startsWith(base);
+  };
+
   return (
-    <header className="fixed top-0 inset-x-0 z-50 pointer-events-none">
-      <Container size="wide" className="pt-4 lg:pt-6">
-        <div
-          className={cn(
-            "pointer-events-auto flex items-center justify-between gap-3 rounded-full transition-all duration-300 border",
-            scrolled
-              ? "bg-background/85 backdrop-blur-xl border-border shadow-[0_8px_32px_-8px_rgba(25,25,25,0.12)] px-4 lg:px-5 py-2 lg:py-2.5"
-              : "bg-background/70 backdrop-blur-md border-border/60 px-4 lg:px-5 py-2.5 lg:py-3"
-          )}
-        >
-          {/* Logo Dom Hunter */}
-          <Link href="/" className="inline-flex items-center" aria-label="Dom Hunter Nieruchomości — strona główna">
+    <header
+      className={cn(
+        "fixed top-0 inset-x-0 z-50 border-b transition-all duration-300",
+        scrolled
+          ? "bg-background/85 backdrop-blur-xl border-border shadow-[0_6px_24px_-16px_rgba(20,21,21,0.5)]"
+          : "bg-background/70 backdrop-blur-md border-border/50"
+      )}
+    >
+      <Container size="wide">
+        <div className="flex h-[68px] lg:h-[76px] items-center justify-between gap-4">
+          {/* Logo → strona główna */}
+          <Link href="/" className="inline-flex items-center shrink-0" aria-label="Dom Hunter Nieruchomości — strona główna">
             <Image
-              src="/images/logo/dom-hunter-logo-poziom.png"
+              src="/images/logo/dom-hunter-bez-sygnetu.png"
               alt="Dom Hunter Nieruchomości"
-              width={190}
-              height={40}
+              width={210}
+              height={44}
               priority
-              className="h-8 lg:h-10 w-auto"
+              className="h-7 lg:h-9 w-auto"
             />
           </Link>
 
-          {/* Nav desktop - pill links */}
-          <nav className="hidden lg:flex items-center gap-1 mx-2">
+          {/* Nav desktop — editorial, podkreślenie na hover */}
+          <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
             {navItems.map((item) => {
-              const active =
-                pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+              const active = isActive(item.href);
               return (
                 <Link
-                  key={item.href}
+                  key={item.label}
                   href={item.href}
                   className={cn(
-                    "relative px-4 py-2 rounded-full text-sm font-medium transition-all",
+                    "relative text-[0.92rem] tracking-[0.005em] py-1 transition-colors after:absolute after:left-0 after:-bottom-0.5 after:h-px after:bg-brand after:transition-all after:duration-300",
                     active
-                      ? "bg-foreground text-background"
-                      : "text-foreground-muted hover:text-foreground hover:bg-surface"
+                      ? "text-foreground after:w-full"
+                      : "text-foreground-muted hover:text-foreground after:w-0 hover:after:w-full"
                   )}
                 >
                   {item.label}
@@ -74,23 +82,19 @@ export function Header() {
             })}
           </nav>
 
-          {/* CTA desktop */}
+          {/* CTA telefon */}
           <a
             href={siteConfig.contact.phones[0].href}
-            className="hidden lg:inline-flex group items-center gap-2.5 rounded-full bg-brand text-white pl-4 pr-1.5 py-1.5 text-sm font-semibold hover:bg-brand-hover transition-all"
+            className="hidden lg:inline-flex items-center gap-2 rounded-full bg-brand text-white pl-4 pr-5 py-2.5 text-sm font-semibold hover:bg-brand-hover transition-colors shrink-0"
           >
             <Phone className="size-3.5" />
-            <span className="hidden xl:inline">{siteConfig.contact.phones[0].displayValue}</span>
-            <span className="xl:hidden">Zadzwoń</span>
-            <span className="inline-flex items-center justify-center size-7 rounded-full bg-white/20 group-hover:bg-white/30 group-hover:rotate-12 transition-all">
-              <ArrowUpRight className="size-3.5" />
-            </span>
+            {siteConfig.contact.phones[0].displayValue}
           </a>
 
           {/* Mobile burger */}
           <button
             type="button"
-            className="lg:hidden inline-flex items-center justify-center size-9 rounded-full bg-foreground text-background hover:bg-brand transition-colors"
+            className="lg:hidden inline-flex items-center justify-center size-10 rounded-full bg-foreground text-background hover:bg-brand transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menu"
           >
@@ -98,23 +102,20 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mobile menu - rozwijany pod barem */}
+        {/* Mobile menu */}
         {mobileOpen && (
-          <div className="pointer-events-auto lg:hidden mt-2 rounded-[24px] border border-border bg-background/95 backdrop-blur-xl shadow-[0_12px_32px_-12px_rgba(25,25,25,0.18)] p-3">
-            <nav className="flex flex-col gap-1">
+          <div className="lg:hidden pb-4">
+            <nav className="flex flex-col gap-1 rounded-2xl border border-border bg-surface/95 backdrop-blur-xl p-3 shadow-[0_12px_32px_-12px_rgba(20,21,21,0.25)]">
               {navItems.map((item) => {
-                const active =
-                  pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+                const active = isActive(item.href);
                 return (
                   <Link
-                    key={item.href}
+                    key={item.label}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
                     className={cn(
-                      "px-4 py-3 rounded-2xl text-base font-medium transition-colors",
-                      active
-                        ? "bg-foreground text-background"
-                        : "text-foreground hover:bg-surface-muted"
+                      "px-4 py-3 rounded-xl text-base transition-colors",
+                      active ? "bg-foreground text-background" : "text-foreground hover:bg-surface-muted"
                     )}
                   >
                     {item.label}
@@ -123,7 +124,7 @@ export function Header() {
               })}
               <a
                 href={siteConfig.contact.phones[0].href}
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-brand text-white px-4 py-3.5 text-sm font-semibold hover:bg-brand-hover transition-colors"
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-brand text-white px-4 py-3.5 text-sm font-semibold hover:bg-brand-hover transition-colors"
               >
                 <Phone className="size-4" />
                 {siteConfig.contact.phones[0].displayValue}

@@ -47,7 +47,7 @@ export function WhoWeAre() {
             <div className="mb-6 inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
               O nas
             </div>
-            <h2 className="max-w-[420px] font-sans font-bold uppercase text-[clamp(2rem,2.55vw,3rem)] leading-[1.08] tracking-normal text-foreground">
+            <h2 className="max-w-[460px] font-display font-normal text-[clamp(2rem,2.8vw,3.1rem)] leading-[1.08] tracking-[-0.01em] text-foreground">
               Pasja i
               <br />
               lokalne

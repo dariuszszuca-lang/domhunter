@@ -15,7 +15,7 @@ export function TeamBento() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-4">
               Nasz zespół
             </p>
-            <h2 className="font-sans font-bold text-[clamp(1.75rem,4vw,3rem)] leading-[1.04] tracking-[-0.02em] text-foreground">
+            <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3.1rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
               Ludzie z Trójmiasta,
               <br />
               <span className="italic text-brand">a nie z portali.</span>
@@ -57,7 +57,7 @@ export function TeamBento() {
                       {member.shortRole}
                     </div>
                   )}
-                  <h3 className={`font-bold leading-tight tracking-tight text-foreground ${isFeatured ? "text-2xl lg:text-3xl" : "text-lg"}`}>
+                  <h3 className={`font-display font-normal leading-tight tracking-tight text-foreground ${isFeatured ? "text-2xl lg:text-3xl" : "text-lg"}`}>
                     {member.fullName}
                   </h3>
                   <p className={`mt-1.5 text-foreground-muted leading-relaxed ${isFeatured ? "text-base" : "text-xs"}`}>

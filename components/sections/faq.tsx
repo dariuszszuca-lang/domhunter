@@ -43,7 +43,7 @@ export function FAQ() {
             <div className="mb-5 inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
               Pomoc
             </div>
-            <h2 className="font-sans font-bold uppercase text-[clamp(1.9rem,3.5vw,2.85rem)] leading-[1.02] tracking-normal text-foreground">
+            <h2 className="font-display font-normal text-[clamp(2rem,3.6vw,3rem)] leading-[1.04] tracking-[-0.01em] text-foreground">
               Najczęstsze pytania
             </h2>
             <p className="mt-7 text-foreground-muted leading-relaxed max-w-md">

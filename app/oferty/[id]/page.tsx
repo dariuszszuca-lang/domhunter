@@ -142,7 +142,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
           <div className="grid lg:grid-cols-12 gap-8">
             <div className="lg:col-span-8">
               <div className="flex flex-wrap items-center gap-2 mb-4">
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-brand/15 text-brand-forest-deep text-[10px] font-semibold uppercase tracking-wider">
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-brand/15 text-brand-deep text-[10px] font-semibold uppercase tracking-wider">
                   {transactionLabels[offer.transaction]}
                 </span>
                 <span className="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-foreground text-[10px] font-semibold uppercase tracking-wider">
@@ -290,7 +290,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
                 {agent ? (
                   <Link
                     href={`/zespol/${agent.slug}`}
-                    className="block rounded-3xl bg-surface border border-border p-6 hover:border-brand-forest hover:shadow-[var(--shadow-card)] transition-all"
+                    className="block rounded-3xl bg-surface border border-border p-6 hover:border-brand hover:shadow-[var(--shadow-card)] transition-all"
                   >
                     <p className="text-xs uppercase tracking-wider text-foreground-muted mb-3">
                       Prowadzi

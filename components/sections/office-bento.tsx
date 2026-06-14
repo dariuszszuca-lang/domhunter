@@ -10,7 +10,7 @@ export function OfficeBento() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-4">
             Nasze biuro
           </p>
-          <h2 className="font-sans font-bold text-[clamp(1.75rem,4vw,3rem)] leading-[1.04] tracking-[-0.02em] text-foreground">
+          <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3.1rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
             Wpadnij na kawę.
             <br />
             <span className="italic text-brand">Gdańsk Wrzeszcz.</span>

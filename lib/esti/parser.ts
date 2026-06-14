@@ -170,7 +170,7 @@ function mapRawToOffer(raw: RawOffer, availableImages?: Set<string>): Offer | nu
         }
       : undefined,
 
-    url: `https://starnawska.pl/oferty/${id}`,
+    url: `https://domhunter.pl/oferty/${id}`,
     createdAt: str(raw.addDate) || new Date().toISOString(),
     updatedAt: str(raw.updateDate) || str(raw.activateDate) || new Date().toISOString(),
   };
@@ -368,22 +368,10 @@ function extractFeatures(raw: RawOffer): string[] | undefined {
 
 function matchAgentSlug(fullName: string): string | undefined {
   if (!fullName) return undefined;
+  // Mapowanie nazwisko -> slug profilu agenta Dom Hunter.
+  // TODO: uzupełnić realnymi agentami Dom Hunter. Pusto, żeby nie ciągnąć cudzych (Starnawska usunięta).
+  const map: Record<string, string> = {};
   const lower = fullName.toLowerCase();
-  const map: Record<string, string> = {
-    "sudwoj-boleńska": "patrycja-sudwoj-bolenska",
-    "sudwoj-bolenska": "patrycja-sudwoj-bolenska",
-    boleńska: "patrycja-sudwoj-bolenska",
-    bolenska: "patrycja-sudwoj-bolenska",
-    starnawska: "jolanta-starnawska",
-    kaszuba: "katarzyna-kaszuba",
-    klimkiewicz: "agata-klimkiewicz",
-    wegner: "dagmara-wegner",
-    stępińska: "iwona-stepinska",
-    stepinska: "iwona-stepinska",
-    janik: "izabela-janik",
-    jankowska: "anna-jankowska",
-    pawelczyk: "ewelina-pawelczyk",
-  };
   for (const key in map) if (lower.includes(key)) return map[key];
   return undefined;
 }

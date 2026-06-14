@@ -22,7 +22,7 @@ export function Contact() {
             <div className="mb-5 inline-flex items-center rounded-full border border-border bg-surface-muted px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
               Kontakt
             </div>
-            <h2 className="font-sans font-bold uppercase text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.02] tracking-normal text-foreground">
+            <h2 className="font-display font-normal text-[clamp(2rem,4.2vw,3.4rem)] leading-[1.04] tracking-[-0.01em] text-foreground">
               Skontaktuj się z nami
             </h2>
             <p className="mt-7 text-lg text-foreground-muted leading-[1.55] max-w-xl">

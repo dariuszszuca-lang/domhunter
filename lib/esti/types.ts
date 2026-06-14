@@ -88,7 +88,7 @@ export type Offer = {
   /** Agent prowadzący */
   agent?: OfferAgent;
 
-  /** URL na starnawska.pl (kanoniczne) */
+  /** URL kanoniczny na domhunter.pl */
   url: string;
 
   /** Daty */

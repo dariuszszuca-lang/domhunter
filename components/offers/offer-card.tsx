@@ -10,7 +10,7 @@ export function OfferCard({ offer, priority = false }: { offer: Offer; priority?
   return (
     <Link
       href={`/oferty/${offer.id}`}
-      className="group block rounded-3xl bg-surface border border-border overflow-hidden hover:border-brand-forest hover:shadow-[var(--shadow-card)] hover:-translate-y-1 transition-all"
+      className="group block rounded-3xl bg-surface border border-border overflow-hidden hover:border-brand hover:shadow-[var(--shadow-card)] hover:-translate-y-1 transition-all"
     >
       <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden">
         {primary?.url ? (
@@ -30,16 +30,16 @@ export function OfferCard({ offer, priority = false }: { offer: Offer; priority?
 
         {/* Badges top */}
         <div className="absolute top-3 left-3 flex flex-wrap gap-2">
-          <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-surface/95 backdrop-blur text-[10px] font-semibold uppercase tracking-wider text-brand-forest">
+          <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-surface/95 backdrop-blur text-[10px] font-semibold uppercase tracking-wider text-brand">
             {typeLabel(offer)}
           </span>
           {offer.transaction === "najem" && (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-brand text-[10px] font-semibold uppercase tracking-wider text-brand-forest-deep">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-brand text-[10px] font-semibold uppercase tracking-wider text-brand-deep">
               Najem
             </span>
           )}
           {offer.market === "pierwotny" && (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-brand-forest text-[10px] font-semibold uppercase tracking-wider text-foreground-on-dark">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-brand text-[10px] font-semibold uppercase tracking-wider text-foreground-on-dark">
               Pierwotny
             </span>
           )}
@@ -68,7 +68,7 @@ export function OfferCard({ offer, priority = false }: { offer: Offer; priority?
           </span>
         </div>
 
-        <h3 className="font-semibold text-base text-foreground leading-tight mb-3 line-clamp-2 group-hover:text-brand-forest transition-colors">
+        <h3 className="font-semibold text-base text-foreground leading-tight mb-3 line-clamp-2 group-hover:text-brand transition-colors">
           {offerTitle(offer)}
         </h3>
 

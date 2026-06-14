@@ -42,7 +42,7 @@ export function SolutionsShowcase() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-4">
               Co oferujemy
             </p>
-            <h2 className="font-sans font-bold text-[clamp(1.75rem,4vw,3rem)] leading-[1.04] tracking-[-0.02em] text-foreground">
+            <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3.1rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
               Kompleksowe rozwiązania
               <br />
               <span className="italic text-brand">dla nieruchomości.</span>
@@ -105,7 +105,7 @@ export function SolutionsShowcase() {
 
                 {/* Bottom: title + body + CTA */}
                 <div className="relative z-10 p-7 lg:p-9 pt-0">
-                  <h3 className={`font-sans font-bold leading-[1.05] tracking-tight text-white mb-4 ${
+                  <h3 className={`font-display font-normal leading-[1.05] tracking-tight text-white mb-4 ${
                     isFeatured ? "text-3xl lg:text-5xl" : "text-2xl lg:text-3xl"
                   }`}>
                     {sol.title}

@@ -1,23 +1,25 @@
 import type { Metadata } from "next";
-import { Montserrat, Marcellus } from "next/font/google";
+import { Hanken_Grotesk, Fraunces } from "next/font/google";
 import "./globals.css";
 
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { siteConfig } from "@/lib/site";
 
-// Fonty marki Dom Hunter (brand board): Marcellus = nagłówki, Montserrat = tekst
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+// Fonty Dom Hunter (kierunek Editorial): Fraunces = nagłówki (serif z charakterem),
+// Hanken Grotesk = tekst (czysty, czytelny grotesk).
+const hanken = Hanken_Grotesk({
+  variable: "--font-hanken",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
-const marcellus = Marcellus({
-  variable: "--font-marcellus",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin", "latin-ext"],
-  weight: "400",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -57,7 +59,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pl" className={`${montserrat.variable} ${marcellus.variable}`}>
+    <html lang="pl" className={`${hanken.variable} ${fraunces.variable}`}>
       <body className="min-h-screen bg-background text-foreground antialiased">
         <Header />
         <main>{children}</main>

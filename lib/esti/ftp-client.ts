@@ -3,12 +3,24 @@ import { Writable } from "node:stream";
 
 const trim = (s?: string) => (s ?? "").trim();
 const config = {
-  host: trim(process.env.ESTI_FTP_HOST) || "starnawska.iq.pl",
+  host: trim(process.env.ESTI_FTP_HOST),
   port: Number(trim(process.env.ESTI_FTP_PORT)) || 21,
-  user: trim(process.env.ESTI_FTP_USER) || "starnawska_esti",
+  user: trim(process.env.ESTI_FTP_USER),
   password: trim(process.env.ESTI_FTP_PASSWORD),
   remoteDir: trim(process.env.ESTI_FTP_REMOTE_DIR) || "/",
 };
+
+/**
+ * Pilnuje, że FTP jest skonfigurowany danymi Dom Hunter.
+ * Zero hardkodowanych hostów. Bez .env nie łączymy się NIGDZIE.
+ */
+function assertConfigured() {
+  if (!config.host || !config.user || !config.password) {
+    throw new Error(
+      "ESTI FTP nie skonfigurowany. Ustaw ESTI_FTP_HOST / ESTI_FTP_USER / ESTI_FTP_PASSWORD w .env (dane Dom Hunter)."
+    );
+  }
+}
 
 export type FtpFile = {
   name: string;
@@ -20,6 +32,7 @@ export type FtpFile = {
  * Listuje pliki w katalogu FTP. Sortowane po dacie, najnowsze pierwsze.
  */
 export async function listFtpFiles(): Promise<FtpFile[]> {
+  assertConfigured();
   const client = new Client(30_000);
   client.ftp.verbose = false;
   try {
@@ -53,6 +66,7 @@ export async function listFtpFiles(): Promise<FtpFile[]> {
  * Używamy dla małych XML albo ZIP-ów (do ~20 MB).
  */
 export async function downloadFtpFile(name: string): Promise<Buffer> {
+  assertConfigured();
   const client = new Client(60_000);
   client.ftp.verbose = false;
   try {
@@ -83,7 +97,7 @@ export async function downloadFtpFile(name: string): Promise<Buffer> {
 
 /**
  * Znajduje NAJNOWSZĄ paczkę ESTI (.zip lub .xml).
- * ESTI generuje: starnawska_pl_esti_YYYY-MM-DD_HH-MM-SS.zip
+ * ESTI generuje: <firma>_esti_YYYY-MM-DD_HH-MM-SS.zip
  */
 export async function getLatestEstiPackage(): Promise<{ name: string; buffer: Buffer } | null> {
   const files = await listFtpFiles();

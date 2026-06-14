@@ -130,8 +130,8 @@ export function QuickSearch({ variant = "overlay" }: { variant?: "overlay" | "em
                   className={cn(
                     "inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all border",
                     active
-                      ? "bg-brand-forest text-foreground-on-dark border-brand-forest"
-                      : "bg-transparent text-foreground-muted border-border hover:border-brand-forest hover:text-foreground"
+                      ? "bg-brand text-foreground-on-dark border-brand"
+                      : "bg-transparent text-foreground-muted border-border hover:border-brand hover:text-foreground"
                   )}
                   aria-pressed={active}
                 >
@@ -202,13 +202,13 @@ export function QuickSearch({ variant = "overlay" }: { variant?: "overlay" | "em
             <button
               type="button"
               onClick={() => setAdvanced((v) => !v)}
-              className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-brand-forest transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-brand transition-colors"
               aria-expanded={advanced}
             >
               <SlidersHorizontal className="size-4" />
               Więcej filtrów
               {activeCount > 0 && (
-                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1.5 rounded-full bg-brand text-brand-forest-deep text-[10px] font-bold tabular-nums">
+                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1.5 rounded-full bg-brand text-brand-deep text-[10px] font-bold tabular-nums">
                   {activeCount}
                 </span>
               )}
@@ -395,8 +395,8 @@ export function QuickSearch({ variant = "overlay" }: { variant?: "overlay" | "em
         .form-input:focus,
         .form-select:focus {
           background: var(--surface);
-          border-color: var(--brand-forest);
-          box-shadow: 0 0 0 3px rgba(163, 199, 51, 0.22);
+          border-color: var(--brand);
+          box-shadow: 0 0 0 3px rgba(211, 30, 192, 0.18);
         }
         .form-select {
           background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23737373' stroke-width='2'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='m6 9 6 6 6-6'/%3e%3c/svg%3e");
@@ -445,8 +445,8 @@ function Pill({
       className={cn(
         "px-4 py-1.5 rounded-full text-xs font-medium border transition-all",
         active
-          ? "bg-brand-forest text-foreground-on-dark border-brand-forest"
-          : "bg-transparent text-foreground border-border hover:border-brand-forest"
+          ? "bg-brand text-foreground-on-dark border-brand"
+          : "bg-transparent text-foreground border-border hover:border-brand"
       )}
       aria-pressed={active}
     >

@@ -28,8 +28,8 @@ export default async function OfferOgImage({ params }: { params: Promise<{ id: s
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          background: "linear-gradient(135deg, #1A2E14 0%, #2D4A1F 60%, #3F6629 100%)",
-          color: "#F5F2EB",
+          background: "linear-gradient(135deg, #141515 0%, #2a2027 55%, #3a1432 100%)",
+          color: "#F7F6F1",
           fontFamily: "system-ui, -apple-system, sans-serif",
           padding: "60px 70px",
           justifyContent: "space-between",
@@ -42,20 +42,20 @@ export default async function OfferOgImage({ params }: { params: Promise<{ id: s
               width: 56,
               height: 56,
               borderRadius: 18,
-              background: "#A3C733",
+              background: "#d31ec0",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               fontSize: 32,
               fontWeight: 800,
-              color: "#0A1A03",
+              color: "#ffffff",
             }}
           >
-            S&B
+            DH
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span style={{ fontSize: 22, fontWeight: 800, letterSpacing: -0.5 }}>
-              Starnawska & Boleńska
+              Dom Hunter
             </span>
             <span style={{ fontSize: 13, letterSpacing: 4, opacity: 0.7 }}>
               NIERUCHOMOŚCI
@@ -69,8 +69,8 @@ export default async function OfferOgImage({ params }: { params: Promise<{ id: s
             <span
               style={{
                 alignSelf: "flex-start",
-                background: "#A3C733",
-                color: "#0A1A03",
+                background: "#d31ec0",
+                color: "#ffffff",
                 fontSize: 16,
                 fontWeight: 800,
                 letterSpacing: 2,
@@ -100,7 +100,7 @@ export default async function OfferOgImage({ params }: { params: Promise<{ id: s
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 30 }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {price && (
-              <span style={{ fontSize: 48, fontWeight: 800, color: "#A3C733", letterSpacing: -0.5 }}>
+              <span style={{ fontSize: 48, fontWeight: 800, color: "#d31ec0", letterSpacing: -0.5 }}>
                 {price}
               </span>
             )}

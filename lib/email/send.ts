@@ -1,12 +1,12 @@
 import nodemailer from "nodemailer";
 
 /**
- * Wysyłka e-maili przez SMTP (IQ.pl / własny hosting starnawska.pl).
+ * Wysyłka e-maili przez SMTP (własny hosting Dom Hunter).
  *
  * Wymagane env:
- *   SMTP_HOST   np. mail.starnawska.pl
+ *   SMTP_HOST   np. mail.domhunter.pl
  *   SMTP_PORT   465 (SSL) lub 587 (STARTTLS)
- *   SMTP_USER   pełny adres e-mail (np. kontakt@starnawska.pl)
+ *   SMTP_USER   pełny adres e-mail (np. kontakt@domhunter.pl)
  *   SMTP_PASS   hasło do skrzynki
  *   SMTP_FROM   (opcj.) nadawca w nagłówku From, default = SMTP_USER
  */

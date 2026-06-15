@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Phone } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -113,15 +114,23 @@ export default async function BlogPostPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
 
-      {/* Nagłówek z gradientowym paskiem zamiast zdjęcia */}
-      <header className="relative overflow-hidden bg-gradient-to-br from-brand to-brand-hover py-16 lg:py-24">
-        <span
+      {/* Nagłówek ze zdjęciem tematycznym i ciemną nakładką dla czytelności */}
+      <header className="relative overflow-hidden py-16 lg:py-24">
+        {/* Zdjęcie w tle */}
+        <Image
+          src={post.image}
+          alt={post.imageAlt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        {/* Nakładka: ciemna u dołu plus delikatny odcień marki, żeby biały tekst był czytelny */}
+        <div
           aria-hidden
-          className="pointer-events-none absolute -bottom-10 right-6 select-none font-display text-[12rem] italic leading-none text-white/10 sm:text-[16rem]"
-        >
-          &bdquo;
-        </span>
-        <Container size="default">
+          className="absolute inset-0 bg-gradient-to-br from-black/75 via-black/55 to-brand/55"
+        />
+        <Container size="default" className="relative">
           <nav className="flex items-center gap-2 text-sm text-white/80">
             <Link href="/blog" className="inline-flex items-center gap-1.5 hover:text-white">
               <ArrowLeft className="size-3.5" />

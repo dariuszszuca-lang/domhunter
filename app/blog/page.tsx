@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Clock } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { getAllPosts } from "@/lib/blog";
@@ -39,21 +40,27 @@ export default function BlogPage() {
 
         {/* Grid artykułów */}
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {posts.map((post, i) => (
+          {posts.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
               className="group flex flex-col overflow-hidden rounded-[26px] border border-border bg-surface transition-all hover:-translate-y-1 hover:border-brand hover:shadow-[0_24px_60px_-30px] hover:shadow-brand/40"
             >
-              {/* Pasek nagłówkowy zamiast zdjęcia */}
-              <div
-                aria-hidden
-                className="relative h-40 overflow-hidden bg-gradient-to-br from-brand to-brand-hover"
-              >
-                <span className="pointer-events-none absolute -bottom-6 right-4 select-none font-display text-[7rem] italic leading-none text-white/15">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="absolute left-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+              {/* Zdjęcie tematyczne artykułu */}
+              <div className="relative h-40 overflow-hidden">
+                <Image
+                  src={post.image}
+                  alt={post.imageAlt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                {/* Lekka ciemna nakładka, żeby badge był czytelny */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent"
+                />
+                <span className="absolute left-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-black/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
                   Poradnik
                 </span>
               </div>

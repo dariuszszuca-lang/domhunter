@@ -84,14 +84,14 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1, ease }}
             className="lg:col-span-6 relative"
           >
-            <div className="relative aspect-[4/5] sm:aspect-[5/5] lg:aspect-[4/5] overflow-hidden rounded-[8px] bg-foreground/5">
+            <div className="relative aspect-[3/2] overflow-hidden rounded-[16px] bg-foreground/5">
               <Image
                 src="/images/hero-team.jpg"
-                alt="Zespół Dom Hunter Nieruchomości"
+                alt="Zespół Dom Hunter Nieruchomości w Gdańsku"
                 fill
                 sizes="(min-width: 1024px) 46vw, 100vw"
                 priority
-                className="object-cover"
+                className="object-cover object-center"
               />
               {/* Lokalizacja */}
               <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-background/95 backdrop-blur-sm px-3.5 py-2 text-xs font-semibold text-foreground">

@@ -30,6 +30,10 @@ export type BlogPost = {
   readingTime: string;
   /** Słowo wyróżnione kursywą w nagłówku artykułu (akcent magenta). */
   accent: string;
+  /** Zdjęcie tematyczne artykułu (nagłówek + karta na liście i stronie głównej). */
+  image: string;
+  /** Opis alternatywny zdjęcia po polsku, dla dostępności i SEO. */
+  imageAlt: string;
   /** Treść główna jako sekcje. */
   content: Block[];
   /** Sekcja pytań i odpowiedzi. Odbita też w JSON-LD FAQPage. */
@@ -47,6 +51,9 @@ export const blogPosts: BlogPost[] = [
     dateLabel: "2 czerwca 2026",
     readingTime: "8 min czytania",
     accent: "krok po kroku",
+    image: "/images/blog/jak-sprzedac-mieszkanie-w-gdansku-krok-po-kroku.jpg",
+    imageAlt:
+      "Jasny, zadbany salon z szarą kanapą, drewnianym stolikiem i roślinami, mieszkanie gotowe do sprzedaży",
     content: [
       {
         type: "p",
@@ -145,6 +152,9 @@ export const blogPosts: BlogPost[] = [
     dateLabel: "8 czerwca 2026",
     readingTime: "9 min czytania",
     accent: "na co zwrócić uwagę",
+    image: "/images/blog/kupno-mieszkania-z-rynku-wtornego-na-co-zwrocic-uwage.jpg",
+    imageAlt:
+      "Jasne, nowoczesne wnętrze mieszkania z telewizorem, lustrem i obrazkami na ścianie, lokal do oceny przed zakupem",
     content: [
       {
         type: "p",
@@ -235,6 +245,9 @@ export const blogPosts: BlogPost[] = [
     dateLabel: "12 czerwca 2026",
     readingTime: "8 min czytania",
     accent: "poradnik dla właściciela",
+    image: "/images/blog/wynajem-mieszkania-w-trojmiescie-poradnik-dla-wlasciciela.jpg",
+    imageAlt:
+      "Przytulny, jasny salon z szarą kanapą, drewnianym stolikiem, regałem z książkami i roślinami, mieszkanie przygotowane pod wynajem",
     content: [
       {
         type: "p",

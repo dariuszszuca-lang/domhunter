@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
-import { Contact } from "@/components/sections/contact";
 import { MemberPhoto } from "@/components/team/member-photo";
 import { getAllMembersSorted } from "@/lib/team";
 import { Phone, Mail, ArrowUpRight, Languages, Briefcase } from "lucide-react";
@@ -126,8 +125,6 @@ export default function ZespolPage() {
           </div>
         </Container>
       </section>
-
-      <Contact />
     </>
   );
 }

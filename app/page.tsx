@@ -6,7 +6,6 @@ import { FeaturedOffers } from "@/components/sections/featured-offers";
 import { TeamBento } from "@/components/sections/team-bento";
 import { Testimonials } from "@/components/sections/testimonials";
 import { FAQ } from "@/components/sections/faq";
-import { Contact } from "@/components/sections/contact";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +20,6 @@ export default function HomePage() {
       <TeamBento />
       <Testimonials />
       <FAQ />
-      <Contact />
     </>
   );
 }

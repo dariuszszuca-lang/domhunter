@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { WhyUs } from "@/components/sections/why-us";
-import { Contact } from "@/components/sections/contact";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -77,8 +76,6 @@ export default function ONasPage() {
           </div>
         </Container>
       </section>
-
-      <Contact />
     </>
   );
 }

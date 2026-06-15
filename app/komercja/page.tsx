@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Building, Briefcase, Warehouse, Hotel } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { Contact } from "@/components/sections/contact";
 
 export const metadata: Metadata = {
   title: "Komercja — Biura, lokale, magazyny",
@@ -91,8 +90,6 @@ export default function KomercjaPage() {
           </div>
         </Container>
       </section>
-
-      <Contact />
     </>
   );
 }

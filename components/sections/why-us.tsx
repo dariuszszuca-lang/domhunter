@@ -286,12 +286,12 @@ export function OnasContent() {
                       {member.email && (
                         <a
                           href={`mailto:${member.email}`}
-                          className="inline-flex items-center gap-2.5 break-all text-sm text-foreground-muted transition-colors hover:text-brand"
+                          className="flex items-center gap-2.5 text-xs text-foreground-muted transition-colors hover:text-brand"
                         >
-                          <span className="inline-flex size-8 items-center justify-center rounded-full bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
+                          <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
                             <Mail className="size-3.5" strokeWidth={2} />
                           </span>
-                          {member.email}
+                          <span className="min-w-0 flex-1 truncate">{member.email}</span>
                         </a>
                       )}
                     </div>

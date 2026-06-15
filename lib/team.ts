@@ -3,7 +3,7 @@
  *
  * Dane (imię, nazwisko, telefon, e-mail) pochodzą z EstiCRM (kontakty przypisane
  * do ofert, stan 14.06.2026). Kolejność wg liczby prowadzonych ofert.
- * Zespół: 4 aktywnych agentów, każdy ze zdjęciem HD w /images/team/<slug>.jpg.
+ * Zespół: 5 aktywnych agentów, każdy ze zdjęciem HD w /images/team/<slug>.jpg.
  */
 
 export type TeamMember = {
@@ -90,6 +90,23 @@ export const team: TeamMember[] = [
     bio: BIO,
     bioParagraphs: BIO_PARAS,
     order: 4,
+  },
+  {
+    slug: "taisiia-shulga",
+    firstName: "Taisiia",
+    lastName: "Shulga",
+    fullName: "Taisiia Shulga",
+    role: "Agentka nieruchomości",
+    phone: "+48533530130",
+    phoneDisplay: "533 530 130",
+    email: "tshulga@domhunter.pl",
+    photo: "/images/team/taisiia-shulga.jpg",
+    bio: "Agentka nieruchomości w biurze Dom Hunter. Pomaga klientom w kupnie, sprzedaży i wynajmie nieruchomości w Trójmieście i okolicy.",
+    bioParagraphs: [
+      "Agentka nieruchomości w biurze Dom Hunter. Pomaga klientom w kupnie, sprzedaży i wynajmie nieruchomości w Trójmieście i okolicy.",
+      "Skontaktuj się bezpośrednio, telefon i e-mail znajdziesz powyżej. Oddzwaniamy w 30 minut w godzinach pracy biura.",
+    ],
+    order: 5,
   },
 ];
 

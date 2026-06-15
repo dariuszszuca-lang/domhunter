@@ -36,6 +36,8 @@ const memberBlurbs: Record<string, string> = {
     "Mieszkania i wynajem to jej żywioł. Klienci chwalą ją za cierpliwość i konkretne podejście.",
   "anna-malez":
     "Doradza przy kupnie i sprzedaży tak, jakby chodziło o jej własne mieszkanie.",
+  "taisiia-shulga":
+    "Prowadzi sprawy spokojnie i z uwagą, dba o to, żeby na każdym etapie wszystko było jasne.",
 };
 
 const values = [
@@ -237,7 +239,7 @@ export function OnasContent() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 lg:gap-5">
             {members.map((member, i) => {
               const blurb = memberBlurbs[member.slug] ?? member.bio;
               return (
@@ -246,13 +248,13 @@ export function OnasContent() {
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.6, delay: (i % 4) * 0.07, ease: EASE }}
+                  transition={{ duration: 0.6, delay: (i % 5) * 0.07, ease: EASE }}
                   className="group flex flex-col overflow-hidden rounded-[24px] border border-border bg-surface shadow-[0_2px_8px_-2px_rgba(25,25,25,0.06)] transition-all duration-400 hover:-translate-y-1.5 hover:border-brand hover:shadow-[0_28px_64px_-22px_rgba(211,30,192,0.28)]"
                 >
                   <div className="relative border-b border-border/70">
                     <MemberPhoto
                       member={member}
-                      sizes="(min-width: 1024px) 23vw, (min-width: 640px) 45vw, 100vw"
+                      sizes="(min-width: 1024px) 18vw, (min-width: 640px) 45vw, 100vw"
                       className="aspect-[4/5] w-full"
                     />
                     {member.isOwner && (
@@ -262,11 +264,11 @@ export function OnasContent() {
                     )}
                   </div>
 
-                  <div className="flex flex-1 flex-col p-6 lg:p-7">
+                  <div className="flex flex-1 flex-col p-6 lg:p-5 xl:p-6">
                     <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand">
                       {member.role}
                     </p>
-                    <h3 className="mt-2 font-display text-2xl font-normal leading-tight text-foreground">
+                    <h3 className="mt-2 font-display text-xl font-normal leading-tight text-foreground lg:text-[1.35rem]">
                       {member.fullName}
                     </h3>
                     <p className="mt-3 text-sm leading-relaxed text-foreground-muted">{blurb}</p>

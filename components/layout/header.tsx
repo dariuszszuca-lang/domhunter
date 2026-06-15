@@ -15,7 +15,7 @@ const navItems = [
   { label: "Wynajmij", href: "/oferty?transakcja=najem" },
   { label: "Komercja", href: "/komercja" },
   { label: "Wycena", href: "/wycena" },
-  { label: "O firmie", href: "/o-nas" },
+  { label: "Nasz zespół", href: "/o-nas" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 

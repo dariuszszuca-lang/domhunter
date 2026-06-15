@@ -3,8 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Phone, MapPin, Users, Heart } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Phone,
+  Mail,
+  MapPin,
+  HandshakeIcon,
+  Compass,
+} from "lucide-react";
 import { Container } from "@/components/ui/container";
+import { MemberPhoto } from "@/components/team/member-photo";
+import { getAllMembersSorted } from "@/lib/team";
 import { siteConfig } from "@/lib/site";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -16,49 +26,56 @@ const fadeUp = {
   transition: { duration: 0.7, ease: EASE },
 };
 
-const reasons = [
-  {
-    num: "01",
-    title: "Lokalna wiedza",
-    body: "Każdą dzielnicę Trójmiasta znamy z rozmów z klientami, nie z portali. Wiemy gdzie warto kupić, gdzie poczekać, a gdzie cena rośnie najszybciej.",
-    pull: "Każda dzielnica ma swój charakter, swoją cenę i swoich ludzi.",
-  },
-  {
-    num: "02",
-    title: "Oferty spod lady",
-    body: "Należymy do sieci Nieruchomości Spod Lady, ponad 2000 agentów w Polsce. Masz dostęp do ofert, których nie zobaczysz na portalach.",
-    pull: "Najlepsze nieruchomości nigdy nie trafiają do publicznej sprzedaży.",
-  },
-  {
-    num: "03",
-    title: "Doświadczenie i kontakty",
-    body: "Setki zrealizowanych transakcji. Wyrobione relacje z bankami, kancelariami, deweloperami i administratorami nieruchomości.",
-    pull: "Dzwonimy do osoby, nie do działu.",
-  },
-];
+// Krótkie, naturalne opisy roli w gridzie agentów (bez zmyślania faktów).
+const memberBlurbs: Record<string, string> = {
+  "sylwia-wroblewska":
+    "Prowadzi biuro i osobiście opiekuje się klientami. Setki transakcji na trójmiejskim rynku, opinie mówią same za siebie.",
+  "janusz-stojaczyk":
+    "Spokojnie przeprowadzi Cię przez całą transakcję, od pierwszej rozmowy po klucze w dłoni.",
+  "agnieszka-bodanka":
+    "Mieszkania i wynajem to jej żywioł. Klienci chwalą ją za cierpliwość i konkretne podejście.",
+  "piotr-mieczan":
+    "Zna trójmiejski rynek od podszewki i wie, kiedy warto kupić, a kiedy jeszcze poczekać.",
+  "anna-malez":
+    "Doradza przy kupnie i sprzedaży tak, jakby chodziło o jej własne mieszkanie.",
+  "sylwia-kojto-labuda":
+    "Dba o każdy szczegół umowy i o to, żeby po drugiej stronie nie było żadnych niespodzianek.",
+  "mateusz-licznerski":
+    "Łączy ludzi z odpowiednią nieruchomością i pilnuje terminów od początku do końca.",
+  "lukasz-ecimowicz":
+    "Pomaga kupującym i sprzedającym dogadać się na warunkach, które są dobre dla obu stron.",
+  "mateusz-wasilewski":
+    "Sprawnie prowadzi sprzedaż i wynajem, zawsze z telefonem pod ręką dla klienta.",
+  "lucja-laskowska":
+    "Cierpliwie tłumaczy każdy krok i jest obok aż do podpisania aktu.",
+  "karolina-ciesielska":
+    "Z uśmiechem pomoże znaleźć mieszkanie albo dom, który po prostu pasuje.",
+};
 
 const values = [
   {
     icon: MapPin,
-    title: "Ludzie z Trójmiasta",
-    body: "Nie z portali. Mieszkamy tu, znamy te ulice, te ceny i tych ludzi. Doradzamy tak, jak doradzilibyśmy rodzinie.",
+    title: "Najpierw oddzwaniamy",
+    body: "Telefon nie dzwoni w próżnię. Odbieramy, a jak nie zdążymy, oddzwaniamy tego samego dnia. Bez automatów i bez czekania trzy dni na odpowiedź.",
   },
   {
-    icon: Heart,
-    title: "Szacunek do klienta",
-    body: "Twoja sprawa to nie kolejny numer w systemie. Oddzwaniamy, tłumaczymy, jesteśmy obok do podpisu aktu i po nim.",
+    icon: Compass,
+    title: "Mówimy jak jest",
+    body: "Jeśli cena jest za wysoka, powiemy to wprost. Jeśli z ofertą coś jest nie tak, dowiesz się od nas, a nie od notariusza. Wolimy uczciwą rozmowę niż szybki podpis.",
   },
   {
-    icon: Users,
+    icon: HandshakeIcon,
     title: "Jeden agent, cała sprawa",
-    body: "Od pierwszej rozmowy po klucze prowadzi Cię jedna osoba. Bez przerzucania między działami, bez chaosu.",
+    body: "Od pierwszej rozmowy po klucze prowadzi Cię ta sama osoba. Nie przerzucamy Cię między działami i nie musisz tłumaczyć sprawy od nowa za każdym razem.",
   },
 ];
 
 export function OnasContent() {
+  const members = getAllMembersSorted();
+
   return (
     <>
-      {/* HERO: tekst + kolaż zdjęć */}
+      {/* HERO: tekst + kolaż zdjęć (różne zdjęcia w każdej ramce) */}
       <section className="relative overflow-hidden pt-10 lg:pt-16">
         <div
           aria-hidden
@@ -68,18 +85,18 @@ export function OnasContent() {
           <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
             <motion.div {...fadeUp}>
               <div className="mb-6 inline-flex items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
-                O firmie
+                Nasz zespół
               </div>
               <h1 className="font-display font-normal text-[clamp(2.6rem,6vw,5rem)] leading-[0.98] tracking-[-0.02em] text-foreground">
-                Lokalne biuro
+                Ludzie, którzy
                 <br />
-                <span className="italic text-brand">z duszą.</span>
+                <span className="italic text-brand">prowadzą Twoją sprawę.</span>
               </h1>
               <p className="mt-8 max-w-xl text-lg leading-[1.6] text-foreground-muted lg:text-xl">
                 Dom Hunter to biuro nieruchomości z Trójmiasta, stworzone przez doświadczonych
-                pośredników. Ludzi, którzy zrealizowali setki transakcji i byli częścią sukcesu
-                czołowych agencji w Polsce. Łączy nas pasja do tego, co robimy, i szacunek do
-                klientów.
+                pośredników. Ludzi, którzy zrealizowali setki transakcji i naprawdę znają Gdańsk,
+                Gdynię i Sopot. Poznaj agentów, którzy poprowadzą Cię od pierwszej rozmowy po
+                klucze w dłoni.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -91,7 +108,7 @@ export function OnasContent() {
                   Porozmawiajmy
                 </a>
                 <Link
-                  href="/zespol"
+                  href="#zespol"
                   className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-7 py-4 text-sm font-semibold text-foreground transition-all hover:border-brand hover:text-brand"
                 >
                   Poznaj zespół
@@ -100,7 +117,7 @@ export function OnasContent() {
               </div>
             </motion.div>
 
-            {/* Kolaż zdjęć */}
+            {/* Kolaż zdjęć: cztery różne kadry */}
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -141,35 +158,12 @@ export function OnasContent() {
                   </div>
                   <div className="relative aspect-[3/4] overflow-hidden rounded-[24px] border border-border shadow-soft">
                     <Image
-                      src="/images/o-firmie.jpg"
-                      alt="Agentka Dom Hunter podczas pracy nad ofertami"
+                      src="/images/hero-team.jpg"
+                      alt="Zespół Dom Hunter podczas pracy nad ofertą"
                       fill
                       sizes="(min-width: 1024px) 22vw, 45vw"
                       className="object-cover object-center"
                     />
-                  </div>
-                </div>
-              </div>
-
-              {/* Pływająca plakietka z liczbami */}
-              <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 rounded-2xl border border-border bg-surface px-5 py-3.5 shadow-soft">
-                <div className="flex items-center gap-5">
-                  <div className="text-center">
-                    <p className="font-display text-2xl leading-none tabular-nums text-foreground">
-                      {siteConfig.metrics.transactions}
-                    </p>
-                    <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-foreground-subtle">
-                      Transakcji
-                    </p>
-                  </div>
-                  <span aria-hidden className="h-8 w-px bg-border" />
-                  <div className="text-center">
-                    <p className="font-display text-2xl leading-none tabular-nums text-brand">
-                      {siteConfig.metrics.rating}
-                    </p>
-                    <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-foreground-subtle">
-                      Ocena
-                    </p>
                   </div>
                 </div>
               </div>
@@ -178,7 +172,7 @@ export function OnasContent() {
         </Container>
       </section>
 
-      {/* HISTORIA: zdjęcie + tekst */}
+      {/* HISTORIA: zdjęcie z podpisem + tekst */}
       <section className="py-20 lg:py-28">
         <Container size="wide">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -199,47 +193,150 @@ export function OnasContent() {
                 />
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-foreground/55 to-transparent"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent"
                 />
-                <p className="absolute bottom-5 left-6 right-6 font-display text-xl leading-tight text-white">
-                  Razem nad każdą sprawą, od oferty po akt notarialny.
-                </p>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/75">
+                    Trójmiasto
+                  </p>
+                  <p className="mt-2 font-display text-xl leading-snug text-white">
+                    Razem nad każdą sprawą, od pierwszej rozmowy po podpisanie aktu.
+                  </p>
+                </div>
               </div>
             </motion.div>
 
             <motion.div {...fadeUp} className="order-1 lg:order-2">
               <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
-                Nasza historia
+                Skąd się wzięliśmy
               </p>
               <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
-                Ludzie z Trójmiasta,
+                Biuro, w którym
                 <br />
-                <span className="italic text-brand">a nie z portali.</span>
+                <span className="italic text-brand">odbieramy telefon.</span>
               </h2>
               <div className="mt-7 space-y-5 text-base leading-relaxed text-foreground-muted lg:text-lg">
                 <p>
-                  Dom Hunter powstał z prostego przekonania: kupno i sprzedaż nieruchomości to
-                  jedna z najważniejszych decyzji w życiu, a nie transakcja w tabelce. Zebraliśmy
-                  pośredników, którzy lata wcześniej współtworzyli sukces czołowych agencji w
-                  Polsce, i postawiliśmy na bliski, ludzki kontakt.
+                  Dom Hunter zaczął się od prostego przekonania. Kupno albo sprzedaż mieszkania to
+                  jedna z najważniejszych decyzji w życiu, a nie pozycja w tabelce. Zebraliśmy
+                  pośredników, którzy lata wcześniej współtworzyli sukces dużych agencji w Polsce, i
+                  postawiliśmy na zwykły, ludzki kontakt.
                 </p>
                 <p>
-                  Mieszkamy tutaj. Znamy Gdańsk, Gdynię, Sopot i okolice nie z opisów ofert, tylko
-                  z codziennych rozmów. Wiemy, która kamienica ma cichą stronę podwórza, gdzie
-                  ceny dopiero ruszają w górę, a gdzie warto się jeszcze targować.
+                  Mieszkamy tutaj. Gdańsk, Gdynię i Sopot znamy nie z opisów ofert, tylko z
+                  codziennych rozmów. Wiemy, która kamienica ma cichą stronę podwórza, gdzie ceny
+                  dopiero ruszają w górę, a gdzie warto się jeszcze potargować.
                 </p>
                 <p>
-                  Dla nas dobra współpraca to taka, po której klient wraca i poleca nas dalej. I to
-                  zdarza się najczęściej.
+                  Dla nas dobra współpraca to taka, po której klient wraca i poleca nas dalej. I
+                  akurat to zdarza się u nas najczęściej.
                 </p>
+              </div>
+
+              <div className="mt-9 flex flex-wrap gap-8">
+                <div>
+                  <p className="font-display text-4xl leading-none text-brand tabular-nums">
+                    {siteConfig.metrics.transactions}
+                  </p>
+                  <p className="mt-2 text-sm text-foreground-muted">transakcji na koncie</p>
+                </div>
+                <span aria-hidden className="hidden w-px self-stretch bg-border sm:block" />
+                <div>
+                  <p className="font-display text-4xl leading-none text-brand tabular-nums">
+                    {siteConfig.metrics.teamSize}
+                  </p>
+                  <p className="mt-2 text-sm text-foreground-muted">agentów w biurze</p>
+                </div>
               </div>
             </motion.div>
           </div>
         </Container>
       </section>
 
-      {/* WARTOŚCI: karty */}
-      <section className="bg-surface-cream py-20 lg:py-28">
+      {/* GRID AGENTÓW: serce strony */}
+      <section id="zespol" className="scroll-mt-24 bg-surface-cream py-20 lg:py-28">
+        <Container size="wide">
+          <motion.div {...fadeUp} className="mb-14 max-w-2xl">
+            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
+              Poznaj nas
+            </p>
+            <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3.4rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
+              Za każdą transakcją stoi <span className="italic text-brand">konkretna osoba.</span>
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-foreground-muted">
+              Agentki i agenci z dużym doświadczeniem na rynku Trójmiasta. Wybierz osobę, z którą
+              chcesz porozmawiać, i zadzwoń bezpośrednio. Bez infolinii i bez czekania.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+            {members.map((member, i) => {
+              const blurb = memberBlurbs[member.slug] ?? member.bio;
+              return (
+                <motion.article
+                  key={member.slug}
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: EASE }}
+                  className="group flex flex-col overflow-hidden rounded-[26px] border border-border bg-surface shadow-[0_2px_8px_-2px_rgba(25,25,25,0.06)] transition-all duration-400 hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_24px_60px_-20px_rgba(211,30,192,0.18)]"
+                >
+                  <div className="relative">
+                    <MemberPhoto
+                      member={member}
+                      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                      className="aspect-[4/3] w-full"
+                    />
+                    {member.isOwner && (
+                      <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-brand px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-soft">
+                        Właścicielka
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-6 lg:p-7">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand">
+                      {member.role}
+                    </p>
+                    <h3 className="mt-2 font-display text-2xl font-normal leading-tight text-foreground">
+                      {member.fullName}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-foreground-muted">{blurb}</p>
+
+                    <div className="mt-auto flex flex-col gap-2.5 pt-6">
+                      {member.phone && member.phoneDisplay && (
+                        <a
+                          href={`tel:${member.phone}`}
+                          className="inline-flex items-center gap-2.5 text-sm font-medium text-foreground transition-colors hover:text-brand"
+                        >
+                          <span className="inline-flex size-8 items-center justify-center rounded-full bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
+                            <Phone className="size-3.5" strokeWidth={2} />
+                          </span>
+                          {member.phoneDisplay}
+                        </a>
+                      )}
+                      {member.email && (
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="inline-flex items-center gap-2.5 break-all text-sm text-foreground-muted transition-colors hover:text-brand"
+                        >
+                          <span className="inline-flex size-8 items-center justify-center rounded-full bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
+                            <Mail className="size-3.5" strokeWidth={2} />
+                          </span>
+                          {member.email}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* WARTOŚCI: trzy karty */}
+      <section className="py-20 lg:py-28">
         <Container size="wide">
           <motion.div {...fadeUp} className="max-w-2xl">
             <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
@@ -276,94 +373,6 @@ export function OnasContent() {
         </Container>
       </section>
 
-      {/* DLACZEGO NAM UFAJĄ: numerowane */}
-      <section className="relative overflow-hidden py-20 lg:py-28">
-        <div
-          aria-hidden
-          className="absolute -top-32 -right-32 h-[500px] w-[500px] rounded-full bg-brand-soft/[0.05] blur-[120px]"
-        />
-        <Container size="wide" className="relative">
-          <motion.div {...fadeUp} className="mb-14 max-w-3xl lg:ml-auto lg:mb-20 lg:text-right">
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
-              Dlaczego my
-            </p>
-            <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
-              Dlaczego klienci <span className="italic text-brand">nam ufają.</span>
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-14">
-            {reasons.map((r, i) => (
-              <motion.div
-                key={r.num}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: i * 0.1, ease: EASE }}
-                className="flex flex-col"
-              >
-                <span className="mb-5 font-display text-7xl italic leading-none tracking-tight text-brand/40 lg:text-8xl">
-                  {r.num}
-                </span>
-                <h3 className="mb-4 font-display text-2xl font-normal leading-tight tracking-[-0.01em] text-foreground lg:text-3xl">
-                  {r.title}
-                </h3>
-                <p className="mb-6 text-base leading-relaxed text-foreground">{r.body}</p>
-                <blockquote className="mt-auto border-l-2 border-brand/40 pl-5 font-display text-lg italic leading-snug text-foreground-muted">
-                  {r.pull}
-                </blockquote>
-              </motion.div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ZESPÓŁ: teaser do /zespol */}
-      <section className="py-20 lg:py-28">
-        <Container size="wide">
-          <motion.div
-            {...fadeUp}
-            className="relative overflow-hidden rounded-[24px] border border-border bg-surface px-8 py-12 sm:px-12 lg:px-16 lg:py-16"
-          >
-            <div
-              aria-hidden
-              className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-brand/20 blur-[110px]"
-            />
-            <div className="relative grid items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
-              <div>
-                <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
-                  Zespół
-                </p>
-                <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
-                  Za każdą transakcją stoi <span className="italic text-brand">konkretna osoba.</span>
-                </h2>
-                <p className="mt-6 max-w-md text-base leading-relaxed text-foreground-muted lg:text-lg">
-                  Agentki i agenci z dużym doświadczeniem na rynku Trójmiasta. Zobacz kto poprowadzi
-                  Twoją sprawę i wybierz osobę, z którą chcesz porozmawiać.
-                </p>
-                <Link
-                  href="/zespol"
-                  className="mt-9 inline-flex items-center gap-2 rounded-full bg-brand px-7 py-4 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-hover"
-                >
-                  Poznaj cały zespół
-                  <ArrowRight className="size-4" />
-                </Link>
-              </div>
-
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] border border-border">
-                <Image
-                  src="/images/team/zespol-1.jpg"
-                  alt="Agentka Dom Hunter"
-                  fill
-                  sizes="(min-width: 1024px) 32vw, 100vw"
-                  className="object-cover object-center"
-                />
-              </div>
-            </div>
-          </motion.div>
-        </Container>
-      </section>
-
       {/* PARTNER NSL */}
       <section className="bg-surface-cream py-20 lg:py-28">
         <Container size="wide">
@@ -394,10 +403,11 @@ export function OnasContent() {
                 Nieruchomości <span className="italic text-brand">Spod Lady.</span>
               </h2>
               <p className="mt-7 text-lg leading-[1.6] text-foreground-muted">
-                Należymy do sieci NSL, jednej z największych w Polsce społeczności agentów obracających
-                ofertami spoza ogłoszeń. Ponad 2000 pośredników z całego kraju wymienia się
-                nieruchomościami, których nie ma w publicznych portalach. Dla Ciebie to bezpośredni
-                dostęp do mieszkań i domów, które normalnie nigdy nie trafiłyby do Twoich rąk.
+                Należymy do sieci NSL, jednej z największych w Polsce społeczności agentów
+                obracających ofertami spoza ogłoszeń. Ponad 2000 pośredników z całego kraju wymienia
+                się nieruchomościami, których nie ma w publicznych portalach. Dla Ciebie to
+                bezpośredni dostęp do mieszkań i domów, które normalnie nigdy nie trafiłyby do
+                Twoich rąk.
               </p>
 
               <div className="mt-8 inline-flex items-center gap-3 rounded-2xl border border-border bg-surface px-5 py-4">
@@ -426,40 +436,39 @@ export function OnasContent() {
         </Container>
       </section>
 
-      {/* CTA KOŃCOWE */}
+      {/* CTA KOŃCOWE: subtelna karta z magentową ramką */}
       <section className="py-20 lg:py-28">
         <Container size="wide">
           <motion.div
             {...fadeUp}
-            className="relative overflow-hidden rounded-[24px] bg-brand px-8 py-14 text-center sm:px-12 lg:px-16 lg:py-20"
+            className="relative overflow-hidden rounded-[26px] border border-brand/30 bg-surface px-8 py-14 text-center shadow-soft sm:px-12 lg:px-16 lg:py-20"
           >
             <div
               aria-hidden
-              className="absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-white/10 blur-[90px]"
-            />
-            <div
-              aria-hidden
-              className="absolute -top-24 -left-16 h-72 w-72 rounded-full bg-brand-deep/30 blur-[90px]"
+              className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(211,30,192,0.08),transparent_60%)]"
             />
             <div className="relative mx-auto max-w-2xl">
-              <h2 className="font-display font-normal text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.05] tracking-[-0.01em] text-white">
-                Porozmawiajmy o Twojej nieruchomości.
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
+                Zacznijmy
+              </p>
+              <h2 className="font-display font-normal text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
+                Porozmawiajmy o Twojej <span className="italic text-brand">nieruchomości.</span>
               </h2>
-              <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-white/90">
-                Sprzedajesz, kupujesz, a może tylko sprawdzasz ile dziś warta jest Twoja
+              <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-foreground-muted">
+                Sprzedajesz, kupujesz, a może tylko sprawdzasz, ile dziś warta jest Twoja
                 nieruchomość. Zadzwoń, doradzimy bez zobowiązań.
               </p>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                 <a
                   href="tel:+48571309209"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-brand shadow-[0_16px_34px_-12px] shadow-brand-deep/50 transition-all hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-sm font-semibold text-white shadow-[0_16px_34px_-12px] shadow-brand/60 transition-all hover:-translate-y-0.5 hover:bg-brand-hover"
                 >
                   <Phone className="size-4" strokeWidth={2} />
                   571 309 209
                 </a>
                 <Link
                   href="/kontakt"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/40 px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-8 py-4 text-sm font-semibold text-foreground transition-all hover:border-brand hover:text-brand"
                 >
                   Napisz do nas
                   <ArrowRight className="size-4" />
@@ -470,54 +479,5 @@ export function OnasContent() {
         </Container>
       </section>
     </>
-  );
-}
-
-// Zachowane dla kompatybilności wstecznej (sekcja "Dlaczego nam ufają").
-export function WhyUs() {
-  return (
-    <section className="relative overflow-hidden py-24 lg:py-32">
-      <div
-        aria-hidden
-        className="absolute -top-32 -right-32 h-[500px] w-[500px] rounded-full bg-brand-soft/[0.05] blur-[120px]"
-      />
-      <Container size="wide" className="relative">
-        <motion.div
-          {...fadeUp}
-          className="mb-16 max-w-3xl lg:ml-auto lg:mb-20 lg:text-right"
-        >
-          <div className="mb-5 inline-flex items-center rounded-full border border-border bg-surface-muted px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
-            O nas
-          </div>
-          <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
-            Dlaczego klienci <span className="italic text-brand">nam ufają.</span>
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-14">
-          {reasons.map((r, i) => (
-            <motion.div
-              key={r.num}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.7, delay: i * 0.1, ease: EASE }}
-              className="flex flex-col"
-            >
-              <span className="mb-5 font-display text-7xl italic leading-none tracking-tight text-brand/40 lg:text-8xl">
-                {r.num}
-              </span>
-              <h3 className="mb-4 font-display text-2xl font-normal leading-tight tracking-[-0.015em] text-foreground lg:text-3xl">
-                {r.title}
-              </h3>
-              <p className="mb-6 text-base leading-relaxed text-foreground">{r.body}</p>
-              <blockquote className="mt-auto border-l-2 border-brand/40 pl-5 font-display text-lg italic leading-snug text-foreground-muted">
-                {r.pull}
-              </blockquote>
-            </motion.div>
-          ))}
-        </div>
-      </Container>
-    </section>
   );
 }

@@ -14,8 +14,7 @@ const footerNav = {
     { label: "Komercja", href: "/komercja" },
   ],
   firma: [
-    { label: "O nas", href: "/o-nas" },
-    { label: "Zespół", href: "/zespol" },
+    { label: "Nasz zespół", href: "/o-nas" },
     { label: "Darmowa wycena", href: "/wycena" },
     { label: "Kontakt", href: "/kontakt" },
   ],

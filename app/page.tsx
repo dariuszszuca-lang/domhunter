@@ -4,7 +4,6 @@ import { SolutionsShowcase } from "@/components/sections/solutions-showcase";
 import { Services } from "@/components/sections/services";
 import { FeaturedOffers } from "@/components/sections/featured-offers";
 import { TeamBento } from "@/components/sections/team-bento";
-import { WhoWeAre } from "@/components/sections/who-we-are";
 import { Testimonials } from "@/components/sections/testimonials";
 import { FAQ } from "@/components/sections/faq";
 import { Contact } from "@/components/sections/contact";
@@ -20,7 +19,6 @@ export default function HomePage() {
       <SolutionsShowcase />
       <Services />
       <TeamBento />
-      <WhoWeAre />
       <Testimonials />
       <FAQ />
       <Contact />

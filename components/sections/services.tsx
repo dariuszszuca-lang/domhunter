@@ -1,8 +1,10 @@
-/* Jasna, spójna sekcja usług — editorial lista (intro + rzędy), serif + magenta */
+/* Jasna, kreatywna sekcja usług — intro + zdjęcie (lewa) + rozwijany akordeon (prawa) */
 "use client";
 
-import { motion } from "framer-motion";
-import { Home, Users, Building, TrendingUp, Calculator, Handshake } from "lucide-react";
+import { useState } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { Home, Users, Building, TrendingUp, Calculator, Handshake, Plus } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
 const services = [
@@ -15,11 +17,13 @@ const services = [
 ];
 
 export function Services() {
+  const [open, setOpen] = useState<number | null>(0);
+
   return (
     <section id="why-us" className="py-20 lg:py-28">
       <Container size="wide">
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-          {/* Lewa kolumna — intro (sticky) */}
+        <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
+          {/* Lewa — intro + zdjęcie (sticky) */}
           <div className="lg:sticky lg:top-10 lg:self-start">
             <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
               Dlaczego my
@@ -33,36 +37,82 @@ export function Services() {
               Od wyceny po klucze. Każdą sprawę prowadzi jeden agent, który zna lokalny rynek
               Trójmiasta na pamięć.
             </p>
+
+            <div className="relative mt-8 overflow-hidden rounded-[24px] border border-border">
+              <div className="relative aspect-[5/4]">
+                <Image
+                  src="/images/who-we-are.jpg"
+                  alt="Zespół Dom Hunter — biuro nieruchomości w Trójmieście"
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 100vw"
+                  className="object-cover object-center"
+                />
+              </div>
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-foreground/60 to-transparent"
+              />
+              <p className="absolute bottom-4 left-5 right-5 font-display text-lg leading-tight text-white">
+                Zespół, który zna Trójmiasto na pamięć.
+              </p>
+            </div>
           </div>
 
-          {/* Prawa kolumna — lista usług */}
+          {/* Prawa — rozwijany akordeon usług */}
           <div className="border-t border-border">
             {services.map((s, i) => {
               const Icon = s.icon;
+              const isOpen = open === i;
               return (
-                <motion.div
-                  key={s.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: Math.min(i, 3) * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                  className="group flex gap-5 border-b border-border py-7 lg:gap-6 lg:py-8"
-                >
-                  <span className="w-6 shrink-0 pt-1.5 font-mono text-xs text-brand">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="shrink-0 pt-1 text-brand transition-transform duration-300 group-hover:translate-x-0.5">
-                    <Icon className="size-6" strokeWidth={1.6} />
-                  </span>
-                  <div className="min-w-0">
-                    <h3 className="font-display text-[1.5rem] font-normal leading-[1.15] text-foreground transition-colors duration-300 group-hover:text-brand lg:text-[1.7rem]">
+                <div key={s.title} className="border-b border-border">
+                  <button
+                    type="button"
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    className="group flex w-full items-center gap-4 py-6 text-left lg:gap-5 lg:py-7"
+                  >
+                    <span className="w-6 shrink-0 font-mono text-xs text-brand">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className={`inline-flex size-11 shrink-0 items-center justify-center rounded-2xl transition-colors duration-300 ${
+                        isOpen ? "bg-brand text-white" : "bg-brand/10 text-brand"
+                      }`}
+                    >
+                      <Icon className="size-5" strokeWidth={1.7} />
+                    </span>
+                    <span
+                      className={`flex-1 font-display text-[1.4rem] font-normal leading-[1.15] transition-colors lg:text-[1.7rem] ${
+                        isOpen ? "text-brand" : "text-foreground group-hover:text-brand"
+                      }`}
+                    >
                       {s.title}
-                    </h3>
-                    <p className="mt-2 max-w-xl text-base leading-relaxed text-foreground-muted">
-                      {s.body}
-                    </p>
-                  </div>
-                </motion.div>
+                    </span>
+                    <span
+                      className={`inline-flex size-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+                        isOpen
+                          ? "rotate-45 border-brand bg-brand text-white"
+                          : "border-border bg-surface text-foreground group-hover:border-brand"
+                      }`}
+                    >
+                      <Plus className="size-3.5" />
+                    </span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pb-7 pl-[3.75rem] pr-6 text-base leading-relaxed text-foreground-muted">
+                          {s.body}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               );
             })}
           </div>

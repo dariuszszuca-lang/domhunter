@@ -38,7 +38,7 @@ export function Footer() {
               {siteConfig.name} · Nieruchomości
             </p>
             <p className="mt-4 max-w-xl font-display text-[clamp(2rem,4vw,3.4rem)] leading-[1.06] text-foreground">
-              Ludzie z Trójmiasta, a nie z portali.
+              Porozmawiajmy o Twojej nieruchomości.
             </p>
             <p className="mt-5 max-w-md text-base leading-relaxed text-foreground-muted">
               {siteConfig.tagline}. Sprzedaż, kupno, wynajem i komercja w Trójmieście i okolicach.

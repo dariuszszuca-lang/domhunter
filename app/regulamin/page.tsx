@@ -23,7 +23,7 @@ export default function RegulaminPage() {
       <h2>Postanowienia ogólne</h2>
       <p>
         Operatorem serwisu jest Dom Hunter Biuro Nieruchomości, ul. Jana Pawła
-        II 6e/5, 80-462 Gdańsk. Z operatorem skontaktujesz się telefonicznie pod
+        II 6e/5, 80-462 Gdańsk, NIP 9571073617, REGON 222082718. Z operatorem skontaktujesz się telefonicznie pod
         numerem <a href="tel:+48585334323">58 533 43 23</a> oraz mailowo pod
         adresem <a href="mailto:biuro@domhunter.pl">biuro@domhunter.pl</a>.
         Serwis służy do prezentacji ofert nieruchomości oraz do nawiązania

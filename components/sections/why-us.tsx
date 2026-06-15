@@ -323,7 +323,7 @@ export function OnasContent() {
         <Container size="wide">
           <motion.div
             {...fadeUp}
-            className="relative overflow-hidden rounded-[24px] border border-border bg-surface-dark px-8 py-12 sm:px-12 lg:px-16 lg:py-16"
+            className="relative overflow-hidden rounded-[24px] border border-border bg-surface px-8 py-12 sm:px-12 lg:px-16 lg:py-16"
           >
             <div
               aria-hidden
@@ -331,13 +331,13 @@ export function OnasContent() {
             />
             <div className="relative grid items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
               <div>
-                <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-soft">
+                <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
                   Zespół
                 </p>
-                <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3rem)] leading-[1.05] tracking-[-0.01em] text-foreground-on-dark">
-                  Za każdą transakcją stoi <span className="italic text-brand-soft">konkretna osoba.</span>
+                <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
+                  Za każdą transakcją stoi <span className="italic text-brand">konkretna osoba.</span>
                 </h2>
-                <p className="mt-6 max-w-md text-base leading-relaxed text-foreground-on-dark-muted lg:text-lg">
+                <p className="mt-6 max-w-md text-base leading-relaxed text-foreground-muted lg:text-lg">
                   Agentki i agenci z dużym doświadczeniem na rynku Trójmiasta. Zobacz kto poprowadzi
                   Twoją sprawę i wybierz osobę, z którą chcesz porozmawiać.
                 </p>
@@ -350,7 +350,7 @@ export function OnasContent() {
                 </Link>
               </div>
 
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] border border-white/10">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] border border-border">
                 <Image
                   src="/images/team/zespol-1.jpg"
                   alt="Agentka Dom Hunter"

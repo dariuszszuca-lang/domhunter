@@ -24,7 +24,7 @@ export default function PolitykaPrywatnosciPage() {
       <p>
         Administratorem Twoich danych osobowych jest{" "}
         <strong>Dom Hunter Biuro Nieruchomości</strong>, ul. Jana Pawła II 6e/5,
-        80-462 Gdańsk. W sprawach związanych z danymi możesz się z nami
+        80-462 Gdańsk, NIP 9571073617, REGON 222082718. W sprawach związanych z danymi możesz się z nami
         skontaktować telefonicznie pod numerem{" "}
         <a href="tel:+48585334323">58 533 43 23</a> lub mailowo, pisząc na adres{" "}
         <a href="mailto:biuro@domhunter.pl">biuro@domhunter.pl</a>.

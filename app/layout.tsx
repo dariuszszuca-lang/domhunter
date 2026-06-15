@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { CookieBanner } from "@/components/ui/cookie-banner";
 import { siteConfig } from "@/lib/site";
 
 // Fonty Dom Hunter: Spectral = nagłówki (elegancki serif editorial),
@@ -64,6 +65,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );

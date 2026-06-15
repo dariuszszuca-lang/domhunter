@@ -5,6 +5,7 @@ import { Services } from "@/components/sections/services";
 import { FeaturedOffers } from "@/components/sections/featured-offers";
 import { TeamBento } from "@/components/sections/team-bento";
 import { Testimonials } from "@/components/sections/testimonials";
+import { BlogTeaser } from "@/components/sections/blog-teaser";
 import { FAQ } from "@/components/sections/faq";
 
 export const dynamic = "force-dynamic";
@@ -19,6 +20,7 @@ export default function HomePage() {
       <Services />
       <TeamBento />
       <Testimonials />
+      <BlogTeaser />
       <FAQ />
     </>
   );

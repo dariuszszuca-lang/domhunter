@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function WycenaPage() {
   return (
-    <div className="pt-10 lg:pt-16">
+    <div className="bg-surface-cream pt-10 lg:pt-16">
       <WycenaCta />
     </div>
   );

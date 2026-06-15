@@ -87,13 +87,13 @@ export function WhoWeAre() {
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="min-w-0"
           >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-surface-muted">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-[28px] bg-surface-muted">
               <Image
-                src="/images/team-1.jpg"
-                alt="Zespół DomHunter Nieruchomości"
+                src="/images/who-we-are.jpg"
+                alt="Zespół Dom Hunter Nieruchomości w biurze"
                 fill
                 sizes="(min-width: 1024px) 36vw, 100vw"
-                className="object-cover"
+                className="object-cover object-center"
               />
             </div>
           </motion.div>

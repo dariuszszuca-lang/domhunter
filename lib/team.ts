@@ -201,3 +201,8 @@ export function getAgents(): TeamMember[] {
 export function getAllMembersSorted(): TeamMember[] {
   return [...team].sort((a, b) => a.order - b.order);
 }
+
+export function getMemberByName(fullName: string): TeamMember | undefined {
+  const n = fullName.trim().toLowerCase();
+  return team.find((m) => m.fullName.toLowerCase() === n);
+}

@@ -20,7 +20,7 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { MemberPhoto } from "@/components/team/member-photo";
 import { getOfferById } from "@/lib/esti/store";
-import { getMemberBySlug } from "@/lib/team";
+import { getMemberBySlug, getMemberByName } from "@/lib/team";
 import { siteConfig } from "@/lib/site";
 import {
   formatPrice,
@@ -63,7 +63,15 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
   const offer = await getOfferById(id);
   if (!offer) notFound();
 
-  const agent = offer.agent?.slug ? getMemberBySlug(offer.agent.slug) : null;
+  const teamAgent =
+    (offer.agent?.slug ? getMemberBySlug(offer.agent.slug) : undefined) ??
+    (offer.agent?.fullName ? getMemberByName(offer.agent.fullName) : undefined) ??
+    null;
+  const agentDigits = offer.agent?.phone ? offer.agent.phone.replace(/\D/g, "").slice(-9) : "";
+  const agentTel = agentDigits ? `tel:+48${agentDigits}` : undefined;
+  const agentPhoneDisplay = agentDigits
+    ? agentDigits.replace(/(\d{3})(\d{3})(\d{3})/, "$1 $2 $3")
+    : offer.agent?.phone ?? "";
   const primary = offer.images.find((i) => i.primary) ?? offer.images[0];
   const gallery = offer.images.filter((i) => i !== primary);
 
@@ -284,65 +292,75 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
               )}
             </div>
 
-            {/* Sidebar: agent + CTA */}
+            {/* Sidebar: pośrednik + CTA */}
             <aside className="lg:col-span-4">
-              <div className="lg:sticky lg:top-32 space-y-4">
-                {agent ? (
-                  <Link
-                    href={`/zespol/${agent.slug}`}
-                    className="block rounded-3xl bg-surface border border-border p-6 hover:border-brand hover:shadow-[var(--shadow-card)] transition-all"
-                  >
-                    <p className="text-xs uppercase tracking-wider text-foreground-muted mb-3">
-                      Prowadzi
+              <div className="lg:sticky lg:top-8 space-y-4">
+                {offer.agent ? (
+                  <div className="rounded-3xl bg-surface border border-border p-6">
+                    <p className="text-xs uppercase tracking-wider text-foreground-muted mb-4">
+                      Pośrednik prowadzący
                     </p>
                     <div className="flex items-center gap-4">
-                      <MemberPhoto
-                        member={agent}
-                        sizes="64px"
-                        className="size-16 rounded-full shrink-0"
-                      />
-                      <div>
-                        <p className="font-bold text-foreground">{agent.fullName}</p>
-                        {agent.phoneDisplay && (
-                          <p className="text-sm text-foreground-muted tabular-nums mt-0.5">
-                            {agent.phoneDisplay}
-                          </p>
-                        )}
+                      {teamAgent && (
+                        <MemberPhoto
+                          member={teamAgent}
+                          sizes="64px"
+                          className="size-16 rounded-full shrink-0"
+                        />
+                      )}
+                      <div className="min-w-0">
+                        <p className="font-bold text-foreground">{offer.agent.fullName}</p>
+                        <p className="text-xs text-foreground-muted">Dom Hunter Nieruchomości</p>
                       </div>
                     </div>
-                    <div className="mt-5 grid grid-cols-2 gap-2">
-                      {agent.phone && (
+                    <div className="mt-5 space-y-2.5">
+                      {agentTel && (
                         <a
-                          href={`tel:${agent.phone.replace(/\s/g, "")}`}
-                          className="inline-flex items-center justify-center gap-2 h-10 px-3 rounded-xl bg-foreground text-background text-xs font-semibold"
+                          href={agentTel}
+                          className="flex items-center gap-3 rounded-xl bg-foreground text-background px-4 py-3 text-sm font-semibold hover:bg-brand transition-colors"
                         >
-                          <Phone className="size-3.5" />
-                          Zadzwoń
+                          <Phone className="size-4" />
+                          {agentPhoneDisplay}
                         </a>
                       )}
-                      <span className="inline-flex items-center justify-center gap-2 h-10 px-3 rounded-xl bg-gray-100 text-foreground text-xs font-semibold">
-                        <Mail className="size-3.5" />
-                        Wizytówka
-                      </span>
+                      {offer.agent.email && (
+                        <a
+                          href={`mailto:${offer.agent.email}`}
+                          className="flex items-center gap-3 rounded-xl border border-border px-4 py-3 text-sm font-medium text-foreground hover:border-brand hover:text-brand transition-colors break-all"
+                        >
+                          <Mail className="size-4 shrink-0 text-brand" />
+                          {offer.agent.email}
+                        </a>
+                      )}
                     </div>
-                  </Link>
+                    {teamAgent && (
+                      <Link
+                        href={`/zespol/${teamAgent.slug}`}
+                        className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:gap-2.5 transition-all"
+                      >
+                        Zobacz profil pośrednika
+                        <ArrowLeft className="size-3.5 rotate-180" />
+                      </Link>
+                    )}
+                  </div>
                 ) : (
                   <div className="rounded-3xl bg-surface border border-border p-6">
                     <p className="text-xs uppercase tracking-wider text-foreground-muted mb-2">
-                      Skontaktuj się z biurem
+                      Kontakt
                     </p>
-                    <p className="font-bold text-2xl text-foreground tabular-nums">
+                    <a
+                      href={siteConfig.contact.phones[0].href}
+                      className="font-bold text-2xl text-foreground tabular-nums"
+                    >
                       {siteConfig.contact.phones[0].displayValue}
-                    </p>
+                    </a>
                   </div>
                 )}
 
                 <div className="rounded-3xl bg-surface border border-border text-foreground p-6">
-                  <p className="text-sm font-semibold mb-3">
-                    Zainteresowana ta nieruchomość?
-                  </p>
+                  <p className="text-sm font-semibold mb-3">Zapytaj o tę nieruchomość</p>
                   <p className="text-xs text-foreground-muted mb-5 leading-relaxed">
-                    Zostaw kontakt, oddzwonimy z dodatkowymi informacjami i umówimy pokaz.
+                    Zostaw kontakt, oddzwonimy z dodatkowymi informacjami i umówimy oglądanie.
                   </p>
                   <Button asChild variant="primary" size="md" className="w-full">
                     <Link href={`/konsultacja?intent=kup&oferta=${offer.id}`}>

@@ -58,12 +58,15 @@ export function Footer() {
           {/* Prawa: kontakt prominentny + nawigacja */}
           <div className="lg:col-span-5 lg:pl-10 lg:border-l lg:border-border">
             <a
-              href={siteConfig.contact.phones[0].href}
+              href="tel:+48571309209"
               className="group inline-flex items-center gap-3 font-display text-[clamp(1.8rem,3vw,2.6rem)] leading-none text-foreground hover:text-brand transition-colors"
             >
               <Phone className="size-6 text-brand" strokeWidth={1.8} />
-              {siteConfig.contact.phones[0].displayValue}
+              571 309 209
             </a>
+            <p className="mt-2.5 text-sm text-foreground-muted">
+              Sylwia Wróblewska · {siteConfig.name}
+            </p>
             <div className="mt-5 space-y-3">
               <a
                 href={`mailto:${siteConfig.contact.email}`}

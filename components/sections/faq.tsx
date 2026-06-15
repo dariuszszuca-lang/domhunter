@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: "Co to są oferty off-market?",
-    a: "Oferty, których nie ma na portalach jak Otodom czy Morizon. Sprzedający z różnych powodów nie chcą publicznej publikacji — chcą dyskrecji, sprzedają w gronie znanych pośredników. Mamy do nich dostęp przez sieć NSL (1600+ agentów w Polsce).",
+    a: "Oferty, których nie ma na portalach jak Otodom czy Morizon. Sprzedający z różnych powodów nie chcą publicznej publikacji — chcą dyskrecji, sprzedają w gronie znanych pośredników. Mamy do nich dostęp przez sieć NSL (2000+ agentów w Polsce).",
   },
   {
     q: "Czy darmowa wycena rzeczywiście jest darmowa?",

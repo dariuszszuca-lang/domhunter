@@ -110,13 +110,13 @@ export function QuickSearch({ variant = "overlay" }: { variant?: "overlay" | "em
 
   const sectionCls =
     variant === "overlay"
-      ? "relative -mt-12 lg:-mt-16 z-10"
+      ? "relative z-10 pt-2 lg:pt-4"
       : "relative pt-10 lg:pt-16 pb-4 lg:pb-6";
 
   return (
     <section className={sectionCls}>
       <Container size="default">
-        <div className="rounded-[28px] bg-surface border border-border-strong/60 shadow-[0_28px_70px_-26px_rgba(20,21,21,0.38)] ring-1 ring-black/[0.02] p-5 lg:p-7">
+        <div className="rounded-[28px] bg-surface border border-foreground/[0.12] shadow-[0_30px_80px_-28px_rgba(20,21,21,0.5)] p-5 lg:p-7">
           {/* Type tabs */}
           <div className="flex flex-wrap gap-2 mb-5">
             {types.map((t) => {

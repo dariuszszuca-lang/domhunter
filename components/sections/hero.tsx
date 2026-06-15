@@ -7,9 +7,9 @@ import { ArrowUpRight, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
 const stats = [
-  { value: "300+", label: "sfinalizowanych transakcji" },
-  { value: "6 lat", label: "na trójmiejskim rynku" },
-  { value: "1600+", label: "agentów w sieci NSL" },
+  { value: "600+", label: "sfinalizowanych transakcji" },
+  { value: "13 lat", label: "na trójmiejskim rynku" },
+  { value: "2000+", label: "agentów w sieci NSL" },
   { value: "95%", label: "poleceń od klientów" },
 ];
 
@@ -17,7 +17,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-28 lg:pt-36 pb-10 lg:pb-16">
+    <section className="relative overflow-hidden pt-8 lg:pt-12 pb-10 lg:pb-16">
       <div
         aria-hidden
         className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(211,30,192,0.07),transparent_55%)]"

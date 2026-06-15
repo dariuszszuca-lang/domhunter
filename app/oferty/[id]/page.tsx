@@ -90,7 +90,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
       />
 
       {/* Hero gallery */}
-      <section className="pt-36 lg:pt-48 pb-8">
+      <section className="pt-10 lg:pt-16 pb-8">
         <Container size="wide">
           <Link
             href="/oferty"

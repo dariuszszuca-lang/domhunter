@@ -39,11 +39,11 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 pointer-events-none">
+    <header className="relative z-50">
       <Container size="wide" className="pt-3 lg:pt-4">
         <div
           className={cn(
-            "pointer-events-auto flex items-center justify-between gap-2 rounded-full border transition-all duration-300",
+            "flex items-center justify-between gap-2 rounded-full border transition-all duration-300",
             scrolled
               ? "bg-surface/85 backdrop-blur-xl border-border shadow-[0_10px_34px_-16px_rgba(20,21,21,0.45)] px-3 lg:px-4 py-2"
               : "bg-surface/70 backdrop-blur-md border-border/60 px-3 lg:px-4 py-2.5"
@@ -88,11 +88,11 @@ export function Header() {
 
           {/* CTA telefon */}
           <a
-            href={siteConfig.contact.phones[0].href}
+            href="tel:+48571309209"
             className="hidden lg:inline-flex items-center gap-2 rounded-full bg-brand text-white pl-4 pr-5 py-2.5 text-sm font-semibold hover:bg-brand-hover transition-colors shrink-0"
           >
             <Phone className="size-3.5" />
-            {siteConfig.contact.phones[0].displayValue}
+            571 309 209
           </a>
 
           {/* Mobile burger */}
@@ -108,7 +108,7 @@ export function Header() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="pointer-events-auto lg:hidden mt-2 rounded-3xl border border-border bg-surface/95 backdrop-blur-xl p-3 shadow-[0_12px_32px_-12px_rgba(20,21,21,0.25)]">
+          <div className="lg:hidden mt-2 rounded-3xl border border-border bg-surface/95 backdrop-blur-xl p-3 shadow-[0_12px_32px_-12px_rgba(20,21,21,0.25)]">
             <nav className="flex flex-col gap-1">
               {navItems.map((item) => {
                 const active = isActive(item.href);
@@ -127,11 +127,11 @@ export function Header() {
                 );
               })}
               <a
-                href={siteConfig.contact.phones[0].href}
+                href="tel:+48571309209"
                 className="mt-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-brand text-white px-4 py-3.5 text-sm font-semibold hover:bg-brand-hover transition-colors"
               >
                 <Phone className="size-4" />
-                {siteConfig.contact.phones[0].displayValue}
+                571 309 209
               </a>
             </nav>
           </div>

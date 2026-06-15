@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site";
 const stats = [
   { value: siteConfig.metrics.transactions, label: "Zrealizowanych transakcji" },
   { value: `${siteConfig.metrics.yearsActive}+`, label: "Lat doświadczenia" },
-  { value: "1600+", label: "Agentów w sieci NSL" },
+  { value: "2000+", label: "Agentów w sieci NSL" },
   { value: "95%", label: "Klientów z polecenia" },
 ];
 

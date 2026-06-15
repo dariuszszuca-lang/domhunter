@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const offer = [
-  "Dostęp do sieci NSL i bazy ponad 1600 agentów w Polsce",
+  "Dostęp do sieci NSL i bazy ponad 2000 agentów w Polsce",
   "Realne wsparcie marketingu, sesje zdjęciowe i profesjonalne oferty",
   "System CRM i narzędzia, które robią robotę za Ciebie",
   "Atrakcyjny podział prowizji i jasne zasady, bez gier",
@@ -27,7 +27,7 @@ const profile = [
 
 export default function PracaPage() {
   return (
-    <div className="pt-28 lg:pt-36">
+    <div className="pt-8 lg:pt-12">
       {/* Hero */}
       <section className="pb-16 lg:pb-24">
         <Container size="wide">

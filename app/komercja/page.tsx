@@ -36,7 +36,7 @@ export default function KomercjaPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 lg:pt-44 pb-20 overflow-hidden">
+      <section className="relative pt-10 lg:pt-16 pb-20 overflow-hidden">
         <div
           aria-hidden
           className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(196,48,119,0.10),transparent_55%)]"

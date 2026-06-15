@@ -13,7 +13,7 @@ const reasons = [
   {
     num: "02",
     title: "Off-market przez NSL",
-    body: "Należymy do sieci Nieruchomości Spod Lady — ponad 1600 agentów w Polsce. Masz dostęp do ofert, których nie zobaczysz na portalach.",
+    body: "Należymy do sieci Nieruchomości Spod Lady — ponad 2000 agentów w Polsce. Masz dostęp do ofert, których nie zobaczysz na portalach.",
     pull: "Najlepsze nieruchomości nigdy nie trafiają do publicznej sprzedaży.",
   },
   {

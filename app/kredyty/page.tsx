@@ -37,7 +37,7 @@ const benefits = [
 
 export default function KredytyPage() {
   return (
-    <div className="pt-28 lg:pt-36">
+    <div className="pt-8 lg:pt-12">
       {/* Hero */}
       <section className="pb-16 lg:pb-24">
         <Container size="wide">

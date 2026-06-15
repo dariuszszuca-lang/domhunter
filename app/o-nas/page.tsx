@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function ONasPage() {
   return (
     <>
-      <section className="relative pt-32 lg:pt-44 pb-20 overflow-hidden">
+      <section className="relative pt-10 lg:pt-16 pb-20 overflow-hidden">
         <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(196,48,119,0.08),transparent_55%)]" />
         <Container size="wide">
           <div className="grid lg:grid-cols-12 gap-10 items-end">
@@ -63,7 +63,7 @@ export default function ONasPage() {
               Nieruchomości <span className="italic">Spod Lady.</span>
             </h2>
             <p className="mt-7 text-lg text-foreground-muted leading-[1.55]">
-              Należymy do sieci NSL — największej w&nbsp;Polsce społeczności agentów rynku off-market. Ponad 1600 pośredników z&nbsp;całego kraju wymienia oferty, których nie ma w&nbsp;publicznych portalach. Dla Ciebie to bezpośredni dostęp do nieruchomości, które normalnie nigdy nie trafiłyby do Twoich rąk.
+              Należymy do sieci NSL — największej w&nbsp;Polsce społeczności agentów rynku off-market. Ponad 2000 pośredników z&nbsp;całego kraju wymienia oferty, których nie ma w&nbsp;publicznych portalach. Dla Ciebie to bezpośredni dostęp do nieruchomości, które normalnie nigdy nie trafiłyby do Twoich rąk.
             </p>
             <Link
               href={siteConfig.partners.nsl.url}

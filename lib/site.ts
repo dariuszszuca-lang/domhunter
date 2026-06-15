@@ -47,8 +47,8 @@ export const siteConfig = {
 
   /** Liczby na hero. Placeholdery do potwierdzenia */
   metrics: {
-    yearsActive: new Date().getFullYear() - 2020,
-    transactions: "300+",
+    yearsActive: 13,
+    transactions: "600+",
     rating: "5.0",
     teamSize: 11,
   },
@@ -58,7 +58,7 @@ export const siteConfig = {
     nsl: {
       name: "Nieruchomości Spod Lady",
       url: "https://nieruchomoscispodlady.pl",
-      description: "Sieć off-market 1600+ agentów w Polsce",
+      description: "Sieć off-market 2000+ agentów w Polsce",
     },
   },
 } as const;

@@ -18,7 +18,7 @@ export default function ZespolPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative pt-32 lg:pt-44 pb-12 lg:pb-20 overflow-hidden">
+      <section className="relative pt-10 lg:pt-16 pb-12 lg:pb-20 overflow-hidden">
         <div
           aria-hidden
           className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(153,26,117,0.10),transparent_55%),radial-gradient(ellipse_at_bottom_left,rgba(196,48,119,0.06),transparent_60%)]"

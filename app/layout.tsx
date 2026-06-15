@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
@@ -102,7 +103,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(realEstateAgentSchema) }}
         />
-        <Header />
+        <Suspense fallback={<div aria-hidden className="h-16 lg:h-20" />}>
+          <Header />
+        </Suspense>
         <main>{children}</main>
         <Footer />
         <CookieBanner />

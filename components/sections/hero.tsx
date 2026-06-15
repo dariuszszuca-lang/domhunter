@@ -86,7 +86,7 @@ export function Hero() {
           >
             <div className="relative aspect-[3/2] overflow-hidden rounded-[16px] bg-foreground/5">
               <Image
-                src="/images/hero-team.jpg"
+                src="/images/zespol-trojmiasto.jpg"
                 alt="Zespół Dom Hunter Nieruchomości w Gdańsku"
                 fill
                 sizes="(min-width: 1024px) 46vw, 100vw"

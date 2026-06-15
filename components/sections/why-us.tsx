@@ -128,7 +128,7 @@ export function OnasContent() {
               <div className="relative overflow-hidden rounded-[28px] border border-border bg-surface p-2 shadow-soft">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-[22px]">
                   <Image
-                    src="/images/hero-team.jpg"
+                    src="/images/zespol-trojmiasto.jpg"
                     alt="Zespół Dom Hunter, trzy agentki przy laptopie podczas pracy nad ofertą"
                     fill
                     priority
@@ -167,7 +167,7 @@ export function OnasContent() {
             >
               <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] border border-border shadow-soft sm:aspect-[5/4] lg:aspect-[4/5]">
                 <Image
-                  src="/images/hero-team.jpg"
+                  src="/images/zespol-trojmiasto.jpg"
                   alt="Zespół Dom Hunter podczas pracy nad ofertą"
                   fill
                   sizes="(min-width: 1024px) 46vw, 100vw"

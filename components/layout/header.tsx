@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { Menu, Phone, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site";
@@ -42,6 +42,7 @@ const socials = [
 
 export function Header() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -53,8 +54,13 @@ export function Header() {
   }, []);
 
   const isActive = (href: string) => {
-    const base = href.split("?")[0];
-    return base !== "/" && pathname.startsWith(base);
+    const [base, query] = href.split("?");
+    if (base === "/" || !pathname.startsWith(base)) return false;
+    if (query) {
+      const want = new URLSearchParams(query).get("transakcja");
+      if (want) return searchParams.get("transakcja") === want;
+    }
+    return true;
   };
 
   return (

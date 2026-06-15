@@ -41,8 +41,8 @@ export function Services() {
             <div className="relative mt-8 overflow-hidden rounded-[24px] border border-border">
               <div className="relative aspect-[5/4]">
                 <Image
-                  src="/images/who-we-are.jpg"
-                  alt="Zespół Dom Hunter — biuro nieruchomości w Trójmieście"
+                  src="/images/uslugi-handshake.jpg"
+                  alt="Agenci Dom Hunter podczas finalizacji transakcji"
                   fill
                   sizes="(min-width: 1024px) 42vw, 100vw"
                   className="object-cover object-center"
@@ -53,7 +53,7 @@ export function Services() {
                 className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-foreground/60 to-transparent"
               />
               <p className="absolute bottom-4 left-5 right-5 font-display text-lg leading-tight text-white">
-                Zespół, który zna Trójmiasto na pamięć.
+                Od pierwszego telefonu po podpis umowy.
               </p>
             </div>
           </div>

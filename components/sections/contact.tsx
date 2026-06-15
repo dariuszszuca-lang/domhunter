@@ -2,129 +2,48 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, ArrowRight, Clock } from "lucide-react";
+import { Phone, PenLine } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { siteConfig } from "@/lib/site";
 
 export function Contact() {
   return (
-    <section className="relative overflow-hidden bg-surface-cream py-24 lg:py-32">
+    <section className="bg-surface-cream py-24 lg:py-32">
       <Container size="wide">
-        <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-16">
-          {/* Lewa — main copy */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7"
-          >
-            <div className="mb-5 inline-flex items-center rounded-full border border-border bg-surface-muted px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-normal text-foreground">
-              Kontakt
-            </div>
-            <h2 className="font-display font-normal text-[clamp(2rem,4.2vw,3.4rem)] leading-[1.04] tracking-[-0.01em] text-foreground">
-              Skontaktuj się z nami
-            </h2>
-            <p className="mt-7 text-lg text-foreground-muted leading-[1.55] max-w-xl">
-              Bezpłatna rozmowa, bez zobowiązań. Słuchamy najpierw, potem ustalamy plan działania. Oddzwaniamy w&nbsp;30 minut w&nbsp;godzinach pracy biura.
-            </p>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto max-w-2xl text-center"
+        >
+          <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
+            Kontakt
+          </p>
+          <h2 className="font-display font-normal text-[clamp(2.2rem,5vw,3.8rem)] leading-[1.03] tracking-[-0.01em] text-foreground">
+            Zadzwoń lub <span className="italic text-brand">napisz.</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-lg text-lg leading-[1.55] text-foreground-muted">
+            Najprościej, jak się da. Odezwij się, a resztą zajmiemy się my.
+          </p>
 
-            <div className="mt-10 flex flex-wrap gap-3">
-              <a
-                href={siteConfig.contact.phones[0].href}
-                className="group inline-flex items-center gap-2.5 rounded-full bg-brand py-2 pl-7 pr-3 text-sm font-semibold text-white transition-all hover:bg-brand-hover"
-              >
-                <Phone className="size-4" />
-                Zadzwoń teraz
-                <span className="inline-flex items-center justify-center size-9 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors">
-                  <ArrowRight className="size-4" />
-                </span>
-              </a>
-              <Link
-                href="/kontakt"
-                className="inline-flex items-center gap-2.5 rounded-full border border-border-strong px-6 py-3.5 text-sm font-semibold text-foreground transition-all hover:border-foreground hover:bg-surface-muted"
-              >
-                Formularz kontaktowy
-              </Link>
-            </div>
-          </motion.div>
-
-          {/* Prawa — info cards */}
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 space-y-4"
-          >
-            <InfoCard
-              icon={Phone}
-              label="Telefon"
-              value={siteConfig.contact.phones[0].displayValue}
-              href={siteConfig.contact.phones[0].href}
-              featured
-            />
-            <InfoCard
-              icon={Mail}
-              label="E-mail"
-              value={siteConfig.contact.email}
-              href={`mailto:${siteConfig.contact.email}`}
-            />
-            <InfoCard
-              icon={MapPin}
-              label="Lokalizacja"
-              value={siteConfig.address.city + " · Trójmiasto"}
-            />
-            <InfoCard
-              icon={Clock}
-              label="Odpowiedź"
-              value="W 30 minut w godzinach pracy"
-            />
-          </motion.div>
-        </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <a
+              href="tel:+48571309209"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-brand px-7 py-4 text-sm font-semibold text-white shadow-[0_16px_34px_-14px] shadow-brand/60 transition-all hover:-translate-y-0.5"
+            >
+              <Phone className="size-4" />
+              Zadzwoń
+            </a>
+            <Link
+              href="/kontakt"
+              className="inline-flex items-center gap-2.5 rounded-full border border-border-strong px-7 py-4 text-sm font-semibold text-foreground transition-all hover:border-brand hover:text-brand"
+            >
+              <PenLine className="size-4" />
+              Napisz
+            </Link>
+          </div>
+        </motion.div>
       </Container>
     </section>
   );
-}
-
-function InfoCard({
-  icon: Icon,
-  label,
-  value,
-  href,
-  featured,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  value: string;
-  href?: string;
-  featured?: boolean;
-}) {
-  const inner = (
-    <div
-      className={`group flex items-center gap-5 rounded-2xl p-5 lg:p-6 border transition-all ${
-        featured
-          ? "bg-brand text-white border-brand hover:bg-brand-hover hover:border-brand-hover"
-          : "bg-surface border-border hover:border-brand"
-      }`}
-    >
-      <span
-        className={`inline-flex items-center justify-center size-12 rounded-xl shrink-0 ${
-          featured ? "bg-white/20 text-white" : "bg-brand-light text-brand"
-        }`}
-      >
-        <Icon className="size-5" />
-      </span>
-      <div className="flex-1 min-w-0">
-        <p className={`mb-1 text-[11px] font-semibold uppercase tracking-normal ${featured ? "text-white/70" : "text-foreground-subtle"}`}>
-          {label}
-        </p>
-        <p className={`text-lg font-medium ${featured ? "text-white" : "text-foreground"} truncate`}>
-          {value}
-        </p>
-      </div>
-    </div>
-  );
-
-  return href ? <a href={href}>{inner}</a> : inner;
 }

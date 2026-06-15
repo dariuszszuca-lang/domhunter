@@ -16,8 +16,6 @@ const navItems = [
   { label: "Komercja", href: "/komercja" },
   { label: "Wycena", href: "/wycena" },
   { label: "O firmie", href: "/o-nas" },
-  { label: "Kredyty", href: "/kredyty" },
-  { label: "Praca", href: "/praca" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 

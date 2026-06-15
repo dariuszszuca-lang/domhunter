@@ -9,9 +9,7 @@ type MemberPhotoProps = {
   className?: string;
   imageClassName?: string;
   /**
-   * Wymusza elegancki monogram zamiast zdjęcia.
-   * Zdjęcia agentów z Esti są małe i pikselowe, więc na gridzie
-   * pokazujemy spójne, markowe awatary z inicjałami.
+   * Wymusza elegancki monogram zamiast zdjęcia (fallback dla osób bez zdjęcia HD).
    */
   forceMonogram?: boolean;
 };

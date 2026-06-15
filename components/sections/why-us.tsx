@@ -34,22 +34,8 @@ const memberBlurbs: Record<string, string> = {
     "Spokojnie przeprowadzi Cię przez całą transakcję, od pierwszej rozmowy po klucze w dłoni.",
   "agnieszka-bodanka":
     "Mieszkania i wynajem to jej żywioł. Klienci chwalą ją za cierpliwość i konkretne podejście.",
-  "piotr-mieczan":
-    "Zna trójmiejski rynek od podszewki i wie, kiedy warto kupić, a kiedy jeszcze poczekać.",
   "anna-malez":
     "Doradza przy kupnie i sprzedaży tak, jakby chodziło o jej własne mieszkanie.",
-  "sylwia-kojto-labuda":
-    "Dba o każdy szczegół umowy i o to, żeby po drugiej stronie nie było żadnych niespodzianek.",
-  "mateusz-licznerski":
-    "Łączy ludzi z odpowiednią nieruchomością i pilnuje terminów od początku do końca.",
-  "lukasz-ecimowicz":
-    "Pomaga kupującym i sprzedającym dogadać się na warunkach, które są dobre dla obu stron.",
-  "mateusz-wasilewski":
-    "Sprawnie prowadzi sprzedaż i wynajem, zawsze z telefonem pod ręką dla klienta.",
-  "lucja-laskowska":
-    "Cierpliwie tłumaczy każdy krok i jest obok aż do podpisania aktu.",
-  "karolina-ciesielska":
-    "Z uśmiechem pomoże znaleźć mieszkanie albo dom, który po prostu pasuje.",
 };
 
 const values = [
@@ -266,7 +252,6 @@ export function OnasContent() {
                   <div className="relative border-b border-border/70">
                     <MemberPhoto
                       member={member}
-                      forceMonogram
                       sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
                       className="aspect-[5/4] w-full"
                     />

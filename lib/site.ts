@@ -50,7 +50,7 @@ export const siteConfig = {
     yearsActive: 13,
     transactions: "600+",
     rating: "5.0",
-    teamSize: 11,
+    teamSize: 4,
   },
 
   /** Powiązania z ekosystemem Sylwii */

@@ -37,9 +37,9 @@ export function Hero() {
             </p>
 
             <h1 className="mt-5 font-display font-normal text-[clamp(2.6rem,6vw,5rem)] leading-[1.04] tracking-[-0.01em] text-foreground">
-              Ludzie z Trójmiasta,
+              Twój agent nieruchomości
               <br />
-              <span className="italic text-brand">nie z portali.</span>
+              <span className="italic text-brand">w Trójmieście.</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-base lg:text-lg text-foreground-muted leading-[1.6]">

@@ -58,10 +58,10 @@ export function Header() {
             <Image
               src="/images/logo/dom-hunter-bez-sygnetu.png"
               alt="Dom Hunter Nieruchomości"
-              width={200}
-              height={42}
+              width={235}
+              height={80}
               priority
-              className="h-7 lg:h-8 w-auto"
+              className="h-10 lg:h-12 w-auto"
             />
           </Link>
 

@@ -14,9 +14,6 @@ export function OfficeBento() {
             <br />
             <span className="italic text-brand">Gdańsk, Jana Pawła II.</span>
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-foreground-muted lg:text-lg">
-            Jasna, nowoczesna przestrzeń w Gdańsku. Świeżo, na luzie, bez korporacyjnej sztywności.
-          </p>
         </div>
 
         <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">

@@ -15,9 +15,9 @@ import type { OfferFilters, OfferTransaction, OfferType, OfferMarket } from "@/l
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Oferty nieruchomości. Trójmiasto",
+  title: "Oferty nieruchomości Gdańsk i Trójmiasto. Dom Hunter",
   description:
-    "Aktualne oferty mieszkań, domów, działek i lokali w Gdyni, Sopocie i Gdańsku. Sprzedaż, wynajem. Dane aktualizowane co godzinę z naszego CRM.",
+    "Aktualne oferty mieszkań, domów, działek i lokali na sprzedaż i wynajem w Gdańsku, Gdyni i Sopocie. Sprawdź ceny, metraże i zdjęcia. Baza odświeżana codziennie.",
 };
 
 type SearchParams = Promise<Record<string, string | undefined>>;

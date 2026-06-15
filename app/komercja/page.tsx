@@ -4,8 +4,9 @@ import { ArrowRight, Building, Briefcase, Warehouse, Hotel } from "lucide-react"
 import { Container } from "@/components/ui/container";
 
 export const metadata: Metadata = {
-  title: "Komercja — Biura, lokale, magazyny",
-  description: "Pośrednictwo w obrocie nieruchomościami komercyjnymi w Trójmieście. Biura, lokale handlowe, magazyny, pensjonaty.",
+  title: "Nieruchomości komercyjne Trójmiasto i Gdańsk",
+  description:
+    "Dom Hunter pośredniczy w obrocie nieruchomościami komercyjnymi w Gdańsku i całym Trójmieście. Biura, lokale handlowe, magazyny, hale, grunty inwestycyjne. Wycena, prezentacja, negocjacje, dokumenty.",
 };
 
 const segments = [
@@ -46,12 +47,12 @@ export default function KomercjaPage() {
               Komercja
             </p>
             <h1 className="font-sans font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.025em] text-foreground">
-              Nieruchomości
+              Nieruchomości komercyjne
               <br />
-              <span className="italic text-brand">komercyjne.</span>
+              <span className="italic text-brand">w Trójmieście.</span>
             </h1>
             <p className="mt-8 text-lg lg:text-xl text-foreground-muted leading-[1.55] max-w-2xl">
-              Dedykowany agent dla każdego segmentu. Znamy lokalne realia, mamy bazę najemców i właścicieli z całego Trójmiasta. Wycena, prezentacja, negocjacje, dokumenty.
+              Biura, lokale handlowe, magazyny i grunty inwestycyjne w Gdańsku, Gdyni, Sopocie i okolicy. Dla każdego segmentu prowadzi Cię osobny agent, który zna lokalne realia i ma bazę najemców oraz właścicieli z całego Trójmiasta. Wycena, prezentacja, negocjacje, dokumenty.
             </p>
             <Link
               href="/kontakt"

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, Phone, X } from "lucide-react";
+import { Facebook, Instagram, Menu, Phone, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -17,6 +17,11 @@ const navItems = [
   { label: "Wycena", href: "/wycena" },
   { label: "O firmie", href: "/o-nas" },
   { label: "Kontakt", href: "/kontakt" },
+];
+
+const socials = [
+  { label: "Facebook", href: "https://www.facebook.com/DomHunterPolska/", Icon: Facebook },
+  { label: "Instagram", href: "https://www.instagram.com/domhunter_nieruchomosci/", Icon: Instagram },
 ];
 
 export function Header() {
@@ -84,14 +89,28 @@ export function Header() {
             })}
           </nav>
 
-          {/* CTA telefon */}
-          <a
-            href="tel:+48571309209"
-            className="hidden lg:inline-flex items-center gap-2 rounded-full bg-brand text-white pl-4 pr-5 py-2.5 text-sm font-semibold hover:bg-brand-hover transition-colors shrink-0"
-          >
-            <Phone className="size-3.5" />
-            571 309 209
-          </a>
+          {/* Social + CTA telefon */}
+          <div className="hidden lg:flex items-center gap-2 shrink-0">
+            {socials.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="inline-flex size-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-brand hover:bg-brand hover:text-white"
+              >
+                <Icon className="size-[18px]" strokeWidth={1.9} />
+              </a>
+            ))}
+            <a
+              href="tel:+48571309209"
+              className="inline-flex items-center gap-2 rounded-full bg-brand text-white pl-4 pr-5 py-2.5 text-sm font-semibold hover:bg-brand-hover transition-colors"
+            >
+              <Phone className="size-3.5" />
+              571 309 209
+            </a>
+          </div>
 
           {/* Mobile burger */}
           <button
@@ -131,6 +150,20 @@ export function Header() {
                 <Phone className="size-4" />
                 571 309 209
               </a>
+              <div className="mt-3 flex items-center justify-center gap-3">
+                {socials.map(({ label, href, Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="inline-flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-brand hover:bg-brand hover:text-white"
+                  >
+                    <Icon className="size-5" strokeWidth={1.9} />
+                  </a>
+                ))}
+              </div>
             </nav>
           </div>
         )}

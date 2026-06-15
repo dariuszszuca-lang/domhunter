@@ -27,16 +27,20 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — Lokalne biuro nieruchomości w Gdańsku`,
+    default: `${siteConfig.name}, biuro nieruchomości w Gdańsku i Trójmieście`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
+    "biuro nieruchomości Gdańsk",
     "nieruchomości Gdańsk",
     "biuro nieruchomości Trójmiasto",
     "sprzedaż mieszkań Gdańsk",
-    "wynajem Gdańsk",
-    "komercja Trójmiasto",
+    "kupno mieszkania Gdańsk",
+    "wynajem mieszkań Gdańsk",
+    "wycena nieruchomości Gdańsk",
+    "agent nieruchomości Trójmiasto",
+    "nieruchomości komercyjne Trójmiasto",
     "DomHunter",
   ],
   authors: [{ name: siteConfig.name }],
@@ -56,12 +60,48 @@ export const metadata: Metadata = {
   },
 };
 
+// Dane strukturalne (JSON-LD) dla wyszukiwarek i czatów AI.
+const realEstateAgentSchema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  name: "Dom Hunter Biuro Nieruchomości",
+  description: siteConfig.description,
+  url: siteConfig.url,
+  image: `${siteConfig.url}${siteConfig.ogImage}`,
+  telephone: "+48585334323",
+  email: siteConfig.contact.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "ul. Jana Pawła II 6e/5",
+    postalCode: "80-462",
+    addressLocality: "Gdańsk",
+    addressCountry: "PL",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: siteConfig.geo.latitude,
+    longitude: siteConfig.geo.longitude,
+  },
+  areaServed: [
+    { "@type": "City", name: "Gdańsk" },
+    { "@type": "City", name: "Gdynia" },
+    { "@type": "City", name: "Sopot" },
+    { "@type": "Place", name: "Trójmiasto" },
+  ],
+  taxID: "9571073617",
+  vatID: "PL9571073617",
+} as const;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pl" className={`${manrope.variable} ${playfair.variable}`}>
       <body className="min-h-screen bg-background text-foreground antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(realEstateAgentSchema) }}
+        />
         <Header />
         <main>{children}</main>
         <Footer />

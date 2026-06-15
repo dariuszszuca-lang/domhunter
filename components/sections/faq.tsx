@@ -16,8 +16,8 @@ const faqs = [
     a: "Średnio 4-6 tygodni od podpisania umowy z nami do aktu notarialnego. Czas zależy od ceny rynkowej, stanu mieszkania i lokalizacji. Wycena na początku ustala realny harmonogram.",
   },
   {
-    q: "Co to są oferty off-market?",
-    a: "Oferty, których nie ma na portalach jak Otodom czy Morizon. Sprzedający z różnych powodów chcą dyskrecji i sprzedają w gronie znanych pośredników. Mamy do nich dostęp przez sieć NSL (2000+ agentów w Polsce).",
+    q: "Co to są oferty spoza ogłoszeń?",
+    a: "To oferty, których nie ma na portalach jak Otodom czy Morizon. Sprzedający z różnych powodów chcą dyskrecji i sprzedają w gronie znanych pośredników. Mówi się o nich potocznie oferty spod lady. Mamy do nich dostęp przez sieć NSL, czyli ponad 2000 agentów w Polsce.",
   },
   {
     q: "Czy darmowa wycena rzeczywiście jest darmowa?",
@@ -31,13 +31,38 @@ const faqs = [
     q: "Pomagacie z kredytem hipotecznym?",
     a: "Tak. Współpracujemy z niezależnymi doradcami kredytowymi. Sprawdzimy Twoją zdolność i porównamy oferty banków. Doradca jest opłacany przez bank, dla Ciebie bezpłatny.",
   },
+  {
+    q: "Jakie dokumenty są potrzebne do sprzedaży mieszkania?",
+    a: "Podstawa to akt własności, czyli akt notarialny zakupu albo postanowienie o nabyciu spadku, oraz numer księgi wieczystej. Przy spółdzielczym prawie dochodzi zaświadczenie ze spółdzielni. Resztą zajmujemy się my: skompletujemy zaświadczenia, sprawdzimy stan prawny i przygotujemy dokumenty do notariusza.",
+  },
+  {
+    q: "Pomagacie też przy zakupie nieruchomości, nie tylko przy sprzedaży?",
+    a: "Tak. Reprezentujemy kupujących w całym Trójmieście. Słuchamy Twoich kryteriów i budżetu, szukamy mieszkań, domów i działek, także tych spoza portali, organizujemy pokazy i pomagamy negocjować cenę. Prowadzimy Cię aż do aktu notarialnego.",
+  },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.a,
+    },
+  })),
+};
 
 export function FAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
     <section className="py-20 lg:py-28">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Container size="wide">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           {/* Lewa — intro sticky */}

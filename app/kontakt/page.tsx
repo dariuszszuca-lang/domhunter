@@ -3,9 +3,9 @@ import { Contact } from "@/components/sections/contact";
 import { OfficeBento } from "@/components/sections/office-bento";
 
 export const metadata: Metadata = {
-  title: "Kontakt",
+  title: "Kontakt, biuro nieruchomości Dom Hunter w Gdańsku",
   description:
-    "Skontaktuj się z Dom Hunter Nieruchomości. Biuro przy ul. Grunwaldzkiej 82 w Gdańsku Wrzeszczu, telefon, e-mail, godziny otwarcia i mapa dojazdu.",
+    "Skontaktuj się z biurem nieruchomości Dom Hunter w Gdańsku. Zadzwoń pod 58 533 43 23 albo napisz, a agent odpowie na pytania o kupno, sprzedaż lub wynajem w Trójmieście.",
 };
 
 export default function KontaktPage() {

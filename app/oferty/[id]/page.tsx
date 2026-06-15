@@ -22,6 +22,7 @@ import { MemberPhoto } from "@/components/team/member-photo";
 import { getOfferById } from "@/lib/esti/store";
 import { getMemberBySlug, getMemberByName } from "@/lib/team";
 import { siteConfig } from "@/lib/site";
+import type { Offer } from "@/lib/esti/types";
 import {
   formatPrice,
   formatPricePerSqm,
@@ -36,23 +37,89 @@ export const dynamic = "force-dynamic";
 
 type Params = Promise<{ id: string }>;
 
+/** Lokalizacja w jednym zdaniu, od najbardziej szczegółowej do miasta. */
+function offerLocation(o: Offer): string {
+  return [o.district, o.city].filter(Boolean).join(", ");
+}
+
+/** Opisowy alt zdjęcia z typem nieruchomości i lokalizacją. */
+function offerImageAlt(o: Offer, position?: string): string {
+  const base = `${typeLabel(o)}, ${transactionLabels[o.transaction].toLowerCase()}, ${offerLocation(o)}`;
+  return position ? `${base}. ${position}` : base;
+}
+
+/** Tytuł meta: oferta plus cena, gdy się zmieści. */
+function offerMetaTitle(o: Offer): string {
+  const base = offerTitle(o);
+  const withPrice = `${base}, ${formatPrice(o.price)}`;
+  return withPrice.length <= 65 ? withPrice : base;
+}
+
+/** Opis meta z realnych pól oferty (bez zmyślania). */
+function offerMetaDescription(o: Offer): string {
+  if (o.shortDescription) return o.shortDescription.slice(0, 160);
+
+  const parts: string[] = [
+    `${typeLabel(o)} na ${o.transaction === "najem" ? "wynajem" : "sprzedaż"}`,
+    offerLocation(o),
+    `powierzchnia ${formatArea(o.area)}`,
+  ];
+  if (o.rooms !== undefined) {
+    parts.push(`${o.rooms} ${o.rooms === 1 ? "pokój" : o.rooms < 5 ? "pokoje" : "pokoi"}`);
+  }
+  parts.push(`cena ${formatPrice(o.price)}`);
+
+  let desc = parts.join(", ") + ". Sprawdź zdjęcia i szczegóły, umów oglądanie z Dom Hunter.";
+  if (desc.length > 160 && o.description) {
+    desc = parts.join(", ") + ".";
+  }
+  return desc.slice(0, 160);
+}
+
+/** Naturalny opis zastępczy z realnych pól, gdy oferta nie ma własnego opisu. */
+function fallbackDescription(o: Offer): string {
+  const zd = []; // zdania
+  const lokal = offerLocation(o);
+  const typ = typeLabel(o).toLowerCase();
+  const cel = o.transaction === "najem" ? "do wynajęcia" : "na sprzedaż";
+
+  zd.push(`Prezentujemy ${typ} ${cel} w lokalizacji ${lokal}.`);
+
+  const detale: string[] = [`powierzchnia to ${formatArea(o.area)}`];
+  if (o.rooms !== undefined) {
+    detale.push(`${o.rooms} ${o.rooms === 1 ? "pokój" : o.rooms < 5 ? "pokoje" : "pokoi"}`);
+  }
+  if (o.floor !== undefined && o.type === "mieszkanie") {
+    detale.push(o.floor === 0 ? "parter" : `piętro ${o.floor}`);
+  }
+  if (o.landArea) detale.push(`działka ${formatArea(o.landArea)}`);
+  if (o.yearBuilt) detale.push(`rok budowy ${o.yearBuilt}`);
+  if (o.state) detale.push(`stan: ${o.state.toLowerCase()}`);
+  zd.push(`Najważniejsze parametry: ${detale.join(", ")}.`);
+
+  zd.push(
+    `Cena wynosi ${formatPrice(o.price)}${o.transaction === "najem" ? " miesięcznie" : ""}. Chętnie pokażemy nieruchomość i odpowiemy na pytania. Zadzwoń lub zostaw kontakt.`,
+  );
+  return zd.join(" ");
+}
+
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { id } = await params;
   const offer = await getOfferById(id);
   if (!offer) return { title: "Oferta nie znaleziona" };
 
+  const title = offerMetaTitle(offer);
+  const description = offerMetaDescription(offer);
+
   return {
-    title: offerTitle(offer),
-    description:
-      offer.shortDescription ??
-      offer.description?.slice(0, 160) ??
-      `${typeLabels[offer.type]} ${transactionLabels[offer.transaction].toLowerCase()}, ${formatArea(offer.area)}, ${offer.city}.`,
+    title,
+    description,
     openGraph: {
-      title: offerTitle(offer),
-      description: offer.description?.slice(0, 200),
+      title,
+      description,
       images: offer.images.slice(0, 1).map((img) => ({
         url: img.url,
-        alt: img.alt ?? offerTitle(offer),
+        alt: img.alt ?? offerImageAlt(offer),
       })),
     },
   };
@@ -75,20 +142,47 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
   const primary = offer.images.find((i) => i.primary) ?? offer.images[0];
   const gallery = offer.images.filter((i) => i !== primary);
 
-  // RealEstateListing JSON-LD
-  const schema = {
+  // Dane strukturalne JSON-LD. Tylko realne pola oferty, bez zmyślania.
+  const canonicalUrl = `${siteConfig.url}/oferty/${offer.id}`;
+
+  const address: Record<string, unknown> = {
+    "@type": "PostalAddress",
+    addressLocality: offer.city,
+    addressCountry: "PL",
+  };
+  if (offer.district) address.addressRegion = offer.district;
+  if (offer.street) address.streetAddress = offer.street;
+
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
-    "@type": offer.transaction === "najem" ? "RentAction" : "SellAction",
+    "@type": ["Product", "RealEstateListing"],
     name: offerTitle(offer),
-    description: offer.description,
-    image: offer.images.map((i) => i.url),
+    url: canonicalUrl,
+    address,
     offers: {
       "@type": "Offer",
       price: offer.price,
       priceCurrency: "PLN",
       availability: "https://schema.org/InStock",
+      url: canonicalUrl,
+      businessFunction:
+        offer.transaction === "najem"
+          ? "http://purl.org/goodrelations/v1#LeaseOut"
+          : "http://purl.org/goodrelations/v1#Sell",
     },
   };
+
+  if (offer.description) schema.description = offer.description;
+  if (offer.images.length > 0) schema.image = offer.images.map((i) => i.url);
+  if (offer.area) {
+    schema.floorSize = { "@type": "QuantitativeValue", value: offer.area, unitCode: "MTK" };
+  }
+  if (offer.rooms !== undefined) schema.numberOfRooms = offer.rooms;
+  if (offer.yearBuilt) schema.yearBuilt = offer.yearBuilt;
+  if (offer.offerNumber) schema.sku = offer.offerNumber;
+  if (offer.lat !== undefined && offer.lng !== undefined) {
+    schema.geo = { "@type": "GeoCoordinates", latitude: offer.lat, longitude: offer.lng };
+  }
 
   return (
     <>
@@ -114,7 +208,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
                 {primary && (
                   <Image
                     src={primary.url}
-                    alt={primary.alt ?? offerTitle(offer)}
+                    alt={primary.alt ?? offerImageAlt(offer, "zdjęcie główne")}
                     fill
                     sizes="(min-width: 1024px) 75vw, 100vw"
                     className="object-cover"
@@ -127,7 +221,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
                   <div key={i} className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100">
                     <Image
                       src={img.url}
-                      alt={img.alt ?? ""}
+                      alt={img.alt ?? offerImageAlt(offer, `zdjęcie ${i + 2}`)}
                       fill
                       sizes="25vw"
                       className="object-cover"
@@ -280,7 +374,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
                       >
                         <Image
                           src={img.url}
-                          alt={img.alt ?? ""}
+                          alt={img.alt ?? offerImageAlt(offer, `zdjęcie ${i + 5}`)}
                           fill
                           sizes="(min-width: 1024px) 25vw, 50vw"
                           className="object-cover"

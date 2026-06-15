@@ -8,7 +8,7 @@ import type { Offer } from "@/lib/esti/types";
 
 // Fallback sample data — gdy ESTI jeszcze nie podpięte
 const sampleOffers = [
-  { id: "s1", image: "/images/properties/sample-1.jpg", badge: "Na sprzedaż", title: "Apartament premium", location: "Wrzeszcz, Gdańsk", price: "899 000 zł", beds: 3, baths: 2, area: "52 m²" },
+  { id: "s1", image: "/images/properties/sample-1.jpg", badge: "Na sprzedaż", title: "Apartament z widokiem", location: "Wrzeszcz, Gdańsk", price: "899 000 zł", beds: 3, baths: 2, area: "52 m²" },
   { id: "s2", image: "/images/properties/sample-2.jpg", badge: "Na wynajem", title: "Lokal biurowy", location: "Kowale, Gdańsk", price: "2 840 zł/mc", beds: 1, baths: 1, area: "60 m²" },
   { id: "s3", image: "/images/properties/sample-3.jpg", badge: "Inwestycja", title: "Mieszkanie 2-pokojowe", location: "Morena, Gdańsk", price: "576 000 zł", beds: 2, baths: 1, area: "49 m²" },
   { id: "s4", image: "/images/properties/sample-4.jpg", badge: "Na sprzedaż", title: "Komfortowe mieszkanie", location: "Suchanino, Gdańsk", price: "475 000 zł", beds: 2, baths: 1, area: "42 m²" },
@@ -29,10 +29,10 @@ export async function FeaturedOffers() {
             Nieruchomości
           </div>
           <h2 className="font-display font-normal text-[clamp(2rem,4.2vw,3.4rem)] leading-[1.04] tracking-[-0.01em] text-foreground">
-            Aktualne oferty z Trójmiasta
+            Mieszkania, domy i działki na sprzedaż w Trójmieście
           </h2>
           <p className="mt-6 max-w-xl text-base lg:text-lg text-foreground-muted leading-[1.55]">
-            Aktualizujemy bazę codziennie. Pełna lista z&nbsp;filtrami w&nbsp;zakładce <Link href="/oferty" className="underline underline-offset-2 text-foreground hover:text-brand">Oferty</Link>.
+            Aktualne oferty nieruchomości w Gdańsku, Gdyni i Sopocie. Bazę aktualizujemy codziennie. Pełna lista z&nbsp;filtrami jest w&nbsp;zakładce <Link href="/oferty" className="underline underline-offset-2 text-foreground hover:text-brand">Oferty</Link>.
           </p>
         </div>
 

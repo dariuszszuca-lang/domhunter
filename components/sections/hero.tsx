@@ -42,9 +42,10 @@ export function Hero() {
               <span className="italic text-brand">nie z portali.</span>
             </h1>
 
-            <p className="mt-6 max-w-lg text-base lg:text-lg text-foreground-muted leading-[1.6]">
-              Kupno, sprzedaż i wynajem prowadzone przez ludzi, którzy znają te ulice na pamięć.
-              Bez automatów, z prawdziwą opieką na każdym etapie.
+            <p className="mt-6 max-w-xl text-base lg:text-lg text-foreground-muted leading-[1.6]">
+              Pomagamy kupić, sprzedać i wynająć mieszkania, domy i działki w Gdańsku, Gdyni
+              i Sopocie. Jeden agent prowadzi Twoją sprawę od pierwszej rozmowy do aktu
+              u notariusza.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">

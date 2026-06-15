@@ -16,7 +16,6 @@ export function OfficeBento() {
           </h2>
           <p className="mt-5 text-base leading-relaxed text-foreground-muted lg:text-lg">
             Jasna, nowoczesna przestrzeń w Gdańsku. Świeżo, na luzie, bez korporacyjnej sztywności.
-            Pierwsza kawa na nasz koszt.
           </p>
         </div>
 

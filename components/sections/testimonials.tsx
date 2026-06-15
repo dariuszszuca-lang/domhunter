@@ -113,12 +113,13 @@ export function Testimonials() {
         .dh-track { animation-duration: 48s; animation-timing-function: linear; animation-iteration-count: infinite; will-change: transform; }
         .dh-track-l { animation-name: dh-marquee-l; }
         .dh-track-r { animation-name: dh-marquee-r; }
-        .dh-marquee:hover .dh-track { animation-play-state: paused; }
+        @media (hover: hover) and (pointer: fine) {
+          .dh-marquee:hover .dh-track { animation-play-state: paused; }
+        }
         .dh-marquee {
           -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
           mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
         }
-        @media (prefers-reduced-motion: reduce) { .dh-track { animation: none; } }
       `}</style>
 
       <Container size="wide">

@@ -11,8 +11,8 @@ import { cn } from "@/lib/utils";
 
 // Jednolite menu — identyczne na każdej podstronie. Bez "Home" (logo wraca na główną).
 const navItems = [
-  { label: "Kup", href: "/oferty?typ=sprzedaz" },
-  { label: "Wynajmij", href: "/oferty?typ=wynajem" },
+  { label: "Kup", href: "/oferty?transakcja=sprzedaz" },
+  { label: "Wynajmij", href: "/oferty?transakcja=najem" },
   { label: "Komercja", href: "/komercja" },
   { label: "Wycena", href: "/wycena" },
   { label: "O firmie", href: "/o-nas" },

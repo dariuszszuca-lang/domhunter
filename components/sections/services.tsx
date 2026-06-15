@@ -1,4 +1,4 @@
-/* Premium ciemna sekcja usług — editorial row-list na ink, serif + magenta */
+/* Jasna, spójna sekcja usług — editorial lista (intro + rzędy), serif + magenta */
 "use client";
 
 import { motion } from "framer-motion";
@@ -9,61 +9,63 @@ const services = [
   { icon: Home, title: "Sprzedaż nieruchomości", body: "Profesjonalne przygotowanie oferty, dotarcie do kupujących, pełna obsługa do aktu notarialnego." },
   { icon: Users, title: "Reprezentacja kupującego", body: "Prowadzimy Cię przez proces zakupu, dbając o Twój interes na każdym etapie." },
   { icon: Building, title: "Zarządzanie najmem", body: "Zarządzamy najemcami, konserwacją i finansami, maksymalizujemy zwrot z najmu." },
-  { icon: TrendingUp, title: "Strategie inwestycyjne", body: "Pomagamy wykorzystać okazje rynkowe. Wskazujemy dzielnice z potencjałem wzrostu i przewidywanym zwrotem." },
+  { icon: TrendingUp, title: "Strategie inwestycyjne", body: "Wskazujemy dzielnice z potencjałem wzrostu i przewidywanym zwrotem. Pomagamy wykorzystać okazje rynkowe." },
   { icon: Calculator, title: "Wycena nieruchomości", body: "Precyzyjna wycena na potrzeby sprzedaży, kupna lub inwestycji. Bezpłatnie." },
   { icon: Handshake, title: "Rozwiązania szyte na miarę", body: "Dopasowane usługi nieruchomościowe spójne z Twoimi celami i stylem życia." },
 ];
 
 export function Services() {
   return (
-    <section id="why-us" className="bg-foreground text-foreground-on-dark py-24 lg:py-32">
-      <Container size="wide" className="max-w-[1360px]">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-14 max-w-3xl lg:mb-20"
-        >
-          <span className="text-sm font-semibold tracking-wide text-brand-soft">Dlaczego my</span>
-          <h2 className="mt-4 font-display font-normal text-[clamp(2.2rem,4.6vw,4rem)] leading-[1.04] text-foreground-on-dark">
-            Eksperckie usługi nieruchomościowe w&nbsp;Trójmieście
-          </h2>
-        </motion.div>
+    <section id="why-us" className="py-20 lg:py-28">
+      <Container size="wide">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          {/* Lewa kolumna — intro (sticky) */}
+          <div className="lg:sticky lg:top-10 lg:self-start">
+            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
+              Dlaczego my
+            </p>
+            <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3.1rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
+              Eksperckie usługi
+              <br />
+              <span className="italic text-brand">nieruchomościowe.</span>
+            </h2>
+            <p className="mt-5 max-w-sm text-base leading-relaxed text-foreground-muted lg:text-lg">
+              Od wyceny po klucze. Każdą sprawę prowadzi jeden agent, który zna lokalny rynek
+              Trójmiasta na pamięć.
+            </p>
+          </div>
 
-        <div className="border-t border-white/12">
-          {services.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <motion.div
-                key={s.title}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: Math.min(i, 3) * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="group grid grid-cols-1 gap-3 border-b border-white/12 py-7 md:grid-cols-12 md:items-center md:gap-8 lg:py-9"
-              >
-                <div className="md:col-span-1">
-                  <span className="font-mono text-sm text-brand-soft">
+          {/* Prawa kolumna — lista usług */}
+          <div className="border-t border-border">
+            {services.map((s, i) => {
+              const Icon = s.icon;
+              return (
+                <motion.div
+                  key={s.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: Math.min(i, 3) * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                  className="group flex gap-5 border-b border-border py-7 lg:gap-6 lg:py-8"
+                >
+                  <span className="w-6 shrink-0 pt-1.5 font-mono text-xs text-brand">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                </div>
-                <div className="md:col-span-5 flex items-start gap-4">
-                  <span className="mt-1 inline-flex shrink-0 items-center justify-center text-brand-soft transition-transform duration-300 group-hover:translate-x-0.5">
-                    <Icon className="size-7" strokeWidth={1.5} />
+                  <span className="shrink-0 pt-1 text-brand transition-transform duration-300 group-hover:translate-x-0.5">
+                    <Icon className="size-6" strokeWidth={1.6} />
                   </span>
-                  <h3 className="font-display font-normal text-[1.7rem] leading-[1.1] text-foreground-on-dark transition-colors duration-300 group-hover:text-brand-soft lg:text-[2.05rem]">
-                    {s.title}
-                  </h3>
-                </div>
-                <div className="md:col-span-6 md:border-l md:border-white/12 md:pl-8">
-                  <p className="max-w-xl text-base leading-relaxed text-foreground-on-dark-muted lg:text-lg">
-                    {s.body}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
+                  <div className="min-w-0">
+                    <h3 className="font-display text-[1.5rem] font-normal leading-[1.15] text-foreground transition-colors duration-300 group-hover:text-brand lg:text-[1.7rem]">
+                      {s.title}
+                    </h3>
+                    <p className="mt-2 max-w-xl text-base leading-relaxed text-foreground-muted">
+                      {s.body}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </Container>
     </section>

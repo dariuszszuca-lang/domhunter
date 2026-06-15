@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { MemberPhoto } from "@/components/team/member-photo";
+import { motion } from "framer-motion";
 import { getAllMembersSorted, type TeamMember } from "@/lib/team";
 import { ArrowUpRight, Phone, Mail, X } from "lucide-react";
 
@@ -109,58 +110,72 @@ function AgentModal({ member, onClose }: { member: TeamMember; onClose: () => vo
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
       role="dialog"
       aria-modal="true"
     >
-      <div className="absolute inset-0 bg-foreground/60 backdrop-blur-sm" onClick={onClose} />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="absolute inset-0 bg-foreground/40 backdrop-blur-md"
+        onClick={onClose}
+      />
 
-      <div className="relative z-10 w-full max-w-2xl overflow-hidden rounded-[28px] border border-border bg-surface shadow-[0_40px_120px_-30px_rgba(20,21,21,0.6)]">
+      <motion.div
+        initial={{ opacity: 0, y: 24, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 w-full max-w-3xl overflow-hidden rounded-[32px] border border-border bg-surface shadow-[0_50px_140px_-40px_rgba(20,21,21,0.45)]"
+      >
         <button
           type="button"
           onClick={onClose}
           aria-label="Zamknij"
-          className="absolute right-4 top-4 z-20 inline-flex size-9 items-center justify-center rounded-full bg-background/90 text-foreground backdrop-blur transition-colors hover:bg-foreground hover:text-background"
+          className="absolute right-4 top-4 z-20 inline-flex size-10 items-center justify-center rounded-full bg-surface/90 text-foreground shadow-sm backdrop-blur transition-colors hover:bg-brand hover:text-white"
         >
           <X className="size-4" />
         </button>
 
-        <div className="grid sm:grid-cols-[42%_1fr]">
-          <MemberPhoto
-            member={member}
-            sizes="320px"
-            className="aspect-[4/5] w-full sm:h-full sm:aspect-auto"
-          />
+        <div className="grid sm:grid-cols-[44%_1fr]">
+          <div className="relative bg-surface-muted">
+            <MemberPhoto
+              member={member}
+              sizes="360px"
+              className="aspect-[4/5] w-full sm:h-full sm:aspect-auto"
+            />
+          </div>
 
-          <div className="p-6 lg:p-8">
+          <div className="flex flex-col p-7 lg:p-9">
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand">
-              {member.shortRole ?? "Dom Hunter Nieruchomości"}
+              Pośrednik Dom Hunter
             </p>
-            <h3 className="mt-2 font-display text-[1.9rem] font-normal leading-tight text-foreground">
+            <h3 className="mt-2 font-display text-[clamp(1.8rem,3vw,2.4rem)] font-normal leading-[1.05] text-foreground">
               {member.fullName}
             </h3>
             <p className="mt-1 text-sm text-foreground-muted">{member.role}</p>
 
-            <div className="mt-5 space-y-3 text-sm leading-relaxed text-foreground-muted">
+            <div className="my-6 h-px w-full bg-border" />
+
+            <div className="space-y-3 text-[0.95rem] leading-relaxed text-foreground-muted">
               {member.bioParagraphs.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
 
-            <div className="mt-6 space-y-2.5">
+            <div className="mt-7 space-y-2.5">
               {telHref && (
                 <a
                   href={telHref}
-                  className="flex items-center gap-3 rounded-xl bg-foreground px-4 py-3 text-sm font-semibold text-background transition-colors hover:bg-brand"
+                  className="flex items-center gap-3 rounded-2xl bg-brand px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-brand-hover"
                 >
                   <Phone className="size-4" />
-                  {member.phoneDisplay ?? member.phone}
+                  Zadzwoń: {member.phoneDisplay ?? member.phone}
                 </a>
               )}
               {member.email && (
                 <a
                   href={`mailto:${member.email}`}
-                  className="flex items-center gap-3 break-all rounded-xl border border-border px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-brand hover:text-brand"
+                  className="flex items-center gap-3 break-all rounded-2xl border border-border px-5 py-3.5 text-sm font-medium text-foreground transition-colors hover:border-brand hover:text-brand"
                 >
                   <Mail className="size-4 shrink-0 text-brand" />
                   {member.email}
@@ -177,7 +192,7 @@ function AgentModal({ member, onClose }: { member: TeamMember; onClose: () => vo
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ const solutions = [
     icon: Home,
     title: "Sprzedaż",
     body: "Wystawiamy i sprzedajemy mieszkania, domy i działki. Pełna obsługa aż do aktu notarialnego.",
-    href: "/oferty?typ=sprzedaz",
+    href: "/oferty?transakcja=sprzedaz",
   },
   {
     num: "02",

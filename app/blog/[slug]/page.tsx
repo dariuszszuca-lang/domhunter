@@ -210,25 +210,25 @@ export default async function BlogPostPage({ params }: PageProps) {
             </section>
 
             {/* CTA na końcu */}
-            <section className="mt-14 overflow-hidden rounded-[26px] bg-brand p-8 text-white shadow-[0_30px_70px_-34px] shadow-brand/60 sm:p-10">
-              <h2 className="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-normal leading-[1.15]">
-                Masz pytania o swoją nieruchomość?
+            <section className="mt-14 overflow-hidden rounded-[26px] border border-brand/30 bg-surface-cream p-8 sm:p-10">
+              <h2 className="font-display text-[clamp(1.5rem,3vw,2.1rem)] font-normal leading-[1.15] text-foreground">
+                Masz pytania o swoją <span className="italic text-brand">nieruchomość?</span>
               </h2>
-              <p className="mt-3 max-w-xl text-[1.02rem] leading-relaxed text-white/85">
+              <p className="mt-3 max-w-xl text-[1.02rem] leading-relaxed text-foreground-muted">
                 Zadzwoń albo napisz do nas. Doradzimy konkretnie, na podstawie realnego rynku w
                 Gdańsku i całym Trójmieście. Pierwsza rozmowa i wycena są bezpłatne.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <a
                   href={phone.href}
-                  className="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-brand transition-transform hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2.5 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-brand-hover"
                 >
                   <Phone className="size-4" />
                   Zadzwoń: {phone.displayValue}
                 </a>
                 <Link
                   href="/kontakt"
-                  className="inline-flex items-center gap-2.5 rounded-full border border-white/40 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                  className="inline-flex items-center gap-2.5 rounded-full border border-border-strong px-6 py-3.5 text-sm font-semibold text-foreground transition-colors hover:border-brand hover:text-brand"
                 >
                   Napisz do nas
                 </Link>

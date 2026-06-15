@@ -23,21 +23,21 @@ const uslugi = [
 export function ArticleSidebar({ relatedPosts }: ArticleSidebarProps) {
   return (
     <aside className="mt-14 flex flex-col gap-6 lg:mt-0">
-      {/* 1. Baner wyceny, wyróżniony magenta */}
-      <div className="overflow-hidden rounded-[20px] bg-brand p-7 text-white shadow-[0_24px_55px_-30px] shadow-brand/60 lg:sticky lg:top-24">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/75">
+      {/* 1. Baner wyceny, subtelny z ramką */}
+      <div className="overflow-hidden rounded-[20px] border border-brand/30 bg-surface-cream p-7">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
           Bezpłatnie
         </p>
-        <h3 className="mt-3 font-display text-[1.55rem] font-normal leading-[1.15]">
-          Wycena Twojej <span className="italic">nieruchomości.</span>
+        <h3 className="mt-3 font-display text-[1.55rem] font-normal leading-[1.15] text-foreground">
+          Wycena Twojej <span className="italic text-brand">nieruchomości.</span>
         </h3>
-        <p className="mt-3 text-[0.95rem] leading-relaxed text-white/85">
+        <p className="mt-3 text-[0.95rem] leading-relaxed text-foreground-muted">
           Sprawdzimy, ile realnie warte jest Twoje mieszkanie albo dom na rynku w Gdańsku i
           całym Trójmieście. Bez zobowiązań.
         </p>
         <Link
           href="/wycena"
-          className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-brand transition-transform hover:-translate-y-0.5"
+          className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-brand-hover"
         >
           Zamów wycenę
           <ArrowUpRight className="size-4" />

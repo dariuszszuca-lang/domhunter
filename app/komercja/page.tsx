@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Building, Briefcase, Warehouse, Hotel } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Building, Briefcase, Warehouse, Hotel, MapPin, Check } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
 export const metadata: Metadata = {
@@ -13,81 +14,194 @@ const segments = [
   {
     icon: Briefcase,
     title: "Biura",
-    body: "Powierzchnie biurowe w Trójmieście. Coworking, biura serwisowane, klasyczne najmy. Dla startupów i dużych firm.",
+    body: "Powierzchnie biurowe w całym Trójmieście. Biura współdzielone, serwisowane i klasyczne najmy. Dla młodych firm i dużych organizacji.",
   },
   {
     icon: Building,
     title: "Lokale handlowe",
-    body: "Witryny przy głównych ulicach, lokale w galeriach, restauracje, kawiarnie. Wycena potencjału ruchu pieszego.",
+    body: "Witryny przy głównych ulicach, lokale w galeriach, restauracje i kawiarnie. Oceniamy potencjał ruchu pieszego i widoczność.",
   },
   {
     icon: Warehouse,
     title: "Magazyny i hale",
-    body: "Powierzchnie magazynowe, logistyczne, produkcyjne. Bliskość portu w Gdańsku, drogi krajowe, parametry techniczne.",
+    body: "Powierzchnie magazynowe, logistyczne i produkcyjne. Bliskość portu w Gdańsku, dróg krajowych i parametry techniczne.",
   },
   {
     icon: Hotel,
     title: "Pensjonaty i obiekty",
-    body: "Apartamenty pod wynajem krótkoterminowy, pensjonaty nadmorskie, hotele butikowe. Analiza opłacalności inwestycji.",
+    body: "Mieszkania pod wynajem krótkoterminowy, pensjonaty nad morzem i kameralne hotele. Liczymy opłacalność inwestycji.",
   },
+];
+
+const atuty = [
+  "Własna baza najemców i właścicieli z całego Trójmiasta",
+  "Analiza opłacalności i potencjału lokalizacji przed decyzją",
+  "Bliskość portu w Gdańsku, lotniska i tras krajowych",
+  "Pełna obsługa, od wyceny przez negocjacje po podpis umowy",
 ];
 
 export default function KomercjaPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-10 lg:pt-16 pb-20 overflow-hidden">
+      {/* HERO ze zdjęciem */}
+      <section className="relative isolate overflow-hidden">
+        <Image
+          src="/images/komercja-hero.jpg"
+          alt="Nowoczesny przeszklony biurowiec, nieruchomości komercyjne w Trójmieście"
+          fill
+          priority
+          sizes="100vw"
+          className="-z-10 object-cover"
+        />
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(196,48,119,0.10),transparent_55%)]"
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-[#0a0f1a] via-[#0a0f1a]/60 to-[#0a0f1a]/35"
         />
-        <Container size="wide">
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_72%_18%,rgba(211,30,192,0.30),transparent_55%)]"
+        />
+        <Container size="wide" className="relative flex min-h-[72vh] flex-col justify-end pt-36 pb-16 lg:min-h-[84vh] lg:pb-24">
           <div className="max-w-3xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand mb-5">
-              Komercja
+            <p className="mb-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85">
+              <MapPin className="size-3.5 text-brand" />
+              Komercja · Gdańsk · Gdynia · Sopot
             </p>
-            <h1 className="font-sans font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.025em] text-foreground">
-              Nieruchomości komercyjne
+            <h1 className="font-display font-normal text-[clamp(2.6rem,6.5vw,5.2rem)] leading-[1.0] tracking-[-0.01em] text-white">
+              Przestrzeń, w której
               <br />
-              <span className="italic text-brand">w Trójmieście.</span>
+              <span className="italic text-brand">rośnie biznes.</span>
             </h1>
-            <p className="mt-8 text-lg lg:text-xl text-foreground-muted leading-[1.55] max-w-2xl">
-              Biura, lokale handlowe, magazyny i grunty inwestycyjne w Gdańsku, Gdyni, Sopocie i okolicy. Dla każdego segmentu prowadzi Cię osobny agent, który zna lokalne realia i ma bazę najemców oraz właścicieli z całego Trójmiasta. Wycena, prezentacja, negocjacje, dokumenty.
+            <p className="mt-7 max-w-2xl text-lg leading-[1.55] text-white/85 lg:text-xl">
+              Biura, lokale handlowe, magazyny i grunty inwestycyjne w całym Trójmieście. Każdy segment
+              prowadzi osobny agent z bazą najemców i właścicieli oraz znajomością lokalnych realiów.
             </p>
-            <Link
-              href="/kontakt"
-              className="mt-10 inline-flex items-center gap-2.5 pl-7 pr-3 py-2 rounded-full bg-foreground text-background text-sm font-semibold hover:bg-brand transition-all"
-            >
-              Porozmawiaj z agentem
-              <span className="inline-flex items-center justify-center size-9 rounded-full bg-background/15">
-                <ArrowRight className="size-4" />
-              </span>
-            </Link>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link
+                href="/kontakt"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-brand py-2 pl-7 pr-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-hover"
+              >
+                Porozmawiaj z agentem
+                <span className="inline-flex size-9 items-center justify-center rounded-full bg-white/20 transition-colors group-hover:bg-white/30">
+                  <ArrowRight className="size-4" />
+                </span>
+              </Link>
+              <Link
+                href="/oferty"
+                className="inline-flex items-center rounded-full border border-white/45 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/10"
+              >
+                Zobacz oferty
+              </Link>
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* Segments */}
-      <section className="py-24 lg:py-32">
+      {/* SEGMENTY */}
+      <section className="py-20 lg:py-28">
         <Container size="wide">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+          <div className="mb-12 max-w-2xl">
+            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
+              Segmenty
+            </p>
+            <h2 className="font-display font-normal text-[clamp(2rem,4vw,3.2rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
+              Cztery rynki, <span className="italic text-brand">jedno biuro.</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-6">
             {segments.map((s) => {
               const Icon = s.icon;
               return (
                 <div
                   key={s.title}
-                  className="rounded-3xl bg-surface border border-border p-8 lg:p-10 hover:border-brand transition-all"
+                  className="group rounded-[24px] border border-border bg-surface p-8 transition-all hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_24px_60px_-30px] hover:shadow-brand/40 lg:p-10"
                 >
-                  <span className="inline-flex items-center justify-center size-12 rounded-xl bg-brand-light text-brand mb-6">
+                  <span className="mb-6 inline-flex size-12 items-center justify-center rounded-2xl bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
                     <Icon className="size-5" />
                   </span>
-                  <h3 className="font-display text-2xl lg:text-3xl tracking-[-0.015em] text-foreground mb-3">
+                  <h3 className="mb-3 font-display text-2xl tracking-[-0.015em] text-foreground lg:text-3xl">
                     {s.title}
                   </h3>
-                  <p className="text-base text-foreground-muted leading-relaxed">{s.body}</p>
+                  <p className="text-base leading-relaxed text-foreground-muted">{s.body}</p>
                 </div>
               );
             })}
+          </div>
+        </Container>
+      </section>
+
+      {/* DLACZEGO MY — zdjęcie + atuty */}
+      <section className="bg-surface-cream py-20 lg:py-28">
+        <Container size="wide">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[26px] border border-border shadow-soft">
+              <Image
+                src="/images/komercja-biuro.jpg"
+                alt="Biuro z dużymi oknami i widokiem na ulicę w Trójmieście"
+                fill
+                sizes="(min-width: 1024px) 46vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
+                Dlaczego my
+              </p>
+              <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3.1rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
+                Komercja to inna gra. <span className="italic text-brand">Gramy w nią od lat.</span>
+              </h2>
+              <p className="mt-6 max-w-md text-lg leading-relaxed text-foreground-muted">
+                Lokal pod gastronomię, biuro dla zespołu, hala przy porcie czy grunt pod inwestycję.
+                Każdy z tych tematów ma inne pułapki i innych kupujących. Znamy je z setek rozmów na
+                trójmiejskim rynku.
+              </p>
+              <ul className="mt-8 space-y-3.5">
+                {atuty.map((a) => (
+                  <li key={a} className="flex items-start gap-3 text-base text-foreground">
+                    <span className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
+                      <Check className="size-3.5" strokeWidth={2.4} />
+                    </span>
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 lg:py-28">
+        <Container size="wide">
+          <div className="relative overflow-hidden rounded-[28px] bg-brand px-8 py-14 text-center sm:px-12 lg:py-20">
+            <div
+              aria-hidden
+              className="absolute -right-16 -top-20 h-72 w-72 rounded-full bg-white/10 blur-[90px]"
+            />
+            <div className="relative mx-auto max-w-2xl">
+              <h2 className="font-display font-normal text-[clamp(1.9rem,4.4vw,3.3rem)] leading-[1.05] tracking-[-0.01em] text-white">
+                Masz lokal, biuro albo grunt? Pogadajmy.
+              </h2>
+              <p className="mx-auto mt-5 max-w-lg text-lg leading-relaxed text-white/90">
+                Powiedz, co masz albo czego szukasz. Dobierzemy agenta od konkretnego segmentu i
+                ruszamy bez zobowiązań.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+                <a
+                  href="tel:+48571309209"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-brand transition-all hover:-translate-y-0.5"
+                >
+                  Zadzwoń, 571 309 209
+                </a>
+                <Link
+                  href="/kontakt"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/45 px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-white/10"
+                >
+                  Napisz do nas
+                  <ArrowRight className="size-4" />
+                </Link>
+              </div>
+            </div>
           </div>
         </Container>
       </section>

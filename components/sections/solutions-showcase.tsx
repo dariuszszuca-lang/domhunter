@@ -7,7 +7,7 @@ const solutions = [
     num: "01",
     icon: Home,
     title: "Sprzedaż",
-    body: "Wystawiamy i sprzedajemy mieszkania, domy i działki. Pełna obsługa aż do aktu notarialnego.",
+    body: "Wystawiamy i sprzedajemy mieszkania, domy i działki w Gdańsku i Trójmieście. Zaczynamy od darmowej wyceny, prowadzimy aż do aktu notarialnego.",
     href: "/oferty?transakcja=sprzedaz",
   },
   {
@@ -48,7 +48,7 @@ export function SolutionsShowcase() {
               <span className="italic text-brand">dla nieruchomości.</span>
             </h2>
             <p className="mt-5 text-base leading-relaxed text-foreground-muted lg:text-lg">
-              Sprzedaż, kupno, wynajem i komercja w Trójmieście. Każdy segment, dedykowany agent.
+              Sprzedaż, kupno, wynajem, lokale komercyjne i darmowa wycena nieruchomości w Gdańsku i całym Trójmieście. Każdym obszarem zajmuje się agent, który zna lokalny rynek.
             </p>
           </div>
           <Link

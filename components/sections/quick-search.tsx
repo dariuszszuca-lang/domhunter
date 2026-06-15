@@ -369,8 +369,7 @@ export function QuickSearch({ variant = "overlay" }: { variant?: "overlay" | "em
           )}
 
           <p className="text-xs text-foreground-subtle mt-4 leading-relaxed">
-            Wyszukiwarka pobiera oferty bezpośrednio z naszego systemu CRM (EstiCRM).
-            Aktualizujemy co godzinę. Wszystkie ceny są aktualne.
+            Przeszukaj mieszkania, domy, działki i lokale na sprzedaż oraz wynajem w Gdańsku, Gdyni, Sopocie i okolicy. Wyszukiwarka pobiera oferty bezpośrednio z naszego systemu CRM (EstiCRM) i aktualizuje je co godzinę, więc ceny i dostępność są zawsze aktualne.
           </p>
         </div>
       </Container>

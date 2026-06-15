@@ -172,7 +172,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
     },
   };
 
-  if (offer.description) schema.description = offer.description;
+  schema.description = offer.description ? offer.description : fallbackDescription(offer);
   if (offer.images.length > 0) schema.image = offer.images.map((i) => i.url);
   if (offer.area) {
     schema.floorSize = { "@type": "QuantitativeValue", value: offer.area, unitCode: "MTK" };
@@ -331,17 +331,15 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
                 {offer.state && <Spec icon={Sparkles} label="Stan" value={offer.state} />}
               </div>
 
-              {/* Description */}
-              {offer.description && (
-                <div className="rounded-3xl bg-surface border border-border p-7 lg:p-8">
-                  <h2 className="font-bold tracking-tight text-xl text-foreground mb-4">
-                    Opis nieruchomości
-                  </h2>
-                  <div className="text-foreground leading-relaxed whitespace-pre-line">
-                    {offer.description}
-                  </div>
+              {/* Description. Gdy oferta nie ma własnego opisu, składamy krótki z realnych pól. */}
+              <div className="rounded-3xl bg-surface border border-border p-7 lg:p-8">
+                <h2 className="font-bold tracking-tight text-xl text-foreground mb-4">
+                  Opis nieruchomości
+                </h2>
+                <div className="text-foreground leading-relaxed whitespace-pre-line">
+                  {offer.description ? offer.description : fallbackDescription(offer)}
                 </div>
-              )}
+              </div>
 
               {/* Features */}
               {offer.features && offer.features.length > 0 && (

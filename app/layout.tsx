@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pl_PL",
     url: siteConfig.url,
-    title: siteConfig.name,
+    title: `${siteConfig.name}, biuro nieruchomości w Gdańsku i Trójmieście`,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],

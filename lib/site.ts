@@ -9,7 +9,7 @@ export const siteConfig = {
   fullName: "DomHunter Nieruchomości",
   tagline: "Lokalne biuro nieruchomości w Gdańsku",
   description:
-    "Dom Hunter to biuro nieruchomości w Gdańsku i całym Trójmieście. Pomagamy sprzedać, kupić i wynająć mieszkania, domy, działki i lokale w Gdańsku, Gdyni, Sopocie i okolicy. Robimy też darmową wycenę nieruchomości. Jeden agent prowadzi Cię od pierwszej rozmowy do aktu notarialnego.",
+    "Dom Hunter to biuro nieruchomości w Gdańsku i całym Trójmieście. Pomagamy sprzedać, kupić i wynająć mieszkania, domy, działki i lokale w Gdańsku, Gdyni, Sopocie i okolicy. Robimy darmową wycenę nieruchomości, a jeden agent prowadzi Cię od pierwszej rozmowy aż do aktu notarialnego. Mamy też dostęp do ofert spoza portali ogłoszeniowych.",
   url: "https://domhunter.pl",
   ogImage: "/og.jpg",
 
@@ -58,7 +58,7 @@ export const siteConfig = {
     nsl: {
       name: "Nieruchomości Spod Lady",
       url: "https://nieruchomoscispodlady.pl",
-      description: "Sieć off-market 2000+ agentów w Polsce",
+      description: "Sieć ofert spoza ogłoszeń, ponad 2000 agentów w Polsce",
     },
   },
 } as const;

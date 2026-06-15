@@ -8,6 +8,12 @@ type MemberPhotoProps = {
   priority?: boolean;
   className?: string;
   imageClassName?: string;
+  /**
+   * Wymusza elegancki monogram zamiast zdjęcia.
+   * Zdjęcia agentów z Esti są małe i pikselowe, więc na gridzie
+   * pokazujemy spójne, markowe awatary z inicjałami.
+   */
+  forceMonogram?: boolean;
 };
 
 // Subtle warm gradients per agent (deterministyczne wg slug) — premium feel placeholderu
@@ -34,20 +40,22 @@ export function MemberPhoto({
   priority = false,
   className,
   imageClassName,
+  forceMonogram = false,
 }: MemberPhotoProps) {
   const grad = pickGradient(member.slug);
+  const showPhoto = member.photo && !forceMonogram;
 
   return (
     <div
       className={cn(
         "relative overflow-hidden bg-gradient-to-br flex items-center justify-center",
-        grad,
+        showPhoto ? grad : "from-surface-cream via-surface to-brand/10",
         className
       )}
     >
-      {member.photo ? (
+      {showPhoto ? (
         <Image
-          src={member.photo}
+          src={member.photo!}
           alt={member.fullName}
           fill
           sizes={sizes}
@@ -56,16 +64,16 @@ export function MemberPhoto({
         />
       ) : (
         <div className="absolute inset-0 flex items-center justify-center">
-          {/* Subtle radial accents */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(255,255,255,0.45),transparent_50%),radial-gradient(circle_at_75%_85%,rgba(153,26,117,0.18),transparent_55%)]" />
-          {/* Monogram */}
-          <div className="relative flex flex-col items-center gap-1">
-            <span className="text-[clamp(2.5rem,8vw,4.5rem)] font-bold tracking-[-0.05em] text-foreground/85 leading-none">
+          {/* Delikatne akcenty świetlne */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_22%,rgba(255,255,255,0.7),transparent_55%),radial-gradient(circle_at_78%_82%,rgba(211,30,192,0.16),transparent_60%)]" />
+          {/* Monogram brandowy */}
+          <div className="relative flex flex-col items-center gap-2">
+            <span className="font-display text-[clamp(2.8rem,9vw,5rem)] font-normal leading-none tracking-[-0.04em] text-brand">
               {member.firstName[0]}
               {member.lastName[0]}
             </span>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-foreground/55">
-              DomHunter
+            <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-foreground/45">
+              Dom Hunter
             </span>
           </div>
         </div>

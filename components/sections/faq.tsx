@@ -39,6 +39,14 @@ const faqs = [
     q: "Pomagacie też przy zakupie nieruchomości, nie tylko przy sprzedaży?",
     a: "Tak. Reprezentujemy kupujących w całym Trójmieście. Słuchamy Twoich kryteriów i budżetu, szukamy mieszkań, domów i działek, także tych spoza portali, organizujemy pokazy i pomagamy negocjować cenę. Prowadzimy Cię aż do aktu notarialnego.",
   },
+  {
+    q: "Zajmujecie się też wynajmem mieszkań?",
+    a: "Tak. Obsługujemy najem długoterminowy w Gdańsku, Gdyni i Sopocie. Przygotujemy bezpieczną umowę, zweryfikujemy najemcę, a jeśli potrzebujesz, zajmiemy się też zarządzaniem mieszkaniem na bieżąco.",
+  },
+  {
+    q: "W jakich miastach mogę zamówić darmową wycenę nieruchomości?",
+    a: "Wyceniamy mieszkania, domy, działki i lokale w całym Trójmieście oraz okolicy: Gdańsk, Gdynia, Sopot, Rumia, Reda, Wejherowo i Pruszcz Gdański. Wycena jest bezpłatna i bez zobowiązań. Wystarczy do nas zadzwonić, żeby umówić termin.",
+  },
 ];
 
 const faqSchema = {

@@ -15,7 +15,7 @@ Dom Hunter to lokalne biuro nieruchomości w Gdańsku i całym Trójmieście. Po
 - [Oferty](https://domhunter.pl/oferty): aktualne nieruchomości na sprzedaż i wynajem
 - [Komercja](https://domhunter.pl/komercja): lokale i nieruchomości komercyjne
 - [Wycena](https://domhunter.pl/wycena): bezpłatna wycena nieruchomości
-- [Zespół](https://domhunter.pl/zespol): agenci Dom Hunter
+- [O nas](https://domhunter.pl/o-nas): zespół i agenci Dom Hunter
 - [Blog](https://domhunter.pl/blog): praktyczne poradniki o rynku nieruchomości w Trójmieście
 - [Kontakt](https://domhunter.pl/kontakt): formularz i dane kontaktowe
 

@@ -75,7 +75,7 @@ export function OnasContent() {
 
   return (
     <>
-      {/* HERO: tekst + kolaż zdjęć (różne zdjęcia w każdej ramce) */}
+      {/* HERO: tekst + jedno wspólne zdjęcie trzech agentek */}
       <section className="relative overflow-hidden pt-10 lg:pt-16">
         <div
           aria-hidden
@@ -117,7 +117,7 @@ export function OnasContent() {
               </div>
             </motion.div>
 
-            {/* Kolaż zdjęć: cztery różne kadry */}
+            {/* Jedno mocne, wspólne zdjęcie zespołu w ramce */}
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -125,45 +125,27 @@ export function OnasContent() {
               transition={{ duration: 0.8, ease: EASE }}
               className="relative"
             >
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4 pt-10">
-                  <div className="relative aspect-[3/4] overflow-hidden rounded-[24px] border border-border shadow-soft">
-                    <Image
-                      src="/images/team/zespol-2.jpg"
-                      alt="Agentka Dom Hunter z teczką ofertową biura"
-                      fill
-                      sizes="(min-width: 1024px) 22vw, 45vw"
-                      className="object-cover object-center"
-                    />
-                  </div>
-                  <div className="relative aspect-square overflow-hidden rounded-[24px] border border-border shadow-soft">
-                    <Image
-                      src="/images/teczka-domhunter.jpg"
-                      alt="Teczka ofertowa z logo Dom Hunter Nieruchomości"
-                      fill
-                      sizes="(min-width: 1024px) 22vw, 45vw"
-                      className="object-cover object-center"
-                    />
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div className="relative aspect-square overflow-hidden rounded-[24px] border border-border shadow-soft">
-                    <Image
-                      src="/images/team/zespol-4.jpg"
-                      alt="Agentka Dom Hunter w biurze w Gdańsku"
-                      fill
-                      sizes="(min-width: 1024px) 22vw, 45vw"
-                      className="object-cover object-center"
-                    />
-                  </div>
-                  <div className="relative aspect-[3/4] overflow-hidden rounded-[24px] border border-border shadow-soft">
-                    <Image
-                      src="/images/hero-team.jpg"
-                      alt="Zespół Dom Hunter podczas pracy nad ofertą"
-                      fill
-                      sizes="(min-width: 1024px) 22vw, 45vw"
-                      className="object-cover object-center"
-                    />
+              <div className="relative overflow-hidden rounded-[28px] border border-border bg-surface p-2 shadow-soft">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[22px]">
+                  <Image
+                    src="/images/hero-team.jpg"
+                    alt="Zespół Dom Hunter, trzy agentki przy laptopie podczas pracy nad ofertą"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 46vw, 100vw"
+                    className="object-cover object-center"
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-foreground/70 via-foreground/15 to-transparent"
+                  />
+                  <div className="absolute bottom-5 left-6 right-6">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/75">
+                      Zespół Dom Hunter
+                    </p>
+                    <p className="mt-1.5 font-display text-lg leading-snug text-white">
+                      Trójmiasto, każda sprawa prowadzona osobiście.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -279,13 +261,14 @@ export function OnasContent() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: EASE }}
-                  className="group flex flex-col overflow-hidden rounded-[26px] border border-border bg-surface shadow-[0_2px_8px_-2px_rgba(25,25,25,0.06)] transition-all duration-400 hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_24px_60px_-20px_rgba(211,30,192,0.18)]"
+                  className="group flex flex-col overflow-hidden rounded-[24px] border border-border bg-surface shadow-[0_2px_8px_-2px_rgba(25,25,25,0.06)] transition-all duration-400 hover:-translate-y-1.5 hover:border-brand hover:shadow-[0_28px_64px_-22px_rgba(211,30,192,0.28)]"
                 >
-                  <div className="relative">
+                  <div className="relative border-b border-border/70">
                     <MemberPhoto
                       member={member}
+                      forceMonogram
                       sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
-                      className="aspect-[4/3] w-full"
+                      className="aspect-[5/4] w-full"
                     />
                     {member.isOwner && (
                       <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-brand px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-soft">

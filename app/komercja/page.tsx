@@ -173,29 +173,29 @@ export default function KomercjaPage() {
       {/* CTA */}
       <section className="py-20 lg:py-28">
         <Container size="wide">
-          <div className="relative overflow-hidden rounded-[28px] bg-brand px-8 py-14 text-center sm:px-12 lg:py-20">
+          <div className="relative overflow-hidden rounded-[28px] border border-brand/30 bg-surface-cream px-8 py-14 text-center sm:px-12 lg:py-20">
             <div
               aria-hidden
-              className="absolute -right-16 -top-20 h-72 w-72 rounded-full bg-white/10 blur-[90px]"
+              className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-brand/10 blur-[90px]"
             />
             <div className="relative mx-auto max-w-2xl">
-              <h2 className="font-display font-normal text-[clamp(1.9rem,4.4vw,3.3rem)] leading-[1.05] tracking-[-0.01em] text-white">
-                Masz lokal, biuro albo grunt? Pogadajmy.
+              <h2 className="font-display font-normal text-[clamp(1.9rem,4.4vw,3.3rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
+                Masz lokal, biuro albo grunt? <span className="italic text-brand">Pogadajmy.</span>
               </h2>
-              <p className="mx-auto mt-5 max-w-lg text-lg leading-relaxed text-white/90">
+              <p className="mx-auto mt-5 max-w-lg text-lg leading-relaxed text-foreground-muted">
                 Powiedz, co masz albo czego szukasz. Dobierzemy agenta od konkretnego segmentu i
                 ruszamy bez zobowiązań.
               </p>
               <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
                 <a
                   href="tel:+48571309209"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-brand transition-all hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-hover"
                 >
                   Zadzwoń, 571 309 209
                 </a>
                 <Link
                   href="/kontakt"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/45 px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full border border-border-strong px-8 py-4 text-sm font-semibold text-foreground transition-all hover:border-brand hover:text-brand"
                 >
                   Napisz do nas
                   <ArrowRight className="size-4" />

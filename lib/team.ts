@@ -100,7 +100,7 @@ export const team: TeamMember[] = [
     phone: "+48533530130",
     phoneDisplay: "533 530 130",
     email: "tshulga@domhunter.pl",
-    photo: "/images/team/taisiia-shulga.jpg",
+    photo: "/images/team/taisiia-shulga-2.jpg",
     bio: "Agentka nieruchomości w biurze Dom Hunter. Pomaga klientom w kupnie, sprzedaży i wynajmie nieruchomości w Trójmieście i okolicy.",
     bioParagraphs: [
       "Agentka nieruchomości w biurze Dom Hunter. Pomaga klientom w kupnie, sprzedaży i wynajmie nieruchomości w Trójmieście i okolicy.",

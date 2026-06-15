@@ -113,11 +113,11 @@ export default function PracaPage() {
       {/* CTA */}
       <section className="py-16 lg:py-28">
         <Container size="wide">
-          <div className="rounded-[10px] bg-foreground text-background p-9 lg:p-14 text-center">
-            <h2 className="font-display font-normal text-[clamp(2rem,4vw,3.2rem)] leading-[1.08]">
+          <div className="rounded-[10px] border border-brand/20 bg-brand/[0.06] p-9 lg:p-14 text-center">
+            <h2 className="font-display font-normal text-[clamp(2rem,4vw,3.2rem)] leading-[1.08] text-foreground">
               Poznajmy się.
             </h2>
-            <p className="mt-4 text-background/70 leading-relaxed max-w-xl mx-auto">
+            <p className="mt-4 text-foreground-muted leading-relaxed max-w-xl mx-auto">
               Wyślij CV albo po prostu zadzwoń. Pierwsza rozmowa do niczego nie zobowiązuje.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -130,7 +130,7 @@ export default function PracaPage() {
               </a>
               <a
                 href={siteConfig.contact.phones[0].href}
-                className="inline-flex items-center gap-2 rounded-full border border-background/25 px-6 py-3 text-sm font-semibold hover:bg-background hover:text-foreground transition-colors"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-6 py-3 text-sm font-semibold text-foreground hover:border-brand hover:text-brand transition-colors"
               >
                 <Phone className="size-4" />
                 {siteConfig.contact.phones[0].displayValue}

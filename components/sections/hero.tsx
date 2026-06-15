@@ -100,11 +100,6 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Pływający kafelek */}
-            <div className="absolute -bottom-5 -left-3 sm:-left-5 bg-surface border border-border rounded-[6px] px-5 py-4 shadow-[0_18px_40px_-20px_rgba(20,21,21,0.35)]">
-              <div className="font-display text-2xl text-foreground leading-none">30 minut</div>
-              <p className="mt-1 text-xs text-foreground-muted">tyle czekasz na naszą odpowiedź</p>
-            </div>
           </motion.div>
         </div>
       </Container>

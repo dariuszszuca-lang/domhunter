@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk, Fraunces } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { siteConfig } from "@/lib/site";
 
-// Fonty Dom Hunter (kierunek Editorial): Fraunces = nagłówki (serif z charakterem),
-// Hanken Grotesk = tekst (czysty, czytelny grotesk).
-const hanken = Hanken_Grotesk({
-  variable: "--font-hanken",
+// Fonty Dom Hunter: Spectral = nagłówki (elegancki serif editorial),
+// Manrope = tekst (nowoczesny, czytelny grotesk).
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin", "latin-ext"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -59,7 +59,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pl" className={`${hanken.variable} ${fraunces.variable}`}>
+    <html lang="pl" className={`${manrope.variable} ${playfair.variable}`}>
       <body className="min-h-screen bg-background text-foreground antialiased">
         <Header />
         <main>{children}</main>

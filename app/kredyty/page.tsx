@@ -116,16 +116,16 @@ export default function KredytyPage() {
               </ul>
             </div>
 
-            <div className="rounded-[10px] bg-foreground text-background p-9 lg:p-12">
-              <p className="font-display text-[1.9rem] leading-[1.15]">
+            <div className="rounded-[10px] border border-brand/20 bg-brand/[0.06] p-9 lg:p-12">
+              <p className="font-display text-[1.9rem] leading-[1.15] text-foreground">
                 Sprawdź swoją zdolność kredytową bez zobowiązań.
               </p>
-              <p className="mt-4 text-background/70 leading-relaxed">
+              <p className="mt-4 text-foreground-muted leading-relaxed">
                 Zadzwoń, a umówimy Cię z doradcą. Konsultacja jest bezpłatna.
               </p>
               <a
                 href={siteConfig.contact.phones[0].href}
-                className="mt-8 inline-flex items-center gap-3 font-display text-[clamp(1.8rem,3vw,2.6rem)] leading-none hover:text-brand transition-colors"
+                className="mt-8 inline-flex items-center gap-3 font-display text-[clamp(1.8rem,3vw,2.6rem)] leading-none text-foreground hover:text-brand transition-colors"
               >
                 <Phone className="size-6 text-brand" strokeWidth={1.8} />
                 {siteConfig.contact.phones[0].displayValue}

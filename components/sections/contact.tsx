@@ -32,11 +32,11 @@ export function Contact() {
             <div className="mt-10 flex flex-wrap gap-3">
               <a
                 href={siteConfig.contact.phones[0].href}
-                className="group inline-flex items-center gap-2.5 rounded-full bg-foreground py-2 pl-7 pr-3 text-sm font-semibold text-background transition-all hover:bg-brand-hover"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-brand py-2 pl-7 pr-3 text-sm font-semibold text-white transition-all hover:bg-brand-hover"
               >
                 <Phone className="size-4" />
                 Zadzwoń teraz
-                <span className="inline-flex items-center justify-center size-9 rounded-full bg-background/15 group-hover:bg-background/25 transition-colors">
+                <span className="inline-flex items-center justify-center size-9 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors">
                   <ArrowRight className="size-4" />
                 </span>
               </a>
@@ -104,22 +104,22 @@ function InfoCard({
     <div
       className={`group flex items-center gap-5 rounded-2xl p-5 lg:p-6 border transition-all ${
         featured
-          ? "bg-foreground text-background border-foreground hover:bg-brand hover:border-brand"
+          ? "bg-brand text-white border-brand hover:bg-brand-hover hover:border-brand-hover"
           : "bg-surface border-border hover:border-brand"
       }`}
     >
       <span
         className={`inline-flex items-center justify-center size-12 rounded-xl shrink-0 ${
-          featured ? "bg-background/15" : "bg-brand-light text-brand"
+          featured ? "bg-white/20 text-white" : "bg-brand-light text-brand"
         }`}
       >
         <Icon className="size-5" />
       </span>
       <div className="flex-1 min-w-0">
-        <p className={`mb-1 text-[11px] font-semibold uppercase tracking-normal ${featured ? "text-background/60" : "text-foreground-subtle"}`}>
+        <p className={`mb-1 text-[11px] font-semibold uppercase tracking-normal ${featured ? "text-white/70" : "text-foreground-subtle"}`}>
           {label}
         </p>
-        <p className={`text-lg font-medium ${featured ? "text-background" : "text-foreground"} truncate`}>
+        <p className={`text-lg font-medium ${featured ? "text-white" : "text-foreground"} truncate`}>
           {value}
         </p>
       </div>

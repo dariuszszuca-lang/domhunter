@@ -317,7 +317,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
                       {agentTel && (
                         <a
                           href={agentTel}
-                          className="flex items-center gap-3 rounded-xl bg-foreground text-background px-4 py-3 text-sm font-semibold hover:bg-brand transition-colors"
+                          className="flex items-center gap-3 rounded-xl bg-brand text-white px-4 py-3 text-sm font-semibold hover:bg-brand-hover transition-colors"
                         >
                           <Phone className="size-4" />
                           {agentPhoneDisplay}

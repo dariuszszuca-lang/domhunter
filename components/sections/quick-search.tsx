@@ -116,7 +116,31 @@ export function QuickSearch({ variant = "overlay" }: { variant?: "overlay" | "em
   return (
     <section className={sectionCls}>
       <Container size="default">
-        <div className="rounded-[28px] bg-surface border border-foreground/[0.12] shadow-[0_30px_80px_-28px_rgba(20,21,21,0.5)] p-5 lg:p-7">
+        <div className="relative">
+          {/* Poświata pod panelem (wow) */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -inset-3 -z-10 rounded-[40px] bg-[radial-gradient(ellipse_at_50%_0%,rgba(211,30,192,0.22),transparent_62%)] blur-2xl"
+          />
+          <div className="overflow-hidden rounded-[28px] border border-brand/25 bg-surface shadow-[0_44px_100px_-34px_rgba(20,21,21,0.62)] ring-1 ring-inset ring-foreground/[0.05]">
+            {/* Akcentowy pasek na górze */}
+            <div aria-hidden className="h-1.5 w-full bg-gradient-to-r from-brand via-[#e84ed8] to-brand" />
+            <div className="p-5 lg:p-7">
+          {/* Nagłówek panelu */}
+          <div className="mb-5 flex items-center gap-3">
+            <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand">
+              <Search className="size-5" strokeWidth={2} />
+            </span>
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand">
+                Wyszukiwarka ofert
+              </p>
+              <p className="font-display text-xl leading-tight text-foreground">
+                Znajdź swoje miejsce w Trójmieście
+              </p>
+            </div>
+          </div>
+
           {/* Type tabs */}
           <div className="flex flex-wrap gap-2 mb-5">
             {types.map((t) => {
@@ -371,6 +395,8 @@ export function QuickSearch({ variant = "overlay" }: { variant?: "overlay" | "em
           <p className="text-xs text-foreground-subtle mt-4 leading-relaxed">
             Przeszukaj mieszkania, domy, działki i lokale na sprzedaż oraz wynajem w Gdańsku, Gdyni, Sopocie i okolicy. Wyszukiwarka pobiera oferty bezpośrednio z naszego systemu CRM (EstiCRM) i aktualizuje je co godzinę, więc ceny i dostępność są zawsze aktualne.
           </p>
+            </div>
+          </div>
         </div>
       </Container>
 

@@ -6,13 +6,6 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
-const stats = [
-  { value: "600+", label: "sfinalizowanych transakcji" },
-  { value: "13 lat", label: "na trójmiejskim rynku" },
-  { value: "2000+", label: "agentów w sieci NSL" },
-  { value: "95%", label: "poleceń od klientów" },
-];
-
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function Hero() {
@@ -66,14 +59,26 @@ export function Hero() {
               </Link>
             </div>
 
-            {/* Statystyki */}
-            <div className="mt-12 pt-8 border-t border-border grid grid-cols-2 sm:grid-cols-4 gap-6">
-              {stats.map((s) => (
-                <div key={s.label}>
-                  <div className="font-display text-3xl lg:text-[2.4rem] leading-none text-brand">{s.value}</div>
-                  <p className="mt-2 text-xs text-foreground-subtle leading-snug">{s.label}</p>
+            {/* We współpracy z Nieruchomości Spod Lady */}
+            <div className="mt-12 pt-8 border-t border-border">
+              <div className="flex items-start gap-5">
+                <Image
+                  src="/images/partners/nsl.png"
+                  alt="Nieruchomości Spod Lady"
+                  width={140}
+                  height={102}
+                  className="h-16 w-auto shrink-0 object-contain"
+                />
+                <div>
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-brand">
+                    We współpracy z Nieruchomości Spod Lady
+                  </p>
+                  <p className="mt-2 max-w-md text-sm leading-relaxed text-foreground-muted">
+                    Dzięki sieci Spod Lady mamy dostęp do ofert spoza portali ogłoszeniowych
+                    i ponad 2000 agentów w całej Polsce.
+                  </p>
                 </div>
-              ))}
+              </div>
             </div>
           </motion.div>
 

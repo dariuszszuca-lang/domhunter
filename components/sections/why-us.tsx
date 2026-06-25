@@ -29,13 +29,15 @@ const fadeUp = {
 // Krótkie, naturalne opisy roli w gridzie agentów (bez zmyślania faktów).
 const memberBlurbs: Record<string, string> = {
   "sylwia-wroblewska":
-    "Prowadzi biuro i osobiście opiekuje się klientami. Setki transakcji na trójmiejskim rynku, opinie mówią same za siebie.",
+    "Właścicielka biura, prowadzi pełen przekrój nieruchomości w Gdańsku, od mieszkań i lokali po domy i działki. Twórczyni społeczności Nieruchomości Spod Lady.",
   "janusz-stojaczyk":
-    "Spokojnie przeprowadzi Cię przez całą transakcję, od pierwszej rozmowy po klucze w dłoni.",
+    "Specjalista od mieszkań w Gdańsku, prowadzi najwięcej ofert w całym biurze. Sprzedaż i wynajem.",
   "agnieszka-bodanka":
-    "Mieszkania i wynajem to jej żywioł. Klienci chwalą ją za cierpliwość i konkretne podejście.",
+    "Mieszkania, lokale i domy w Gdańsku oraz okolicznych gminach, jak Banino czy Żukowo. Sprzedaż i wynajem.",
   "anna-malez":
-    "Doradza przy kupnie i sprzedaży tak, jakby chodziło o jej własne mieszkanie.",
+    "Domy i działki pod Gdańskiem, ale też mieszkania w samym mieście. Najlepiej czuje się poza centrum.",
+  "sylwia-kojto-labuda":
+    "Mieszkania w Gdańsku i Sopocie, w sprzedaży i wynajmie.",
   "taisiia-shulga":
     "Prowadzi sprawy spokojnie i z uwagą, dba o to, żeby na każdym etapie wszystko było jasne.",
 };
@@ -239,7 +241,7 @@ export function OnasContent() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 lg:gap-5">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {members.map((member, i) => {
               const blurb = memberBlurbs[member.slug] ?? member.bio;
               return (
@@ -254,7 +256,7 @@ export function OnasContent() {
                   <div className="relative border-b border-border/70">
                     <MemberPhoto
                       member={member}
-                      sizes="(min-width: 1024px) 18vw, (min-width: 640px) 45vw, 100vw"
+                      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
                       className="aspect-[4/5] w-full"
                     />
                     {member.isOwner && (

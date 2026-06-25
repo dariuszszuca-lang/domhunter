@@ -1,9 +1,10 @@
 /**
  * Zespół Dom Hunter — biuro nieruchomości w Trójmieście.
  *
- * Dane (imię, nazwisko, telefon, e-mail) pochodzą z EstiCRM (kontakty przypisane
- * do ofert, stan 14.06.2026). Kolejność wg liczby prowadzonych ofert.
- * Zespół: 5 aktywnych agentów, każdy ze zdjęciem HD w /images/team/<slug>.jpg.
+ * Dane (imię, nazwisko, telefon, e-mail) oraz specjalizacje pochodzą z EstiCRM
+ * (kontakty i oferty przypisane do agentów, stan 25.06.2026). Opisy oparte na
+ * realnych typach i lokalizacjach prowadzonych ofert — bez zmyślania.
+ * Kolejność: właścicielka, dalej wg liczby prowadzonych ofert.
  */
 
 export type TeamMember = {
@@ -27,13 +28,29 @@ export type TeamMember = {
   order: number;
 };
 
-const BIO = "Agent nieruchomości w biurze Dom Hunter. Wspiera klientów w kupnie, sprzedaży i wynajmie nieruchomości w Trójmieście i okolicy.";
-const BIO_PARAS = [
-  "Agent nieruchomości w biurze Dom Hunter. Wspiera klientów w kupnie, sprzedaży i wynajmie nieruchomości w Trójmieście i okolicy.",
-  "Skontaktuj się bezpośrednio, telefon i e-mail znajdziesz powyżej. Oddzwaniamy w 30 minut w godzinach pracy biura.",
-];
+const CONTACT_PARA =
+  "Skontaktuj się bezpośrednio, telefon i e-mail znajdziesz powyżej. Oddzwaniamy w 30 minut w godzinach pracy biura.";
 
 export const team: TeamMember[] = [
+  {
+    slug: "sylwia-wroblewska",
+    firstName: "Sylwia",
+    lastName: "Wróblewska",
+    fullName: "Sylwia Wróblewska",
+    role: "Właścicielka biura",
+    phone: "+48571309209",
+    phoneDisplay: "571 309 209",
+    email: "swroblewska@domhunter.pl",
+    photo: "/images/team/sylwia-wroblewska.jpg",
+    specializations: ["Mieszkania", "Domy", "Działki", "Lokale"],
+    bio: "Właścicielka Dom Hunter i twórczyni społeczności Nieruchomości Spod Lady. Prowadzi pełen przekrój nieruchomości w Gdańsku i Trójmieście.",
+    bioParagraphs: [
+      "Właścicielka Dom Hunter i twórczyni społeczności Nieruchomości Spod Lady. Na trójmiejskim rynku prowadzi pełen przekrój nieruchomości, od mieszkań i lokali po domy i działki.",
+      "Pracuje głównie w Gdańsku i okolicy, łączy sprzedaż z wynajmem i pilnuje, żeby każdy klient był prowadzony od pierwszej rozmowy aż po akt notarialny.",
+    ],
+    isOwner: true,
+    order: 1,
+  },
   {
     slug: "janusz-stojaczyk",
     firstName: "Janusz",
@@ -44,37 +61,30 @@ export const team: TeamMember[] = [
     phoneDisplay: "571 309 204",
     email: "jstojaczyk@domhunter.pl",
     photo: "/images/team/janusz-stojaczyk.jpg",
-    bio: BIO,
-    bioParagraphs: BIO_PARAS,
+    specializations: ["Mieszkania", "Lokale", "Gdańsk"],
+    bio: "Specjalista od mieszkań w Gdańsku, prowadzi najwięcej ofert w całym biurze. Sprzedaż i wynajem.",
+    bioParagraphs: [
+      "Specjalizuje się w mieszkaniach w Gdańsku i prowadzi najwięcej ofert w całym biurze. Obsługuje zarówno sprzedaż, jak i wynajem, również lokale użytkowe.",
+      CONTACT_PARA,
+    ],
     order: 2,
-  },
-  {
-    slug: "sylwia-wroblewska",
-    firstName: "Sylwia",
-    lastName: "Wróblewska",
-    fullName: "Sylwia Wróblewska",
-    role: "Agent nieruchomości",
-    phone: "+48571309209",
-    phoneDisplay: "571 309 209",
-    email: "swroblewska@domhunter.pl",
-    photo: "/images/team/sylwia-wroblewska.jpg",
-    bio: BIO,
-    bioParagraphs: BIO_PARAS,
-    isOwner: true,
-    order: 1,
   },
   {
     slug: "agnieszka-bodanka",
     firstName: "Agnieszka",
     lastName: "Bodanka",
     fullName: "Agnieszka Bodanka",
-    role: "Agent nieruchomości",
+    role: "Agentka nieruchomości",
     phone: "+48571309207",
     phoneDisplay: "571 309 207",
     email: "abodanka@domhunter.pl",
     photo: "/images/team/agnieszka-bodanka.jpg",
-    bio: BIO,
-    bioParagraphs: BIO_PARAS,
+    specializations: ["Mieszkania", "Lokale", "Domy"],
+    bio: "Mieszkania, lokale i domy w Gdańsku oraz okolicznych gminach. Sprzedaż i wynajem.",
+    bioParagraphs: [
+      "Prowadzi mieszkania, lokale i domy w Gdańsku oraz okolicznych gminach, między innymi w Baninie, Żukowie i Straszynie.",
+      "Łączy sprzedaż z wynajmem. " + CONTACT_PARA,
+    ],
     order: 3,
   },
   {
@@ -82,14 +92,35 @@ export const team: TeamMember[] = [
     firstName: "Anna",
     lastName: "Mależ",
     fullName: "Anna Mależ",
-    role: "Agent nieruchomości",
+    role: "Agentka nieruchomości",
     phone: "+48571309206",
     phoneDisplay: "571 309 206",
     email: "amalez@domhunter.pl",
     photo: "/images/team/anna-malez.jpg",
-    bio: BIO,
-    bioParagraphs: BIO_PARAS,
+    specializations: ["Domy", "Działki", "Mieszkania"],
+    bio: "Domy i działki pod Gdańskiem oraz mieszkania w mieście. Dobrze czuje się poza centrum.",
+    bioParagraphs: [
+      "Najlepiej czuje się w domach i działkach pod Gdańskiem, w miejscowościach takich jak Warzenko, Miszewo czy Kczewo, ale prowadzi też mieszkania w samym mieście.",
+      "Łączy sprzedaż z wynajmem. Jeśli szukasz nieruchomości poza centrum, to dobry adres.",
+    ],
     order: 4,
+  },
+  {
+    slug: "sylwia-kojto-labuda",
+    firstName: "Sylwia",
+    lastName: "Kojto-Labuda",
+    fullName: "Sylwia Kojto-Labuda",
+    role: "Agentka nieruchomości",
+    phone: "+48795069848",
+    phoneDisplay: "795 069 848",
+    email: "slabuda@domhunter.pl",
+    specializations: ["Mieszkania", "Gdańsk", "Sopot"],
+    bio: "Mieszkania w Gdańsku i Sopocie, sprzedaż i wynajem.",
+    bioParagraphs: [
+      "Zajmuje się mieszkaniami w Gdańsku i Sopocie, w sprzedaży i wynajmie.",
+      CONTACT_PARA,
+    ],
+    order: 5,
   },
   {
     slug: "taisiia-shulga",
@@ -101,12 +132,13 @@ export const team: TeamMember[] = [
     phoneDisplay: "533 530 130",
     email: "tshulga@domhunter.pl",
     photo: "/images/team/taisiia-shulga-3.jpg",
+    specializations: ["Mieszkania", "Trójmiasto"],
     bio: "Agentka nieruchomości w biurze Dom Hunter. Pomaga klientom w kupnie, sprzedaży i wynajmie nieruchomości w Trójmieście i okolicy.",
     bioParagraphs: [
       "Agentka nieruchomości w biurze Dom Hunter. Pomaga klientom w kupnie, sprzedaży i wynajmie nieruchomości w Trójmieście i okolicy.",
-      "Skontaktuj się bezpośrednio, telefon i e-mail znajdziesz powyżej. Oddzwaniamy w 30 minut w godzinach pracy biura.",
+      CONTACT_PARA,
     ],
-    order: 5,
+    order: 6,
   },
 ];
 

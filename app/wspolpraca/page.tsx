@@ -45,14 +45,9 @@ export default function WspolpracaPage() {
             </h1>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-foreground-muted">
               <p>
-                Jeśli to, jak pracujemy, jest Ci bliskie, może powinniśmy się poznać.
-                U nas każdy agent prowadzi klienta od początku do końca. Nie rozdrabniamy
-                roboty i nie traktujemy ludzi jak numerki.
-              </p>
-              <p>
-                Jesteś agentem i szukasz miejsca, gdzie liczy się relacja z klientem
-                i uczciwa robota, a nie tylko wyniki na tablicy? Zostaw nam swoje dane.
-                Odezwiemy się i spokojnie pogadamy, czy to dobre dopasowanie.
+                Podoba Ci się to, co robimy i jak pracujemy? Jesteś agentem
+                i chciałbyś być częścią naszego zespołu? Zostaw swoje dane,
+                a my się odezwiemy i spokojnie pogadamy.
               </p>
             </div>
           </div>

@@ -11,11 +11,11 @@ import { cn } from "@/lib/utils";
 
 // Jednolite menu — identyczne na każdej podstronie. Bez "Home" (logo wraca na główną).
 const navItems = [
-  { label: "Kup", href: "/oferty?transakcja=sprzedaz" },
-  { label: "Wynajmij", href: "/oferty?transakcja=najem" },
+  { label: "Oferta", href: "/oferty" },
   { label: "Komercja", href: "/komercja" },
   { label: "Wycena", href: "/wycena" },
   { label: "Nasz zespół", href: "/o-nas" },
+  { label: "Współpraca", href: "/wspolpraca" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 

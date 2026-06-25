@@ -15,11 +15,11 @@ export const siteConfig = {
 
   /** Adres biura */
   address: {
-    street: "",
-    postalCode: "",
+    street: "ul. Jana Pawła II 6g",
+    postalCode: "80-462",
     city: "Gdańsk",
     country: "Polska",
-    full: "Gdańsk",
+    full: "ul. Jana Pawła II 6g, 80-462 Gdańsk",
   },
 
   /** Kontakt */
@@ -27,7 +27,7 @@ export const siteConfig = {
     phones: [
       { label: "Biuro", value: "+48 58 533 43 23", displayValue: "58 533 43 23", href: "tel:+48585334323" },
     ],
-    email: "kontakt@domhunter.pl",
+    email: "biuro@domhunter.pl",
   },
 
   /** Profile zewnętrzne */

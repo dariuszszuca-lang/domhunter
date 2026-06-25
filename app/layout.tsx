@@ -73,7 +73,7 @@ const realEstateAgentSchema = {
   email: siteConfig.contact.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "ul. Jana Pawła II 6e/5",
+    streetAddress: "ul. Jana Pawła II 6g",
     postalCode: "80-462",
     addressLocality: "Gdańsk",
     addressCountry: "PL",

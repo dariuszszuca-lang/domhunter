@@ -20,8 +20,8 @@ export function OfficeBento() {
           {/* Mapa */}
           <div className="overflow-hidden rounded-[28px] border border-border bg-surface">
             <iframe
-              title="Mapa, Dom Hunter, ul. Jana Pawła II 6e, Gdańsk"
-              src="https://www.google.com/maps?q=Jana%20Paw%C5%82a%20II%206e%20Gda%C5%84sk&output=embed"
+              title="Mapa, Dom Hunter, ul. Jana Pawła II 6g, Gdańsk"
+              src="https://www.google.com/maps?q=Jana%20Paw%C5%82a%20II%206g%20Gda%C5%84sk&output=embed"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="h-[320px] w-full lg:h-full lg:min-h-[460px]"
@@ -39,12 +39,12 @@ export function OfficeBento() {
                 Adres
               </p>
               <p className="font-display text-xl font-normal leading-snug text-foreground">
-                ul. Jana Pawła II 6e/5
+                ul. Jana Pawła II 6g
                 <br />
                 80-462 Gdańsk
               </p>
               <a
-                href="https://maps.google.com/?q=Jana+Paw%C5%82a+II+6e+Gda%C5%84sk"
+                href="https://maps.google.com/?q=Jana+Paw%C5%82a+II+6g+Gda%C5%84sk"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand transition-all hover:gap-3"
@@ -80,10 +80,10 @@ export function OfficeBento() {
                 E-mail
               </p>
               <a
-                href="mailto:kontakt@domhunter.pl"
+                href="mailto:biuro@domhunter.pl"
                 className="break-all font-display text-lg font-normal text-foreground transition-colors hover:text-brand"
               >
-                kontakt@domhunter.pl
+                biuro@domhunter.pl
               </a>
             </div>
 

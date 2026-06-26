@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { label: "Oferta", href: "/oferty" },
   { label: "Komercja", href: "/komercja" },
-  { label: "Wycena", href: "/wycena" },
+  { label: "Zgłoś nieruchomość", href: "/wycena" },
   { label: "Nasz zespół", href: "/o-nas" },
   { label: "Współpraca", href: "/wspolpraca" },
   { label: "Kontakt", href: "/kontakt" },

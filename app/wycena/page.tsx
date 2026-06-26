@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { WycenaCta } from "@/components/sections/wycena-cta";
 
 export const metadata: Metadata = {
-  title: "Darmowa wycena",
-  description: "Bezpłatna wycena nieruchomości w Trójmieście. Wycena oparta na faktach, odpowiedź w 24 godziny.",
+  title: "Zgłoś nieruchomość",
+  description: "Zgłoś nieruchomość do sprzedaży w Trójmieście. Bezpłatna wycena, przygotowanie oferty i prowadzenie sprzedaży od pierwszego kontaktu po akt notarialny.",
 };
 
 export default function WycenaPage() {

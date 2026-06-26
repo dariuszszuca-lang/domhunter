@@ -55,7 +55,7 @@ export function Hero() {
                 href="/wycena"
                 className="inline-flex items-center rounded-full border border-border-strong px-6 py-3 text-sm font-semibold text-foreground hover:bg-foreground hover:text-background transition-colors"
               >
-                Darmowa wycena
+                Zgłoś nieruchomość
               </Link>
             </div>
 

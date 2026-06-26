@@ -80,18 +80,18 @@ export function WycenaCta() {
         {/* Nagłówek + opis */}
         <motion.div {...fadeUp} className="max-w-3xl">
           <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
-            Wycena
+            Zgłoś nieruchomość
           </p>
           <h2 className="font-display font-normal text-[clamp(2rem,4.6vw,3.5rem)] leading-[1.04] tracking-[-0.01em] text-foreground">
-            Sprawdź, ile naprawdę warta jest
+            Masz nieruchomość na sprzedaż?
             <br />
-            <span className="italic text-brand">Twoja nieruchomość.</span>
+            <span className="italic text-brand">Zgłoś ją nam.</span>
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-foreground-muted">
-            Bezpłatna wycena to rzetelne oszacowanie wartości Twojego mieszkania, domu czy działki.
-            Robimy ją w oparciu o realne transakcje w okolicy, stan techniczny i lokalny popyt.
-            Bez kosztów, bez zobowiązań i bez automatu. Po prostu konkretna odpowiedź, na której
-            możesz oprzeć decyzję o sprzedaży.
+            Zgłoś swoje mieszkanie, dom albo działkę, a my zajmiemy się resztą. Zaczynamy od
+            bezpłatnej wyceny opartej na realnych transakcjach w okolicy, przygotowujemy ofertę
+            i prowadzimy całą sprzedaż, od pierwszego kontaktu aż po akt notarialny. Bez kosztów
+            na starcie i bez zobowiązań.
           </p>
         </motion.div>
 
@@ -222,7 +222,7 @@ export function WycenaCta() {
                   </span>
                   <h3 className="mb-2 font-display text-2xl text-foreground">Dziękujemy</h3>
                   <p className="text-foreground-muted">
-                    Odezwiemy się w ciągu 24 godzin ze wstępną wyceną.
+                    Odezwiemy się w ciągu 24 godzin i omówimy szczegóły.
                   </p>
                 </div>
               ) : (
@@ -231,7 +231,7 @@ export function WycenaCta() {
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-brand px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
                       Bezpłatnie
                     </span>
-                    <p className="text-sm text-foreground-muted">Zamów wycenę w minutę.</p>
+                    <p className="text-sm text-foreground-muted">Zgłoś nieruchomość w minutę.</p>
                   </div>
 
                   <form onSubmit={handleSubmit} className="grid gap-4">
@@ -257,12 +257,12 @@ export function WycenaCta() {
                       ) : (
                         <>
                           <Send className="size-4" />
-                          Zamów wycenę
+                          Zgłoś nieruchomość
                         </>
                       )}
                     </button>
                     <p className="text-xs leading-relaxed text-foreground-subtle">
-                      Wysyłając, zgadzasz się na kontakt telefoniczny w celu omówienia wyceny.
+                      Wysyłając, zgadzasz się na kontakt telefoniczny w celu omówienia zgłoszenia.
                     </p>
                   </form>
                 </>

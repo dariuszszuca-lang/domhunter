@@ -15,7 +15,7 @@ const footerNav = {
   ],
   firma: [
     { label: "Nasz zespół", href: "/o-nas" },
-    { label: "Darmowa wycena", href: "/wycena" },
+    { label: "Zgłoś nieruchomość", href: "/wycena" },
     { label: "Kontakt", href: "/kontakt" },
   ],
   formalne: [

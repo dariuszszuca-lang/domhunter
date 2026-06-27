@@ -3,15 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Phone,
-  Mail,
-  MapPin,
-  HandshakeIcon,
-  Compass,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight, Phone, Mail } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { MemberPhoto } from "@/components/team/member-photo";
 import { getAllMembersSorted } from "@/lib/team";
@@ -41,24 +33,6 @@ const memberBlurbs: Record<string, string> = {
   "taisiia-shulga":
     "Prowadzi sprawy spokojnie i z uwagą, dba o to, żeby na każdym etapie wszystko było jasne.",
 };
-
-const values = [
-  {
-    icon: MapPin,
-    title: "Najpierw oddzwaniamy",
-    body: "Telefon nie dzwoni w próżnię. Odbieramy, a jak nie zdążymy, oddzwaniamy tego samego dnia. Bez automatów i bez czekania trzy dni na odpowiedź.",
-  },
-  {
-    icon: Compass,
-    title: "Mówimy jak jest",
-    body: "Jeśli cena jest za wysoka, powiemy to wprost. Jeśli z ofertą coś jest nie tak, dowiesz się od nas, a nie od notariusza. Wolimy uczciwą rozmowę niż szybki podpis.",
-  },
-  {
-    icon: HandshakeIcon,
-    title: "Jeden agent, cała sprawa",
-    body: "Od pierwszej rozmowy po klucze prowadzi Cię ta sama osoba. Nie przerzucamy Cię między działami i nie musisz tłumaczyć sprawy od nowa za każdym razem.",
-  },
-];
 
 export function OnasContent() {
   const members = getAllMembersSorted();
@@ -245,13 +219,13 @@ export function OnasContent() {
             {members.map((member, i) => {
               const blurb = memberBlurbs[member.slug] ?? member.bio;
               return (
+                <Link key={member.slug} href={`/zespol/${member.slug}`} className="block">
                 <motion.article
-                  key={member.slug}
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.6, delay: (i % 5) * 0.07, ease: EASE }}
-                  className="group flex flex-col overflow-hidden rounded-[24px] border border-border bg-surface shadow-[0_2px_8px_-2px_rgba(25,25,25,0.06)] transition-all duration-400 hover:-translate-y-1.5 hover:border-brand hover:shadow-[0_28px_64px_-22px_rgba(211,30,192,0.28)]"
+                  className="group flex h-full flex-col overflow-hidden rounded-[24px] border border-border bg-surface shadow-[0_2px_8px_-2px_rgba(25,25,25,0.06)] transition-all duration-400 hover:-translate-y-1.5 hover:border-brand hover:shadow-[0_28px_64px_-22px_rgba(211,30,192,0.28)]"
                 >
                   <div className="relative border-b border-border/70">
                     <MemberPhoto
@@ -277,68 +251,29 @@ export function OnasContent() {
 
                     <div className="mt-auto flex flex-col gap-2.5 pt-6">
                       {member.phone && member.phoneDisplay && (
-                        <a
-                          href={`tel:${member.phone}`}
-                          className="inline-flex items-center gap-2.5 text-sm font-medium text-foreground transition-colors hover:text-brand"
-                        >
+                        <span className="inline-flex items-center gap-2.5 text-sm font-medium text-foreground">
                           <span className="inline-flex size-8 items-center justify-center rounded-full bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
                             <Phone className="size-3.5" strokeWidth={2} />
                           </span>
                           {member.phoneDisplay}
-                        </a>
+                        </span>
                       )}
                       {member.email && (
-                        <a
-                          href={`mailto:${member.email}`}
-                          className="flex items-center gap-2.5 text-xs text-foreground-muted transition-colors hover:text-brand"
-                        >
+                        <span className="flex items-center gap-2.5 text-xs text-foreground-muted">
                           <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
                             <Mail className="size-3.5" strokeWidth={2} />
                           </span>
                           <span className="min-w-0 flex-1 truncate">{member.email}</span>
-                        </a>
+                        </span>
                       )}
+                      <span className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-brand transition-all group-hover:gap-2">
+                        Zobacz profil
+                        <ArrowUpRight className="size-3.5" />
+                      </span>
                     </div>
                   </div>
                 </motion.article>
-              );
-            })}
-          </div>
-        </Container>
-      </section>
-
-      {/* WARTOŚCI: trzy karty */}
-      <section className="py-20 lg:py-28">
-        <Container size="wide">
-          <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
-              W co wierzymy
-            </p>
-            <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
-              Trzy rzeczy, których <span className="italic text-brand">nie odpuszczamy.</span>
-            </h2>
-          </motion.div>
-
-          <div className="mt-14 grid gap-6 md:grid-cols-3 lg:gap-8">
-            {values.map((v, i) => {
-              const Icon = v.icon;
-              return (
-                <motion.div
-                  key={v.title}
-                  initial={{ opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.65, delay: i * 0.1, ease: EASE }}
-                  className="group rounded-[24px] border border-border bg-surface p-8 transition-all hover:-translate-y-1 hover:border-brand/40 hover:shadow-soft"
-                >
-                  <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
-                    <Icon className="size-5" strokeWidth={1.8} />
-                  </span>
-                  <h3 className="mt-6 font-display text-2xl font-normal leading-tight text-foreground">
-                    {v.title}
-                  </h3>
-                  <p className="mt-4 text-base leading-relaxed text-foreground-muted">{v.body}</p>
-                </motion.div>
+                </Link>
               );
             })}
           </div>

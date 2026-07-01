@@ -47,7 +47,7 @@ export default async function AgentPage({
             Nasz zespół
           </Link>
 
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,360px)_minmax(0,1fr)] lg:gap-14">
+          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,360px)_minmax(0,1fr)] lg:gap-14">
             {/* Zdjęcie */}
             <div className="overflow-hidden rounded-[28px] border border-border bg-surface">
               <div className="relative aspect-[4/5] w-full">

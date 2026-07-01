@@ -116,6 +116,7 @@ export const team: TeamMember[] = [
     phone: "+48795069848",
     phoneDisplay: "795 069 848",
     email: "slabuda@domhunter.pl",
+    photo: "/images/team/sylwia-kojto-labuda.jpg",
     specializations: ["Mieszkania", "Gdańsk", "Sopot"],
     bio: "Mieszkania w Gdańsku i Sopocie, sprzedaż i wynajem.",
     bioParagraphs: [

@@ -18,6 +18,7 @@ import { Container } from "@/components/ui/container";
 
 const PHONE_HREF = "tel:+48571309209";
 const PHONE_DISPLAY = "571 309 209";
+const CONTACT_EMAIL = "biuro@domhunter.pl";
 
 const steps = [
   {
@@ -65,13 +66,37 @@ const fadeUp = {
 export function WycenaCta() {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const [fallbackHref, setFallbackHref] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const payload = Object.fromEntries(new FormData(form));
+
     setSending(true);
-    await new Promise((r) => setTimeout(r, 800));
-    setSubmitted(true);
-    setSending(false);
+    setError("");
+    setFallbackHref("");
+
+    try {
+      const response = await fetch("/api/wycena", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("send_failed");
+      }
+
+      form.reset();
+      setSubmitted(true);
+    } catch {
+      setFallbackHref(buildFallbackMailto(payload));
+      setError("Nie udało się wysłać zgłoszenia przez formularz. Możesz wysłać te dane mailem albo zadzwonić: 571 309 209.");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -261,6 +286,19 @@ export function WycenaCta() {
                         </>
                       )}
                     </button>
+                    {error && (
+                      <div className="rounded-xl border border-brand/25 bg-brand/5 px-4 py-3 text-sm leading-relaxed text-brand">
+                        <p>{error}</p>
+                        {fallbackHref && (
+                          <a
+                            href={fallbackHref}
+                            className="mt-2 inline-flex font-semibold underline underline-offset-4"
+                          >
+                            Wyślij mailem
+                          </a>
+                        )}
+                      </div>
+                    )}
                     <p className="text-xs leading-relaxed text-foreground-subtle">
                       Wysyłając, zgadzasz się na kontakt telefoniczny w celu omówienia zgłoszenia.
                     </p>
@@ -273,6 +311,30 @@ export function WycenaCta() {
       </Container>
     </section>
   );
+}
+
+function buildFallbackMailto(payload: Record<string, FormDataEntryValue>) {
+  const subject = encodeURIComponent("Zgłoszenie wyceny nieruchomości");
+  const body = encodeURIComponent(
+    [
+      "Dzień dobry,",
+      "",
+      "chcę zgłosić nieruchomość do wyceny.",
+      "",
+      `Adres nieruchomości: ${fieldValue(payload.adres)}`,
+      `Metraż: ${fieldValue(payload.metraz)} m²`,
+      `Pokoje: ${fieldValue(payload.pokoje)}`,
+      `Telefon: ${fieldValue(payload.telefon)}`,
+      "",
+      "Źródło: domhunter.pl/wycena",
+    ].join("\n")
+  );
+
+  return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+}
+
+function fieldValue(value: FormDataEntryValue | undefined) {
+  return typeof value === "string" ? value : "";
 }
 
 function Highlight({

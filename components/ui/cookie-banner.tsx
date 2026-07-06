@@ -12,12 +12,16 @@ export function CookieBanner() {
   const [view, setView] = useState<View>("hidden");
 
   useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem(STORAGE_KEY);
-      setView(saved ? "icon" : "banner");
-    } catch {
-      setView("banner");
-    }
+    const id = window.setTimeout(() => {
+      try {
+        const saved = window.localStorage.getItem(STORAGE_KEY);
+        setView(saved ? "icon" : "banner");
+      } catch {
+        setView("banner");
+      }
+    }, 0);
+
+    return () => window.clearTimeout(id);
   }, []);
 
   const decide = (value: "accepted" | "essential" | "dismissed") => {

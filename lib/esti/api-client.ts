@@ -107,11 +107,22 @@ async function fetchOfferListPage(opts: FetchEstiOffersOptions): Promise<OfferLi
       ? { next: { revalidate: opts.revalidateSeconds } }
       : { cache: "no-store" as const };
 
-  const res = await fetch(url, {
-    method: "GET",
-    headers: { Accept: "application/json" },
-    ...cacheOpts,
-  });
+  // Timeout: API Esti bywa wolne (~4 s). Bez limitu zawieszony request wiesza
+  // całą stronę (Vercel function timeout). Z limitem -> fetch rzuca -> loadFromApi
+  // zwraca null -> readOffers przełącza się na snapshot data/offers.json.
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 7000);
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      method: "GET",
+      headers: { Accept: "application/json" },
+      signal: controller.signal,
+      ...cacheOpts,
+    });
+  } finally {
+    clearTimeout(timeoutId);
+  }
 
   if (!res.ok) {
     throw new Error(`ESTI API /offer/list zwróciło HTTP ${res.status} ${res.statusText}`);

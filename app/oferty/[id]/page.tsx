@@ -33,7 +33,9 @@ import {
   transactionLabels,
 } from "@/lib/esti/format";
 
-export const dynamic = "force-dynamic";
+// ISR: strona oferty cache'owana 1h (nie force-dynamic). Dzięki temu każde wejście
+// nie uderza do wolnego API Esti — oferta serwowana z cache, odporna na chwilowe padnięcia.
+export const revalidate = 3600;
 
 type Params = Promise<{ id: string }>;
 

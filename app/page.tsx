@@ -9,7 +9,8 @@ import { Partners } from "@/components/sections/partners";
 import { BlogTeaser } from "@/components/sections/blog-teaser";
 import { FAQ } from "@/components/sections/faq";
 
-export const dynamic = "force-dynamic";
+// ISR: strona główna cache'owana 1h — wyróżnione oferty z cache, nie z API co wejście.
+export const revalidate = 3600;
 
 export default function HomePage() {
   return (

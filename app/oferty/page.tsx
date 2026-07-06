@@ -12,7 +12,9 @@ import type { OfferFilters, OfferTransaction, OfferType, OfferMarket } from "@/l
 // /oferty używa searchParams (filtry) → musi być dynamic.
 // Cron sync ESTI raz dziennie commituje data/offers.json → Vercel rebuild
 // → strona ma świeże dane. Pomiędzy commitami in-memory cache (60s) trzyma JSON.
-export const dynamic = "force-dynamic";
+// Bez force-dynamic: listing pozostaje dynamiczny przez filtry (searchParams),
+// ale dane ofert idą z Data Cache (revalidate 1h) — nie uderzamy do API co request.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Oferty nieruchomości Gdańsk i Trójmiasto. Dom Hunter",

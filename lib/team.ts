@@ -145,6 +145,26 @@ export const team: TeamMember[] = [
     ],
     order: 6,
   },
+  {
+    slug: "barbara-weiner",
+    firstName: "Barbara",
+    lastName: "Weiner",
+    fullName: "Barbara Weiner",
+    role: "Pośredniczka w obrocie nieruchomościami",
+    phone: "+48660509507",
+    phoneDisplay: "660 509 507",
+    email: "bweiner@domhunter.pl",
+    photo: "/images/team/barbara-weiner.jpg",
+    specializations: ["Kupno", "Sprzedaż", "Wynajem długoterminowy"],
+    bio: "Pośredniczka z licencją państwową (nr 16995). Prowadzi klientów przez kupno, sprzedaż i wynajem długoterminowy na każdym etapie, spokojnie i z dbałością o dokumenty.",
+    bioParagraphs: [
+      "Z pasją pomagam klientom zrealizować marzenia o idealnej nieruchomości i towarzyszę im na każdym etapie. Wyznaję jedną zasadę: nieruchomości to ludzie, a nie mury. Dlatego stawiam na współpracę, nie rywalizację, i działam transparentnie.",
+      "Mam licencję państwową pośrednictwa w obrocie nieruchomościami (nr 16995) oraz duże doświadczenie w kupnie, sprzedaży i wynajmie długoterminowym. Zapewniam rzetelne wsparcie od pierwszej rozmowy aż po finał transakcji.",
+      "Klienci i współpracownicy cenią mnie za dobrą organizację i przygotowanie dokumentów oraz za cierpliwość. Na każde pytanie odpowiadam wyczerpująco i rzeczowo, żeby decyzja była spokojna i przemyślana.",
+      "Prywatnie lubię poznawać nowe technologie dla zdrowia i lepszego stylu życia, delektować się kulinarnymi smakami i podróżować, zarówno blisko, jak i daleko.",
+    ],
+    order: 7,
+  },
 ];
 
 export function getMemberBySlug(slug: string): TeamMember | undefined {

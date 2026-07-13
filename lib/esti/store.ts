@@ -26,13 +26,16 @@ const OFFERS_REVALIDATE_S = 3600; // 1h
 
 /**
  * Pobiera oferty NA ŻYWO z API Esti (gdy ustawione ESTI_API_COMPANY + ESTI_API_TOKEN).
+ * status="3" = TYLKO aktywne PUBLIKOWANE. Oferty "aktywne wewnętrznie" (status 99)
+ * NIE są pobierane, więc nie trafiają na stronę (potwierdzone przez klienta 13.07.2026).
+ * Status podajemy JAWNIE, żeby nie zależeć od wartości domyślnej w api-client.
  * Cache fetch (revalidate) odświeża dane automatycznie. Błąd/brak konfiguracji → null,
  * wtedy readOffers użyje snapshotu z pliku data/offers.json jako fallbacku.
  */
 async function loadFromApi(): Promise<CacheShape | null> {
   if (!process.env.ESTI_API_COMPANY || !process.env.ESTI_API_TOKEN) return null;
   try {
-    const raw = await fetchEstiOffersJson({ revalidateSeconds: OFFERS_REVALIDATE_S });
+    const raw = await fetchEstiOffersJson({ status: "3", revalidateSeconds: OFFERS_REVALIDATE_S });
     const offers = mapApiOffersToOffers(raw);
     if (offers.length === 0) return null;
     return { lastSync: new Date().toISOString(), offers };

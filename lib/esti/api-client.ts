@@ -62,8 +62,10 @@ type OfferListResponse = {
 export type FetchEstiOffersOptions = {
   /**
    * Lista statusów ofert (numerycznie, po przecinku).
-   * Domyślnie "3,99" = aktywne publikowane (3) + aktywne wewnętrzne (99),
-   * zgodnie z przykładem w dokumentacji EstiAPI v1.5.
+   * Domyślnie "3" = TYLKO aktywne publikowane.
+   * NIE dodawaj tu 99 (aktywne wewnętrzne) — te oferty NIE są do publikacji
+   * na stronie WWW (potwierdzone przez klienta 13.07.2026). Status 99 pobieraj
+   * wyłącznie świadomie, przekazując `status` jawnie (np. panel/admin).
    */
   status?: string;
   /** Liczba rekordów do pobrania w jednej stronie (paginacja). Domyślnie 100. */
@@ -96,7 +98,7 @@ function buildUrl(path: string, params: Record<string, string | number | undefin
  */
 async function fetchOfferListPage(opts: FetchEstiOffersOptions): Promise<OfferListResponse> {
   const url = buildUrl("/offer/list", {
-    status: opts.status ?? "3,99",
+    status: opts.status ?? "3",
     take: opts.take ?? 100,
     skip: opts.skip ?? 0,
     updateDate: opts.updateDate,

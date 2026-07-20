@@ -18,13 +18,12 @@ const types = [
 
 type TypeValue = typeof types[number]["value"];
 
-const cityOptions = [
+// Fallback, gdy serwer nie poda listy (np. brak danych ofert).
+// Normalnie lista miast przychodzi propem `cities` z realnych ofert (store.getCityOptions).
+const cityOptionsFallback = [
+  "Gdańsk",
   "Gdynia",
   "Sopot",
-  "Gdańsk",
-  "Rumia",
-  "Reda",
-  "Wejherowo",
   "Pruszcz Gdański",
 ];
 
@@ -41,7 +40,11 @@ const stateOptions = [
   "surowy",
 ];
 
-export function QuickSearch({ variant = "overlay" }: { variant?: "overlay" | "embed" } = {}) {
+export function QuickSearch({
+  variant = "overlay",
+  cities,
+}: { variant?: "overlay" | "embed"; cities?: string[] } = {}) {
+  const cityList = cities && cities.length > 0 ? cities : cityOptionsFallback;
   const [type, setType] = useState<TypeValue>("wszystkie");
   const [advanced, setAdvanced] = useState(false);
 
@@ -175,7 +178,7 @@ export function QuickSearch({ variant = "overlay" }: { variant?: "overlay" | "em
                 className="form-select"
               >
                 <option value="">Dowolne</option>
-                {cityOptions.map((c) => (
+                {cityList.map((c) => (
                   <option key={c} value={c}>
                     {c}
                   </option>

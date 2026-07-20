@@ -8,15 +8,17 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { Partners } from "@/components/sections/partners";
 import { BlogTeaser } from "@/components/sections/blog-teaser";
 import { FAQ } from "@/components/sections/faq";
+import { getCityOptions } from "@/lib/esti/store";
 
 // ISR: strona główna cache'owana 1h — wyróżnione oferty z cache, nie z API co wejście.
 export const revalidate = 3600;
 
-export default function HomePage() {
+export default async function HomePage() {
+  const cities = await getCityOptions();
   return (
     <>
       <Hero />
-      <QuickSearch />
+      <QuickSearch cities={cities} />
       <FeaturedOffers />
       <SolutionsShowcase />
       <Services />

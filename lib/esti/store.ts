@@ -161,3 +161,20 @@ export async function getOffersByAgentSlug(slug: string, limit = 6): Promise<Off
   if (!cache) return [];
   return cache.offers.filter((o) => o.agent?.slug === slug).slice(0, limit);
 }
+
+// Miejscowości do wyszukiwarki: TYLKO te, w których aktualnie SĄ oferty
+// (miasto z 0 ofert znika z dropdownu — koniec "Brak ofert" po wybraniu Rumi).
+// Sort: liczba ofert malejąco, potem alfabetycznie (pl). Odświeża się z readOffers (1h).
+export async function getCityOptions(): Promise<string[]> {
+  const cache = await readOffers();
+  if (!cache) return [];
+  const counts = new Map<string, number>();
+  for (const o of cache.offers) {
+    const city = o.city?.trim();
+    if (!city) continue;
+    counts.set(city, (counts.get(city) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "pl"))
+    .map(([city]) => city);
+}

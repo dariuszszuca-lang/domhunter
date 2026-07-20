@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { OfferCard } from "@/components/offers/offer-card";
 import { QuickSearch } from "@/components/sections/quick-search";
-import { getFilteredOffers } from "@/lib/esti/store";
+import { getFilteredOffers, getCityOptions } from "@/lib/esti/store";
 import { siteConfig } from "@/lib/site";
 import type { OfferFilters, OfferTransaction, OfferType, OfferMarket } from "@/lib/esti/types";
 
@@ -49,7 +49,10 @@ function paramsToFilters(p: Record<string, string | undefined>): OfferFilters {
 export default async function OfertyPage({ searchParams }: { searchParams: SearchParams }) {
   const params = await searchParams;
   const filters = paramsToFilters(params);
-  const { items, total, lastSync } = await getFilteredOffers(filters);
+  const [{ items, total, lastSync }, cities] = await Promise.all([
+    getFilteredOffers(filters),
+    getCityOptions(),
+  ]);
 
   const lastSyncLabel =
     lastSync && new Date(lastSync).getFullYear() > 2020
@@ -94,7 +97,7 @@ export default async function OfertyPage({ searchParams }: { searchParams: Searc
       </section>
 
       {/* Wyszukiwarka */}
-      <QuickSearch variant="embed" />
+      <QuickSearch variant="embed" cities={cities} />
 
       {items.length === 0 ? (
         <EmptyState lastSyncLabel={lastSyncLabel} />

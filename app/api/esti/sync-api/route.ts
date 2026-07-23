@@ -43,12 +43,21 @@ export async function GET(req: Request) {
   const wantCommit = url.searchParams.get("commit") === "1";
   const statusParam = url.searchParams.get("status") || undefined;
 
-  const isAuthorized =
-    !cronSecret ||
-    querySecret === cronSecret ||
-    authHeader === `Bearer ${cronSecret}`;
+  const wantWrite = url.searchParams.get("write") === "1";
+  const isMutating = wantCommit || wantWrite;
 
-  if (!isAuthorized) {
+  const hasValidSecret =
+    Boolean(cronSecret) &&
+    (querySecret === cronSecret || authHeader === `Bearer ${cronSecret}`);
+
+  // Fail-closed: akcje zapisujące (write/commit) ZAWSZE wymagają ważnego
+  // CRON_SECRET. Wcześniej `!cronSecret` przepuszczało zapis, gdy zmiennej
+  // brakowało w env — czyli publiczny zapis do repo. Odczyt/test pozostaje
+  // dostępny, chyba że sekret jest skonfigurowany (wtedy wymagany wszędzie).
+  if (isMutating && !hasValidSecret) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+  if (!isMutating && cronSecret && !hasValidSecret) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 

@@ -4,7 +4,7 @@ Strona biura nieruchomości **DomHunter** (Sylwia Wróblewska). Lokalne biuro w 
 
 **Domena:** [domhunter.pl](https://domhunter.pl)
 **Deploy:** Vercel (auto z `main`)
-**Stack:** Next.js 16 + React 19 + Tailwind v4 + ESTI CRM (FTP sync)
+**Stack:** Next.js 16 + React 19 + Tailwind v4 + ESTI CRM (live API)
 
 ## Struktura strony
 
@@ -15,22 +15,25 @@ Strona biura nieruchomości **DomHunter** (Sylwia Wróblewska). Lokalne biuro w 
 - **Dlaczego my** (lokalna wiedza, NSL off-market, doświadczenie)
 - **Kontakt**
 
-## Setup ESTI
+## Setup ESTI (live API)
 
-1. Uzyskać dane FTP od Sylwii (panel EstiCRM → eksport portali):
-   - `ESTI_FTP_HOST`
-   - `ESTI_FTP_USER`
-   - `ESTI_FTP_PASSWORD`
-   - `ESTI_FTP_REMOTE_DIR`
+Oferty ciągnięte NA ŻYWO z EstiCRM przez API (company + token), z odświeżaniem
+ISR (revalidate 1h) i fallbackiem na snapshot `data/offers.json`. Stary tor FTP +
+cron jest w kodzie jako martwy fallback (bez configu i bez harmonogramu w `vercel.json`).
 
-2. Wrzucić w Vercel → Project Settings → Environment Variables (z `.env.example`).
+1. Uzyskać dane API od Sylwii (panel EstiCRM):
+   - `ESTI_API_COMPANY` (identyfikator firmy)
+   - `ESTI_API_TOKEN` (token; base `https://app.esticrm.pl/apiClient`, `GET /offer/list`, status filtrowany na `3`)
 
-3. Wygenerować GitHub Personal Access Token (fine-grained, contents=write w `domhunter`) i wrzucić jako `GITHUB_TOKEN`.
+2. Wrzucić w Vercel → Project Settings → Environment Variables (Sensitive).
 
-4. Wygenerować `CRON_SECRET` (np. `openssl rand -hex 32`) i wrzucić w Vercel.
+3. Wygenerować GitHub Personal Access Token (fine-grained, contents=write w `domhunter`) i wrzucić jako `GITHUB_TOKEN` — potrzebny do regeneracji snapshotu przez commit.
 
-5. Cron Vercel zsynchronizuje oferty raz dziennie (`30 5 * * *` — 5:30 UTC = 6:30 CET).
-   Można uruchomić ręcznie: `curl https://domhunter.pl/api/cron/sync-esti?secret=$CRON_SECRET`
+4. Wygenerować `CRON_SECRET` (np. `openssl rand -hex 32`) i wrzucić w Vercel. **Wymagany** do ręcznej regeneracji snapshotu (endpoint zapisu jest fail-closed — bez sekretu odmawia zapisu).
+
+5. Ręczna regeneracja snapshotu (fallbacku):
+   `curl "https://domhunter.pl/api/esti/sync-api?commit=1&secret=$CRON_SECRET"`
+   Bieżące oferty na stronie działają bez tego (ISR czyta API bezpośrednio); snapshot to tylko awaryjny fallback.
 
 ## Lokalny dev
 

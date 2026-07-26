@@ -108,6 +108,8 @@ export type OfferFilters = {
   areaMin?: number;
   areaMax?: number;
   rooms?: number[];
+  /** Dolna granica liczby pokoi, np. 5 dla filtra "5+" */
+  roomsMin?: number;
   floorMin?: number;
   floorMax?: number;
   yearMin?: number;

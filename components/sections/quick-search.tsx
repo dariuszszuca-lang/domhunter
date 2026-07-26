@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Search, Home, Building2, TreePine, Key, Hash, SlidersHorizontal, ChevronDown, X, LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import type { OfferFilters, OfferMarket, OfferTransaction, OfferType } from "@/lib/esti/types";
 import { cn } from "@/lib/utils";
 
 const types = [
@@ -16,7 +17,9 @@ const types = [
   { value: "najem", label: "Wynajem", icon: Key },
 ] as const;
 
-type TypeValue = typeof types[number]["value"];
+type TabValue = typeof types[number]["value"];
+type TypeValue = OfferType | "wszystkie";
+type TransactionValue = OfferTransaction | "wszystkie";
 
 // Fallback, gdy serwer nie poda listy (np. brak danych ofert).
 // Normalnie lista miast przychodzi propem `cities` z realnych ofert (store.getCityOptions).
@@ -28,52 +31,91 @@ const cityOptionsFallback = [
 ];
 
 const roomOptions = ["1", "2", "3", "4", "5+"];
-const marketOptions = [
+const transactionOptions: { value: TransactionValue; label: string }[] = [
+  { value: "wszystkie", label: "Wszystkie" },
+  { value: "sprzedaz", label: "Sprzedaż" },
+  { value: "najem", label: "Wynajem" },
+];
+const marketOptions: { value: OfferMarket | "wszystkie"; label: string }[] = [
   { value: "wszystkie", label: "Wszystkie" },
   { value: "wtorny", label: "Wtórny" },
+  { value: "pierwotny", label: "Pierwotny" },
 ];
-const stateOptions = [
+const stateOptionsFallback = [
   "do wprowadzenia",
-  "do odświeżenia",
-  "do remontu",
-  "deweloperski",
-  "surowy",
 ];
 
 export function QuickSearch({
   variant = "overlay",
   cities,
-}: { variant?: "overlay" | "embed"; cities?: string[] } = {}) {
+  states,
+  initialFilters,
+}: {
+  variant?: "overlay" | "embed";
+  cities?: string[];
+  states?: string[];
+  initialFilters?: OfferFilters;
+} = {}) {
+  const router = useRouter();
   const cityList = cities && cities.length > 0 ? cities : cityOptionsFallback;
-  const [type, setType] = useState<TypeValue>("wszystkie");
-  const [advanced, setAdvanced] = useState(false);
+  const stateOptions = states && states.length > 0 ? states : stateOptionsFallback;
+  const [type, setType] = useState<TypeValue>(initialFilters?.type ?? "wszystkie");
+  const [transaction, setTransaction] = useState<TransactionValue>(
+    initialFilters?.transaction ?? "wszystkie"
+  );
+  const [advanced, setAdvanced] = useState(
+    Boolean(
+      initialFilters?.transaction ||
+      initialFilters?.market ||
+      initialFilters?.areaMin ||
+      initialFilters?.areaMax ||
+      initialFilters?.rooms?.length ||
+      initialFilters?.roomsMin ||
+      initialFilters?.floorMin !== undefined ||
+      initialFilters?.floorMax !== undefined ||
+      initialFilters?.yearMin ||
+      initialFilters?.state?.length ||
+      initialFilters?.offerId
+    )
+  );
 
-  const [city, setCity] = useState("");
-  const [district, setDistrict] = useState("");
-  const [market, setMarket] = useState("wszystkie");
-  const [priceMin, setPriceMin] = useState("");
-  const [priceMax, setPriceMax] = useState("");
-  const [areaMin, setAreaMin] = useState("");
-  const [areaMax, setAreaMax] = useState("");
-  const [rooms, setRooms] = useState<string[]>([]);
-  const [floorMin, setFloorMin] = useState("");
-  const [floorMax, setFloorMax] = useState("");
-  const [yearMin, setYearMin] = useState("");
-  const [state, setState] = useState<string[]>([]);
-  const [offerId, setOfferId] = useState("");
+  const [city, setCity] = useState(initialFilters?.city ?? "");
+  const [district, setDistrict] = useState(initialFilters?.district ?? "");
+  const [market, setMarket] = useState(initialFilters?.market ?? "wszystkie");
+  const [priceMin, setPriceMin] = useState(
+    initialFilters?.priceMin !== undefined ? String(initialFilters.priceMin) : ""
+  );
+  const [priceMax, setPriceMax] = useState(
+    initialFilters?.priceMax !== undefined ? String(initialFilters.priceMax) : ""
+  );
+  const [areaMin, setAreaMin] = useState(
+    initialFilters?.areaMin !== undefined ? String(initialFilters.areaMin) : ""
+  );
+  const [areaMax, setAreaMax] = useState(
+    initialFilters?.areaMax !== undefined ? String(initialFilters.areaMax) : ""
+  );
+  const [rooms, setRooms] = useState<string[]>([
+    ...(initialFilters?.rooms?.map(String) ?? []),
+    ...(initialFilters?.roomsMin !== undefined ? [`${initialFilters.roomsMin}+`] : []),
+  ]);
+  const [floorMin, setFloorMin] = useState(
+    initialFilters?.floorMin !== undefined ? String(initialFilters.floorMin) : ""
+  );
+  const [floorMax, setFloorMax] = useState(
+    initialFilters?.floorMax !== undefined ? String(initialFilters.floorMax) : ""
+  );
+  const [yearMin, setYearMin] = useState(
+    initialFilters?.yearMin !== undefined ? String(initialFilters.yearMin) : ""
+  );
+  const [state, setState] = useState<string[]>(initialFilters?.state ?? []);
+  const [offerId, setOfferId] = useState(initialFilters?.offerId ?? "");
 
   const toggleArr = (arr: string[], v: string, set: (a: string[]) => void) =>
     arr.includes(v) ? set(arr.filter((x) => x !== v)) : set([...arr, v]);
 
   const params = new URLSearchParams();
-  if (type === "najem") {
-    params.set("transakcja", "najem");
-  } else if (type !== "wszystkie") {
-    // Tylko filter typu — bez wymuszania sprzedaży/najmu.
-    // Jeśli user chce wyłącznie sprzedaż, użyje filtra zaawansowanego.
-    params.set("typ", type);
-  }
-  // type === "wszystkie" → bez filtra typu/transakcji = pokaż wszystko
+  if (type !== "wszystkie") params.set("typ", type);
+  if (transaction !== "wszystkie") params.set("transakcja", transaction);
   if (city) params.set("miasto", city);
   if (district) params.set("dzielnica", district);
   if (market && market !== "wszystkie") params.set("rynek", market);
@@ -88,7 +130,27 @@ export function QuickSearch({
   if (state.length) params.set("stan", state.join(","));
   if (offerId) params.set("id", offerId);
 
+  const handleTypeTab = (value: TabValue) => {
+    if (value === "wszystkie") {
+      setType("wszystkie");
+      setTransaction("wszystkie");
+    } else if (value === "najem") {
+      setType("wszystkie");
+      setTransaction("najem");
+    } else {
+      setType(value);
+    }
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const query = params.toString();
+    router.push(query ? `/oferty?${query}` : "/oferty");
+  };
+
   const resetAll = () => {
+    setType("wszystkie");
+    setTransaction("wszystkie");
     setCity("");
     setDistrict("");
     setMarket("wszystkie");
@@ -102,6 +164,7 @@ export function QuickSearch({
     setYearMin("");
     setState([]);
     setOfferId("");
+    if (variant === "embed") router.push("/oferty");
   };
 
   const activeCount =
@@ -109,7 +172,9 @@ export function QuickSearch({
       .filter(Boolean).length +
     rooms.length +
     state.length +
-    (market !== "wszystkie" ? 1 : 0);
+    (market !== "wszystkie" ? 1 : 0) +
+    (type !== "wszystkie" ? 1 : 0) +
+    (transaction !== "wszystkie" ? 1 : 0);
 
   const sectionCls =
     variant === "overlay"
@@ -128,7 +193,7 @@ export function QuickSearch({
           <div className="overflow-hidden rounded-[28px] border border-brand/25 bg-surface shadow-[0_44px_100px_-34px_rgba(20,21,21,0.62)] ring-1 ring-inset ring-foreground/[0.05]">
             {/* Akcentowy pasek na górze */}
             <div aria-hidden className="h-1.5 w-full bg-gradient-to-r from-brand via-[#e84ed8] to-brand" />
-            <div className="p-5 lg:p-7">
+            <form className="p-5 lg:p-7" onSubmit={handleSubmit}>
           {/* Nagłówek panelu */}
           <div className="mb-5 flex items-center gap-3">
             <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand">
@@ -148,12 +213,17 @@ export function QuickSearch({
           <div className="flex flex-wrap gap-2 mb-5">
             {types.map((t) => {
               const Icon = t.icon;
-              const active = type === t.value;
+              const active =
+                t.value === "wszystkie"
+                  ? type === "wszystkie" && transaction === "wszystkie"
+                  : t.value === "najem"
+                    ? type === "wszystkie" && transaction === "najem"
+                    : type === t.value;
               return (
                 <button
                   key={t.value}
                   type="button"
-                  onClick={() => setType(t.value)}
+                  onClick={() => handleTypeTab(t.value)}
                   className={cn(
                     "inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all border",
                     active
@@ -215,11 +285,9 @@ export function QuickSearch({
               />
             </FieldWrap>
             <div className="md:col-span-2 flex items-end">
-              <Button asChild variant="primary" size="lg" className="w-full h-12">
-                <Link href={`/oferty?${params.toString()}`}>
-                  <Search />
-                  Szukaj
-                </Link>
+              <Button type="submit" variant="primary" size="lg" className="w-full h-12">
+                <Search />
+                Szukaj
               </Button>
             </div>
           </div>
@@ -261,6 +329,24 @@ export function QuickSearch({
           {/* Advanced filters */}
           {advanced && (
             <div className="mt-5 pt-5 border-t border-border space-y-5">
+              {/* Rodzaj transakcji */}
+              <div>
+                <p className="text-xs font-medium text-foreground-muted mb-2">
+                  Rodzaj transakcji
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {transactionOptions.map((option) => (
+                    <Pill
+                      key={option.value}
+                      active={transaction === option.value}
+                      onClick={() => setTransaction(option.value)}
+                    >
+                      {option.label}
+                    </Pill>
+                  ))}
+                </div>
+              </div>
+
               {/* Rynek */}
               <div>
                 <p className="text-xs font-medium text-foreground-muted mb-2">Rynek</p>
@@ -356,7 +442,7 @@ export function QuickSearch({
               </div>
 
               {/* Stan */}
-              {type !== "dzialka" && type !== "najem" && (
+              {type !== "dzialka" && transaction !== "najem" && (
                 <div>
                   <p className="text-xs font-medium text-foreground-muted mb-2">Stan</p>
                   <div className="flex flex-wrap gap-2">
@@ -398,7 +484,7 @@ export function QuickSearch({
           <p className="text-xs text-foreground-subtle mt-4 leading-relaxed">
             Przeszukaj mieszkania, domy, działki i lokale na sprzedaż oraz wynajem w Gdańsku, Gdyni, Sopocie i okolicy. Wyszukiwarka pobiera oferty bezpośrednio z naszego systemu CRM (EstiCRM) i aktualizuje je co godzinę, więc ceny i dostępność są zawsze aktualne.
           </p>
-            </div>
+            </form>
           </div>
         </div>
       </Container>

@@ -89,26 +89,41 @@ export async function getFilteredOffers(filters: OfferFilters): Promise<OffersRe
   if (filters.transaction) items = items.filter((o) => o.transaction === filters.transaction);
   if (filters.type) items = items.filter((o) => o.type === filters.type);
   if (filters.market) items = items.filter((o) => o.market === filters.market);
-  if (filters.city)
-    items = items.filter((o) => o.city.toLowerCase().includes(filters.city!.toLowerCase()));
-  if (filters.district)
+  if (filters.city) {
+    const city = normalizeSearchText(filters.city);
+    items = items.filter((o) => normalizeSearchText(o.city) === city);
+  }
+  if (filters.district) {
+    const location = normalizeSearchText(filters.district);
     items = items.filter((o) =>
-      o.district?.toLowerCase().includes(filters.district!.toLowerCase())
+      [o.city, o.district, o.street, o.title]
+        .filter((value): value is string => Boolean(value))
+        .some((value) => normalizeSearchText(value).includes(location))
     );
+  }
   if (filters.priceMin) items = items.filter((o) => o.price >= filters.priceMin!);
   if (filters.priceMax) items = items.filter((o) => o.price <= filters.priceMax!);
   if (filters.areaMin) items = items.filter((o) => o.area >= filters.areaMin!);
   if (filters.areaMax) items = items.filter((o) => o.area <= filters.areaMax!);
-  if (filters.rooms?.length)
-    items = items.filter((o) => o.rooms !== undefined && filters.rooms!.includes(o.rooms));
+  if (filters.rooms?.length || filters.roomsMin !== undefined) {
+    items = items.filter((o) => {
+      if (o.rooms === undefined) return false;
+      return (
+        Boolean(filters.rooms?.includes(o.rooms)) ||
+        (filters.roomsMin !== undefined && o.rooms >= filters.roomsMin)
+      );
+    });
+  }
   if (filters.floorMin !== undefined)
     items = items.filter((o) => (o.floor ?? 0) >= filters.floorMin!);
   if (filters.floorMax !== undefined)
     items = items.filter((o) => (o.floor ?? 0) <= filters.floorMax!);
   if (filters.yearMin)
     items = items.filter((o) => (o.yearBuilt ?? 0) >= filters.yearMin!);
-  if (filters.state?.length)
-    items = items.filter((o) => o.state && filters.state!.includes(o.state));
+  if (filters.state?.length) {
+    const states = new Set(filters.state.map(normalizeSearchText));
+    items = items.filter((o) => o.state && states.has(normalizeSearchText(o.state)));
+  }
   if (filters.offerId)
     items = items.filter(
       (o) =>
@@ -140,6 +155,16 @@ export async function getFilteredOffers(filters: OfferFilters): Promise<OffersRe
     total: items.length,
     lastSync: cache.lastSync,
   };
+}
+
+function normalizeSearchText(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[łŁ]/g, "l")
+    .toLocaleLowerCase("pl")
+    .trim()
+    .replace(/\s+/g, " ");
 }
 
 export async function getOfferById(id: string): Promise<Offer | null> {
@@ -177,4 +202,17 @@ export async function getCityOptions(): Promise<string[]> {
   return [...counts.entries()]
     .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "pl"))
     .map(([city]) => city);
+}
+
+// Pokazujemy tylko stany, które rzeczywiście występują w aktualnych ofertach.
+// Dzięki temu wyszukiwarka nie proponuje filtrów prowadzących zawsze do 0 wyników.
+export async function getStateOptions(): Promise<string[]> {
+  const cache = await readOffers();
+  if (!cache) return [];
+  const states = new Set(
+    cache.offers
+      .map((offer) => offer.state?.trim())
+      .filter((state): state is string => Boolean(state))
+  );
+  return [...states].sort((a, b) => a.localeCompare(b, "pl"));
 }

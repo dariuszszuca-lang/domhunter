@@ -8,17 +8,17 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { Partners } from "@/components/sections/partners";
 import { BlogTeaser } from "@/components/sections/blog-teaser";
 import { FAQ } from "@/components/sections/faq";
-import { getCityOptions } from "@/lib/esti/store";
+import { getCityOptions, getStateOptions } from "@/lib/esti/store";
 
 // ISR: strona główna cache'owana 1h — wyróżnione oferty z cache, nie z API co wejście.
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  const cities = await getCityOptions();
+  const [cities, states] = await Promise.all([getCityOptions(), getStateOptions()]);
   return (
     <>
       <Hero />
-      <QuickSearch cities={cities} />
+      <QuickSearch cities={cities} states={states} />
       <FeaturedOffers />
       <SolutionsShowcase />
       <Services />

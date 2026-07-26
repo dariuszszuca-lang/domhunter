@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { OfferCard } from "@/components/offers/offer-card";
 import { QuickSearch } from "@/components/sections/quick-search";
-import { getFilteredOffers, getCityOptions } from "@/lib/esti/store";
+import { getFilteredOffers, getCityOptions, getStateOptions } from "@/lib/esti/store";
 import { siteConfig } from "@/lib/site";
 import type { OfferFilters, OfferTransaction, OfferType, OfferMarket } from "@/lib/esti/types";
 
@@ -25,7 +25,22 @@ export const metadata: Metadata = {
 type SearchParams = Promise<Record<string, string | undefined>>;
 
 function paramsToFilters(p: Record<string, string | undefined>): OfferFilters {
-  const parseNum = (s?: string) => (s ? Number(s) : undefined);
+  const parseNum = (s?: string) => {
+    if (!s) return undefined;
+    const value = Number(s);
+    return Number.isFinite(value) ? value : undefined;
+  };
+  const roomTokens = p.pokoje?.split(",").map((value) => value.trim()).filter(Boolean) ?? [];
+  const rooms = roomTokens
+    .filter((value) => !value.endsWith("+"))
+    .map(Number)
+    .filter((value) => Number.isInteger(value) && value > 0);
+  const roomsMin = roomTokens
+    .filter((value) => value.endsWith("+"))
+    .map((value) => Number(value.slice(0, -1)))
+    .filter((value) => Number.isInteger(value) && value > 0)
+    .sort((a, b) => a - b)[0];
+
   return {
     transaction: (p.transakcja as OfferTransaction) || undefined,
     type: (p.typ as OfferType) || undefined,
@@ -36,7 +51,8 @@ function paramsToFilters(p: Record<string, string | undefined>): OfferFilters {
     priceMax: parseNum(p.cena_max),
     areaMin: parseNum(p.metraz_min),
     areaMax: parseNum(p.metraz_max),
-    rooms: p.pokoje?.split(",").map(Number).filter(Boolean),
+    rooms: rooms.length ? rooms : undefined,
+    roomsMin,
     floorMin: parseNum(p.pietro_min),
     floorMax: parseNum(p.pietro_max),
     yearMin: parseNum(p.rok_min),
@@ -49,9 +65,10 @@ function paramsToFilters(p: Record<string, string | undefined>): OfferFilters {
 export default async function OfertyPage({ searchParams }: { searchParams: SearchParams }) {
   const params = await searchParams;
   const filters = paramsToFilters(params);
-  const [{ items, total, lastSync }, cities] = await Promise.all([
+  const [{ items, total, lastSync }, cities, states] = await Promise.all([
     getFilteredOffers(filters),
     getCityOptions(),
+    getStateOptions(),
   ]);
 
   const lastSyncLabel =
@@ -97,7 +114,13 @@ export default async function OfertyPage({ searchParams }: { searchParams: Searc
       </section>
 
       {/* Wyszukiwarka */}
-      <QuickSearch variant="embed" cities={cities} />
+      <QuickSearch
+        key={JSON.stringify(params)}
+        variant="embed"
+        cities={cities}
+        states={states}
+        initialFilters={filters}
+      />
 
       {items.length === 0 ? (
         <EmptyState lastSyncLabel={lastSyncLabel} />

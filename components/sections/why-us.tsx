@@ -30,8 +30,7 @@ const memberBlurbs: Record<string, string> = {
     "Domy i działki pod Gdańskiem, ale też mieszkania w samym mieście. Najlepiej czuje się poza centrum.",
   "sylwia-kojto-labuda":
     "Mieszkania w Gdańsku i Sopocie, w sprzedaży i wynajmie.",
-  "taisiia-shulga":
-    "Prowadzi sprawy spokojnie i z uwagą, dba o to, żeby na każdym etapie wszystko było jasne.",
+  // taisiia-shulga i barbara-weiner: bez nadpisania, biorą własne bio z lib/team.ts
 };
 
 export function OnasContent() {

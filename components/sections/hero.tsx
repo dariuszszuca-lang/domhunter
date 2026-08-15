@@ -101,7 +101,7 @@ export function Hero() {
               {/* Lokalizacja */}
               <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-background/95 backdrop-blur-sm px-3.5 py-2 text-xs font-semibold text-foreground">
                 <MapPin className="size-3.5 text-brand" />
-                Gdańsk · Gdynia · Sopot
+                Trójmiasto
               </div>
             </div>
 

@@ -21,7 +21,7 @@ const benefits = [
   },
   {
     title: "Lokalny rynek, który znamy",
-    text: "Gdańsk, Gdynia, Sopot i okolice. Działamy tam, gdzie naprawdę czujemy się jak w domu.",
+    text: "Trójmiasto i okolice. Działamy tam, gdzie naprawdę czujemy się jak w domu.",
   },
   {
     title: "Zespół, nie maszyna",

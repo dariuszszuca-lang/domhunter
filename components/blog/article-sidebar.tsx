@@ -119,7 +119,7 @@ export function ArticleSidebar({ relatedPosts }: ArticleSidebarProps) {
           Zobacz nasze aktualne <span className="italic text-brand">oferty.</span>
         </h3>
         <p className="mt-3 text-[0.95rem] leading-relaxed text-foreground-muted">
-          Mieszkania, domy i działki w Gdańsku, Gdyni i Sopocie. Także oferty spoza portali
+          Mieszkania, domy i działki w Trójmieście. Także oferty spoza portali
           ogłoszeniowych.
         </p>
         <Link

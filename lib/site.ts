@@ -9,7 +9,7 @@ export const siteConfig = {
   fullName: "DomHunter Nieruchomości",
   tagline: "Lokalne biuro nieruchomości w Gdańsku",
   description:
-    "Dom Hunter to biuro nieruchomości w Gdańsku i całym Trójmieście. Pomagamy sprzedać, kupić i wynająć mieszkania, domy, działki i lokale w Gdańsku, Gdyni, Sopocie i okolicy. Robimy darmową wycenę nieruchomości, a jeden agent prowadzi Cię od pierwszej rozmowy aż do aktu notarialnego. Mamy też dostęp do ofert spoza portali ogłoszeniowych.",
+    "Dom Hunter to biuro nieruchomości w Gdańsku i całym Trójmieście. Pomagamy sprzedać, kupić i wynająć mieszkania, domy, działki i lokale w Trójmieście i okolicy. Robimy darmową wycenę nieruchomości, a jeden agent prowadzi Cię od pierwszej rozmowy aż do aktu notarialnego. Mamy też dostęp do ofert spoza portali ogłoszeniowych.",
   url: "https://domhunter.pl",
   ogImage: "/og.jpg",
 

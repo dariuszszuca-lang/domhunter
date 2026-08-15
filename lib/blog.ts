@@ -256,7 +256,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "Przygotuj mieszkanie do wynajmu" },
       {
         type: "p",
-        text: "Mieszkanie pod wynajem ma być czyste, sprawne i bezpieczne. Najemcy w Gdańsku, Gdyni i Sopocie mają w czym wybierać, więc zadbany lokal szybciej znajdzie dobrego lokatora i pozwala uczciwie ustalić stawkę. Zanim wystawisz ofertę, zrób kilka rzeczy:",
+        text: "Mieszkanie pod wynajem ma być czyste, sprawne i bezpieczne. Najemcy w Trójmieście mają w czym wybierać, więc zadbany lokal szybciej znajdzie dobrego lokatora i pozwala uczciwie ustalić stawkę. Zanim wystawisz ofertę, zrób kilka rzeczy:",
       },
       {
         type: "ul",

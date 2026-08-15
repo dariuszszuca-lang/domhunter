@@ -19,7 +19,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Oferty nieruchomości Gdańsk i Trójmiasto. Dom Hunter",
   description:
-    "Aktualne oferty mieszkań, domów, działek i lokali na sprzedaż i wynajem w Gdańsku, Gdyni i Sopocie. Sprawdź ceny, metraże i zdjęcia. Baza odświeżana codziennie.",
+    "Aktualne oferty mieszkań, domów, działek i lokali na sprzedaż i wynajem w Trójmieście. Sprawdź ceny, metraże i zdjęcia. Baza odświeżana codziennie.",
 };
 
 type SearchParams = Promise<Record<string, string | undefined>>;

@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site";
 const faqs = [
   {
     q: "Czy obsługujecie tylko Gdańsk, czy całe Trójmiasto?",
-    a: "Pracujemy w całym Trójmieście i okolicach: Gdańsk, Gdynia, Sopot, Rumia, Reda, Wejherowo. Biuro mamy w Gdańsku, ale na pokazy jeździmy wszędzie.",
+    a: "Pracujemy w całym Trójmieście i okolicach: Rumia, Reda, Wejherowo. Biuro mamy w Gdańsku, ale na pokazy jeździmy wszędzie.",
   },
   {
     q: "Jak długo trwa sprzedaż mieszkania?",
@@ -41,11 +41,11 @@ const faqs = [
   },
   {
     q: "Zajmujecie się też wynajmem mieszkań?",
-    a: "Tak. Obsługujemy najem długoterminowy w Gdańsku, Gdyni i Sopocie. Przygotujemy bezpieczną umowę, zweryfikujemy najemcę, a jeśli potrzebujesz, zajmiemy się też zarządzaniem mieszkaniem na bieżąco.",
+    a: "Tak. Obsługujemy najem długoterminowy w Trójmieście. Przygotujemy bezpieczną umowę, zweryfikujemy najemcę, a jeśli potrzebujesz, zajmiemy się też zarządzaniem mieszkaniem na bieżąco.",
   },
   {
     q: "W jakich miastach mogę zamówić darmową wycenę nieruchomości?",
-    a: "Wyceniamy mieszkania, domy, działki i lokale w całym Trójmieście oraz okolicy: Gdańsk, Gdynia, Sopot, Rumia, Reda, Wejherowo i Pruszcz Gdański. Wycena jest bezpłatna i bez zobowiązań. Wystarczy do nas zadzwonić, żeby umówić termin.",
+    a: "Wyceniamy mieszkania, domy, działki i lokale w całym Trójmieście oraz okolicy: Rumia, Reda, Wejherowo i Pruszcz Gdański. Wycena jest bezpłatna i bez zobowiązań. Wystarczy do nas zadzwonić, żeby umówić termin.",
   },
 ];
 

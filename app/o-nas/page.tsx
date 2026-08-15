@@ -4,7 +4,7 @@ import { OnasContent } from "@/components/sections/why-us";
 export const metadata: Metadata = {
   title: "Nasz zespół",
   description:
-    "Poznaj zespół Dom Hunter, agentów nieruchomości z Trójmiasta. Setki transakcji, lokalna wiedza o Gdańsku, Gdyni i Sopocie oraz dostęp do ofert z sieci Nieruchomości Spod Lady. Jeden agent prowadzi Cię od pierwszej rozmowy do aktu notarialnego.",
+    "Poznaj zespół Dom Hunter, agentów nieruchomości z Trójmiasta. Setki transakcji, lokalna wiedza o Trójmieście oraz dostęp do ofert z sieci Nieruchomości Spod Lady. Jeden agent prowadzi Cię od pierwszej rozmowy do aktu notarialnego.",
 };
 
 export default function ONasPage() {

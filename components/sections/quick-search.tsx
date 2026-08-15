@@ -482,7 +482,7 @@ export function QuickSearch({
           )}
 
           <p className="text-xs text-foreground-subtle mt-4 leading-relaxed">
-            Przeszukaj mieszkania, domy, działki i lokale na sprzedaż oraz wynajem w Gdańsku, Gdyni, Sopocie i okolicy. Wyszukiwarka pobiera oferty bezpośrednio z naszego systemu CRM (EstiCRM) i aktualizuje je co godzinę, więc ceny i dostępność są zawsze aktualne.
+            Przeszukaj mieszkania, domy, działki i lokale na sprzedaż oraz wynajem w Trójmieście i okolicy. Wyszukiwarka pobiera oferty bezpośrednio z naszego systemu CRM (EstiCRM) i aktualizuje je co godzinę, więc ceny i dostępność są zawsze aktualne.
           </p>
             </form>
           </div>

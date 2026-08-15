@@ -32,7 +32,7 @@ export async function FeaturedOffers() {
             Mieszkania, domy i działki na sprzedaż w Trójmieście
           </h2>
           <p className="mt-6 max-w-xl text-base lg:text-lg text-foreground-muted leading-[1.55]">
-            Aktualne oferty nieruchomości na sprzedaż i wynajem w Gdańsku, Gdyni i Sopocie. Bazę aktualizujemy codziennie, dlatego ceny i dostępność są zawsze świeże. Pełna lista z&nbsp;filtrami jest w&nbsp;zakładce <Link href="/oferty" className="underline underline-offset-2 text-foreground hover:text-brand">Oferty</Link>.
+            Aktualne oferty nieruchomości na sprzedaż i wynajem w Trójmieście. Bazę aktualizujemy codziennie, dlatego ceny i dostępność są zawsze świeże. Pełna lista z&nbsp;filtrami jest w&nbsp;zakładce <Link href="/oferty" className="underline underline-offset-2 text-foreground hover:text-brand">Oferty</Link>.
           </p>
         </div>
 

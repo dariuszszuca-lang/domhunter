@@ -168,7 +168,7 @@ export function OnasContent() {
                   postawiliśmy na zwykły, ludzki kontakt.
                 </p>
                 <p>
-                  Mieszkamy tutaj. Gdańsk, Gdynię i Sopot znamy nie z opisów ofert, tylko z
+                  Mieszkamy tutaj. Trójmiasto znamy nie z opisów ofert, tylko z
                   codziennych rozmów. Wiemy, która kamienica ma cichą stronę podwórza, gdzie ceny
                   dopiero ruszają w górę, a gdzie warto się jeszcze potargować.
                 </p>

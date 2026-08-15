@@ -43,36 +43,18 @@ const atuty = [
 export default function KomercjaPage() {
   return (
     <>
-      {/* HERO ze zdjęciem */}
-      <section className="relative isolate overflow-hidden">
-        <Image
-          src="/images/komercja-hero.jpg"
-          alt="Nowoczesny przeszklony biurowiec, nieruchomości komercyjne w Trójmieście"
-          fill
-          priority
-          sizes="100vw"
-          className="-z-10 object-cover"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-gradient-to-t from-[#0a0f1a] via-[#0a0f1a]/60 to-[#0a0f1a]/35"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_72%_18%,rgba(211,30,192,0.30),transparent_55%)]"
-        />
-        <Container size="wide" className="relative flex min-h-[72vh] flex-col justify-end pt-36 pb-16 lg:min-h-[84vh] lg:pb-24">
+      {/* HERO — jasne, w stylu pozostałych podstron */}
+      <section className="pt-20 pb-4 lg:pt-28 lg:pb-8">
+        <Container size="wide">
           <div className="max-w-3xl">
-            <p className="mb-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85">
-              <MapPin className="size-3.5 text-brand" />
-              Komercja · Gdańsk · Gdynia · Sopot
+            <p className="mb-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
+              <MapPin className="size-3.5" />
+              Komercja · Trójmiasto
             </p>
-            <h1 className="font-display font-normal text-[clamp(2.6rem,6.5vw,5.2rem)] leading-[1.0] tracking-[-0.01em] text-white">
-              Przestrzeń, w której
-              <br />
-              <span className="italic text-brand">rośnie biznes.</span>
+            <h1 className="font-display font-normal text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[1.03] tracking-[-0.01em] text-foreground">
+              Przestrzeń, w której <span className="italic text-brand">rośnie biznes.</span>
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-[1.55] text-white/85 lg:text-xl">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-foreground-muted">
               Biura, lokale handlowe, magazyny i grunty inwestycyjne w całym Trójmieście. Każdy segment
               prowadzi osobny agent z bazą najemców i właścicieli oraz znajomością lokalnych realiów.
             </p>
@@ -88,7 +70,7 @@ export default function KomercjaPage() {
               </Link>
               <Link
                 href="/oferty"
-                className="inline-flex items-center rounded-full border border-white/45 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/10"
+                className="inline-flex items-center rounded-full border border-border-strong px-7 py-3.5 text-sm font-semibold text-foreground transition-all hover:border-brand hover:text-brand"
               >
                 Zobacz oferty
               </Link>

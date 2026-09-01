@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// Formularz "Zamów stronę" osadzony na nieruchomoscispodlady.pl/twoja-strona.
+// Formularz "Zapisz się" (imię + e-mail) osadzony na nieruchomoscispodlady.pl/strona-internetowa.
 // Lead sprzedażowy idzie do Sylwii; endpoint żyje tu, bo DomHunter ma działającą wysyłkę maili.
 const ALLOWED_ORIGINS = new Set([
   "https://nieruchomoscispodlady.pl",
@@ -14,8 +14,8 @@ const ALLOWED_ORIGINS = new Set([
 
 const leadSchema = z.object({
   imie: z.string().trim().min(2).max(120),
-  telefon: z.string().trim().min(6).max(40),
-  email: z.string().trim().email().max(160).optional().or(z.literal("")),
+  email: z.string().trim().email().max(160),
+  telefon: z.string().trim().min(6).max(40).optional().or(z.literal("")),
   biuro: z.string().trim().max(200).optional().or(z.literal("")),
   crm: z.string().trim().max(80).optional().or(z.literal("")),
   wiadomosc: z.string().trim().max(2000).optional().or(z.literal("")),
@@ -70,7 +70,7 @@ export async function POST(req: Request) {
 
 async function sendLead(payload: LeadPayload) {
   const to = process.env.TWOJA_STRONA_TO_EMAIL || "sylwia@nieruchomoscispodlady.pl";
-  const subject = `Zamówienie strony www: ${payload.imie}`;
+  const subject = `Nowy zapis (strona internetowa): ${payload.imie}`;
   const text = buildText(payload);
   const html = buildHtml(payload);
 
@@ -120,7 +120,7 @@ function wiersz(label: string, value?: string) {
 
 function buildText(p: LeadPayload) {
   return [
-    "Nowe zamówienie strony www (nieruchomoscispodlady.pl/twoja-strona)",
+    "Nowy zapis ze strony (nieruchomoscispodlady.pl/strona-internetowa)",
     "",
     wiersz("Imię i nazwisko", p.imie),
     wiersz("Telefon", p.telefon),
@@ -143,8 +143,8 @@ function buildHtml(p: LeadPayload) {
       ? `<tr><td style="padding:6px 12px 6px 0;color:#666;white-space:nowrap;">${label}</td><td style="padding:6px 0;color:#111;"><strong>${esc(value.trim())}</strong></td></tr>`
       : "";
   return `<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#222;">
-  <h2 style="margin:0 0 14px 0;">Nowe zamówienie strony www</h2>
-  <p style="margin:0 0 14px 0;color:#666;">Formularz „Zamów stronę" na nieruchomoscispodlady.pl/twoja-strona</p>
+  <h2 style="margin:0 0 14px 0;">Nowy zapis ze strony</h2>
+  <p style="margin:0 0 14px 0;color:#666;">Formularz „Zapisz się" na nieruchomoscispodlady.pl/strona-internetowa</p>
   <table style="border-collapse:collapse;">
     ${row("Imię i nazwisko", p.imie)}
     ${row("Telefon", p.telefon)}

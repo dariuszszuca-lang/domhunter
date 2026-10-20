@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
@@ -18,6 +17,11 @@ import {
 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
+import {
+  OfferGalleryProvider,
+  OfferGalleryHero,
+  OfferGalleryGrid,
+} from "@/components/offers/offer-gallery";
 import { MemberPhoto } from "@/components/team/member-photo";
 import { getOfferById } from "@/lib/esti/store";
 import { getMemberBySlug, getMemberByName } from "@/lib/team";
@@ -143,6 +147,10 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
     : offer.agent?.phone ?? "";
   const primary = offer.images.find((i) => i.primary) ?? offer.images[0];
   const gallery = offer.images.filter((i) => i !== primary);
+  const galleryImages = (primary ? [primary, ...gallery] : []).map((img, i) => ({
+    url: img.url,
+    alt: img.alt ?? offerImageAlt(offer, i === 0 ? "zdjęcie główne" : `zdjęcie ${i + 1}`),
+  }));
 
   // Dane strukturalne JSON-LD. Tylko realne pola oferty, bez zmyślania.
   const canonicalUrl = `${siteConfig.url}/oferty/${offer.id}`;
@@ -187,7 +195,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
   }
 
   return (
-    <>
+    <OfferGalleryProvider images={galleryImages}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -204,34 +212,8 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
             Wszystkie oferty
           </Link>
 
-          {offer.images.length > 0 ? (
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
-              <div className="lg:col-span-3 relative aspect-[16/10] rounded-3xl overflow-hidden bg-gray-100">
-                {primary && (
-                  <Image
-                    src={primary.url}
-                    alt={primary.alt ?? offerImageAlt(offer, "zdjęcie główne")}
-                    fill
-                    sizes="(min-width: 1024px) 75vw, 100vw"
-                    className="object-cover"
-                    priority
-                  />
-                )}
-              </div>
-              <div className="hidden lg:grid grid-rows-3 gap-3">
-                {gallery.slice(0, 3).map((img, i) => (
-                  <div key={i} className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100">
-                    <Image
-                      src={img.url}
-                      alt={img.alt ?? offerImageAlt(offer, `zdjęcie ${i + 2}`)}
-                      fill
-                      sizes="25vw"
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+          {galleryImages.length > 0 ? (
+            <OfferGalleryHero />
           ) : (
             <div className="aspect-[16/9] rounded-3xl bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
               <Building2 className="size-16 text-gray-400" />
@@ -366,22 +348,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
                   <h2 className="font-bold tracking-tight text-xl text-foreground mb-4">
                     Galeria
                   </h2>
-                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-                    {gallery.slice(3).map((img, i) => (
-                      <div
-                        key={i}
-                        className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100"
-                      >
-                        <Image
-                          src={img.url}
-                          alt={img.alt ?? offerImageAlt(offer, `zdjęcie ${i + 5}`)}
-                          fill
-                          sizes="(min-width: 1024px) 25vw, 50vw"
-                          className="object-cover"
-                        />
-                      </div>
-                    ))}
-                  </div>
+                  <OfferGalleryGrid from={4} />
                 </div>
               )}
             </div>
@@ -467,7 +434,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
           </div>
         </Container>
       </section>
-    </>
+    </OfferGalleryProvider>
   );
 }
 

@@ -7,10 +7,26 @@ export const dynamic = "force-dynamic";
 
 // Formularz "Zapisz się" (imię + e-mail) osadzony na nieruchomoscispodlady.pl/strona-internetowa.
 // Lead sprzedażowy idzie do Sylwii; endpoint żyje tu, bo DomHunter ma działającą wysyłkę maili.
+// Ten sam endpoint obsługuje formularz kontaktowy sylwiawroblewska.pl/kontakt (zrodlo "sylwia-kontakt").
 const ALLOWED_ORIGINS = new Set([
   "https://nieruchomoscispodlady.pl",
   "https://www.nieruchomoscispodlady.pl",
+  "https://sylwiawroblewska.pl",
+  "https://www.sylwiawroblewska.pl",
 ]);
+
+const ZRODLA = {
+  "strona-internetowa": {
+    temat: "Nowy zapis (strona internetowa)",
+    naglowek: "Nowy zapis ze strony",
+    opis: "Formularz „Zapisz się\" na nieruchomoscispodlady.pl/strona-internetowa",
+  },
+  "sylwia-kontakt": {
+    temat: "Wiadomość ze strony sylwiawroblewska.pl",
+    naglowek: "Nowa wiadomość ze strony",
+    opis: "Formularz kontaktowy na sylwiawroblewska.pl/kontakt",
+  },
+} as const;
 
 const leadSchema = z.object({
   imie: z.string().trim().min(2).max(120),
@@ -20,6 +36,7 @@ const leadSchema = z.object({
   crm: z.string().trim().max(80).optional().or(z.literal("")),
   wiadomosc: z.string().trim().max(2000).optional().or(z.literal("")),
   zgoda: z.literal(true),
+  zrodlo: z.enum(["strona-internetowa", "sylwia-kontakt"]).optional(),
   website: z.string().max(0).optional().or(z.literal("")),
 });
 
@@ -70,7 +87,7 @@ export async function POST(req: Request) {
 
 async function sendLead(payload: LeadPayload) {
   const to = process.env.TWOJA_STRONA_TO_EMAIL || "sylwia@nieruchomoscispodlady.pl";
-  const subject = `Nowy zapis (strona internetowa): ${payload.imie}`;
+  const subject = `${zrodlo(payload).temat}: ${payload.imie}`;
   const text = buildText(payload);
   const html = buildHtml(payload);
 
@@ -114,13 +131,17 @@ async function sendViaResend({
   }
 }
 
+function zrodlo(p: LeadPayload) {
+  return ZRODLA[p.zrodlo ?? "strona-internetowa"];
+}
+
 function wiersz(label: string, value?: string) {
   return value && value.trim() ? `${label}: ${value.trim()}` : "";
 }
 
 function buildText(p: LeadPayload) {
   return [
-    "Nowy zapis ze strony (nieruchomoscispodlady.pl/strona-internetowa)",
+    zrodlo(p).opis,
     "",
     wiersz("Imię i nazwisko", p.imie),
     wiersz("Telefon", p.telefon),
@@ -143,8 +164,8 @@ function buildHtml(p: LeadPayload) {
       ? `<tr><td style="padding:6px 12px 6px 0;color:#666;white-space:nowrap;">${label}</td><td style="padding:6px 0;color:#111;"><strong>${esc(value.trim())}</strong></td></tr>`
       : "";
   return `<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#222;">
-  <h2 style="margin:0 0 14px 0;">Nowy zapis ze strony</h2>
-  <p style="margin:0 0 14px 0;color:#666;">Formularz „Zapisz się" na nieruchomoscispodlady.pl/strona-internetowa</p>
+  <h2 style="margin:0 0 14px 0;">${zrodlo(p).naglowek}</h2>
+  <p style="margin:0 0 14px 0;color:#666;">${zrodlo(p).opis}</p>
   <table style="border-collapse:collapse;">
     ${row("Imię i nazwisko", p.imie)}
     ${row("Telefon", p.telefon)}

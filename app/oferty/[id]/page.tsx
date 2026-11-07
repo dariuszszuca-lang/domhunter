@@ -226,7 +226,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
       <section className="pb-8">
         <Container size="wide">
           <div className="grid lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-8 min-w-0">
               <div className="flex flex-wrap items-center gap-2 mb-4">
                 <span className="inline-flex items-center px-3 py-1 rounded-full bg-brand/15 text-brand-deep text-[10px] font-semibold uppercase tracking-wider">
                   {transactionLabels[offer.transaction]}
@@ -247,7 +247,7 @@ export default async function OfferDetailPage({ params }: { params: Params }) {
                 )}
               </div>
 
-              <h1 className="font-bold tracking-tight text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] text-foreground mb-4">
+              <h1 className="font-bold tracking-tight text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] text-foreground mb-4 [overflow-wrap:anywhere]">
                 {offerTitle(offer)}
               </h1>
 

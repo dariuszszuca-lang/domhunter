@@ -12,7 +12,7 @@ export default function PolitykaPrywatnosciPage() {
     <LegalDoc
       eyebrow="Dane i prywatność"
       title="Polityka prywatności"
-      updated="15 czerwca 2026"
+      updated="9 listopada 2026"
     >
       <p>
         Zależy nam, żebyś czuł się bezpiecznie, korzystając z naszego serwisu.
@@ -91,6 +91,35 @@ export default function PolitykaPrywatnosciPage() {
         hostingiem serwisu czy obsługą poczty. Działają one na nasze zlecenie i
         są zobowiązane do ochrony Twoich danych. Dane możemy też przekazać
         organom państwowym, jeżeli wymagają tego przepisy prawa.
+      </p>
+      <p>
+        Korzystamy z tych dostawców:
+      </p>
+      <ul>
+        <li>
+          Vercel Inc. (USA): hosting strony. Strona i formularze działają na
+          serwerach w Unii Europejskiej (Frankfurt).
+        </li>
+        <li>
+          Plus Five Five, Inc., usługa Resend (USA): wysyłka wiadomości z
+          formularzy na naszą skrzynkę.
+        </li>
+        <li>
+          EstiCRM (Polska): system, z którego pochodzą oferty na stronie.
+        </li>
+        <li>
+          IQ.pl (Polska): obsługa naszej poczty.
+        </li>
+      </ul>
+
+      <h2>Przekazywanie danych poza EOG</h2>
+      <p>
+        Vercel i Resend to firmy z siedzibą w USA, dlatego Twoje dane mogą
+        trafić poza Europejski Obszar Gospodarczy. Obie firmy uczestniczą w
+        programie EU-U.S. Data Privacy Framework, a przekazanie danych
+        zabezpieczają też standardowe klauzule umowne zatwierdzone przez Komisję
+        Europejską (art. 46 RODO). Kopię tych zabezpieczeń możesz otrzymać,
+        pisząc do nas.
       </p>
 
       <h2>Jak długo przechowujemy dane</h2>

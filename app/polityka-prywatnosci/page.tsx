@@ -101,22 +101,19 @@ export default function PolitykaPrywatnosciPage() {
           serwerach w Unii Europejskiej (Frankfurt).
         </li>
         <li>
-          Plus Five Five, Inc., usługa Resend (USA): wysyłka wiadomości z
-          formularzy na naszą skrzynkę.
-        </li>
-        <li>
           EstiCRM (Polska): system, z którego pochodzą oferty na stronie.
         </li>
         <li>
-          IQ.pl (Polska): obsługa naszej poczty.
+          IQ.pl (Polska): obsługa naszej poczty. Przez serwer pocztowy IQ.pl
+          trafiają też do nas wiadomości z formularzy na stronie.
         </li>
       </ul>
 
       <h2>Przekazywanie danych poza EOG</h2>
       <p>
-        Vercel i Resend to firmy z siedzibą w USA, dlatego Twoje dane mogą
-        trafić poza Europejski Obszar Gospodarczy. Obie firmy uczestniczą w
-        programie EU-U.S. Data Privacy Framework, a przekazanie danych
+        Vercel to firma z siedzibą w USA, dlatego Twoje dane mogą trafić poza
+        Europejski Obszar Gospodarczy. Vercel uczestniczy w programie EU-U.S.
+        Data Privacy Framework, a przekazanie danych
         zabezpieczają też standardowe klauzule umowne zatwierdzone przez Komisję
         Europejską (art. 46 RODO). Kopię tych zabezpieczeń możesz otrzymać,
         pisząc do nas.

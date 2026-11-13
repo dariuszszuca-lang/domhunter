@@ -57,7 +57,7 @@ function zaladujSpeedfin() {
   return window.__dhSpeedfin;
 }
 
-function useSpeedfin(html: string) {
+export function useSpeedfin(html: string) {
   const ref = useRef<HTMLDivElement>(null);
   const [stan, setStan] = useState<"laduje" | "gotowy" | "blad">("laduje");
   useEffect(() => {
@@ -73,13 +73,30 @@ function useSpeedfin(html: string) {
   return { ref, stan };
 }
 
-const attr = (v: string | number) => String(v).replace(/"/g, "&quot;");
+export const attr = (v: string | number) => String(v).replace(/"/g, "&quot;");
 
 /** Pełny kalkulator: filtry + lista ofert banków. */
 export function KalkulatorPelny() {
   const { ref, stan } = useSpeedfin(
     `<speedfin-widget mode="full" title="" contact-title="" filter-button="Pokaż oferty banków" result-button="Umów rozmowę" campaign-id="domhunter-kredyty"></speedfin-widget>`
   );
+
+  // Od razu pokaż oferty banków (raz po wczytaniu), żeby wynik był widoczny bez klikania.
+  useEffect(() => {
+    if (stan !== "gotowy" || !ref.current) return;
+    let proby = 0;
+    const t = window.setInterval(() => {
+      const el = ref.current;
+      const btn = el?.querySelector<HTMLButtonElement>(".sf-mortgageCheckBtn");
+      if (btn && !el?.querySelector(".productContainer")) {
+        btn.click();
+        window.clearInterval(t);
+      } else if (el?.querySelector(".productContainer") || ++proby > 40) {
+        window.clearInterval(t);
+      }
+    }, 250);
+    return () => window.clearInterval(t);
+  }, [stan, ref]);
 
   // Przyjście z małego kalkulatora (parametry w adresie): przewiń do kalkulatora.
   useEffect(() => {

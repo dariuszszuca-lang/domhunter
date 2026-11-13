@@ -210,3 +210,25 @@
 .dh-sf-pelny .comboInput,
 .dh-sf-pelny .customSelect .selected { background: #f7f6f1 !important; }
 .dh-sf-pelny .productContainer { background: #fff !important; }
+
+/* Rata przy karcie oferty (widget mode="button") */
+.dh-sf-przycisk .sf-brand,
+.dh-sf-przycisk .sf-powered { display: none !important; }
+.dh-sf-przycisk .sf-buttonCheckBtn {
+  width: 100% !important; padding: 11px 16px !important; font-size: 14px !important;
+  background: #fbe7f4 !important; color: #a8158f !important; box-shadow: none !important;
+  border-radius: 999px !important; text-transform: none !important;
+}
+.dh-sf-przycisk .sf-buttonCheckBtn * { color: #a8158f !important; text-transform: none !important; font-weight: 700 !important; }
+.dh-sf-przycisk .sf-buttonCheckBtn:hover { background: #d31ec0 !important; }
+.dh-sf-przycisk .sf-buttonCheckBtn:hover * { color: #fff !important; }
+
+/* Suwak budżetu */
+.dh-suwak { -webkit-appearance: none; appearance: none; height: 8px; border-radius: 999px; outline: none;
+  background: linear-gradient(90deg, #d31ec0 0 var(--p), #ece6ea var(--p) 100%); cursor: pointer; }
+.dh-suwak::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; border-radius: 50%;
+  background: #fff; border: 3px solid #d31ec0; box-shadow: 0 6px 18px rgba(109,19,84,.35); transition: transform .15s; }
+.dh-suwak::-webkit-slider-thumb:hover { transform: scale(1.12); }
+.dh-suwak::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 3px solid #d31ec0; }
+.dh-suwak:focus-visible { box-shadow: 0 0 0 4px rgba(211,30,192,.2); }
+.dh-sf-przycisk *:not(.sf-buttonCheckBtn) { border: 0 !important; background: transparent !important; padding: 0 !important; box-shadow: none !important; min-width: 0 !important; }

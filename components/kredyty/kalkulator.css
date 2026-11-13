@@ -232,3 +232,6 @@
 .dh-suwak::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 3px solid #d31ec0; }
 .dh-suwak:focus-visible { box-shadow: 0 0 0 4px rgba(211,30,192,.2); }
 .dh-sf-przycisk *:not(.sf-buttonCheckBtn) { border: 0 !important; background: transparent !important; padding: 0 !important; box-shadow: none !important; min-width: 0 !important; }
+/* Odstęp przycisku od suwaka nad nim (uwaga Darka 13.11) */
+.dh-sf-pelny .sf-mortgageCheckBtn { margin-top: 34px !important; }
+@media (max-width: 640px) { .dh-sf-pelny .sf-mortgageCheckBtn { margin-top: 28px !important; width: 100%; } }

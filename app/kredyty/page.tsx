@@ -4,20 +4,13 @@ import Image from "next/image";
 import {
   ArrowRight,
   Calculator,
-  Home,
-  KeyRound,
-  TrendingUp,
-  Users,
-  Check,
-  Landmark,
-  SlidersHorizontal,
-  PhoneCall,
 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { readOffers } from "@/lib/esti/store";
 import type { Offer } from "@/lib/esti/types";
 import { KalkulatorPelny, LeadModal } from "@/components/kredyty/speedfin";
 import { OfertyWBudzecie, type OfertaKarta } from "@/components/kredyty/oferty-w-budzecie";
+import { JakToDziala, DlaKogo, PrzedIPo, Pytania, Zaproszenie } from "@/components/kredyty/sekcje";
 
 export const metadata: Metadata = {
   title: "Kredyt hipoteczny: kalkulator rat i oferty banków",
@@ -53,78 +46,6 @@ async function ofertyDoBudzetu(): Promise<OfertaKarta[]> {
       zdjecie: (o.images.find((i) => i.primary) ?? o.images[0]).url,
     }));
 }
-
-const kroki = [
-  {
-    icon: SlidersHorizontal,
-    title: "Ustawiasz swoje liczby",
-    body: "Kwota kredytu, okres spłaty, wartość nieruchomości i Twój wiek. Suwakiem albo wpisując wprost.",
-  },
-  {
-    icon: Landmark,
-    title: "Widzisz oferty banków",
-    body: "Ratę, oprocentowanie, RRSO i koszt całkowity w kilkunastu bankach naraz, ułożone od najniższej raty.",
-  },
-  {
-    icon: PhoneCall,
-    title: "Umawiasz rozmowę",
-    body: "Klikasz przy wybranym banku, zostawiasz numer, a my oddzwaniamy. Bez zobowiązań.",
-  },
-];
-
-const dlaKogo = [
-  {
-    icon: KeyRound,
-    title: "Kupujesz pierwsze mieszkanie",
-    body: "Sprawdzasz, na jaką ratę Cię stać, zanim zaczniesz oglądać. Szukasz w realnym budżecie, nie w marzeniach z portalu.",
-  },
-  {
-    icon: Home,
-    title: "Zmieniasz mieszkanie na większe",
-    body: "Liczysz, ile dołożyć do sprzedaży obecnego mieszkania i jak zmieni się rata. Jeden plan na sprzedaż i zakup.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Kupujesz pod wynajem",
-    body: "Porównujesz ratę z czynszem, jaki da się uzyskać w Trójmieście. Od razu widać, czy inwestycja się spina.",
-  },
-  {
-    icon: Users,
-    title: "Sprzedajesz z nami",
-    body: "Twój kupujący bierze kredyt? Pokazujemy mu ratę przy ofercie, więc szybciej wie, czy to mieszkanie dla niego.",
-  },
-];
-
-const zyski = [
-  "Raty z kilkunastu banków w jednym miejscu, bez chodzenia po oddziałach",
-  "Oprocentowanie, RRSO i koszt całkowity obok siebie, łatwo porównać",
-  "Rata obok ceny mieszkania, zanim umówisz oglądanie",
-  "Bez logowania i bez podawania danych, dopóki sam nie zechcesz rozmowy",
-  "Agent, który zna rynek w Trójmieście i rozumie etap finansowania",
-];
-
-const pytania = [
-  {
-    q: "Czy kalkulator jest płatny?",
-    a: "Nie. Liczysz bez logowania i bez podawania danych. Numer telefonu zostawiasz tylko wtedy, gdy chcesz, żebyśmy oddzwonili.",
-  },
-  {
-    q: "Czy wynik to oferta banku?",
-    a: "Nie. Wyniki są orientacyjne i nie są ofertą w rozumieniu prawa. Ostateczne warunki, w tym oprocentowanie i zdolność, ustala bank po analizie wniosku.",
-  },
-  {
-    q: "Skąd są dane o ratach?",
-    a: "Kalkulator działa na silniku SpeedFin, porównywarki kredytów hipotecznych firmy Finance Development z Poznania. Raty liczy na podstawie aktualnych ofert banków.",
-  },
-  {
-    q: "Muszę kupować mieszkanie przez Dom Hunter?",
-    a: "Nie. Z kalkulatora możesz korzystać, nawet jeśli kupujesz gdzie indziej. Jeśli szukasz w Trójmieście, chętnie pomożemy też z wyborem nieruchomości.",
-  },
-  {
-    q: "Co się dzieje po wysłaniu zapytania?",
-    a: "Zapytanie trafia do biura Dom Hunter. Oddzwaniamy, rozmawiamy o Twojej sytuacji i ustalamy kolejne kroki.",
-  },
-];
 
 export default async function KredytyPage() {
   const oferty = await ofertyDoBudzetu();
@@ -190,14 +111,23 @@ export default async function KredytyPage() {
         <Container size="wide">
           <div className="relative overflow-hidden rounded-[30px] border border-border bg-surface">
             <div className="grid items-end lg:grid-cols-[0.75fr_1.25fr]">
-              <div className="relative flex h-[300px] items-end justify-center bg-gradient-to-b from-brand-light to-brand-blush lg:h-full lg:min-h-[420px]">
-                <div aria-hidden className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/70 blur-2xl" />
+              <div className="relative flex h-[320px] items-end justify-center overflow-hidden bg-brand-deep lg:h-full lg:min-h-[440px]">
+                {/* tło: rozmyty ekran SpeedFin w kolorach marki + poświata i pierścienie */}
+                <Image src="/images/kredyty/speedfin-ekran.jpg" alt="" fill sizes="40vw" className="object-cover opacity-40 mix-blend-luminosity" aria-hidden />
+                <div aria-hidden className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_100%,rgba(211,30,192,0.85)_0%,rgba(109,19,84,0.75)_45%,rgba(40,8,32,0.92)_100%)]" />
+                <div aria-hidden className="absolute left-1/2 top-[42%] h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15" />
+                <div aria-hidden className="absolute left-1/2 top-[42%] h-[480px] w-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
+                <div aria-hidden className="absolute left-1/2 top-[45%] h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-soft/50 blur-[70px]" />
+                <span className="absolute left-5 top-5 z-10 rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-deep">
+                  Twórca SpeedFin
+                </span>
+                <span className="absolute bottom-5 left-5 z-10 font-display text-xl text-white drop-shadow lg:text-2xl">Tomasz Tasiemski</span>
                 <Image
                   src="/images/kredyty/tomasz-tasiemski.webp"
                   alt="Tomasz Tasiemski, twórca SpeedFin"
                   width={560}
                   height={915}
-                  className="relative h-[290px] w-auto object-contain lg:h-[410px]"
+                  className="relative h-[300px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.45)] lg:h-[420px]"
                 />
               </div>
               <div className="p-8 sm:p-10 lg:p-14">
@@ -232,146 +162,11 @@ export default async function KredytyPage() {
         </Container>
       </section>
 
-      {/* JAK TO DZIAŁA */}
-      <section className="py-20 lg:py-28">
-        <Container size="wide">
-          <div className="mb-12 max-w-2xl">
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">Jak to działa</p>
-            <h2 className="font-display font-normal text-[clamp(2rem,4vw,3.2rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
-              Trzy kroki, <span className="italic text-brand">zero logowania.</span>
-            </h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3 lg:gap-6">
-            {kroki.map((k, i) => {
-              const Icon = k.icon;
-              return (
-                <div key={k.title} className="relative rounded-[24px] border border-border bg-surface p-8 lg:p-10">
-                  <span className="absolute right-8 top-7 font-display text-6xl leading-none text-brand/15">{i + 1}</span>
-                  <span className="mb-6 inline-flex size-12 items-center justify-center rounded-2xl bg-brand/10 text-brand">
-                    <Icon className="size-5" />
-                  </span>
-                  <h3 className="mb-3 font-display text-2xl tracking-[-0.015em] text-foreground">{k.title}</h3>
-                  <p className="text-base leading-relaxed text-foreground-muted">{k.body}</p>
-                </div>
-              );
-            })}
-          </div>
-        </Container>
-      </section>
-
-      {/* DLA KOGO */}
-      <section className="bg-surface-cream py-20 lg:py-28">
-        <Container size="wide">
-          <div className="mb-12 max-w-2xl">
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">Dla kogo</p>
-            <h2 className="font-display font-normal text-[clamp(2rem,4vw,3.2rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
-              Dla każdego, kto kupuje <span className="italic text-brand">z głową.</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-6">
-            {dlaKogo.map((d) => {
-              const Icon = d.icon;
-              return (
-                <div
-                  key={d.title}
-                  className="group rounded-[24px] border border-border bg-surface p-8 transition-all hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_24px_60px_-30px] hover:shadow-brand/40 lg:p-10"
-                >
-                  <span className="mb-6 inline-flex size-12 items-center justify-center rounded-2xl bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
-                    <Icon className="size-5" />
-                  </span>
-                  <h3 className="mb-3 font-display text-2xl tracking-[-0.015em] text-foreground lg:text-3xl">{d.title}</h3>
-                  <p className="text-base leading-relaxed text-foreground-muted">{d.body}</p>
-                </div>
-              );
-            })}
-          </div>
-        </Container>
-      </section>
-
-      {/* CO ZYSKUJESZ */}
-      <section className="py-20 lg:py-28">
-        <Container size="wide">
-          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">Co zyskujesz</p>
-              <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3.1rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
-                Kupujesz spokojnie, <span className="italic text-brand">bo wiesz, na co Cię stać.</span>
-              </h2>
-              <p className="mt-6 max-w-md text-lg leading-relaxed text-foreground-muted">
-                Najwięcej nerwów przy zakupie bierze się z niewiedzy o finansowaniu. Gdy rata jest policzona przed
-                oglądaniem, rozmowa o mieszkaniu wygląda zupełnie inaczej.
-              </p>
-            </div>
-            <ul className="space-y-3.5 lg:pt-12">
-              {zyski.map((z) => (
-                <li key={z} className="flex items-start gap-3 rounded-2xl border border-border bg-surface px-5 py-4 text-base text-foreground">
-                  <span className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
-                    <Check className="size-3.5" strokeWidth={2.4} />
-                  </span>
-                  {z}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Container>
-      </section>
-
-      {/* PYTANIA */}
-      <section className="bg-surface-cream py-20 lg:py-28">
-        <Container size="wide">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <div>
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">Pytania</p>
-              <h2 className="font-display font-normal text-[clamp(1.9rem,4vw,3.1rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
-                Krótko i <span className="italic text-brand">konkretnie.</span>
-              </h2>
-            </div>
-            <div className="divide-y divide-border rounded-[24px] border border-border bg-surface">
-              {pytania.map((p) => (
-                <details key={p.q} className="group px-6 py-5 lg:px-8">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-medium text-foreground">
-                    {p.q}
-                    <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-border text-brand transition-transform group-open:rotate-45">+</span>
-                  </summary>
-                  <p className="mt-3 text-base leading-relaxed text-foreground-muted">{p.a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 lg:py-28">
-        <Container size="wide">
-          <div className="relative overflow-hidden rounded-[28px] border border-brand/30 bg-surface-cream px-8 py-14 text-center sm:px-12 lg:py-20">
-            <div aria-hidden className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-brand/10 blur-[90px]" />
-            <div className="relative mx-auto max-w-2xl">
-              <h2 className="font-display font-normal text-[clamp(1.9rem,4.4vw,3.3rem)] leading-[1.05] tracking-[-0.01em] text-foreground">
-                Masz już ratę? <span className="italic text-brand">Znajdźmy mieszkanie.</span>
-              </h2>
-              <p className="mx-auto mt-5 max-w-lg text-lg leading-relaxed text-foreground-muted">
-                Powiedz, w jakim budżecie szukasz. Pokażemy oferty w Trójmieście, także te, których nie ma na portalach.
-              </p>
-              <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                <a
-                  href="tel:+48585334323"
-                  className="inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-hover"
-                >
-                  Zadzwoń, 58 533 43 23
-                </a>
-                <Link
-                  href="/oferty"
-                  className="inline-flex items-center gap-2 rounded-full border border-border-strong px-8 py-4 text-sm font-semibold text-foreground transition-all hover:border-brand hover:text-brand"
-                >
-                  Przeglądaj oferty
-                  <ArrowRight className="size-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <JakToDziala />
+      <DlaKogo zdjecia={[1, 5, 3, oferty.length - 1].map((i) => oferty[i]?.zdjecie).filter(Boolean) as string[]} />
+      <PrzedIPo />
+      <Pytania />
+      <Zaproszenie zdjecie={oferty[7]?.zdjecie} />
 
       <LeadModal />
     </>

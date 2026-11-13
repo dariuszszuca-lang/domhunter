@@ -98,6 +98,41 @@ export function KalkulatorPelny() {
     return () => window.clearInterval(t);
   }, [stan, ref]);
 
+  // Pusta lista po „Pokaż oferty banków”: SpeedFin nic nie pisze, więc mówimy sami, co poprawić.
+  const [pusto, setPusto] = useState<string | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let t: number | undefined;
+    const klik = (e: Event) => {
+      const cel = e.target as HTMLElement;
+      if (!cel.closest?.(".sf-mortgageCheckBtn") || !el.contains(cel)) return;
+      setPusto(null);
+      window.clearInterval(t);
+      let n = 0;
+      t = window.setInterval(() => {
+        // Pierwsze 2 s czekamy: stara lista banków znika dopiero, gdy SpeedFin odpowie.
+        if (++n < 8) return;
+        if (el.querySelector(".productContainer")) return window.clearInterval(t);
+        if (el.querySelector(".sf-mortgageCheckBtn.is-loading, .lds-facebook") && n < 40) return;
+        window.clearInterval(t);
+        const liczba = (sel: string) => Number(el.querySelector<HTMLInputElement>(sel)?.value || 0);
+        const kwota = liczba(".sf-f1 input");
+        const wartosc = liczba(".sf-f4 input");
+        setPusto(
+          kwota && wartosc && kwota > wartosc
+            ? "Kwota kredytu jest wyższa niż wartość nieruchomości. Banki nie pożyczają więcej, niż jest warta nieruchomość, zwykle do 80 lub 90% jej wartości. Zmniejsz kwotę kredytu albo zwiększ wartość nieruchomości."
+            : "Dla tych ustawień kalkulator nie znalazł ofert. Zmień kwotę, okres albo wartość nieruchomości. Możesz też zadzwonić, policzymy to razem."
+        );
+      }, 250);
+    };
+    document.addEventListener("click", klik, true); // capture na dokumencie: SpeedFin zatrzymuje kliknięcie
+    return () => {
+      document.removeEventListener("click", klik, true);
+      window.clearInterval(t);
+    };
+  }, [ref]);
+
   // Przyjście z małego kalkulatora (parametry w adresie): przewiń do kalkulatora.
   useEffect(() => {
     if (new URLSearchParams(window.location.search).has("creditValue")) {
@@ -115,6 +150,13 @@ export function KalkulatorPelny() {
         </p>
       )}
       <div ref={ref} />
+      {pusto && (
+        <div role="status" className="mt-6 rounded-[20px] border border-brand/30 bg-brand-light px-5 py-4 text-[15px] leading-relaxed text-foreground">
+          <b className="font-semibold text-brand-deep">Brak ofert banków. </b>
+          {pusto}{" "}
+          <a href="tel:+48585334323" className="font-semibold text-brand underline underline-offset-2">58 533 43 23</a>
+        </div>
+      )}
     </div>
   );
 }

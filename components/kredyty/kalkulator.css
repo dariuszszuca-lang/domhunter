@@ -206,3 +206,7 @@
 .dh-sf-mini .sf-filtersMiniContainer .slider-connect { background: #d31ec0 !important; }
 .dh-sf-mini .sf-filtersMiniContainer .slider-handle { background: #fff !important; border: 2px solid #d31ec0 !important; }
 .dh-sf-mini .sf-filterMini p:first-child { margin-top: 0 !important; }
+/* Na białej karcie pola na kremowym tle, żeby było widać, gdzie wpisywać */
+.dh-sf-pelny .comboInput,
+.dh-sf-pelny .customSelect .selected { background: #f7f6f1 !important; }
+.dh-sf-pelny .productContainer { background: #fff !important; }

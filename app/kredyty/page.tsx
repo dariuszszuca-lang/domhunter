@@ -216,28 +216,28 @@ export default async function KredytyPage() {
       </section>
 
       {/* KALKULATOR */}
-      <section id="kalkulator" className="scroll-mt-24 bg-surface-dark py-20 lg:py-28">
+      <section id="kalkulator" className="relative scroll-mt-24 overflow-hidden bg-gradient-to-b from-brand-light to-brand-blush py-20 lg:py-28">
         <Container size="wide">
           <div className="mb-10 flex flex-col gap-6 lg:mb-14 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-soft">Kalkulator kredytu hipotecznego</p>
-              <h2 className="font-display font-normal text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.04] tracking-[-0.01em] text-white">
-                Twoje liczby. <span className="italic text-brand-soft">Prawdziwe oferty banków.</span>
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">Kalkulator kredytu hipotecznego</p>
+              <h2 className="font-display font-normal text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.04] tracking-[-0.01em] text-foreground">
+                Twoje liczby. <span className="italic text-brand">Prawdziwe oferty banków.</span>
               </h2>
             </div>
-            <ol className="flex flex-wrap gap-2 text-sm text-white/75">
+            <ol className="flex flex-wrap gap-2 text-sm text-foreground">
               {["Ustaw kwotę", "Pokaż oferty", "Umów rozmowę"].map((k, i) => (
-                <li key={k} className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2">
+                <li key={k} className="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-white/70 px-4 py-2">
                   <span className="inline-flex size-5 items-center justify-center rounded-full bg-brand text-[11px] font-bold text-white">{i + 1}</span>
                   {k}
                 </li>
               ))}
             </ol>
           </div>
-          <div className="rounded-[30px] bg-surface-cream p-5 shadow-[0_50px_100px_-40px_rgba(0,0,0,0.6)] sm:p-8 lg:p-10">
+          <div className="rounded-[30px] border border-brand/15 bg-surface p-5 shadow-[0_50px_100px_-50px_rgba(109,19,84,0.45)] sm:p-8 lg:p-10">
             <KalkulatorPelny />
           </div>
-          <p className="mt-6 max-w-3xl text-xs leading-relaxed text-white/55">
+          <p className="mt-6 max-w-3xl text-xs leading-relaxed text-foreground-subtle">
             Wyniki mają charakter orientacyjny i nie są ofertą w rozumieniu przepisów prawa. Ostateczne warunki kredytu
             zależą od decyzji banku. Kalkulator: SpeedFin, Finance Development Sp. z o.o.
           </p>

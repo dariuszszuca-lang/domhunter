@@ -244,6 +244,53 @@ export default async function KredytyPage() {
         </Container>
       </section>
 
+      {/* SPEEDFIN: kto stoi za kalkulatorem */}
+      <section className="py-20 lg:py-24">
+        <Container size="wide">
+          <div className="relative overflow-hidden rounded-[30px] border border-border bg-surface">
+            <div className="grid items-end lg:grid-cols-[0.75fr_1.25fr]">
+              <div className="relative flex h-[300px] items-end justify-center bg-gradient-to-b from-brand-light to-brand-blush lg:h-full lg:min-h-[420px]">
+                <div aria-hidden className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/70 blur-2xl" />
+                <Image
+                  src="/images/kredyty/tomasz-tasiemski.webp"
+                  alt="Tomasz Tasiemski, twórca SpeedFin"
+                  width={560}
+                  height={915}
+                  className="relative h-[290px] w-auto object-contain lg:h-[410px]"
+                />
+              </div>
+              <div className="p-8 sm:p-10 lg:p-14">
+                <Image src="/images/kredyty/speedfin-logo.png" alt="SpeedFin, porównywarka finansowa" width={400} height={113} className="h-11 w-auto" />
+                <h2 className="mt-7 font-display font-normal text-[clamp(1.8rem,3.6vw,2.8rem)] leading-[1.06] tracking-[-0.01em] text-foreground">
+                  Kalkulator działa na silniku <span className="italic text-brand">SpeedFin.</span>
+                </h2>
+                <p className="mt-5 max-w-xl text-lg leading-relaxed text-foreground-muted">
+                  SpeedFin to porównywarka kredytów hipotecznych, którą stworzył Tomasz Tasiemski. Na co dzień
+                  pracują na niej eksperci kredytowi w całej Polsce. My podpięliśmy ją pod naszą stronę, żebyś
+                  ratę widział od razu, obok mieszkania.
+                </p>
+                <div className="mt-8 grid max-w-md grid-cols-2 gap-6 border-t border-border pt-6">
+                  <div>
+                    <p className="font-display text-4xl text-foreground">4200+</p>
+                    <p className="mt-1 text-xs text-foreground-subtle">specjalistów korzysta z SpeedFin</p>
+                  </div>
+                  <div>
+                    <p className="font-display text-4xl text-foreground">2,5 mln</p>
+                    <p className="mt-1 text-xs text-foreground-subtle">symulacji kredytów rocznie</p>
+                  </div>
+                </div>
+                <p className="mt-4 text-[11px] text-foreground-subtle">
+                  Dane SpeedFin. Twórca: Tomasz Tasiemski, Finance Development Sp. z o.o.{" "}
+                  <a href="https://kalkulator-hipoteczny.online/" target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-brand">
+                    kalkulator-hipoteczny.online
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* JAK TO DZIAŁA */}
       <section className="py-20 lg:py-28">
         <Container size="wide">

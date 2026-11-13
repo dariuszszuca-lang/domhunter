@@ -107,6 +107,13 @@ export default function PolitykaPrywatnosciPage() {
           IQ.pl (Polska): obsługa naszej poczty. Przez serwer pocztowy IQ.pl
           trafiają też do nas wiadomości z formularzy na stronie.
         </li>
+        <li>
+          Finance Development Sp. z o.o. (Polska, marka SpeedFin): kalkulator
+          kredytowy na stronie /kredyty. Do kalkulatora trafiają tylko liczby,
+          które w nim ustawisz (kwota, okres, wartość nieruchomości, wiek).
+          Twoje imię, telefon i e-mail z formularza rozmowy trafiają wyłącznie
+          do nas.
+        </li>
       </ul>
 
       <h2>Przekazywanie danych poza EOG</h2>

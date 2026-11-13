@@ -13,6 +13,7 @@ const staticRoutes: Array<{
   { path: "/", priority: 1.0, changeFrequency: "daily" },
   { path: "/oferty", priority: 0.9, changeFrequency: "daily" },
   { path: "/komercja", priority: 0.8, changeFrequency: "weekly" },
+  { path: "/kredyty", priority: 0.8, changeFrequency: "weekly" },
   { path: "/wycena", priority: 0.8, changeFrequency: "monthly" },
   { path: "/o-nas", priority: 0.6, changeFrequency: "monthly" },
   { path: "/kontakt", priority: 0.7, changeFrequency: "monthly" },

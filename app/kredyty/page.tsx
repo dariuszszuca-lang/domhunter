@@ -3,9 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowRight,
-  ArrowDown,
   Calculator,
-  MapPin,
   Home,
   KeyRound,
   TrendingUp,
@@ -18,7 +16,8 @@ import {
 import { Container } from "@/components/ui/container";
 import { readOffers } from "@/lib/esti/store";
 import type { Offer } from "@/lib/esti/types";
-import { KalkulatorPelny, RataPrzyOfercie, LeadModal } from "@/components/kredyty/speedfin";
+import { KalkulatorPelny, LeadModal } from "@/components/kredyty/speedfin";
+import { OfertyWBudzecie, type OfertaKarta } from "@/components/kredyty/oferty-w-budzecie";
 
 export const metadata: Metadata = {
   title: "Kredyt hipoteczny: kalkulator rat i oferty banków",
@@ -29,19 +28,31 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600;
 
-/** Prawdziwa oferta z Esti do karty w hero: mieszkanie na sprzedaż ze zdjęciem. */
-async function ofertaDoHero(): Promise<Offer | null> {
+/** Oferty na sprzedaż do sekcji „Ile chcesz płacić?”: mieszkania i domy ze zdjęciem, rozsądny przedział cen. */
+async function ofertyDoBudzetu(): Promise<OfertaKarta[]> {
   const oferty = (await readOffers())?.offers ?? [];
-  const naSprzedaz = oferty.filter((o) => o.transaction === "sprzedaz" && o.price > 0 && o.images?.length);
-  return (
-    naSprzedaz.find((o) => o.type === "mieszkanie" && o.price >= 350_000 && o.price <= 1_200_000) ??
-    naSprzedaz.find((o) => o.type === "mieszkanie") ??
-    naSprzedaz[0] ??
-    null
-  );
+  return oferty
+    .filter(
+      (o) =>
+        o.transaction === "sprzedaz" &&
+        (o.type === "mieszkanie" || o.type === "dom") &&
+        o.price >= 150_000 &&
+        o.price <= 2_500_000 &&
+        o.images?.length
+    )
+    .sort((x, y) => x.price - y.price)
+    .filter((_, i, all) => all.length <= 12 || i % Math.ceil(all.length / 12) === 0) // równo z całego przedziału cen
+    .slice(0, 12)
+    .map((o: Offer) => ({
+      id: o.id,
+      tytul: o.title,
+      cena: o.price,
+      metraz: o.area || undefined,
+      pokoje: o.rooms || undefined,
+      miejsce: [o.district, o.city].filter(Boolean).join(", "),
+      zdjecie: (o.images.find((i) => i.primary) ?? o.images[0]).url,
+    }));
 }
-
-const zl = (n: number) => new Intl.NumberFormat("pl-PL").format(n) + " zł";
 
 const kroki = [
   {
@@ -116,117 +127,29 @@ const pytania = [
 ];
 
 export default async function KredytyPage() {
-  const oferta = await ofertaDoHero();
-  const zdjecie = oferta?.images.find((i) => i.primary)?.url ?? oferta?.images[0]?.url;
-  const miejsce = oferta ? [oferta.district, oferta.city].filter(Boolean).join(", ") : "";
+  const oferty = await ofertyDoBudzetu();
 
   return (
     <>
-      {/* HERO: hasło + prawdziwa oferta z ratą liczoną na żywo */}
-      <section className="relative overflow-hidden pt-16 pb-16 lg:pt-24 lg:pb-24">
-        <div aria-hidden className="pointer-events-none absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-brand/10 blur-[120px]" />
+      {/* START: krótki nagłówek i od razu kalkulator */}
+      <section id="kalkulator" className="relative scroll-mt-24 overflow-hidden pt-10 pb-16 lg:pt-14 lg:pb-20">
+        <div aria-hidden className="pointer-events-none absolute -right-40 -top-48 h-[520px] w-[520px] rounded-full bg-brand/10 blur-[120px]" />
         <Container size="wide">
-          <div className="relative grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-            <div>
-              <p className="mb-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
+          <div className="relative mb-8 flex flex-col gap-6 lg:mb-10 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
+              <p className="mb-3 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
                 <Calculator className="size-3.5" />
-                Kredyty · Trójmiasto
+                Kalkulator kredytu · SpeedFin
               </p>
-              <h1 className="font-display font-normal text-[clamp(2.4rem,6vw,4.4rem)] leading-[1.0] tracking-[-0.015em] text-foreground">
-                Najpierw rata.{" "}
-                <span className="italic text-brand">Potem mieszkanie.</span>
+              <h1 className="font-display font-normal text-[clamp(2.3rem,5.4vw,4rem)] leading-[1.0] tracking-[-0.015em] text-foreground">
+                Najpierw rata. <span className="italic text-brand">Potem mieszkanie.</span>
               </h1>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground-muted">
-                Policz kredyt hipoteczny w kilkanaście sekund. Zobaczysz ratę, oprocentowanie, RRSO i koszt
-                całkowity w bankach, a gdy coś Ci się spodoba, oddzwonimy i poprowadzimy dalej.
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-foreground-muted">
+                Ustaw kwotę i kliknij. Zobaczysz ratę, oprocentowanie, RRSO i koszt całkowity w bankach. Bez logowania.
               </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <a
-                  href="#kalkulator"
-                  className="group inline-flex items-center gap-2.5 rounded-full bg-brand py-2 pl-7 pr-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-hover"
-                >
-                  Policz swoją ratę
-                  <span className="inline-flex size-9 items-center justify-center rounded-full bg-white/20 transition-colors group-hover:bg-white/30">
-                    <ArrowDown className="size-4" />
-                  </span>
-                </a>
-                <Link
-                  href="/oferty"
-                  className="inline-flex items-center rounded-full border border-border-strong px-7 py-3.5 text-sm font-semibold text-foreground transition-all hover:border-brand hover:text-brand"
-                >
-                  Zobacz oferty
-                </Link>
-              </div>
-              <div className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-border pt-7">
-                <div>
-                  <p className="font-display text-4xl text-foreground">250+</p>
-                  <p className="mt-1 text-xs leading-snug text-foreground-subtle">ofert kredytów hipotecznych</p>
-                </div>
-                <div>
-                  <p className="font-display text-4xl text-foreground">150+</p>
-                  <p className="mt-1 text-xs leading-snug text-foreground-subtle">parametrów w obliczeniach</p>
-                </div>
-                <div>
-                  <p className="font-display text-4xl text-brand">0 zł</p>
-                  <p className="mt-1 text-xs leading-snug text-foreground-subtle">za liczenie i rozmowę</p>
-                </div>
-              </div>
-              <p className="mt-3 text-[11px] text-foreground-subtle">Liczby ofert i parametrów według SpeedFin.</p>
-            </div>
-
-            {/* Karta oferty z ratą na żywo */}
-            <div className="relative mx-auto w-full max-w-[460px]">
-              <div aria-hidden className="absolute -inset-4 rotate-[-3deg] rounded-[34px] bg-brand-blush" />
-              <div className="relative overflow-hidden rounded-[28px] border border-border bg-surface shadow-[0_40px_80px_-40px_rgba(109,19,84,0.45)]">
-                {oferta && zdjecie ? (
-                  <Link href={`/oferty/${oferta.id}`} className="group relative block aspect-[2/1] overflow-hidden bg-foreground/5">
-                    <Image src={zdjecie} alt={oferta.title} fill sizes="460px" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" priority />
-                    <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground">
-                      Oferta Dom Hunter
-                    </span>
-                  </Link>
-                ) : null}
-                <div className="p-5 sm:p-6">
-                  {oferta ? (
-                    <>
-                      <p className="flex items-center gap-1.5 text-xs text-foreground-subtle">
-                        <MapPin className="size-3.5" /> {miejsce}
-                      </p>
-                      <p className="mt-1 line-clamp-1 font-display text-xl text-foreground">{oferta.title}</p>
-                      <p className="mt-1 text-sm text-foreground-muted">
-                        Cena <b className="font-semibold text-foreground">{zl(oferta.price)}</b>
-                        {oferta.area ? <> · {oferta.area} m²</> : null}
-                      </p>
-                    </>
-                  ) : (
-                    <p className="font-display text-xl text-foreground">Mieszkanie za 600 000 zł</p>
-                  )}
-                  <div className="mt-4 rounded-2xl bg-surface-cream p-4">
-                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand">Rata liczona teraz, na żywo</p>
-                    <RataPrzyOfercie cena={oferta?.price ?? 600_000} />
-                  </div>
-                </div>
-              </div>
-              <p className="relative mt-5 text-center text-xs text-foreground-subtle">
-                Tak liczymy ratę przy prawdziwej ofercie. Przy 20% wkładu własnego.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* KALKULATOR */}
-      <section id="kalkulator" className="relative scroll-mt-24 overflow-hidden bg-gradient-to-b from-brand-light to-brand-blush py-20 lg:py-28">
-        <Container size="wide">
-          <div className="mb-10 flex flex-col gap-6 lg:mb-14 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">Kalkulator kredytu hipotecznego</p>
-              <h2 className="font-display font-normal text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.04] tracking-[-0.01em] text-foreground">
-                Twoje liczby. <span className="italic text-brand">Prawdziwe oferty banków.</span>
-              </h2>
             </div>
             <ol className="flex flex-wrap gap-2 text-sm text-foreground">
-              {["Ustaw kwotę", "Pokaż oferty", "Umów rozmowę"].map((k, i) => (
+              {["Ustaw kwotę", "Pokaż oferty banków", "Umów rozmowę"].map((k, i) => (
                 <li key={k} className="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-white/70 px-4 py-2">
                   <span className="inline-flex size-5 items-center justify-center rounded-full bg-brand text-[11px] font-bold text-white">{i + 1}</span>
                   {k}
@@ -234,15 +157,33 @@ export default async function KredytyPage() {
               ))}
             </ol>
           </div>
-          <div className="rounded-[30px] border border-brand/15 bg-surface p-5 shadow-[0_50px_100px_-50px_rgba(109,19,84,0.45)] sm:p-8 lg:p-10">
+          <div className="relative rounded-[30px] border border-brand/15 bg-surface p-5 shadow-[0_50px_100px_-50px_rgba(109,19,84,0.45)] sm:p-8 lg:p-10">
             <KalkulatorPelny />
           </div>
-          <p className="mt-6 max-w-3xl text-xs leading-relaxed text-foreground-subtle">
+          <p className="mt-5 max-w-3xl text-xs leading-relaxed text-foreground-subtle">
             Wyniki mają charakter orientacyjny i nie są ofertą w rozumieniu przepisów prawa. Ostateczne warunki kredytu
             zależą od decyzji banku. Kalkulator: SpeedFin, Finance Development Sp. z o.o.
           </p>
         </Container>
       </section>
+
+      {/* ILE CHCESZ PŁACIĆ: suwak raty + prawdziwe oferty z ratą od SpeedFin */}
+      {oferty.length > 0 && (
+        <section className="bg-gradient-to-b from-brand-light to-brand-blush py-20 lg:py-28">
+          <Container size="wide">
+            <OfertyWBudzecie oferty={oferty} />
+            <div className="mt-10 text-center">
+              <Link
+                href="/oferty"
+                className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-7 py-3.5 text-sm font-semibold text-foreground transition-all hover:border-brand hover:text-brand"
+              >
+                Wszystkie oferty Dom Hunter
+                <ArrowRight className="size-4" />
+              </Link>
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* SPEEDFIN: kto stoi za kalkulatorem */}
       <section className="py-20 lg:py-24">

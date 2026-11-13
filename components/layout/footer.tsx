@@ -12,6 +12,7 @@ const footerNav = {
     { label: "Domy", href: "/oferty?typ=dom" },
     { label: "Działki", href: "/oferty?typ=dzialka" },
     { label: "Komercja", href: "/komercja" },
+    { label: "Kalkulator kredytu", href: "/kredyty" },
   ],
   firma: [
     { label: "Nasz zespół", href: "/o-nas" },

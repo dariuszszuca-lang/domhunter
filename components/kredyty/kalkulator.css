@@ -1,0 +1,208 @@
+/* Wygląd kalkulatorów SpeedFin w stylu Dom Hunter. Wszystko zawężone do .dh-sf,
+ * żeby nic nie wyciekło na resztę strony. Zmienne --primary itd. czyta CSS SpeedFin. */
+
+.dh-sf {
+  --primary: #d31ec0;
+  --secondary: #d31ec0;
+  --brand-pink: #d31ec0;
+  --brand-navy: #141515;
+  --brand-input-bg: #f7f6f1;
+  --title-color: #141515;
+  --accent-color: #d31ec0;
+  --btn-bg: #d31ec0;
+  --btn-bg-hover: #a8158f;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --slider-connect-bg: #d31ec0;
+  --slider-bg: #ece6ea;
+  --slider-height: 5px;
+  --slider-handle-height: 22px;
+  --slider-handle-width: 22px;
+  --slider-handle-bg: #fff;
+  --slider-handle-border: 2px solid #d31ec0;
+  --slider-handle-ring-color: rgba(211, 30, 192, 0.18);
+  --slider-handle-shadow: 0 4px 14px rgba(109, 19, 84, 0.25);
+  color: #141515;
+}
+.dh-sf * { font-family: inherit !important; }
+
+.dh-sf .sf-powered {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a8288;
+  margin-bottom: 4px;
+}
+.dh-sf .sf-title:empty { display: none; }
+
+/* Filtry */
+.dh-sf .sf-filtersContainer { gap: 18px 22px !important; }
+.dh-sf .comboLabel,
+.dh-sf .customSelectLabel {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.16em !important;
+  color: #6d1354 !important;
+  margin-bottom: 8px !important;
+  display: block;
+}
+.dh-sf .comboInput {
+  background: #fff !important;
+  border: 1px solid #e3dbe0 !important;
+  border-radius: 16px !important;
+  font-family: var(--font-display), Georgia, serif !important;
+  font-size: 26px !important;
+  font-weight: 400 !important;
+  color: #141515 !important;
+  height: 60px !important;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.dh-sf .comboInput:focus {
+  outline: none !important;
+  border-color: #d31ec0 !important;
+  box-shadow: 0 0 0 4px rgba(211, 30, 192, 0.12) !important;
+}
+.dh-sf .comboSlider { padding: 14px 8px 4px !important; }
+.dh-sf .customSelect .selected {
+  background: #fff !important;
+  border: 1px solid #e3dbe0 !important;
+  border-radius: 16px !important;
+  min-height: 60px;
+  display: flex !important;
+  align-items: center;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #141515 !important;
+}
+.dh-sf .customSelect .selected.open { border-radius: 16px 16px 0 0 !important; border-color: #d31ec0 !important; }
+.dh-sf .customSelect .items {
+  background: #fff !important;
+  border-color: #d31ec0 !important;
+  border-radius: 0 0 16px 16px !important;
+  overflow: hidden;
+  box-shadow: 0 24px 40px -20px rgba(109, 19, 84, 0.35);
+  z-index: 30 !important;
+}
+.dh-sf .customSelect .items div { font-size: 15px !important; color: #141515 !important; }
+.dh-sf .customSelect .items div:hover { background: #fbe7f4 !important; }
+
+/* Przycisk „Pokaż oferty banków” */
+.dh-sf .sf-mortgageCheckBtn,
+.dh-sf .sf-miniCheckBtn,
+.dh-sf .sf-buttonCheckBtn {
+  background: #d31ec0 !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+  box-shadow: 0 14px 30px -12px rgba(211, 30, 192, 0.65);
+  transition: transform 0.2s var(--ease), background 0.2s !important;
+  cursor: pointer;
+}
+.dh-sf .sf-mortgageCheckBtn { min-width: 260px; padding: 16px 30px !important; margin-top: 10px !important; font-size: 15px !important; }
+.dh-sf .sf-mortgageCheckBtn *,
+.dh-sf .sf-miniCheckBtn *,
+.dh-sf .sf-buttonCheckBtn * { color: #fff !important; }
+.dh-sf .sf-mortgageCheckBtn:hover,
+.dh-sf .sf-miniCheckBtn:hover,
+.dh-sf .sf-buttonCheckBtn:hover { background: #a8158f !important; transform: translateY(-2px); }
+
+/* Lista ofert banków */
+.dh-sf .sf-resultArea {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-top: 28px !important;
+}
+.dh-sf .productContainer {
+  background: #fff !important;
+  border: 1px solid #ece6ea !important;
+  border-radius: 22px !important;
+  margin-bottom: 12px !important;
+  transition: transform 0.25s var(--ease), border-color 0.25s, box-shadow 0.25s;
+}
+.dh-sf .productContainer:hover {
+  transform: translateY(-2px);
+  border-color: rgba(211, 30, 192, 0.45) !important;
+  box-shadow: 0 22px 50px -30px rgba(109, 19, 84, 0.5);
+}
+.dh-sf .sf-resultArea > div:first-child .productContainer {
+  border-color: #d31ec0 !important;
+  box-shadow: 0 22px 50px -28px rgba(211, 30, 192, 0.55);
+  position: relative;
+}
+.dh-sf .sf-resultArea > div:first-child .productContainer::before {
+  content: "Najniższa rata";
+  position: absolute;
+  top: -11px;
+  left: 22px;
+  background: #d31ec0;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.dh-sf .productLogoC { box-shadow: none !important; }
+.dh-sf .productTitle { font-style: normal !important; font-size: 13px !important; color: #6b6468 !important; }
+.dh-sf .infoLabel { font-size: 10px !important; letter-spacing: 0.16em !important; color: #8a8288 !important; font-weight: 600 !important; }
+.dh-sf .infoValue { font-size: 17px !important; font-weight: 600 !important; color: #141515 !important; }
+.dh-sf .b1 .infoValue {
+  font-family: var(--font-display), Georgia, serif !important;
+  font-weight: 400 !important;
+  font-size: 26px !important;
+  color: #d31ec0 !important;
+}
+.dh-sf .productBtn {
+  background: #141515 !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  min-height: 44px;
+  padding: 0 22px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s var(--ease) !important;
+}
+.dh-sf .productBtn:hover { background: #d31ec0 !important; color: #fff !important; transform: translateY(-1px); }
+
+/* Mały kalkulator przy ofercie */
+.dh-sf-mini .WidgetComponent,
+.dh-sf-mini .sf-widget { background: transparent !important; box-shadow: none !important; border: 0 !important; padding: 0 !important; }
+.dh-sf-mini .sf-powered { text-align: right; }
+.dh-sf-mini .sf-miniwidget { background: transparent !important; border: 0 !important; padding: 0 !important; min-width: 0 !important; }
+.dh-sf-mini .sf-brand { font-size: 10px !important; letter-spacing: 0.12em; text-transform: uppercase; color: #8a8288 !important; text-align: right; margin-bottom: 6px; }
+.dh-sf-mini .sf-filtersMiniContainer { display: block !important; }
+.dh-sf-mini .sf-filterMini { background: transparent !important; border: 0 !important; padding: 0 !important; }
+.dh-sf-mini .sf-filterMini:first-child { display: none !important; }
+.dh-sf-mini .sf-filterMini p { margin: 10px 0 2px !important; font-size: 11px !important; letter-spacing: 0.14em; text-transform: uppercase; color: #6d1354 !important; font-weight: 600 !important; }
+.dh-sf-mini .sf-filterMini h4 { margin: 0 !important; font-size: 15px !important; font-weight: 600 !important; color: #141515 !important; }
+.dh-sf-mini .sf-filterMiniSlider { padding: 10px 6px 4px !important; }
+.dh-sf-mini .sf-summaryMiniContainer {
+  display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  margin: 16px 0 14px !important; background: transparent !important; border: 0 !important; padding: 0 !important;
+}
+.dh-sf-mini .sf-summaryMiniContainer > div {
+  background: #fff !important; border: 1px solid #ece6ea !important; border-radius: 16px !important;
+  padding: 12px 8px !important; text-align: center; margin: 0 !important; width: auto !important;
+}
+.dh-sf-mini .sf-summaryMiniContainer h5 {
+  margin: 0 !important; font-family: var(--font-display), Georgia, serif !important; font-weight: 400 !important;
+  font-size: 22px !important; line-height: 1.1 !important; color: #141515 !important; white-space: nowrap;
+}
+.dh-sf-mini .sf-minInstalment { border-color: #d31ec0 !important; background: #fbe7f4 !important; }
+.dh-sf-mini .sf-minInstalment h5 { color: #d31ec0 !important; }
+.dh-sf-mini .sf-summaryMiniContainer p { margin: 4px 0 0 !important; font-size: 11px !important; line-height: 1.25 !important; color: #6b6468 !important; }
+.dh-sf-mini .sf-miniCheckBtn { padding: 13px 16px !important; font-size: 14px !important; }
+.dh-sf-mini .sf-filtersMiniContainer,
+.dh-sf-mini .sf-filtersMiniContainer * { border: 0 !important; box-shadow: none !important; background-color: transparent; }
+.dh-sf-mini .sf-filtersMiniContainer { padding: 0 !important; margin: 0 !important; }
+.dh-sf-mini .sf-filtersMiniContainer .slider-base { background-color: #ece6ea !important; }
+.dh-sf-mini .sf-filtersMiniContainer .slider-connect { background: #d31ec0 !important; }
+.dh-sf-mini .sf-filtersMiniContainer .slider-handle { background: #fff !important; border: 2px solid #d31ec0 !important; }
+.dh-sf-mini .sf-filterMini p:first-child { margin-top: 0 !important; }

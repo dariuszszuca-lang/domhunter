@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { label: "Oferta", href: "/oferty" },
   { label: "Komercja", href: "/komercja" },
+  { label: "Kredyty", href: "/kredyty" },
   { label: "Zgłoś nieruchomość", href: "/wycena" },
   { label: "Nasz zespół", href: "/o-nas" },
   { label: "Współpraca", href: "/wspolpraca" },
@@ -99,7 +100,7 @@ export function Header() {
                   key={item.label}
                   href={item.href}
                   className={cn(
-                    "rounded-full px-3.5 py-2 text-[0.875rem] font-medium transition-colors",
+                    "whitespace-nowrap rounded-full px-3 py-2 text-[0.875rem] font-medium transition-colors xl:px-3.5",
                     active
                       ? "bg-brand/10 text-brand"
                       : "text-foreground-muted hover:text-foreground hover:bg-foreground/[0.05]"
